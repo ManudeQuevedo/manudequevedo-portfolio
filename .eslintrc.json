@@ -1,0 +1,20 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "next/link",
+            "message": "Usa { Link } de '@/i18n/navigation'."
+          },
+          {
+            "name": "next/navigation",
+            "message": "Usa useRouter/usePathname de '@/i18n/navigation'."
+          }
+        ]
+      }
+    ]
+  }
+}

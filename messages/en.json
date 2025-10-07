@@ -1,0 +1,193 @@
+{
+  "sections": {
+    "hi": "Hi, I'm",
+    "about": "About",
+    "work": "Work Experience",
+    "education": "Education",
+    "projects_label": "My Projects",
+    "projects_title": "Check out my latest work",
+    "projects_sub": "I've worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.",
+    "community": {
+      "badge": "Community Impact",
+      "badge_alt": "Community Impact",
+      "title": "Non-Profit Support",
+      "description": "Design and technology should serve people, not just companies. I use branding, web development, and strategy to help organizations that create real impact.",
+      "motto": "Good design moves hearts, builds trust, and amplifies impact. If your mission helps others, I’d love to help you make it real.",
+      "cta": "Request Support",
+      "note": "Requests are reviewed individually based on impact, vision and community scope.",
+      "mailto_subject": "Non-profit website / branding support"
+    },
+    "blog": {
+      "badge": "Blog",
+      "title": "Coming soon",
+      "description": "I’m building a proper writing space. Articles and case studies will start rolling out soon.",
+      "dd": "Days",
+      "hh": "Hours",
+      "mm": "Minutes",
+      "ss": "Seconds",
+      "liveSoon": "Launching soon."
+    },
+    "contact": {
+      "badge": "Contact",
+      "title": "Let's get in touch",
+      "phone": "Phone",
+      "address": "Location",
+      "purpose": "Inquiry Purpose",
+      "opt_project": "New project",
+      "opt_nonprofit": "Non-profit support",
+      "opt_collab": "Collaboration",
+      "opt_other": "Other",
+      "summary": "Description that fits you",
+      "sum_branding": "Branding / Design system",
+      "sum_website": "Website / Frontend",
+      "sum_audit": "UX/UI or performance audit",
+      "sum_advice": "Advice / Mentorship",
+      "full_name": "Full Name",
+      "org": "Organization",
+      "message": "Message",
+      "ph_name": "Enter your full name...",
+      "ph_org": "Enter your organization...",
+      "ph_message": "Tell me about your needs...",
+      "submit": "Submit Form",
+      "sent": "Sent",
+      "ok": "Thanks! I’ll get back to you soon.",
+      "email": "Email",
+      "err": {
+        "validation": "Please review the highlighted fields.",
+        "captcha": "Captcha failed, please try again.",
+        "server": "Something went wrong. Try later."
+      }
+    },
+    "skills_title": "Skills",
+    "skills_sub": "A focused mix of people skills and technical depth.",
+    "skills_soft": "Soft Skills",
+    "skills_frontend": "Front-End",
+    "skills_backend": "Back-End",
+    "skills_db": "Databases",
+    "skills_cloud": "Cloud / DevOps",
+    "skills_security": "Monitoring & ITSM",
+    "skills_footnote": "Open to learn new technologies and adapt fast to change.",
+    "project_status": {
+      "completed": "Completed",
+      "in_progress": "In Progress"
+    }
+  },
+  "resume": {
+    "name": "Manu",
+    "description": "Frontend engineer & UI developer crafting clean design systems and fast, scalable digital experiences.",
+    "summary": "I design and build modern web interfaces with Next.js, React, and TypeScript. I enjoy collaborating with mission-driven teams, product thinking, and polishing the last 10% that makes a UI feel great.",
+    "work": [
+      {
+        "id": "tcs",
+        "company": "Tata Consultancy Services",
+        "href": "https://www.tcs.com/",
+        "location": "Remote",
+        "title": "UI Developer",
+        "start": "April 2023",
+        "end": "Present",
+        "description": "Initially assigned to a secondary project focused on static web content generation within Adobe Experience Manager (AEM) and SDL Tridion, contributing to the CMS migration from Tridion to AEM. Created and maintained Content Fragments, Experience Fragments, dynamic components, Disclosures, and Articles following enterprise content governance processes.\nProactively identified code issues during content delivery, collaborated directly with frontend developers to communicate root causes and proposed solutions. This strengthened cross-team reliability and improved delivery accuracy.\nAlthough my current focus is content management and UI implementation, my long-term goal remains building software that helps individuals and organizations enhance infrastructure, streamline processes, and achieve measurable, planned results."
+      },
+      {
+        "id": "concentrix",
+        "company": "Concentrix (formerly ProKarma)",
+        "href": "https://www.concentrix.com/",
+        "location": "Remote",
+        "title": "Software Engineer / ServiceNow Developer",
+        "start": "September 2019",
+        "end": "April 2023",
+        "description": "Developed and maintained internal client platforms using Angular 7, Material UI, and Node.js within a microservices architecture. Built modular and testable components, improving scalability and reliability. Wrote unit tests with Jest and Mocha, and implemented monitoring dashboards with Grafana and Splunk for real-time incident detection and alerting. Expanded into ServiceNow, earning System Administrator certification and specializing in ITSM automation, incident tracking, and workflow optimization."
+      },
+      {
+        "id": "quiubas",
+        "company": "Quiubas Mobile (acquired by Twilio)",
+        "href": "https://quiubas.com",
+        "location": "Remote",
+        "title": "Software Engineer",
+        "start": "April 2019",
+        "end": "August 2019",
+        "description": "Redesigned and implemented dynamic front-end components for real-time messaging and SMS campaign dashboards using React, Redux, and Sass. Collaborated closely with backend teams to integrate REST APIs, improving system reliability and user experience. Focused on code maintainability, modular UI design, and responsiveness across devices to enhance client engagement and conversion rates."
+      },
+      {
+        "id": "linio",
+        "company": "Linio Mexico",
+        "href": "https://linio.com",
+        "location": "Mexico",
+        "title": "Software Engineer",
+        "start": "January 2019",
+        "end": "April 2019",
+        "description": "Managed and optimized product and campaign landing pages using HTML5, CSS3, and JavaScript. Worked alongside UX designers to align visuals and layout consistency with brand guidelines. Automated repetitive content publishing tasks, reducing manual operations by 40%. Contributed to improving page load times and user experience through layout optimization and performance audits."
+      }
+    ],
+    "education": [
+      {
+        "school": "Southern New Hampshire University",
+        "href": "https://es.snhu.edu/",
+        "degree": "Bachelor's in Computer Science",
+        "start": "2025",
+        "end": "In Progress"
+      },
+      {
+        "school": "Coursera",
+        "href": "https://coursera.org",
+        "degree": "Google Cybersecurity Specialization",
+        "start": "2025",
+        "end": "In Progress"
+      },
+      {
+        "school": "IronHack",
+        "href": "https://ironhack.com",
+        "degree": "Full Stack Web Development Bootcamp",
+        "start": "2018",
+        "end": "2018"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Chat Collect",
+        "href": "https://chatcollect.com",
+        "dates": "Jan 2024 - Feb 2024",
+        "description": "A small SaaS to collect emails from your GPT users. Grow an audience and monetize your GPT usage.",
+        "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "TailwindCSS", "Stripe", "Shadcn UI", "UI Kit"],
+        "links": [
+          { "type": "Website", "href": "https://chatcollect.com" }
+        ],
+        "image": "/placeholder-image.png"
+      },
+      {
+        "title": "UI Kit",
+        "href": "https://uikit.design",
+        "dates": "June 2023 - Present",
+        "description": "Designed, developed and sold animated UI components for developers.",
+        "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "TailwindCSS", "Stripe", "Shadcn UI", "UI Kit"],
+        "links": [
+          { "type": "Website", "href": "https://uikit.design" },
+          { "type": "Source", "href": "https://github.com/uikitdesign/uikit" }
+        ],
+        "image": "/placeholder-image.png"
+      },
+      {
+        "title": "llm_report",
+        "href": "https://llm_report",
+        "dates": "April 2023 - September 2023",
+        "description": "Open-source logging & analytics for OpenAI: track API requests, analyze costs, and improve prompts.",
+        "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "TailwindCSS", "Shadcn UI", "UI Kit", "Stripe", "Cloudflare Workers"],
+        "links": [
+          { "type": "Website", "href": "https://llm_report" },
+          { "type": "Source", "href": "https://github.com/dillionverma/llm_report" }
+        ],
+        "image": "/placeholder-image.png"
+      },
+      {
+        "title": "Automatic Chat",
+        "href": "https://automatic.chat",
+        "dates": "April 2023 - March 2024",
+        "description": "AI customer-support chatbot that auto-replies to tickets using modern GPT models.",
+        "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "TailwindCSS", "Shadcn UI", "UI Kit", "Stripe", "Cloudflare Workers"],
+        "links": [
+          { "type": "Website", "href": "https://automatic.chat" }
+        ],
+        "image": "/placeholder-image.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "sections": {
+    "hi": "Hola, soy",
+    "about": "Acerca de",
+    "work": "Experiencia",
+    "education": "Educación",
+    "projects_label": "Mis Proyectos",
+    "projects_title": "Mira mi trabajo más reciente",
+    "projects_sub": "He trabajado en una variedad de proyectos, desde sitios sencillos hasta aplicaciones web complejas. Aquí hay algunos de mis favoritos.",
+    "community": {
+      "badge": "Impacto Comunitario",
+      "badge_alt": "Impacto Comunitario",
+      "title": "Apoyo a organizaciones sin fines de lucro",
+      "description": "El diseño y la tecnología deben servir a las personas, no solo a las empresas. Utilizo branding, desarrollo web y estrategia para impulsar organizaciones con impacto real.",
+      "motto": "Un buen diseño mueve corazones, genera confianza y amplifica el impacto. Si tu misión ayuda a otros, me encantaría ayudarte a hacerla realidad.",
+      "cta": "Solicitar apoyo",
+      "note": "Las solicitudes se evalúan individualmente según impacto, visión y alcance comunitario.",
+      "mailto_subject": "Soporte para sitio web / branding de non-profit"
+    },
+    "blog": {
+      "badge": "Blog",
+      "title": "Próximamente",
+      "description": "Estoy preparando un espacio de escritura. Muy pronto publicaré artículos y casos de estudio.",
+      "dd": "Días",
+      "hh": "Horas",
+      "mm": "Minutos",
+      "ss": "Segundos",
+      "liveSoon": "Lanzamiento en breve."
+    },
+    "contact": {
+      "badge": "Contacto",
+      "title": "Pongámonos en contacto",
+      "phone": "Teléfono",
+      "address": "Ubicación",
+      "purpose": "Motivo del contacto",
+      "opt_project": "Nuevo proyecto",
+      "opt_nonprofit": "Apoyo a ONG",
+      "opt_collab": "Colaboración",
+      "opt_other": "Otro",
+      "summary": "Descripción que encaja contigo",
+      "sum_branding": "Branding / Sistema de diseño",
+      "sum_website": "Sitio web / Frontend",
+      "sum_audit": "Auditoría UX/UI o performance",
+      "sum_advice": "Asesoría / Mentoría",
+      "full_name": "Nombre completo",
+      "org": "Organización",
+      "message": "Mensaje",
+      "ph_name": "Escribe tu nombre completo...",
+      "ph_org": "Escribe tu organización...",
+      "ph_message": "Cuéntame lo que necesitas...",
+      "submit": "Enviar formulario",
+      "sent": "Enviado",
+      "ok": "¡Gracias! Me pondré en contacto pronto.",
+      "email": "Correo",
+      "err": {
+        "validation": "Revisa los campos marcados.",
+        "captcha": "El captcha falló, inténtalo de nuevo.",
+        "server": "Algo salió mal. Intenta más tarde."
+      }
+    },
+    "skills_title": "Habilidades",
+    "skills_sub": "Una combinación enfocada de habilidades interpersonales y profundidad técnica.",
+    "skills_soft": "Habilidades blandas",
+    "skills_frontend": "Front-End",
+    "skills_backend": "Back-End",
+    "skills_db": "Bases de datos",
+    "skills_cloud": "Cloud / DevOps",
+    "skills_security": "Monitoreo e ITSM",
+    "skills_footnote": "Abierto a aprender nuevas tecnologías y a adaptarme rápidamente al cambio.",
+    "project_status": {
+      "completed": "Completado",
+      "in_progress": "En desarrollo"
+    }
+  },
+  "resume": {
+    "name": "Manu",
+    "description": "Desarrollador Frontend y de UI, creando sistemas de diseño limpios y experiencias digitales rápidas y escalables.",
+    "summary": "Diseño y construyo interfaces web modernas con Next.js, React y TypeScript. Disfruto colaborar con equipos guiados por misión, pensar en producto y pulir ese 10% final que hace que una UI se sienta excelente.",
+    "work": [
+      {
+        "id": "tcs",
+        "company": "Tata Consultancy Services",
+        "href": "https://www.tcs.com/",
+        "location": "Remoto",
+        "title": "UI Developer",
+        "start": "Abril 2023",
+        "end": "Actualidad",
+        "description": "Fui asignado a un proyecto secundario enfocado en la generación de contenido estático dentro de Adobe Experience Manager (AEM) y SDL Tridion, participando activamente en la migración de CMS de Tridion a AEM. Creé y gestioné Content Fragments, Experience Fragments, componentes dinámicos, Disclosures y Articles, siguiendo los procesos corporativos establecidos.\nDe forma proactiva, detecté errores de código durante la carga de contenido y colaboré directamente con los desarrolladores frontend para comunicar la causa raíz y sugerir soluciones. Esto mejoró la calidad de entrega y la comunicación entre equipos.\nAunque actualmente mi rol se centra más en la gestión de contenido y la implementación UI, mi propósito profesional sigue siendo crear software que ayude a personas y empresas a optimizar su infraestructura, automatizar procesos y lograr resultados medibles y planificados."
+      },
+      {
+        "id": "concentrix",
+        "company": "Concentrix (previamente ProKarma)",
+        "href": "https://www.concentrix.com/",
+        "location": "Remoto",
+        "title": "Software Engineer / ServiceNow Developer",
+        "start": "Septiembre 2019",
+        "end": "Abril 2023",
+        "description": "Desarrollé y mantuve plataformas internas y orientadas al cliente utilizando Angular 7, Material UI y Node.js bajo una arquitectura de microservicios. Implementé componentes modulares y testeables, mejorando el rendimiento y la escalabilidad. Escribí pruebas unitarias con Jest y Mocha, e integré tableros de monitoreo en Grafana y Splunk para detección de incidentes en tiempo real y alertamiento. Posteriormente me especialicé en ServiceNow, obteniendo la certificación de System Administrator y enfocándome en automatización ITSM, seguimiento de incidentes y optimización de flujos."
+      },
+      {
+        "id": "quiubas",
+        "company": "Quiubas Mobile (adquirida por Twilio)",
+        "href": "https://quiubas.com",
+        "location": "Remoto",
+        "title": "Software Engineer",
+        "start": "Abril 2019",
+        "end": "Agosto 2019",
+        "description": "Rediseñé e implementé componentes front-end dinámicos para mensajería en tiempo real y dashboards de campañas SMS con React, Redux y Sass. Colaboré con backend para integrar APIs REST, mejorando la confiabilidad del sistema y la UX. Priorizamos mantenibilidad, diseño modular y respuesta en múltiples dispositivos para elevar engagement y conversiones."
+      },
+      {
+        "id": "linio",
+        "company": "Linio México",
+        "href": "https://linio.com",
+        "location": "México",
+        "title": "Software Engineer",
+        "start": "Enero 2019",
+        "end": "Abril 2019",
+        "description": "Gestioné y optimicé landing pages de productos y campañas con HTML5, CSS3 y JavaScript. Trabajé con UX para alinear visuales y consistencia con la marca. Automatizamos tareas repetitivas de publicación, reduciendo operaciones manuales ~40%. También mejoramos tiempos de carga y UX con optimización de layout y auditorías de performance."
+      }
+    ],
+    "education": [
+      {
+        "school": "Southern New Hampshire University",
+        "href": "https://es.snhu.edu/",
+        "degree": "Licenciatura en Ciencias de la Computación",
+        "start": "2025",
+        "end": "En curso"
+      },
+      {
+        "school": "Coursera",
+        "href": "https://coursera.org",
+        "degree": "Especialización en Ciberseguridad (Google)",
+        "start": "2025",
+        "end": "En curso"
+      },
+      {
+        "school": "IronHack",
+        "href": "https://ironhack.com",
+        "degree": "Bootcamp de Desarrollo Web Full Stack",
+        "start": "2018",
+        "end": "2018"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Chat Collect",
+        "href": "https://chatcollect.com",
+        "dates": "Ene 2024 - Feb 2024",
+        "description": "SaaS para recopilar correos de usuarios de tu GPT. Crece audiencia y monetiza tu uso de GPT.",
+        "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "TailwindCSS", "Stripe", "Shadcn UI", "UI Kit"],
+        "links": [
+          { "type": "Website", "href": "https://chatcollect.com" }
+        ],
+        "image": "/placeholder-image.png"
+      },
+      {
+        "title": "UI Kit",
+        "href": "https://uikit.design",
+        "dates": "Jun 2023 - Presente",
+        "description": "Componentes UI animados para desarrolladores: diseñados, desarrollados y comercializados.",
+        "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "TailwindCSS", "Stripe", "Shadcn UI", "UI Kit"],
+        "links": [
+          { "type": "Website", "href": "https://uikit.design" },
+          { "type": "Source", "href": "https://github.com/uikitdesign/uikit" }
+        ],
+        "image": "/placeholder-image.png"
+      },
+      {
+        "title": "llm_report",
+        "href": "https://llm_report",
+        "dates": "Abr 2023 - Sep 2023",
+        "description": "Registro y analítica open-source para OpenAI: seguimiento de requests, costos y mejora de prompts.",
+        "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "TailwindCSS", "Shadcn UI", "UI Kit", "Stripe", "Cloudflare Workers"],
+        "links": [
+          { "type": "Website", "href": "https://llm_report" },
+          { "type": "Source", "href": "https://github.com/dillionverma/llm_report" }
+        ],
+        "image": "/placeholder-image.png"
+      },
+      {
+        "title": "Automatic Chat",
+        "href": "https://automatic.chat",
+        "dates": "Abr 2023 - Mar 2024",
+        "description": "Chatbot de soporte que responde tickets automáticamente usando modelos GPT modernos.",
+        "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "TailwindCSS", "Shadcn UI", "UI Kit", "Stripe", "Cloudflare Workers"],
+        "links": [
+          { "type": "Website", "href": "https://automatic.chat" }
+        ],
+        "image": "/placeholder-image.png"
+      }
+    ]
+  }
+}
