@@ -11,8 +11,8 @@
       "badge": "Impacto Comunitario",
       "badge_alt": "Impacto Comunitario",
       "title": "Apoyo a organizaciones sin fines de lucro",
-      "description": "El diseño y la tecnología deben servir a las personas, no solo a las empresas. Utilizo branding, desarrollo web y estrategia para impulsar organizaciones con impacto real.",
-      "motto": "Un buen diseño mueve corazones, genera confianza y amplifica el impacto. Si tu misión ayuda a otros, me encantaría ayudarte a hacerla realidad.",
+      "description": "Creo que el diseño y la tecnología tienen el poder de crear conexiones significativas y amplificar el cambio positivo. Estoy dedicado a aprovechar mis habilidades en branding, desarrollo web y estrategia para apoyar a organizaciones que construyen puentes entre empresas y personas, fomentando esfuerzos colaborativos que generan un impacto real.",
+      "motto": "Un buen diseño conmueve, genera confianza y amplifica el impacto. Si tu misión es ayudar a otros, me encantaría ayudarte a hacerla realidad.",
       "cta": "Solicitar apoyo",
       "note": "Las solicitudes se evalúan individualmente según impacto, visión y alcance comunitario.",
       "mailto_subject": "Soporte para sitio web / branding de non-profit"
@@ -74,8 +74,8 @@
   },
   "resume": {
     "name": "Manu",
-    "description": "Desarrollador Frontend y de UI, creando sistemas de diseño limpios y experiencias digitales rápidas y escalables.",
-    "summary": "Diseño y construyo interfaces web modernas con Next.js, React y TypeScript. Disfruto colaborar con equipos guiados por misión, pensar en producto y pulir ese 10% final que hace que una UI se sienta excelente.",
+    "description": "Soy Desarrollador Frontend con una pasión por dar vida a las ideas a través del código. Me especializo en crear sistemas de diseño limpios y en construir experiencias digitales rápidas y escalables que a los usuarios les encantan. Aunque mi enfoque principal es el front end, mi experiencia también incluye desarrollo Full-Stack (MERN stack), lo que me da una comprensión integral del desarrollo web.",
+    "summary": "Me apasiona diseñar y construir interfaces web modernas usando Next.js, React y TypeScript. No hay nada más satisfactorio que ver cómo un concepto evoluciona hasta convertirse en una interfaz de usuario pulida e intuitiva. Disfruto colaborar con equipos con una misión clara, aplicando una mentalidad de producto y refinando meticulosamente ese último 10% que transforma una buena UI en una verdaderamente excepcional.",
     "work": [
       {
         "id": "tcs",

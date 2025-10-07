@@ -11,7 +11,7 @@
       "badge": "Community Impact",
       "badge_alt": "Community Impact",
       "title": "Non-Profit Support",
-      "description": "Design and technology should serve people, not just companies. I use branding, web development, and strategy to help organizations that create real impact.",
+      "description": "I believe that design and technology have the power to create meaningful connections and amplify positive change. I'm dedicated to leveraging my skills in branding, web development, and strategy to support organizations that build bridges between companies and individuals, fostering collaborative efforts that create real impact.",
       "motto": "Good design moves hearts, builds trust, and amplifies impact. If your mission helps others, I’d love to help you make it real.",
       "cta": "Request Support",
       "note": "Requests are reviewed individually based on impact, vision and community scope.",
@@ -74,8 +74,8 @@
   },
   "resume": {
     "name": "Manu",
-    "description": "Frontend engineer & UI developer crafting clean design systems and fast, scalable digital experiences.",
-    "summary": "I design and build modern web interfaces with Next.js, React, and TypeScript. I enjoy collaborating with mission-driven teams, product thinking, and polishing the last 10% that makes a UI feel great.",
+    "description": "I'm a Frontend Developer with a passion for bringing ideas to life through code. I specialize in crafting clean design systems and building fast, scalable digital experiences that users love. While my primary focus is on the front end, my background also includes experience as a Full-Stack Developer (MERN stack), which gives me a holistic understanding of web development.",
+    "summary": "I thrive on designing and building modern web interfaces using Next.js, React, and TypeScript. There's nothing more satisfying than seeing a concept evolve into a polished, intuitive user interface. I enjoy collaborating with mission-driven teams, applying product thinking, and meticulously refining that last 10% that transforms a good UI into a truly exceptional one.",
     "work": [
       {
         "id": "tcs",
