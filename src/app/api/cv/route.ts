@@ -1,7 +1,7 @@
 // src/app/api/cv/route.ts
 import { NextRequest } from "next/server";
 import { getMessages } from "next-intl/server";
-import { DATA as STATIC } from "@/data/resume";
+import { DATA as STATIC, SKILLS } from "@/data/resume";
 
 type AnyObj = Record<string, any>;
 const F = <T,>(v: T | undefined, fb: T) => v ?? fb;
@@ -32,7 +32,9 @@ export async function GET(_req: NextRequest) {
     description?: string;
   }>;
   const workMerged = workList.map((w) => {
-    const st = ((STATIC.work as unknown) as AnyObj[]).find((x) => x.company === w.company);
+    const st = (STATIC.work as unknown as AnyObj[]).find(
+      (x) => x.company === w.company
+    );
     return {
       company: w.company,
       title: w.title ?? st?.title ?? "",
@@ -61,8 +63,29 @@ export async function GET(_req: NextRequest) {
     };
   });
 
-  // Skills
-  const skills = (M.skills as string[] | undefined) ?? STATIC.skills ?? [];
+  // Skills (mensajes -> fallback a SKILLS agrupados -> [], con dedupe y limpieza)
+  const skillsRawFromI18n = M.skills as string[] | undefined;
+
+  const skillsFromStatic =
+    Array.isArray(SKILLS)
+      ? SKILLS
+      : SKILLS?.groups
+      ? SKILLS.groups.flatMap((g: any) =>
+          (g.items ?? []).map((it: any) =>
+            typeof it === "string"
+              ? it
+              : (it?.label ?? it?.name ?? "").toString()
+          )
+        )
+      : [];
+
+  const skills = Array.from(
+    new Set(
+      (skillsRawFromI18n ?? skillsFromStatic ?? [])
+        .map((s) => (s ?? "").toString().trim())
+        .filter(Boolean)
+    )
+  );
 
   // Projects (merge por título)
   const projectsMsg: AnyObj = M.projects ?? {};
@@ -74,7 +97,10 @@ export async function GET(_req: NextRequest) {
       title: byTitle.title ?? p.title ?? "",
       dates: byTitle.dates ?? p.dates ?? "",
       description: byTitle.description ?? p.description ?? "",
-      tech: (byTitle.technologies as string[] | undefined) ?? p.technologies ?? [],
+      tech:
+        (byTitle.technologies as string[] | undefined) ??
+        p.technologies ??
+        [],
       links: p.links ?? [],
     };
   });
@@ -111,7 +137,8 @@ export async function GET(_req: NextRequest) {
       const right = [w.start, w.end].filter(Boolean).join(" — ");
       const loc = w.location ? ` (${w.location})` : "";
       if (right || loc) lines.push(`  ${right}${loc}`);
-      if (w.description) lines.push(`  ${w.description.replace(/\s+/g, " ").trim()}`);
+      if (w.description)
+        lines.push(`  ${w.description.replace(/\s+/g, " ").trim()}`);
       lines.push("");
     });
   }

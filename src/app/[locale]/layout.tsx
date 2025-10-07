@@ -1,4 +1,3 @@
-// src/app/[locale]/layout.tsx
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -9,14 +8,8 @@ export const metadata: Metadata = {
   description: "Developer Portfolio",
 };
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: "es" | "en" }>;
-}) {
-  const { locale } = await params;
+export default async function LocaleLayout({ children, params }: any) {
+  const locale = (params?.locale as "es" | "en") ?? "en";
   const messages = await getMessages({ locale });
 
   return (

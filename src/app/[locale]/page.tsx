@@ -25,14 +25,10 @@ function guessIconKey(name: string) {
   return "website";
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ locale: "es" | "en" }>;
-}) {
-  const { locale } = await params;
-
+export default async function Page({ params }: any) {
+  const locale = (params?.locale as "es" | "en") ?? "en";
   const messages = (await getMessages({ locale })) as AnyObj;
+
   const M = (messages?.resume ?? {}) as AnyObj;
   const S = (messages?.sections ?? {}) as AnyObj;
 
