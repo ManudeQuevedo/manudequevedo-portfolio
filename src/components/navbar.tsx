@@ -60,12 +60,12 @@ export default function Navbar() {
 
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto mb-4 flex origin-bottom h-full max-h-16">
-      <div className="fixed bottom-0 inset-x-0 h-24 w-full bg-gradient-to-t from-background/90 to-transparent backdrop-blur supports-[backdrop-filter]:from-background/70" />
+      <div className="fixed bottom-0 inset-x-0 h-24 w-full bg-gradient-to-t from-background/90 to-transparent supports-[backdrop-filter]:from-background/70" />
 
       <Dock
         className={cn(
           "z-50 pointer-events-auto relative mx-auto flex min-h-full h-full items-center px-1 rounded-2xl",
-          "bg-background/80 supports-[backdrop-filter]:bg-background/60 backdrop-blur",
+          "bg-background/90",
           "ring-1 ring-border/70 dark:ring-white/10",
           "shadow-[0_0_0_1px_rgba(0,0,0,.03),0_6px_14px_rgba(0,0,0,.10),0_18px_30px_rgba(0,0,0,.14)]",
           "dark:shadow-[0_0_0_1px_rgba(255,255,255,.04),0_10px_22px_rgba(0,0,0,.45),0_-20px_80px_-20px_#ffffff1f_inset]"

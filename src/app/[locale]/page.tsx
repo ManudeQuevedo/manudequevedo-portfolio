@@ -1,44 +1,34 @@
-// src/app/[locale]/page.tsx
 import Image from "next/image";
 import { getMessages } from "next-intl/server";
-import { DATA as STATIC } from "@/data/resume";
+import { DATA as STATIC, SKILLS } from "@/data/resume";
 import WorkExperience from "@/components/sections/WorkExperience";
 import ProjectsSection from "@/components/sections/Projects";
 import ContactSection from "@/components/sections/Contact";
 import CommunityImpactSection from "@/components/sections/CommunityImpact";
 import { safeKey } from "@/lib/safeKey";
 import SkillsSection from "@/components/sections/Skills";
-import { SKILLS } from "@/data/resume";
 import { COMPANY_META } from "@/data/companyMeta";
 
 type AnyObj = Record<string, any>;
 const F = <T,>(v: T | undefined, fb: T) => (v === undefined ? fb : v);
 
-// Para socials: resolvemos iconKey textual (no pasamos funciones)
-function guessIconKey(name: string) {
-  const k = (name || "").toLowerCase();
-  if (k.includes("github")) return "github";
-  if (k.includes("linkedin")) return "linkedin";
-  if (k === "x") return "x";
-  if (k.includes("youtube")) return "youtube";
-  if (k.includes("email") || k.includes("correo")) return "email";
-  return "website";
-}
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>; // <- string aquí
+}) {
+  const { locale: rawLocale } = await params; // <- await params
+  const locale: "es" | "en" = rawLocale === "es" ? "es" : "en"; // <- normaliza
 
-export default async function Page({ params }: any) {
-  const locale = (params?.locale as "es" | "en") ?? "en";
   const messages = (await getMessages({ locale })) as AnyObj;
-
   const M = (messages?.resume ?? {}) as AnyObj;
   const S = (messages?.sections ?? {}) as AnyObj;
 
-  // Hero
   const name = F<string>(M.name, STATIC.name);
   const description = F<string>(M.description, STATIC.description);
   const summary = F<string>(M.summary, STATIC.summary);
   const avatarUrl = STATIC.avatarUrl || "/me.png";
 
-  /*** WORK (merge por id/company y resolución de logo por id) ***/
   const workFromMsg: AnyObj = M.work ?? {};
   const workList = Object.values(workFromMsg) as Array<{
     id?: string;
@@ -53,15 +43,10 @@ export default async function Page({ params }: any) {
   }>;
 
   const workMerged = workList.map((w) => {
-    // Busca en estático por id o por company
     const st = (STATIC.work as unknown as AnyObj[]).find(
       (x) => x.id === w.id || x.company === w.company
     );
-
-    // id estable preferido (i18n → estático)
     const id: string | undefined = w.id ?? st?.id;
-
-    // logo: meta por id → logo del estático → logo del i18n → placeholder PNG
     const resolvedLogo =
       (id && COMPANY_META[id]?.logoUrl) ??
       st?.logoUrl ??
@@ -81,7 +66,6 @@ export default async function Page({ params }: any) {
     };
   });
 
-  /*** EDUCATION (merge por school) ***/
   const eduFromMsg: AnyObj = M.education ?? {};
   const educationList = Object.values(eduFromMsg) as Array<{
     school: string;
@@ -105,7 +89,6 @@ export default async function Page({ params }: any) {
     };
   });
 
-  /*** PROJECTS (merge por title, usando safeKey) ***/
   const msgProjectsRaw: Record<string, any> = M?.projects ?? {};
   const msgProjects = Object.fromEntries(
     Object.entries(msgProjectsRaw).map(([k, v]) => [safeKey(k), v])
@@ -117,7 +100,6 @@ export default async function Page({ params }: any) {
   const projectsMerged = staticProjects.map((p) => {
     const key = safeKey(p.title as string);
     const ov = msgProjects[key] ?? {};
-
     const safeLinks = (ov.links ?? p.links ?? []).map((l: any) => ({
       type: l.type,
       href: l.href,
@@ -132,20 +114,13 @@ export default async function Page({ params }: any) {
       description: F(ov.description, p.description),
       technologies: F(ov.technologies, p.technologies),
       links: safeLinks,
-      image: p.image, // las imágenes de proyectos vienen de estático; i18n solo sobretexto
+      image: p.image,
     };
   });
 
-  /*** CONTACT (merge + socials sin icon functions) ***/
   const msgContact = M?.contact ?? {};
   const contactEmail = F<string>(msgContact.email, STATIC.contact?.email);
   const contactTel = F<string>(msgContact.tel, STATIC.contact?.tel);
-
-  const msgSocial = msgContact.social ?? {};
-  const staticSocial = STATIC.contact?.social ?? {};
-  const socialKeys = Array.from(
-    new Set([...Object.keys(staticSocial), ...Object.keys(msgSocial)])
-  );
 
   return (
     <main className="space-y-8">
@@ -160,7 +135,6 @@ export default async function Page({ params }: any) {
               {description}
             </p>
           </div>
-
           <div className="flex md:justify-end">
             <Image
               src={avatarUrl}
@@ -182,12 +156,10 @@ export default async function Page({ params }: any) {
         </p>
       </section>
 
-      {/* WORK */}
       <WorkExperience
         items={workMerged}
         heading={S?.work ?? "Work Experience"}
       />
-
       {/* EDUCATION */}
       <section className="space-y-5">
         <h2 className="text-xl font-semibold">{S?.education ?? "Education"}</h2>
@@ -205,7 +177,6 @@ export default async function Page({ params }: any) {
                   className="object-contain"
                 />
               </div>
-
               <div className="min-w-0">
                 <div className="font-medium">
                   {e.href ? (
@@ -226,7 +197,6 @@ export default async function Page({ params }: any) {
                   </div>
                 ) : null}
               </div>
-
               <div className="text-right text-xs text-muted-foreground whitespace-nowrap">
                 {e.start} — {e.end}
               </div>
@@ -235,7 +205,6 @@ export default async function Page({ params }: any) {
         </div>
       </section>
 
-      {/* SKILLS */}
       <SkillsSection
         data={{
           ...SKILLS,
@@ -247,13 +216,8 @@ export default async function Page({ params }: any) {
         className="mt-12"
       />
 
-      {/* PROJECTS */}
       <ProjectsSection items={projectsMerged} />
-
-      {/* NON-PROFITS */}
       <CommunityImpactSection email="contact@manudequevedo.com" />
-
-      {/* CONTACT */}
       <ContactSection email={contactEmail} address={contactTel} />
     </main>
   );

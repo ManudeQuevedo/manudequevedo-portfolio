@@ -8,8 +8,16 @@ export const metadata: Metadata = {
   description: "Developer Portfolio",
 };
 
-export default async function LocaleLayout({ children, params }: any) {
-  const locale = (params?.locale as "es" | "en") ?? "en";
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>; // <- lo que espera Next
+}) {
+  const { locale: rawLocale } = await params; // <- await params
+  const locale: "es" | "en" = rawLocale === "es" ? "es" : "en"; // <- normaliza
+
   const messages = await getMessages({ locale });
 
   return (
