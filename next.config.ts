@@ -1,35 +1,23 @@
 // next.config.ts
-import { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
-interface WebpackConfig {
-  resolve: {
-    fallback: {
-      fs: boolean;
-      [key: string]: boolean;
-    };
-    [key: string]: any;
-  };
-  [key: string]: any;
-}
+const withNextIntl = createNextIntlPlugin();
 
-interface NextConfigWithWebpack {
-  webpack: (config: WebpackConfig) => WebpackConfig;
-}
-
-// 🚫 Desactiva la minificación CSS para evitar el error de cssnano-simple
-const nextConfig: NextConfigWithWebpack & NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Evita cssnano-simple (minificador de CSS de Next)
   experimental: {
-    optimizeCss: false, // 👈 Desactiva cssnano (minificador de CSS)
+    optimizeCss: false,
   },
-  webpack: (config: WebpackConfig): WebpackConfig => {
-    config.resolve.fallback = { fs: false };
+
+  // Ya usas Tailwind v4; no necesitamos nada especial aquí.
+  // Mantén SWC para JS/TS (minify por defecto).
+  // webpack tweak que ya tenías (fs false) se conserva:
+  webpack: (config: any) => {
+    config.resolve = config.resolve || {};
+    config.resolve.fallback = { ...(config.resolve.fallback || {}), fs: false };
     return config;
   },
 };
 
-// Plugin de internacionalización
-const withNextIntl = createNextIntlPlugin();
-
-// Exportación final
 export default withNextIntl(nextConfig);
