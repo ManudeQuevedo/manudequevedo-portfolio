@@ -2,7 +2,7 @@
 "use client";
 
 import { useActionState, useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl"; // ⬅️ importamos useLocale
 import { cn } from "@/lib/utils";
 import { sendContact } from "@/app/[locale]/actions/send-contact";
 import { Mail, MapPin } from "lucide-react";
@@ -28,10 +28,11 @@ export default function ContactSection({
   address?: string;
 }) {
   const t = useTranslations("sections.contact");
+  const locale = useLocale(); // ⬅️ obtenemos el locale activo
+
   const [state, formAction] = useActionState<ContactState, FormData>(
     async (_state, payload) => {
       const result = await sendContact(payload);
-      // Map error string to allowed union type
       let error: "validation" | "captcha" | "server" | undefined = undefined;
       if (result.error) {
         if (
@@ -41,7 +42,7 @@ export default function ContactSection({
         ) {
           error = result.error;
         } else {
-          error = "server"; // fallback for unexpected error strings
+          error = "server";
         }
       }
       return {
@@ -52,9 +53,9 @@ export default function ContactSection({
     },
     { ok: false }
   );
+
   const [sent, setSent] = useState(false);
 
-  // marca como enviado cuando la action responde ok
   useEffect(() => {
     if (state?.ok) setSent(true);
   }, [state?.ok]);
@@ -78,7 +79,7 @@ export default function ContactSection({
         </h2>
       </div>
 
-      {/* Banda de info superior — totalmente responsive */}
+      {/* Banda de info superior */}
       <div
         className={cn(
           "grid grid-cols-1 md:grid-cols-2 gap-6 rounded-2xl bg-card/50 p-6"
@@ -94,6 +95,9 @@ export default function ContactSection({
         action={formAction}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
         noValidate>
+        {/* ⬅️ idioma actual para que el email salga en ES/EN */}
+        <input type="hidden" name="locale" value={locale} />
+
         <Select
           name="purpose"
           label={t("purpose")}
@@ -219,21 +223,15 @@ function InfoItem({ icon, value }: { icon: React.ReactNode; value: string }) {
             "p-5 md:p-6 flex flex-col items-center justify-center text-center",
             "hover:bg-accent/10 transition"
           )}
-          // fallback nativo por si el portal del tooltip no aparece
           title={value}>
           <div className="mb-3 inline-flex size-12 items-center justify-center rounded-full border bg-card/70">
             {icon}
           </div>
-
-          {/*
-           */}
           <p className="font-medium text-sm sm:text-base md:text-lg tracking-tight max-w-[220px] sm:max-w-[280px] md:max-w-[360px] truncate">
             {value}
           </p>
         </div>
       </TooltipTrigger>
-
-      {/* Tooltip con el contenido completo */}
       <TooltipContent
         side="top"
         sideOffset={8}
