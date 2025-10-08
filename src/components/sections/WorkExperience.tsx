@@ -45,31 +45,17 @@ export default function WorkExperience({
 function WorkItem({ job }: { job: Job }) {
   const [open, setOpen] = useState(false);
 
-  // Resuelve src del logo:
+  // Resuelve src del logo con prioridad:
   // 1) COMPANY_META[job.id]?.logoUrl
   // 2) job.logoUrl
-  // 3) fallback final
+  // 3) /placeholder.svg
   const initialSrc = useMemo(() => {
     const metaSrc = job.id ? COMPANY_META[job.id]?.logoUrl : undefined;
-    const chosen =
+    return (
       (metaSrc && metaSrc.trim().length ? metaSrc : undefined) ??
       (job.logoUrl && job.logoUrl.trim().length ? job.logoUrl : undefined) ??
-      "/placeholder.svg"; // asegúrate que exista en /public
-    // Debug visible:
-    if (!metaSrc && !job.logoUrl) {
-      console.warn(
-        "[WorkExperience] Sin meta por id y sin logoUrl -> usando placeholder",
-        { job, chosen }
-      );
-    } else {
-      console.log("[WorkExperience] Logo src elegido:", {
-        id: job.id,
-        metaSrc,
-        jobLogo: job.logoUrl,
-        chosen,
-      });
-    }
-    return chosen;
+      "/placeholder.svg"
+    );
   }, [job]);
 
   const [src, setSrc] = useState(initialSrc);
@@ -91,12 +77,8 @@ function WorkItem({ job }: { job: Job }) {
             className="object-contain"
             onError={() => {
               if (!imgErr) {
-                console.error(
-                  "[WorkExperience] Error cargando logo, usando fallback:",
-                  src
-                );
                 setImgErr(true);
-                setSrc("/placeholder.svg"); // asegúrate que exista
+                setSrc("/placeholder.svg"); // asegúrate de tenerlo en /public
               }
             }}
           />

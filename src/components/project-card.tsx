@@ -65,7 +65,7 @@ export function ProjectCard({
   image,
   links = [],
   className,
-  status, // <- NUEVO
+  status,
 }: Props) {
   const t = useTranslations("sections.project_status");
 
@@ -114,6 +114,10 @@ export function ProjectCard({
       ? "bg-amber-400/95 text-amber-950 ring-1 ring-amber-500/60"
       : "";
 
+  // Si no hay href (p.ej., in_progress), deshabilitamos navegación principal
+  const Wrapper: React.ElementType = href ? Link : "div";
+  const wrapperProps = href ? { href } : {};
+
   return (
     <motion.div
       variants={cardVariants}
@@ -129,7 +133,7 @@ export function ProjectCard({
           rotateX,
           rotateY,
           transformStyle: "preserve-3d",
-          boxShadow: shadow.get(), // mantiene el efecto dinámico
+          boxShadow: shadow.get(),
         }}
         className={cn(
           "group will-change-transform rounded-2xl border bg-card/90 backdrop-blur supports-[backdrop-filter]:bg-card/75",
@@ -147,7 +151,7 @@ export function ProjectCard({
           }}
         />
 
-        <Link href={href || "#"} className="block">
+        <Wrapper {...wrapperProps} className="block">
           {/* Imagen con zoom/parallax + badge de status */}
           <div className="relative h-44 w-full overflow-hidden rounded-t-2xl">
             {/* Status Badge */}
@@ -181,7 +185,7 @@ export function ProjectCard({
               />
             </motion.div>
           </div>
-        </Link>
+        </Wrapper>
 
         {/* Contenido; Card rellena el alto restante */}
         <Card className="border-0 bg-transparent shadow-none flex h-full flex-col">

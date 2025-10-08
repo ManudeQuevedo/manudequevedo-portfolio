@@ -120,7 +120,7 @@ export default async function Page({
 
   const msgContact = M?.contact ?? {};
   const contactEmail = F<string>(msgContact.email, STATIC.contact?.email);
-  const contactTel = F<string>(msgContact.tel, STATIC.contact?.tel);
+  const contactAddress = F<string>(msgContact.address, STATIC.location);
 
   return (
     <main className="space-y-8">
@@ -218,7 +218,7 @@ export default async function Page({
 
       <ProjectsSection items={projectsMerged} />
       <CommunityImpactSection email="contact@manudequevedo.com" />
-      <ContactSection email={contactEmail} address={contactTel} />
+      <ContactSection email={contactEmail} address={contactAddress} />
     </main>
   );
 }

@@ -42,7 +42,6 @@ export async function sendContact(fd: FormData) {
         secret: process.env.HCAPTCHA_SECRET_KEY!,
         response: String(payload.captcha),
       }),
-      // importantísimo en server actions para evitar caché
       cache: "no-store",
     }).then((r) => r.json());
 
@@ -75,8 +74,8 @@ export async function sendContact(fd: FormData) {
     });
 
     return { ok: true };
-  } catch (e) {
-    console.error(e);
+  } catch {
+    // Sin logs ni consola, respuesta limpia
     return { ok: false, error: "server" };
   }
 }

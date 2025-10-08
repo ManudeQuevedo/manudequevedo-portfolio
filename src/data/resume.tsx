@@ -6,7 +6,7 @@ export const DATA = {
   name: "Manu",
   initials: "MQ",
   url: "https://manudequevedo.com",
-  location: "Querétaro, Mexico",
+  location: "Querétaro, MX",
   locationLink: "https://www.google.com/maps/place/Querétaro",
   description:
     "Frontend engineer and UI developer focused on clean design systems, fast user experiences, and practical product delivery.",
@@ -165,7 +165,7 @@ export const DATA = {
         "next-intl",
         "UI/UX",
       ],
-      links: [{ type: "Website", href: "Website is coming soon!" }],
+      links: [{ type: "Website", href: "https://woodax-design.com" }],
       image: "/woodax-design.png", // coloca un placeholder en /public
     },
     {

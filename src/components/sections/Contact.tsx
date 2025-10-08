@@ -101,7 +101,6 @@ export default function ContactSection({
           error={state?.fieldErrors?.purpose}
           options={[
             { value: "project", label: t("opt_project") },
-            { value: "nonprofit", label: t("opt_nonprofit") },
             { value: "collab", label: t("opt_collab") },
             { value: "other", label: t("opt_other") },
           ]}

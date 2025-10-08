@@ -3,9 +3,15 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Navbar from "@/components/navbar";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Manu de Quevedo | Portfolio",
   description: "Developer Portfolio",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
+  },
+  manifest: "/manifest.json",
 };
 
 export default async function LocaleLayout({

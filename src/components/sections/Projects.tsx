@@ -48,14 +48,28 @@ export default function ProjectsSection({
       status = p.active ? "in_progress" : "completed";
     }
 
+    // Filtra "Website" cuando el proyecto está en progreso (sin case study listo)
+    const rawLinks = Array.isArray(p.links) ? p.links : [];
+    const links =
+      status === "in_progress"
+        ? rawLinks.filter(
+            (l) =>
+              l.type.toLowerCase() !== "website" &&
+              l.type.toLowerCase() !== "site"
+          )
+        : rawLinks;
+
+    // Si está en progreso, evita navegación principal
+    const safeHref = status === "in_progress" ? undefined : p.href;
+
     return {
       title: p.title,
-      href: p.href,
+      href: safeHref,
       dates: p.dates,
       description: p.description,
       tags: p.tags ?? p.technologies ?? [],
       image: p.image && p.image.length ? p.image : "/placeholder-image.png",
-      links: (p.links || []).map((l) => ({ type: l.type, href: l.href })),
+      links: links.map((l) => ({ type: l.type, href: l.href })),
       status, // <- se pasa al ProjectCard
     };
   });
