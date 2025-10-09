@@ -3,6 +3,7 @@
 
 import { Link } from "@/i18n/navigation";
 import SectionHeader from "./SectionHeader";
+import { UrlObject } from "url";
 
 export default function NonProfitsInvite({
   badge,
@@ -18,7 +19,11 @@ export default function NonProfitsInvite({
   message: string;
   motto: string;
   ctaLabel: string;
-  ctaHref: string;
+  ctaHref:
+    | "/"
+    | "/blog"
+    | ({ pathname: "/" } & Omit<UrlObject, "pathname">)
+    | ({ pathname: "/blog" } & Omit<UrlObject, "pathname">);
   domainNote?: string;
 }) {
   return (

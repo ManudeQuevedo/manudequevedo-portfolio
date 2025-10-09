@@ -39,6 +39,19 @@ interface Props {
   status?: ProjectStatus;
 }
 
+/** Rutas internas permitidas por tu routing.pathnames */
+type InternalHref = "/" | "/blog";
+
+function isExternal(href: string) {
+  return /^https?:\/\//i.test(href);
+}
+
+/** Intenta convertir a ruta interna conocida; si no, null */
+function asInternal(href?: string): InternalHref | null {
+  if (!href) return null;
+  return href === "/" || href === "/blog" ? (href as InternalHref) : null;
+}
+
 /** Variants para reveal y hover */
 const cardVariants = {
   initial: { opacity: 0, y: 24, scale: 0.98 },
@@ -114,9 +127,17 @@ export function ProjectCard({
       ? "bg-amber-400/95 text-amber-950 ring-1 ring-amber-500/60"
       : "";
 
-  // Si no hay href (p.ej., in_progress), deshabilitamos navegación principal
-  const Wrapper: React.ElementType = href ? Link : "div";
-  const wrapperProps = href ? { href } : {};
+  // Wrapper principal: Link interno (solo "/" y "/blog"), <a> externo, o <div> si no hay href
+  const internalHref = asInternal(href);
+  const isExt = href ? isExternal(href) : false;
+
+  const Wrapper: React.ElementType = internalHref ? Link : isExt ? "a" : "div";
+
+  const wrapperProps = internalHref
+    ? ({ href: internalHref, prefetch: false } as const)
+    : isExt
+    ? ({ href, target: "_blank", rel: "noreferrer" } as const)
+    : ({} as const);
 
   return (
     <motion.div
@@ -236,17 +257,34 @@ export function ProjectCard({
           <CardFooter className="px-4 pb-4 md:px-5">
             {links && links.length > 0 && (
               <div className="flex flex-row flex-wrap items-start gap-1.5">
-                {links.map((l, idx) => (
-                  <Link
-                    href={l.href}
-                    key={idx}
-                    target="_blank"
-                    rel="noreferrer">
-                    <Badge className="gap-2 px-2 py-1 text-[10px]">
-                      {l.type}
-                    </Badge>
-                  </Link>
-                ))}
+                {links.map((l, idx) => {
+                  const internal = asInternal(l.href);
+                  if (internal) {
+                    return (
+                      <Link
+                        key={idx}
+                        href={internal}
+                        prefetch={false}
+                        className="inline-flex">
+                        <Badge className="gap-2 px-2 py-1 text-[10px]">
+                          {l.type}
+                        </Badge>
+                      </Link>
+                    );
+                  }
+                  return (
+                    <a
+                      key={idx}
+                      href={l.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex">
+                      <Badge className="gap-2 px-2 py-1 text-[10px]">
+                        {l.type}
+                      </Badge>
+                    </a>
+                  );
+                })}
               </div>
             )}
           </CardFooter>

@@ -38,11 +38,11 @@ export default function CommunityImpactSection({
       </blockquote>
 
       <div className="mt-6 flex items-center justify-center gap-3">
-        <Link
+        <a
           href={`mailto:${email}?subject=${encodeURIComponent(subject)}`}
           className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-5 py-2 text-sm font-semibold hover:opacity-90 transition">
           {cta}
-        </Link>
+        </a>
 
         <Badge
           variant="secondary"
