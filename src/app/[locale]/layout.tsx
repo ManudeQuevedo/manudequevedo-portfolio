@@ -1,10 +1,14 @@
 // app/[locale]/layout.tsx
+import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Navbar from "@/components/navbar";
 import Script from "next/script";
 
-export const metadata = {
+export const metadata: Metadata = {
+  // Hace que /og-image.png se vuelva https://manudequevedo.com/og-image.png
+  metadataBase: new URL("https://manudequevedo.com"),
+
   title: {
     default: "Manu de Quevedo | Frontend Developer & UI Designer",
     template: "%s | Manu de Quevedo",
@@ -44,15 +48,16 @@ export const metadata = {
   authors: [{ name: "Manu de Quevedo", url: "https://manudequevedo.com" }],
   creator: "Manu de Quevedo",
   publisher: "Manu de Quevedo",
+
   openGraph: {
     title: "Manu de Quevedo | Frontend Developer & UI Designer",
     description:
       "Explora los proyectos de Manu de Quevedo — desarrollo frontend, diseño UI/UX y consultoría técnica con tecnologías modernas.",
-    url: "https://manudequevedo.com",
+    url: "/", // con metadataBase -> https://manudequevedo.com/
     siteName: "Manu de Quevedo",
     images: [
       {
-        url: "https://manudequevedo.com/og-imgage.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Portafolio de Manu de Quevedo",
@@ -61,14 +66,16 @@ export const metadata = {
     locale: "es_MX",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Manu de Quevedo | Frontend Developer & UI Designer",
     description:
       "Frontend Developer y UI Designer especializado en Next.js, React y TailwindCSS. Portafolio profesional de proyectos web modernos y escalables.",
-    images: ["https://manudequevedo.com/og-image.png"],
+    images: ["/og-image.png"],
     creator: "@manudequevedo",
   },
+
   alternates: {
     canonical: "https://manudequevedo.com",
     languages: {
@@ -76,6 +83,7 @@ export const metadata = {
       es: "https://manudequevedo.com/es",
     },
   },
+
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
