@@ -34,7 +34,6 @@
       "address": "Ubicación",
       "purpose": "Motivo del contacto",
       "opt_project": "Nuevo proyecto",
-      "opt_nonprofit": "Apoyo a ONG",
       "opt_collab": "Colaboración",
       "opt_other": "Otro",
       "summary": "Descripción que encaja contigo",
@@ -47,16 +46,26 @@
       "message": "Mensaje",
       "ph_name": "Escribe tu nombre completo...",
       "ph_org": "Escribe tu organización...",
+      "ph_phone": "Escribe tu teléfono...",
       "ph_message": "Cuéntame lo que necesitas...",
       "submit": "Enviar formulario",
       "sent": "Enviado",
       "ok": "¡Gracias! Me pondré en contacto pronto.",
       "email": "Correo",
       "err": {
-        "validation": "Revisa los campos marcados.",
-        "captcha": "El captcha falló, inténtalo de nuevo.",
-        "server": "Algo salió mal. Intenta más tarde."
-      }
+        "fullname_short": "Demasiado corto.",
+        "email_invalid": "Email inválido.",
+        "message_more": "Cuéntame un poco más.",
+        "purpose_required": "Selecciona un propósito.",
+        "summary_required": "Selecciona un resumen.",
+        "server": "Error del servidor. Intenta de nuevo.",
+        "validation": "Revisa los campos.",
+        "captcha": "Fallo la verificación del captcha."
+      },
+      "submitting": "Enviando…",
+      "ok_title": "¡Mensaje enviado!",
+      "ok_body": "¡Gracias! Te contactaré en breve.",
+      "opt_nonprofit": "ONG / Sin fines de lucro"
     },
     "skills_title": "Habilidades",
     "skills_sub": "Una combinación enfocada de habilidades interpersonales y profundidad técnica.",

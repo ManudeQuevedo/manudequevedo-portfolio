@@ -34,7 +34,6 @@
       "address": "Location",
       "purpose": "Inquiry Purpose",
       "opt_project": "New project",
-      "opt_nonprofit": "Non-profit support",
       "opt_collab": "Collaboration",
       "opt_other": "Other",
       "summary": "Description that fits you",
@@ -47,16 +46,26 @@
       "message": "Message",
       "ph_name": "Enter your full name...",
       "ph_org": "Enter your organization...",
+      "ph_phone": "Enter your phone...",
       "ph_message": "Tell me about your needs...",
       "submit": "Submit Form",
       "sent": "Sent",
       "ok": "Thanks! I’ll get back to you soon.",
       "email": "Email",
       "err": {
-        "validation": "Please review the highlighted fields.",
-        "captcha": "Captcha failed, please try again.",
-        "server": "Something went wrong. Try later."
-      }
+        "fullname_short": "Too short.",
+        "email_invalid": "Invalid email.",
+        "message_more": "Tell me a little more.",
+        "purpose_required": "Please select a purpose.",
+        "summary_required": "Please select a summary.",
+        "server": "Server error. Please try again.",
+        "validation": "Please review the fields.",
+        "captcha": "Captcha verification failed."
+      },
+      "submitting": "Sending…",
+      "ok_title": "Message sent!",
+      "ok_body": "Thanks! I’ll get back to you shortly.",
+      "opt_nonprofit": "Non-profit"
     },
     "skills_title": "Skills",
     "skills_sub": "A focused mix of people skills and technical depth.",

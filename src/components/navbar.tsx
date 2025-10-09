@@ -90,13 +90,13 @@ export default function Navbar() {
                     <item.icon className="size-4" />
                   </Link>
                 ) : (
-                  <Link
+                  <a
                     href={item.href}
                     target="_blank"
                     rel="noreferrer"
                     className={btn}>
                     <item.icon className="size-4" />
-                  </Link>
+                  </a>
                 )}
               </PillTooltip>
             </DockIcon>
@@ -110,7 +110,7 @@ export default function Navbar() {
           .map(([name, social]) => (
             <DockIcon key={name}>
               <PillTooltip label={name}>
-                <Link
+                <a
                   href={social.url}
                   target="_blank"
                   rel="noreferrer"
@@ -119,7 +119,7 @@ export default function Navbar() {
                     "size-12 rounded-xl border border-transparent hover:border-border/60 hover:bg-accent/50 shadow-[inset_0_1px_0_rgba(255,255,255,.04)]"
                   )}>
                   <social.icon className="size-4" />
-                </Link>
+                </a>
               </PillTooltip>
             </DockIcon>
           ))}
