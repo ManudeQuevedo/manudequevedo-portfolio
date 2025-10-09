@@ -7,6 +7,7 @@ import {
   useState,
   useRef,
   useTransition,
+  useCallback, // ✅
 } from "react";
 import Script from "next/script";
 import { useTranslations, useLocale } from "next-intl";
@@ -171,6 +172,25 @@ export default function ContactSection({
     }
   };
 
+  // ✅ Memoriza buildFormData para que sea estable entre renders
+  const buildFormData = useCallback(() => {
+    const form = formRef.current;
+    const fd = new FormData(form ?? undefined);
+
+    // Lee SIEMPRE del DOM (evita estado stale del callback del captcha)
+    const p =
+      (form?.elements.namedItem("purpose") as HTMLSelectElement | null)
+        ?.value || "";
+    const s =
+      (form?.elements.namedItem("summary") as HTMLSelectElement | null)
+        ?.value || "";
+
+    fd.set("purpose", p);
+    fd.set("summary", s);
+    fd.set("locale", locale);
+    return fd;
+  }, [locale]);
+
   // Marca enviado OK
   useEffect(() => {
     if (state?.ok) {
@@ -239,7 +259,7 @@ export default function ContactSection({
             sitekey,
             size: "invisible",
             callback: () => {
-              const fd = buildFormData();
+              const fd = buildFormData(); // ✅ estable
 
               if (process.env.NODE_ENV !== "production") {
                 const debug: Record<string, any> = {};
@@ -268,7 +288,8 @@ export default function ContactSection({
     return () => {
       cancelled = true;
     };
-  }, [formAction, startTransition, HCAPTCHA_ENABLED]);
+    // ✅ incluye buildFormData en deps
+  }, [formAction, startTransition, HCAPTCHA_ENABLED, buildFormData]);
 
   // Reset captcha si falla o al enviar OK
   useEffect(() => {
@@ -351,7 +372,7 @@ export default function ContactSection({
   const onSubmit = async (formData: FormData) => {
     setSent(false);
 
-    // Sincroniza selects y locale
+    // Sincroniza selects y locale (se finaliza en buildFormData)
     if (!formData.get("locale")) formData.set("locale", locale);
 
     // Validación cliente
@@ -367,7 +388,7 @@ export default function ContactSection({
     // Si captcha no está habilitado/listo (dev/local), envía directo
     if (!HCAPTCHA_ENABLED || !window.hcaptcha || !captchaReady) {
       setSubmitting(true);
-      const fd = buildFormData();
+      const fd = buildFormData(); // ✅ estable
       if (process.env.NODE_ENV !== "production") {
         const debug: Record<string, any> = {};
         for (const [k, v] of fd.entries()) debug[k] = v;
@@ -388,7 +409,7 @@ export default function ContactSection({
 
     // Con token → envía
     setSubmitting(true);
-    const fd = buildFormData();
+    const fd = buildFormData(); // ✅ estable
     if (process.env.NODE_ENV !== "production") {
       const debug: Record<string, any> = {};
       for (const [k, v] of fd.entries()) debug[k] = v;
@@ -399,30 +420,12 @@ export default function ContactSection({
     });
   };
 
-  const buildFormData = () => {
-    const form = formRef.current;
-    const fd = new FormData(form ?? undefined);
-
-    // Lee SIEMPRE del DOM (evita estado stale del callback del captcha)
-    const p =
-      (form?.elements.namedItem("purpose") as HTMLSelectElement | null)
-        ?.value || "";
-    const s =
-      (form?.elements.namedItem("summary") as HTMLSelectElement | null)
-        ?.value || "";
-
-    fd.set("purpose", p);
-    fd.set("summary", s);
-    fd.set("locale", locale);
-    return fd;
-  };
-
   return (
     <section
       ref={sectionRef}
       id="contact"
       className="py-16 md:py-24 space-y-10 scroll-mt-24">
-      {/* Carga del script hCaptcha (no uses <head> en layouts) */}
+      {/* Script hCaptcha (si hay key) */}
       {HCAPTCHA_ENABLED && (
         <Script
           src="https://js.hcaptcha.com/1/api.js"

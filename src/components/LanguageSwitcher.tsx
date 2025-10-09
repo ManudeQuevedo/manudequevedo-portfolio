@@ -3,20 +3,24 @@
 
 import { useLocale } from "next-intl";
 import { usePathname, useRouter, locales } from "@/i18n/navigation";
-import { useSearchParams } from "next/navigation";
-import { useTransition } from "react";
+import { useTransition, useMemo } from "react";
 
 type Locale = (typeof locales)[number];
 
 export default function LanguageSwitcher() {
   const locale = useLocale() as Locale;
   const router = useRouter();
-  const pathnameRaw = usePathname(); // Tipado a tus pathnames
-  const searchParams = useSearchParams();
+  const pathnameRaw = usePathname(); // Tipado a tus pathnames ("/" | "/blog")
   const [pending, startTransition] = useTransition();
 
   // Reduce el pathname a las rutas internas que registraste en routing.pathnames
   const pathKey = (pathnameRaw === "/blog" ? "/blog" : "/") as "/" | "/blog";
+
+  // Lee el querystring del navegador (sin imports restringidos)
+  const searchParams = useMemo(() => {
+    if (typeof window === "undefined") return null;
+    return new URLSearchParams(window.location.search);
+  }, []);
 
   // Convierte el querystring en objeto (QueryParams) - SIN concatenar a mano
   const buildQuery = (): Record<string, string> => {
@@ -30,7 +34,7 @@ export default function LanguageSwitcher() {
     const queryObj = buildQuery();
 
     startTransition(async () => {
-      //    Pasa { locale: next, forcePrefix: true } y deja que next-intl lo arme.
+      // Pasa { locale: next, forcePrefix: true } y deja que next-intl componga la URL
       await router.replace(
         { pathname: pathKey, query: queryObj } as Parameters<
           typeof router.replace
@@ -38,7 +42,7 @@ export default function LanguageSwitcher() {
         { locale: next }
       );
 
-      // Fuerza rehidratación del layout con el nuevo locale
+      // Asegura rehidratación del árbol con el nuevo locale
       router.refresh();
     });
   };
