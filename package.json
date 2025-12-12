@@ -27,7 +27,7 @@
     "gray-matter": "latest",
     "lucide-react": "latest",
     "motion": "latest",
-    "next": "latest",
+    "next": "15.5.8",
     "next-intl": "latest",
     "next-themes": "latest",
     "pdf-lib": "^1.17.1",
