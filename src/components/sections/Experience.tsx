@@ -4,6 +4,7 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { experience } from "@/lib/data";
 
 export function Experience() {
@@ -27,9 +28,12 @@ export function Experience() {
       ref={containerRef}
       className="min-h-screen py-20 md:py-32 px-6 md:px-20 max-w-5xl mx-auto">
       <SectionLabel label={t("label")} />
-      <h2 className="font-display text-4xl md:text-6xl font-bold mb-20">
-        {t("headline")}
+      <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">
+        <TextReveal text={t("headline")} delay={0.2} />
       </h2>
+      <p className="text-secondary text-base md:text-lg max-w-3xl mb-20 leading-relaxed">
+        {t("intro")}
+      </p>
 
       <div className="relative">
         {/* Timeline Path */}
@@ -51,12 +55,13 @@ export function Experience() {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="relative pl-12 md:pl-20">
               {/* Pulse Dot */}
-              <div className="absolute left-[-11px] md:left-[5px] top-2">
+              <div
+                className={`absolute ${item.isFounder ? "left-[-15px] md:left-[1px] top-2" : "left-[-11px] md:left-[5px] top-2"}`}>
                 <div className="relative">
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
-                    className="w-3 h-3 rounded-full border-2 border-brand bg-dark z-10 relative"
+                    className={`rounded-full z-10 relative ${item.isFounder ? "w-4 h-4 bg-brand" : "w-3 h-3 border-2 border-brand bg-dark"}`}
                   />
                   <motion.div
                     animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
@@ -67,9 +72,17 @@ export function Experience() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <h3 className="font-display text-xl md:text-2xl font-bold text-primary">
-                  {item.company}
-                </h3>
+                <div className="flex items-center gap-3">
+                  <h3
+                    className={`font-display text-xl md:text-2xl font-bold ${item.isFounder ? "text-brand" : "text-primary"}`}>
+                    {item.company}
+                  </h3>
+                  {item.isFounder && (
+                    <span className="px-2 py-0.5 rounded-sm bg-brand/10 text-brand text-[10px] uppercase tracking-wider font-bold border border-brand/20">
+                      Founder
+                    </span>
+                  )}
+                </div>
                 <p className="text-brand font-medium text-sm md:text-base">
                   {item.role}
                 </p>
@@ -116,6 +129,17 @@ export function Experience() {
                 <p className="text-secondary text-sm md:text-base leading-relaxed max-w-2xl mt-2">
                   {item.description}
                 </p>
+
+                {item.highlight && (
+                  <div className="flex gap-3 items-start mt-3">
+                    <span className="text-brand font-display font-medium text-lg leading-none mt-0.5">
+                      "
+                    </span>
+                    <p className="text-[#888] italic text-sm md:text-[15px] leading-relaxed max-w-2xl">
+                      {item.highlight}
+                    </p>
+                  </div>
+                )}
 
                 <div className="flex flex-wrap gap-2 mt-6">
                   {item.tags.map((tag) => (

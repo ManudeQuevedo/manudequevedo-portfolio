@@ -10,25 +10,44 @@
   "hero": {
     "loading": "Loading artifact...",
     "role": "> Frontend Engineer & UI Architect",
-    "headline": "I build digital experiences that feel like discoveries.",
-    "sub": "Frontend · UI/UX · Cybersecurity · Cloud · AI",
+    "headline": "I obsess over the interfaces nobody forgets.",
+    "sub": "Frontend Engineer — UI/UX · Cloud · Security · AI",
     "cta_primary": "View my work",
-    "cta_secondary": "Let's talk",
+    "cta_secondary": "Open to new opportunities →",
     "scroll": "Scroll to explore"
   },
   "about": {
     "label": "Manifesto",
-    "years": "7",
-    "years_label": "years of experience",
-    "projects": "20+",
-    "projects_label": "projects delivered",
     "headline": "I'm obsessed with that last 10% that transforms a good UI into an unforgettable experience.",
-    "body": "I don't build websites. I build digital territories where the user gets lost in the best possible way. Every project is an artifact: it has weight, texture, intention.",
-    "domains": ["Frontend", "UI/UX", "Cloud", "Cybersec", "AI"]
+    "body": "I don't build websites. I build digital territories where the user gets lost in the best possible way. Every project is an artifact: it has weight, texture, intention. Alongside client work, I founded Noctra Studio — a frontend agency building performant digital products for startups across Latin America.",
+    "identity": {
+      "years": { "number": "7+", "label": "Years building", "context": "From bootcamp to enterprise" },
+      "projects": { "number": "20+", "label": "Projects shipped", "context": "Startups, corps & nonprofits" },
+      "domains": { "number": "4", "label": "Domains mastered", "context": "Frontend · Cloud · Security · AI" },
+      "agency": { "number": "1", "label": "Agency founded", "context": "Noctra Studio — LATAM" }
+    },
+    "principles": [
+      {
+        "number": "01",
+        "title": "Details are the product",
+        "body": "The last 10% is what separates a good UI from one that gets remembered. I don't stop at functional — I stop at right."
+      },
+      {
+        "number": "02",
+        "title": "Security is not an afterthought",
+        "body": "I build with OWASP, RLS, and rate-limiting as defaults. A beautiful interface that leaks data is a liability."
+      },
+      {
+        "number": "03",
+        "title": "I own the outcome",
+        "body": "I don't hand off tasks. I take problems, disappear for a while, and return with something better than asked for."
+      }
+    ]
   },
   "experience": {
     "label": "Trajectory",
-    "headline": "The journey so far."
+    "headline": "The journey so far.",
+    "intro": "From building e-commerce at scale to leading UI systems at a global firm — and eventually founding my own studio. Each role taught me something the previous one couldn't."
   },
   "projects": {
     "label": "Artifacts",
@@ -50,7 +69,12 @@
   },
   "contact": {
     "label": "Contact",
-    "headline": "Let's build something worth remembering.",
+    "headline": "If you're building something ambitious, I want to hear about it.",
+    "subtext": "Currently open to full-time roles and selective collaborations. Based in Querétaro, MX — working remotely worldwide.",
+    "availability": "Available for new opportunities",
+    "email_cta": "Send an email",
+    "linkedin_cta": "LinkedIn →",
+    "cv_cta": "Download CV ↓",
     "email_label": "Direct email",
     "location": "Querétaro, MX · Available remote",
     "cta": "Send message",

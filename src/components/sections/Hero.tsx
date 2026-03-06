@@ -1,7 +1,13 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useState, useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
+import { useState, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { TerminalText } from "@/components/ui/TerminalText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -15,6 +21,24 @@ export function Hero() {
   const { scrollY } = useScroll();
   const gridY = useTransform(scrollY, [0, 500], [0, 50]);
   const photoScale = useTransform(scrollY, [0, 500], [1, 1.05]);
+
+  // Mouse tracking for reactive grid
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  useEffect(() => {
+    const handleMouse = (e: MouseEvent) => {
+      mouseX.set(e.clientX - window.innerWidth / 2);
+      mouseY.set(e.clientY - window.innerHeight / 2);
+    };
+    window.addEventListener("mousemove", handleMouse);
+    return () => window.removeEventListener("mousemove", handleMouse);
+  }, [mouseX, mouseY]);
+
+  const smoothX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+  const bgX = useTransform(smoothX, [-1000, 1000], [-20, 20]);
+  const bgY = useTransform(smoothY, [-1000, 1000], [-20, 20]);
 
   const terminalLines = [
     t("loading"),
@@ -30,6 +54,9 @@ export function Hero() {
       <motion.div
         style={{
           y: gridY,
+          x: bgX,
+          // Use bgY to shift slightly on top of gridY
+          marginTop: bgY,
           backgroundImage: `linear-gradient(rgba(255,107,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,107,0,0.03) 1px, transparent 1px)`,
           backgroundSize: "80px 80px",
         }}
@@ -53,8 +80,8 @@ export function Hero() {
             priority
           />
           {/* Gradients to blend */}
-          <div className="absolute inset-0 bg-gradient-to-r from-dark via-transparent to-transparent w-1/3" />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent h-1/4" />
+          <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-dark via-dark/50 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
         </div>
       </motion.div>
 
@@ -126,24 +153,22 @@ export function Hero() {
                 ))}
             </motion.p>
 
-            {/* CTAs */}
+            {/* Secondary CTA / Statement */}
             <motion.div
               variants={{
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 },
               }}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              className="flex items-center mt-8">
               <MagneticButton>
-                <button className="bg-brand text-dark px-8 py-4 rounded-sm font-bold text-sm tracking-wide hover:shadow-[0_0_20px_rgba(255,107,0,0.3)] transition-shadow">
-                  {t("cta_primary")}
-                </button>
-              </MagneticButton>
-              <MagneticButton>
-                <button className="text-secondary hover:text-primary text-sm font-medium flex items-center gap-2 group transition-colors">
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("contact")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="text-secondary hover:text-white text-base md:text-lg font-medium flex items-center gap-3 group transition-colors">
                   {t("cta_secondary")}
-                  <span className="group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
                 </button>
               </MagneticButton>
             </motion.div>

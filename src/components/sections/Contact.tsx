@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { GlitchText } from "@/components/ui/GlitchText";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ScrambleText } from "@/components/ui/ScrambleText";
+import { Mail } from "lucide-react";
 
 export function Contact() {
   const t = useTranslations("contact");
@@ -34,7 +34,7 @@ export function Contact() {
             className="font-display text-4xl md:text-7xl font-bold leading-tight max-w-3xl">
             {t("headline")
               .split("recordar")
-              .map((part, i) => (
+              .map((part: string, i: number) => (
                 <span key={i}>
                   {part}
                   {i === 0 && <span className="text-brand">recordar</span>}
@@ -47,8 +47,9 @@ export function Contact() {
               onClick={handleCopy}
               className="group relative cursor-pointer text-left"
               data-cursor="hover">
-              <GlitchText
+              <ScrambleText
                 text={email}
+                duration={300}
                 className="font-display text-2xl md:text-6xl font-bold text-tertiary group-hover:text-primary transition-colors"
               />
               {copied && (
@@ -62,84 +63,45 @@ export function Contact() {
             </button>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 mt-8">
-            <div className="flex items-center gap-4 text-secondary group">
-              <div className="w-10 h-10 rounded-sm border border-white/5 flex items-center justify-center group-hover:border-brand/30 group-hover:text-brand transition-colors">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-widest text-tertiary">
-                  {t("email_label")}
+          {/* Contact Actions & Subtext */}
+          <div className="flex flex-col gap-8 mt-4">
+            {/* Subtext and Availability */}
+            <div className="flex flex-col gap-4">
+              <p className="text-[#555] text-base max-w-2xl leading-relaxed">
+                {t("subtext")}
+              </p>
+              <div className="flex items-center gap-3">
+                <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+                <span className="text-[#666] text-sm font-medium">
+                  {t("availability")}
                 </span>
-                <a
-                  href={`mailto:${email}`}
-                  className="text-sm md:text-base hover:text-brand transition-colors">
-                  {email}
-                </a>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 text-secondary">
-              <div className="w-10 h-10 rounded-sm border border-white/5 flex items-center justify-center">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-widest text-tertiary">
-                  Location
-                </span>
-                <span className="text-sm md:text-base">{t("location")}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="social-links flex flex-wrap gap-x-8 gap-y-4 mt-8">
-            {[
-              { name: "GitHub", href: "https://github.com/ManudeQuevedo" },
-              { name: "LinkedIn", href: "#" },
-              { name: "CV ↓", href: "#" },
-            ].map((link) => (
+            {/* Direct Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-6">
               <a
-                key={link.name}
-                href={link.href}
-                className="group flex items-center gap-2 text-tertiary hover:text-primary transition-colors font-body text-sm"
-                data-cursor="hover">
-                <span className="group-hover:-translate-x-1 transition-transform">
-                  [
-                </span>
-                {link.name}
-                <span className="group-hover:translate-x-1 transition-transform">
-                  ]
-                </span>
+                href={`mailto:${email}`}
+                className="flex items-center justify-center sm:justify-start gap-3 px-8 py-4 bg-brand text-dark font-semibold text-sm rounded-sm hover:bg-[#FF8C00] transition-colors duration-200">
+                <Mail size={18} strokeWidth={2.5} />
+                {t("email_cta")}
               </a>
-            ))}
+
+              <a
+                href="https://linkedin.com/in/manudequevedo"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center sm:justify-start gap-3 px-8 py-4 border border-white/10 text-secondary text-sm rounded-sm hover:border-white/30 hover:text-white transition-all duration-200">
+                {t("linkedin_cta")}
+              </a>
+
+              <a
+                href="/resume.pdf"
+                download="Manu_de_Quevedo_CV.pdf"
+                className="flex items-center justify-center sm:justify-start gap-3 px-8 py-4 border border-white/10 text-secondary text-sm rounded-sm hover:border-white/30 hover:text-white transition-all duration-200">
+                {t("cv_cta")}
+              </a>
+            </div>
           </div>
         </div>
       </div>

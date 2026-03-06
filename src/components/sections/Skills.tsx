@@ -3,11 +3,18 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { skills } from "@/lib/data";
+
+interface Skill {
+  name: string;
+  level: string | null;
+  context: string | null;
+}
 
 interface SkillCategoryProps {
   category: string;
-  items: string[];
+  items: Skill[];
   icon: React.ReactNode;
   index: number;
 }
@@ -117,35 +124,86 @@ function SkillCategory({ category, items, icon, index }: SkillCategoryProps) {
         </div>
       </div>
 
-      <ul className="space-y-4">
-        {items.map((skill, i) => (
-          <motion.li
-            key={skill}
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 + i * 0.05 }}
-            className="group flex items-center justify-between">
-            <span className="text-sm text-secondary group-hover:text-primary transition-colors flex items-center gap-0">
-              <span className="w-0 overflow-hidden group-hover:w-3 text-brand transition-all duration-300">
-                •
-              </span>
-              {skill}
-            </span>
-            {/* Decotative Depth Bar */}
-            <div className={`h-[1px] bg-white/5 w-8 relative overflow-hidden`}>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.5 + i * 0.1 }}
-                className={`absolute inset-0 origin-left ${i < 3 ? "bg-brand" : "bg-tertiary"}`}
-                style={{ width: i < 3 ? "100%" : i < 6 ? "70%" : "40%" }}
-              />
-            </div>
-          </motion.li>
-        ))}
+      <ul className="space-y-6">
+        {items
+          .filter((s) => s.level)
+          .map((skill, i) => (
+            <motion.li
+              key={skill.name}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 + i * 0.05 }}
+              className="group flex flex-col gap-1.5">
+              <div className="flex items-center justify-between w-full">
+                <span className="text-sm font-medium text-secondary group-hover:text-primary transition-colors flex items-center gap-0">
+                  <span className="w-0 overflow-hidden group-hover:w-3 text-brand transition-all duration-300">
+                    •
+                  </span>
+                  {skill.name}
+                </span>
+                <span
+                  className={`text-[10px] uppercase tracking-wider font-bold ${
+                    skill.level === "expert"
+                      ? "text-brand"
+                      : skill.level === "proficient"
+                        ? "text-brand/70"
+                        : "text-tertiary"
+                  }`}>
+                  {skill.level}
+                </span>
+              </div>
+
+              {skill.context && (
+                <span className="text-xs text-tertiary/80 leading-snug">
+                  {skill.context}
+                </span>
+              )}
+
+              {/* Subtle Progress Line */}
+              <div className="h-[1px] bg-white/5 w-full relative mt-1 overflow-hidden">
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.5 + i * 0.1 }}
+                  className={`absolute inset-0 origin-left ${
+                    skill.level === "expert"
+                      ? "bg-brand"
+                      : skill.level === "proficient"
+                        ? "bg-brand/50"
+                        : "bg-tertiary/30"
+                  }`}
+                  style={{
+                    width:
+                      skill.level === "expert"
+                        ? "100%"
+                        : skill.level === "proficient"
+                          ? "75%"
+                          : "40%",
+                  }}
+                />
+              </div>
+            </motion.li>
+          ))}
       </ul>
+
+      {/* Secondary Skills Tags */}
+      {items.filter((s) => !s.level).length > 0 && (
+        <div className="mt-4 pt-6 border-t border-white/5">
+          <div className="flex flex-wrap gap-2">
+            {items
+              .filter((s) => !s.level)
+              .map((skill) => (
+                <span
+                  key={skill.name}
+                  className="text-[10px] text-tertiary px-2 py-1 bg-white/5 border border-white/5 rounded-sm hover:text-secondary hover:border-white/10 transition-colors cursor-default">
+                  {skill.name}
+                </span>
+              ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -160,7 +218,7 @@ export function Skills() {
       <div className="max-w-7xl mx-auto">
         <SectionLabel label={t("label")} />
         <h2 className="font-display text-4xl md:text-6xl font-bold mb-20 max-w-2xl">
-          {t("headline")}
+          <TextReveal text={t("headline")} delay={0.2} />
         </h2>
 
         <div className="grid md:grid-cols-5 border border-white/5 bg-dark">

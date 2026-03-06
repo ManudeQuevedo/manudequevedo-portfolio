@@ -10,25 +10,44 @@
   "hero": {
     "loading": "Cargando artefacto...",
     "role": "> Frontend Engineer & UI Architect",
-    "headline": "Construyo experiencias digitales que se sienten como descubrimientos.",
-    "sub": "Frontend · UI/UX · Ciberseguridad · Cloud · IA",
+    "headline": "Me obsesionan las interfaces que nadie olvida.",
+    "sub": "Frontend Engineer — UI/UX · Cloud · Security · AI",
     "cta_primary": "Ver mi trabajo",
-    "cta_secondary": "Hablemos",
+    "cta_secondary": "Abierto a nuevas oportunidades →",
     "scroll": "Scroll para explorar"
   },
   "about": {
     "label": "Manifiesto",
-    "years": "7",
-    "years_label": "años de experiencia",
-    "projects": "20+",
-    "projects_label": "proyectos entregados",
     "headline": "Me obsesiona ese último 10% que transforma una buena UI en una experiencia inolvidable.",
-    "body": "No construyo páginas web. Construyo territorios digitales donde el usuario se pierde de la mejor manera posible. Cada proyecto es un artefacto: tiene peso, textura, intención.",
-    "domains": ["Frontend", "UI/UX", "Cloud", "Cybersec", "AI"]
+    "body": "No construyo páginas web. Construyo territorios digitales donde el usuario se pierde de la mejor manera posible. Cada proyecto es un artefacto: tiene peso, textura, intención. Paralelamente, fundé Noctra Studio — una agencia frontend que construye productos digitales para startups en Latinoamérica.",
+    "identity": {
+      "years": { "number": "7+", "label": "Años construyendo", "context": "De bootcamp a enterprise" },
+      "projects": { "number": "20+", "label": "Proyectos entregados", "context": "Startups, corps y ONGs" },
+      "domains": { "number": "4", "label": "Dominios dominados", "context": "Frontend · Cloud · Security · AI" },
+      "agency": { "number": "1", "label": "Agencia fundada", "context": "Noctra Studio — LATAM" }
+    },
+    "principles": [
+      {
+        "number": "01",
+        "title": "Los detalles son el producto",
+        "body": "Ese último 10% es lo que separa a una buena UI de una que se recuerda. No me detengo en lo funcional, me detengo en lo correcto."
+      },
+      {
+        "number": "02",
+        "title": "La seguridad no es secundaria",
+        "body": "Construyo con OWASP, RLS y rate-limiting por defecto. Una interfaz hermosa que expone datos es un riesgo."
+      },
+      {
+        "number": "03",
+        "title": "Asumo el resultado",
+        "body": "No delego tareas pasivamente. Tomo problemas, desaparezco un rato y regreso con algo mejor de lo que me pidieron."
+      }
+    ]
   },
   "experience": {
     "label": "Trayectoria",
-    "headline": "El camino hasta aquí."
+    "headline": "El camino hasta aquí.",
+    "intro": "De construir e-commerce a escala a liderar sistemas UI en una firma global — y eventualmente fundar mi propio estudio. Cada rol me enseñó algo que el anterior no podía."
   },
   "projects": {
     "label": "Artefactos",
@@ -50,7 +69,12 @@
   },
   "contact": {
     "label": "Contacto",
-    "headline": "Construyamos algo que valga la pena recordar.",
+    "headline": "Si estás construyendo algo ambicioso, quiero escucharlo.",
+    "subtext": "Actualmente abierto a roles full-time y colaboraciones selectivas. Basado en Querétaro, MX — trabajo remoto globalmente.",
+    "availability": "Disponible para nuevas oportunidades",
+    "email_cta": "Enviar un email",
+    "linkedin_cta": "LinkedIn →",
+    "cv_cta": "Descargar CV ↓",
     "email_label": "Email directo",
     "location": "Querétaro, MX · Disponible remoto",
     "cta": "Enviar mensaje",
