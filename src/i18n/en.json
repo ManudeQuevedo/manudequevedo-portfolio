@@ -15,7 +15,8 @@
     "sub": "Frontend Engineer — UI/UX · Cloud · Security · AI",
     "cta_primary": "View my work",
     "cta_secondary": "Open to new opportunities →",
-    "scroll": "Scroll to explore"
+    "scroll": "Scroll to explore",
+    "skip_intro": "[ Skip Intro ]"
   },
   "about": {
     "label": "Manifesto",

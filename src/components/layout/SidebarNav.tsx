@@ -51,7 +51,9 @@ export function SidebarNav() {
   }, []);
 
   return (
-    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 hidden xl:flex flex-col gap-6 mix-blend-difference pointer-events-auto relative">
+    <div
+      className="fixed right-4 md:right-6 xl:right-[calc((100vw-1280px)/4)] top-1/2 -translate-y-1/2 z-50 hidden xl:flex flex-col gap-6 mix-blend-difference pointer-events-auto"
+      style={{ position: "fixed" }}>
       {/* Background Track */}
       <div className="absolute top-3 bottom-3 left-1/2 -translate-x-1/2 w-[1px] bg-white/10 -z-10" />
 

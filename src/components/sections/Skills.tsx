@@ -6,18 +6,12 @@ import { useTranslations } from "next-intl";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { skills } from "@/lib/data";
+import { SectionContainer } from "@/components/layout/SectionContainer";
 
 interface Skill {
   name: string;
   level: string | null;
   context: string | null;
-}
-
-interface SkillCategoryProps {
-  category: string;
-  items: Skill[];
-  icon: React.ReactNode;
-  index: number;
 }
 
 const CategoryIcon = ({ name }: { name: string }) => {
@@ -115,156 +109,152 @@ export function Skills() {
   const categories = Object.entries(skills);
 
   return (
-    <section
+    <SectionContainer
       id="skills"
-      className="py-20 md:py-32 px-6 md:px-20 bg-dark-2 border-y border-white/5">
-      <div className="max-w-7xl mx-auto">
-        <SectionLabel label={t("label")} />
-        <h2
-          className="font-display text-4xl md:text-6xl font-bold mb-12 md:mb-20 max-w-2xl"
-          aria-label={t("headline")}>
-          <TextReveal text={t("headline")} delay={0.2} />
-        </h2>
+      className="py-20 md:py-32 bg-dark-2 border-y border-white/5">
+      <SectionLabel label={t("label")} />
+      <h2
+        className="font-display text-4xl md:text-6xl font-bold mb-12 md:mb-32 max-w-2xl"
+        aria-label={t("headline")}>
+        <TextReveal text={t("headline")} delay={0.2} />
+      </h2>
 
-        <div className="flex flex-col md:flex-row border border-white/5 bg-dark rounded-xl md:rounded-2xl overflow-hidden min-h-[500px]">
-          {/* Left Panel: Tabs */}
-          <div className="w-full md:w-[40%] flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible border-b md:border-b-0 md:border-r border-white/5 bg-dark-3/50 no-scrollbar">
-            {categories.map(([category, items]) => {
-              const isActive = activeTab === category;
-              return (
-                <button
-                  key={category}
-                  onClick={() => setActiveTab(category)}
-                  className={`flex items-center gap-4 px-6 md:px-8 py-5 transition-all duration-300 min-w-max md:min-w-0 text-left relative ${
-                    isActive
-                      ? "bg-dark-2 text-primary border-l-2 md:border-l-4 border-l-brand"
-                      : "text-tertiary hover:text-secondary border-l-2 md:border-l-4 border-transparent hover:bg-white/5"
-                  }`}>
-                  <div className={isActive ? "text-brand" : "text-tertiary"}>
-                    <CategoryIcon name={category} />
-                  </div>
-                  <div className="flex flex-col">
-                    <h4 className="font-display text-sm font-bold tracking-[0.15em] uppercase">
-                      {t(`categories.${category}`)}
-                    </h4>
-                    <span className="text-[10px] font-mono tracking-widest uppercase mt-0.5 opacity-60">
-                      {items.length} Skills
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Right Panel: Tab Content */}
-          <div className="w-full md:w-[60%] p-6 md:p-12 relative overflow-hidden bg-dark">
-            <AnimatePresence mode="wait">
-              {categories.map(
-                ([category, items]) =>
-                  activeTab === category && (
-                    <motion.div
-                      key={category}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="h-full flex flex-col">
-                      <h3 className="font-display text-2xl md:text-3xl font-bold mb-8 text-primary uppercase tracking-wide">
-                        {t(`categories.${category}`)}
-                      </h3>
-
-                      <ul className="space-y-6 flex-1">
-                        {items
-                          .filter((s) => s.level)
-                          .map((skill, i) => (
-                            <li
-                              key={skill.name}
-                              className="flex flex-col gap-2">
-                              <div className="flex items-center justify-between w-full">
-                                <span className="text-sm md:text-base font-medium text-secondary">
-                                  {skill.name}
-                                </span>
-                                <span
-                                  className={`text-[10px] md:text-xs uppercase tracking-wider font-bold ${
-                                    skill.level === "expert"
-                                      ? "text-brand"
-                                      : skill.level === "proficient"
-                                        ? "text-brand/70"
-                                        : "text-tertiary"
-                                  }`}>
-                                  {skill.level}
-                                </span>
-                              </div>
-
-                              {skill.context && (
-                                <span className="text-xs text-tertiary/80 leading-snug">
-                                  {skill.context}
-                                </span>
-                              )}
-
-                              {/* Progress Bar Container */}
-                              <div className="h-[2px] bg-white/5 w-full mt-1 overflow-hidden relative rounded-full">
-                                {/* The animated fill */}
-                                <motion.div
-                                  initial={{ width: "0%" }}
-                                  animate={{
-                                    width:
-                                      skill.level === "expert"
-                                        ? "100%"
-                                        : skill.level === "proficient"
-                                          ? "70%"
-                                          : "40%",
-                                  }}
-                                  transition={{
-                                    duration: 0.6,
-                                    delay: i * 0.05,
-                                    ease: "easeOut",
-                                  }}
-                                  className={`absolute top-0 left-0 h-full origin-left rounded-full ${
-                                    skill.level === "expert"
-                                      ? "bg-brand"
-                                      : skill.level === "proficient"
-                                        ? "bg-brand/80"
-                                        : "bg-tertiary/50"
-                                  }`}
-                                />
-                              </div>
-                            </li>
-                          ))}
-                      </ul>
-
-                      {/* Secondary Skills Tags */}
-                      {items.filter((s) => !s.level).length > 0 && (
-                        <div className="mt-8 pt-6 border-t border-white/5">
-                          <div className="flex flex-wrap gap-2">
-                            {items
-                              .filter((s) => !s.level)
-                              .map((skill) => (
-                                <span
-                                  key={skill.name}
-                                  className="text-[10px] font-mono text-tertiary px-3 py-1.5 bg-white/5 border border-white/5 rounded-full cursor-default">
-                                  {skill.name}
-                                </span>
-                              ))}
-                          </div>
-                        </div>
-                      )}
-                    </motion.div>
-                  ),
-              )}
-            </AnimatePresence>
-          </div>
+      <div className="flex flex-col md:flex-row border border-white/5 bg-dark rounded-xl md:rounded-2xl overflow-hidden min-h-[500px]">
+        {/* Left Panel: Tabs */}
+        <div className="w-full md:w-[40%] flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible border-b md:border-b-0 md:border-r border-white/5 bg-dark-3/50 no-scrollbar">
+          {categories.map(([category, items]) => {
+            const isActive = activeTab === category;
+            return (
+              <button
+                key={category}
+                onClick={() => setActiveTab(category)}
+                className={`flex items-center gap-4 px-6 md:px-8 py-5 transition-all duration-300 min-w-max md:min-w-0 text-left relative ${
+                  isActive
+                    ? "bg-dark-2 text-primary border-l-2 md:border-l-4 border-l-brand"
+                    : "text-tertiary hover:text-secondary border-l-2 md:border-l-4 border-transparent hover:bg-white/5"
+                }`}>
+                <div className={isActive ? "text-brand" : "text-tertiary"}>
+                  <CategoryIcon name={category} />
+                </div>
+                <div className="flex flex-col">
+                  <h4 className="font-display text-sm font-bold tracking-[0.15em] uppercase">
+                    {t(`categories.${category}`)}
+                  </h4>
+                  <span className="text-[10px] font-mono tracking-widest uppercase mt-0.5 opacity-60">
+                    {items.length} Skills
+                  </span>
+                </div>
+              </button>
+            );
+          })}
         </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="mt-16 text-center text-sm text-tertiary italic font-body">
-          {t("categories.tools") === "Tools"
-            ? "(Open to learning new technologies and adapting quickly to change.)"
-            : "(Abierto a aprender nuevas tecnologías y adaptarme rápidamente al cambio.)"}
-        </motion.p>
+        {/* Right Panel: Tab Content */}
+        <div className="w-full md:w-[60%] p-6 md:p-12 relative overflow-hidden bg-dark">
+          <AnimatePresence mode="wait">
+            {categories.map(
+              ([category, items]) =>
+                activeTab === category && (
+                  <motion.div
+                    key={category}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="h-full flex flex-col">
+                    <h3 className="font-display text-2xl md:text-3xl font-bold mb-12 text-primary uppercase tracking-wide">
+                      {t(`categories.${category}`)}
+                    </h3>
+
+                    <ul className="space-y-6 flex-1">
+                      {items
+                        .filter((s) => (s as any).level)
+                        .map((skill, i) => (
+                          <li key={skill.name} className="flex flex-col gap-2">
+                            <div className="flex items-center justify-between w-full">
+                              <span className="text-sm md:text-base font-medium text-secondary">
+                                {skill.name}
+                              </span>
+                              <span
+                                className={`text-[10px] md:text-xs uppercase tracking-wider font-bold ${
+                                  skill.level === "expert"
+                                    ? "text-brand"
+                                    : skill.level === "proficient"
+                                      ? "text-brand/70"
+                                      : "text-tertiary"
+                                }`}>
+                                {skill.level}
+                              </span>
+                            </div>
+
+                            {skill.context && (
+                              <span className="text-xs text-tertiary/80 leading-snug">
+                                {skill.context}
+                              </span>
+                            )}
+
+                            {/* Progress Bar Container */}
+                            <div className="h-[2px] bg-white/5 w-full mt-1 overflow-hidden relative rounded-full">
+                              {/* The animated fill */}
+                              <motion.div
+                                initial={{ width: "0%" }}
+                                animate={{
+                                  width:
+                                    skill.level === "expert"
+                                      ? "100%"
+                                      : skill.level === "proficient"
+                                        ? "70%"
+                                        : "40%",
+                                }}
+                                transition={{
+                                  duration: 0.6,
+                                  delay: i * 0.05,
+                                  ease: "easeOut",
+                                }}
+                                className={`absolute top-0 left-0 h-full origin-left rounded-full ${
+                                  skill.level === "expert"
+                                    ? "bg-brand"
+                                    : skill.level === "proficient"
+                                      ? "bg-brand/80"
+                                      : "bg-tertiary/50"
+                                }`}
+                              />
+                            </div>
+                          </li>
+                        ))}
+                    </ul>
+
+                    {/* Secondary Skills Tags */}
+                    {items.filter((s) => !(s as any).level).length > 0 && (
+                      <div className="mt-8 pt-6 border-t border-white/5">
+                        <div className="flex flex-wrap gap-2">
+                          {items
+                            .filter((s) => !(s as any).level)
+                            .map((skill) => (
+                              <span
+                                key={skill.name}
+                                className="text-[10px] font-mono text-tertiary px-3 py-1.5 bg-white/5 border border-white/5 rounded-full cursor-default">
+                                {skill.name}
+                              </span>
+                            ))}
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                ),
+            )}
+          </AnimatePresence>
+        </div>
       </div>
-    </section>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        className="mt-24 text-center text-sm text-tertiary italic font-body">
+        {t("categories.tools") === "Tools"
+          ? "(Open to learning new technologies and adapting quickly to change.)"
+          : "(Abierto a aprender nuevas tecnologías y adaptarme rápidamente al cambio.)"}
+      </motion.p>
+    </SectionContainer>
   );
 }

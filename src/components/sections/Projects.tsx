@@ -7,25 +7,23 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { projects } from "@/lib/data";
 import Image from "next/image";
+import { SectionContainer } from "@/components/layout/SectionContainer";
 
 export function Projects() {
   const t = useTranslations("projects");
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section
-      id="projects"
-      ref={containerRef}
-      className="py-20 md:py-32 px-6 md:px-20">
-      <div className="max-w-7xl mx-auto">
+    <SectionContainer id="projects" className="py-20 md:py-32">
+      <div ref={containerRef}>
         <SectionLabel label={t("label")} />
         <h2
-          className="font-display text-4xl md:text-6xl font-bold mb-20"
+          className="font-display text-4xl md:text-6xl font-bold mb-32"
           aria-label={t("headline")}>
           <TextReveal text={t("headline")} delay={0.2} />
         </h2>
 
-        <div className="flex flex-col gap-[10vh] md:gap-0">
+        <div className="flex flex-col gap-20 md:gap-0">
           {projects.map((project, i) => (
             <ProjectCard
               key={project.id}
@@ -36,7 +34,7 @@ export function Projects() {
           ))}
         </div>
       </div>
-    </section>
+    </SectionContainer>
   );
 }
 

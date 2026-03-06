@@ -12,8 +12,8 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t border-white/5 py-12 px-6 md:px-20 bg-dark">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+    <footer className="border-t border-white/5 py-20 md:py-32 bg-dark">
+      <div className="layout-container flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex items-center gap-4">
           <MQLogo variant="mono" size={20} className="opacity-20" />
           <p className="text-[11px] text-tertiary tracking-widest font-body uppercase">

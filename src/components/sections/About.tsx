@@ -1,24 +1,23 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import Image from "next/image";
+import { SectionContainer } from "@/components/layout/SectionContainer";
 
 export function About() {
   const t = useTranslations("about");
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
-  const domains = t.raw("domains") as string[];
-
   return (
-    <section
+    <SectionContainer
       id="about"
-      ref={containerRef}
-      className="min-h-screen py-20 md:py-32 px-6 md:px-20 max-w-7xl mx-auto flex flex-col gap-24">
-      <div className="grid md:grid-cols-[40%_60%] gap-16 md:gap-24">
+      containerClassName="flex flex-col gap-20 md:gap-32">
+      <div
+        ref={containerRef}
+        className="grid md:grid-cols-[40%_60%] gap-12 md:gap-24">
         {/* Left Column - Identity Cards */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -58,24 +57,9 @@ export function About() {
           initial={{ opacity: 0, x: 40 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col justify-center">
-          <div className="relative mb-16 self-start md:self-auto">
-            <div className="relative w-full max-w-[320px] aspect-[3/4] rounded-sm overflow-hidden group">
-              <Image
-                src="/me.jpg"
-                alt="Profile"
-                fill
-                className="object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-1000"
-              />
-              {/* Noise Layer */}
-              <div className="absolute inset-0 opacity-40 pointer-events-none mix-blend-overlay noise-overlay" />
-            </div>
-            {/* Decorative Frame */}
-            <div className="absolute -inset-3 border border-brand/20 -z-10 translate-x-3 translate-y-3" />
-          </div>
-
+          className="flex flex-col justify-center lg:pl-12">
           <div className="max-w-lg">
-            <h3 className="font-body text-2xl md:text-3xl font-medium leading-[1.6] mb-8 text-primary">
+            <h3 className="font-body text-2xl md:text-3xl font-medium leading-[1.6] mb-12 text-primary">
               {t("headline")
                 .split("último 10%")
                 .map((part, i) => (
@@ -107,7 +91,7 @@ export function About() {
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-        className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0 mt-8 md:mt-16">
+        className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-0 mt-12 md:mt-24">
         {(t.raw("principles") as any[]).map((principle, index) => (
           <div
             key={index}
@@ -124,6 +108,6 @@ export function About() {
           </div>
         ))}
       </motion.div>
-    </section>
+    </SectionContainer>
   );
 }

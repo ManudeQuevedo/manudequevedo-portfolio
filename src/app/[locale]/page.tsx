@@ -4,12 +4,10 @@ import { Experience } from "@/components/sections/Experience";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
 import { Contact } from "@/components/sections/Contact";
-import { SidebarNav } from "@/components/layout/SidebarNav";
 
 export default function HomePage() {
   return (
     <main className="w-full relative">
-      <SidebarNav />
       <Hero />
       <About />
       <Experience />

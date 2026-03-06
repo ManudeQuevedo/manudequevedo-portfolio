@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
 import { MQLogo } from "@/components/ui/MQLogo";
+import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -51,12 +52,12 @@ export function Navbar() {
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={cn(
-        "fixed top-0 left-0 w-full z-[100] transition-colors duration-300 h-16 flex items-center px-6 md:px-12",
+        "fixed top-0 left-0 w-full z-[100] transition-colors duration-300 h-16 flex items-center",
         isScrolled
           ? "bg-dark/80 backdrop-blur-xl border-b border-white/5"
           : "bg-transparent",
       )}>
-      <div className="flex justify-between items-center w-full max-w-7xl mx-auto">
+      <div className="layout-container flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="group" data-cursor="hover">
           <MQLogo
@@ -93,25 +94,7 @@ export function Navbar() {
 
         {/* Right CTA / Language Switch */}
         <div className="hidden md:flex items-center gap-6">
-          <div className="flex items-center gap-2 text-[10px] font-bold tracking-tighter text-secondary">
-            <Link
-              href="/"
-              locale="es"
-              className={cn(
-                pathname.includes("/es") ? "text-brand" : "hover:text-primary",
-              )}>
-              ES
-            </Link>
-            <span className="opacity-20">/</span>
-            <Link
-              href="/"
-              locale="en"
-              className={cn(
-                pathname.includes("/en") ? "text-brand" : "hover:text-primary",
-              )}>
-              EN
-            </Link>
-          </div>
+          <LocaleSwitcher />
           <Link
             href="/resume.pdf"
             className="border border-brand/50 text-brand px-4 py-1.5 rounded-sm text-xs font-medium hover:bg-brand hover:text-dark transition-all duration-300"
@@ -162,11 +145,26 @@ export function Navbar() {
                 <Link
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="font-display text-4xl font-bold hover:text-brand transition-colors">
+                  className="font-display text-4xl font-bold hover:text-brand transition-colors flex items-center gap-4">
+                  <span className="text-white/10 text-xl font-mono">
+                    0{i + 1}
+                  </span>
                   {link.name}
                 </Link>
               </motion.div>
             ))}
+            <motion.div
+              className="mt-12 flex items-center gap-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}>
+              <LocaleSwitcher />
+              <Link
+                href="/resume.pdf"
+                className="bg-brand text-dark px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
+                {t("resume")}
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

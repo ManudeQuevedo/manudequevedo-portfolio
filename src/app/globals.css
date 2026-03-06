@@ -11,6 +11,9 @@
   --font-display: 'Clash Display', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --spacing-section-desktop: 128px;
+  --spacing-section-mobile: 80px;
+  --spacing-component: 48px;
 }
 
 :root {
@@ -42,16 +45,28 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: auto; } /* Lenis handles scroll */
-body, a, button, input, textarea, select, img { 
-  background: #080808; 
-  color: #FAFAFA; 
-  overflow-x: hidden; 
-  cursor: none !important; 
-  font-family: var(--font-body);
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply antialiased selection:bg-brand selection:text-dark overflow-x-hidden;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    /* iOS Momentum Scroll */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    font-family: var(--font-body);
+  }
 }
 
-::selection { background: #FF6B00; color: #080808; }
+body, a, button, [role="button"], input, textarea, select, img { 
+  cursor: none !important; 
+}
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #0F0F0F; }
@@ -91,6 +106,6 @@ body, a, button, input, textarea, select, img {
   animation: glitch-1 0.3s infinite linear alternate-reverse;
 }
 
-.animate-glitch-2 {
-  animation: glitch-2 0.3s infinite linear alternate-reverse;
+.layout-container {
+  @apply w-full max-w-7xl mx-auto px-5 md:px-12 relative;
 }

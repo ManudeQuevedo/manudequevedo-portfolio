@@ -32,7 +32,8 @@ export const MQLogo = memo(
         width={width}
         className={className}
         initial="initial"
-        animate="animate">
+        animate="animate"
+        whileHover="hover">
         <defs>
           {isColor && (
             <linearGradient
@@ -60,6 +61,10 @@ export const MQLogo = memo(
               scale: 1,
               transition: { duration: 0.5, delay: 0.1 },
             },
+            hover: {
+              opacity: 0.8,
+              transition: { duration: 0.3, ease: "easeInOut" },
+            },
           }}
         />
 
@@ -75,6 +80,10 @@ export const MQLogo = memo(
               scale: 1,
               transition: { duration: 0.5, delay: 0.2 },
             },
+            hover: {
+              opacity: 0.8,
+              transition: { duration: 0.3, ease: "easeInOut" },
+            },
           }}
         />
 
@@ -89,6 +98,10 @@ export const MQLogo = memo(
               opacity: 1,
               scale: 1,
               transition: { duration: 0.5, delay: 0.3 },
+            },
+            hover: {
+              opacity: 0.8,
+              transition: { duration: 0.3, ease: "easeInOut" },
             },
           }}
         />

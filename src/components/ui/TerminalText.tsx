@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface TerminalTextProps {
@@ -8,49 +8,69 @@ interface TerminalTextProps {
   onComplete?: () => void;
   typingSpeed?: number;
   lineDelay?: number;
+  skip?: boolean;
 }
 
 export function TerminalText({
   lines,
   onComplete,
-  typingSpeed = 40,
-  lineDelay = 800,
+  typingSpeed = 45,
+  lineDelay = 1200,
+  skip = false,
 }: TerminalTextProps) {
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
 
+  const completedRef = useRef(false);
+
   useEffect(() => {
-    if (currentLineIndex >= lines.length) {
-      if (onComplete) onComplete();
+    if (skip && !completedRef.current) {
+      completedRef.current = true;
+      setCurrentLineIndex(lines.length - 1);
+      setDisplayedText(lines[lines.length - 1]);
+      setIsTyping(false);
+      onComplete?.();
       return;
     }
+  }, [skip, lines, onComplete]);
 
+  useEffect(() => {
+    if (skip || completedRef.current) return;
+
+    let isMounted = true;
     const currentLine = lines[currentLineIndex];
     let charIndex = 0;
     setIsTyping(true);
 
     const typingInterval = setInterval(() => {
       if (charIndex < currentLine.length) {
-        setDisplayedText(currentLine.substring(0, charIndex + 1));
-        charIndex++;
+        if (isMounted) {
+          setDisplayedText(currentLine.substring(0, charIndex + 1));
+          charIndex++;
+        }
       } else {
         clearInterval(typingInterval);
-        setIsTyping(false);
+        if (isMounted) setIsTyping(false);
 
         setTimeout(() => {
+          if (!isMounted) return;
           if (currentLineIndex < lines.length - 1) {
             setCurrentLineIndex((prev) => prev + 1);
             setDisplayedText("");
-          } else {
-            if (onComplete) onComplete();
+          } else if (!completedRef.current) {
+            completedRef.current = true;
+            onComplete?.();
           }
         }, lineDelay);
       }
     }, typingSpeed);
 
-    return () => clearInterval(typingInterval);
-  }, [currentLineIndex, lines, typingSpeed, lineDelay, onComplete]);
+    return () => {
+      isMounted = false;
+      clearInterval(typingInterval);
+    };
+  }, [currentLineIndex, lines, typingSpeed, lineDelay, onComplete, skip]);
 
   return (
     <div className="font-mono text-xs md:text-sm h-6">
@@ -70,7 +90,7 @@ export function TerminalText({
           {isTyping && (
             <motion.span
               animate={{ opacity: [0, 1, 0] }}
-              transition={{ repeat: Infinity, duration: 0.8 }}
+              transition={{ repeat: Infinity, duration: 1.0 }}
               className="w-2 h-4 bg-primary inline-block"
             />
           )}
