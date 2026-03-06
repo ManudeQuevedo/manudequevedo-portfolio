@@ -78,7 +78,7 @@ export function Contact() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="absolute -top-10 left-0 text-brand font-mono text-xs">
-                ¡Copiado! ✓
+                {locale === "es" ? "¡Copiado! ✓" : "Copied! ✓"}
               </motion.span>
             )}
           </button>
@@ -100,11 +100,12 @@ export function Contact() {
           </div>
 
           {/* Direct Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-12">
+          <div className="flex flex-col sm:flex-row gap-6 mt-12 pointer-events-auto">
             <a
               href={`mailto:${email}`}
-              className="flex items-center justify-center sm:justify-start gap-3 px-8 py-4 bg-brand text-dark font-semibold text-sm rounded-sm hover:bg-[#FF8C00] transition-colors duration-200">
-              <Mail size={18} strokeWidth={2.5} />
+              className="flex items-center justify-center sm:justify-start gap-4 px-10 py-5 bg-brand text-dark font-bold text-sm rounded-sm hover:bg-brand/90 transition-all duration-300"
+              data-cursor="hover">
+              <Mail size={20} strokeWidth={2.5} />
               {t("email_cta")}
             </a>
 
@@ -112,7 +113,8 @@ export function Contact() {
               href="https://linkedin.com/in/manuelmatus"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-center sm:justify-start gap-3 px-8 py-4 border border-white/10 text-secondary text-sm rounded-sm hover:border-white/30 hover:text-white transition-all duration-200">
+              className="flex items-center justify-center sm:justify-start gap-4 px-10 py-5 border border-white/10 text-secondary text-sm font-medium rounded-sm hover:border-brand/40 hover:text-white hover:bg-brand/5 transition-all duration-300"
+              data-cursor="hover">
               {t("linkedin_cta")}
             </a>
 
@@ -127,9 +129,9 @@ export function Contact() {
       </div>
 
       {/* Background Decorative Text */}
-      <div className="absolute bottom-[-100px] inset-x-0 z-0 flex justify-center">
+      <div className="absolute bottom-[-100px] inset-x-0 z-0 hidden md:flex justify-center">
         <h3
-          className="relative font-display text-[300px] md:text-[500px] font-black uppercase flex select-none pointer-events-auto leading-none"
+          className="relative font-display text-[500px] font-black uppercase flex select-none pointer-events-none leading-none"
           onMouseLeave={() => setHoveredLetter(null)}>
           <AnimatePresence>
             {hoveredLetter !== null && (
@@ -139,7 +141,7 @@ export function Contact() {
                 exit={{ opacity: 0, y: 5 }}
                 transition={{ duration: 0.2 }}
                 className="absolute top-[25%] right-[20%] font-mono text-xs text-tertiary whitespace-nowrap bg-dark/60 px-4 py-2 border border-white/5 rounded-full backdrop-blur-md pointer-events-none z-10">
-                ↑ volver al inicio
+                {locale === "es" ? "↑ volver al inicio" : "↑ back to top"}
               </motion.div>
             )}
           </AnimatePresence>

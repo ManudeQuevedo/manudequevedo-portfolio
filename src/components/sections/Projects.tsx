@@ -18,7 +18,7 @@ export function Projects() {
       <div ref={containerRef}>
         <SectionLabel label={t("label")} />
         <h2
-          className="font-display text-4xl md:text-6xl font-bold mb-32"
+          className="font-display text-4xl md:text-6xl font-bold mb-16 md:mb-32"
           aria-label={t("headline")}>
           <TextReveal text={t("headline")} delay={0.2} />
         </h2>
@@ -49,6 +49,7 @@ function ProjectCard({
 }) {
   const t = useTranslations("projects");
   const cardRef = useRef<HTMLDivElement>(null);
+  const hasLiveLink = Boolean(project.link && project.link !== "#");
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -63,12 +64,12 @@ function ProjectCard({
     <motion.div
       ref={cardRef}
       style={{ scale, opacity, zIndex: (index + 1) * 10 }}
-      className="md:sticky md:top-[15vh] w-full min-h-[60vh] md:h-[80vh] bg-dark-2 rounded-t-2xl md:rounded-t-[32px] border-t border-white/5 overflow-hidden grid md:grid-cols-[55%_45%]">
+      className="group md:sticky md:top-[15vh] w-full min-h-[70vh] md:h-[80vh] bg-dark-2 rounded-t-2xl md:rounded-t-[32px] border-t border-white/5 overflow-hidden grid md:grid-cols-[55%_45%]">
       {/* Visual Mockup Side */}
       <motion.div
         whileHover="hover"
         initial="rest"
-        className="relative h-[40vh] md:h-full bg-dark-3 overflow-hidden group border-b md:border-b-0 md:border-r border-white/5"
+        className="relative h-[34vh] sm:h-[40vh] md:h-full bg-dark-3 overflow-hidden group border-b md:border-b-0 md:border-r border-white/5"
         data-cursor="project">
         <Image
           src={project.image}
@@ -114,7 +115,7 @@ function ProjectCard({
               hover: { opacity: 1 },
             }}
             transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" }}
-            className="text-center font-display text-xl md:text-2xl text-brand italic font-medium mb-8 max-w-sm">
+            className="text-center font-display text-lg md:text-2xl text-brand italic font-medium mb-8 max-w-sm">
             &quot;{project.solution || project.challenge || project.description}
             &quot;
           </motion.p>
@@ -144,8 +145,8 @@ function ProjectCard({
       </motion.div>
 
       {/* Info Side */}
-      <div className="p-8 md:p-16 flex flex-col justify-between relative">
-        <div className="absolute top-8 right-8 text-8xl font-display font-black text-white/[0.03] select-none">
+      <div className="p-6 sm:p-8 md:p-16 flex flex-col justify-between relative">
+        <div className="absolute top-8 right-8 text-8xl font-display font-black text-white/[0.03] select-none hidden md:block">
           {String(index + 1).padStart(2, "0")}
         </div>
 
@@ -156,7 +157,7 @@ function ProjectCard({
           <h3 className="font-display text-3xl md:text-5xl font-bold text-primary mb-6">
             {project.title}
           </h3>
-          <p className="text-secondary text-base leading-relaxed mb-8 max-w-sm">
+          <p className="text-secondary text-base leading-relaxed mb-8 max-w-xl">
             {project.description}
           </p>
 
@@ -197,9 +198,11 @@ function ProjectCard({
         </div>
 
         <div className="flex items-center gap-8">
-          {project.link && (
+          {hasLiveLink && (
             <a
               href={project.link}
+              target="_blank"
+              rel="noreferrer"
               className="text-primary hover:text-brand text-sm font-medium flex items-center gap-2 group transition-colors"
               data-cursor="hover">
               {t("live")}
@@ -211,6 +214,8 @@ function ProjectCard({
           {project.github && (
             <a
               href={project.github}
+              target="_blank"
+              rel="noreferrer"
               className="text-secondary hover:text-primary text-sm font-medium transition-colors"
               data-cursor="hover">
               {t("github")}

@@ -10,6 +10,10 @@ export function About() {
   const t = useTranslations("about");
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+  const headline = t("headline");
+  const highlightedText = headline.includes("último 10%")
+    ? "último 10%"
+    : "last 10%";
 
   return (
     <SectionContainer
@@ -25,7 +29,7 @@ export function About() {
           transition={{ duration: 0.8, ease: "easeOut" }}>
           <SectionLabel label={t("label")} />
 
-          <div className="grid grid-cols-2 gap-4 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12">
             {["years", "projects", "domains", "agency"].map((key, i) => {
               const item = t.raw(`identity.${key}`);
               return (
@@ -34,7 +38,7 @@ export function About() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.2 + i * 0.1 }}
-                  className="bg-[#0A0A0A] border border-[#111] rounded-sm p-6 hover:border-brand/20 transition-all duration-300 group flex flex-col justify-between">
+                  className="bg-[#0A0A0A] border border-[#111] rounded-sm p-5 md:p-6 hover:border-brand/20 transition-all duration-300 group flex flex-col justify-between min-h-[180px]">
                   <h4 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
                     {item.number}
                   </h4>
@@ -60,14 +64,14 @@ export function About() {
           className="flex flex-col justify-center lg:pl-12">
           <div className="max-w-lg">
             <h3 className="font-body text-2xl md:text-3xl font-medium leading-[1.6] mb-12 text-primary">
-              {t("headline")
-                .split("último 10%")
+              {headline
+                .split(highlightedText)
                 .map((part, i) => (
                   <span key={i}>
                     {part}
                     {i === 0 && (
                       <span className="relative inline-block text-brand">
-                        último 10%
+                        {highlightedText}
                         <motion.span
                           initial={{ scaleX: 0 }}
                           whileInView={{ scaleX: 1 }}

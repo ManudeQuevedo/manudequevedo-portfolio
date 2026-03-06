@@ -166,7 +166,7 @@ export function Hero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={skipAnimation}
-            className="fixed bottom-10 right-10 z-[60] text-[10px] uppercase tracking-widest text-secondary hover:text-white transition-colors duration-300 font-mono">
+            className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-4 md:right-10 z-[60] text-[9px] md:text-[10px] uppercase tracking-widest text-secondary hover:text-white transition-colors duration-300 font-mono">
             {t("skip_intro")}
           </motion.button>
         )}
@@ -249,15 +249,17 @@ export function Hero() {
                 },
               }}
               className="flex items-center mt-12">
-              <MagneticButton>
+              <MagneticButton distance={40}>
                 <button
                   onClick={() =>
                     document
                       .getElementById("contact")
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="border border-white/20 bg-white/5 backdrop-blur-sm text-white px-6 py-3 rounded-sm text-sm md:text-base font-bold flex items-center gap-3 group transition-all duration-300 hover:bg-white/10 hover:border-white/40">
-                  {t("cta_secondary")}
+                  className="group relative flex items-center gap-4 px-8 py-4 border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm text-sm md:text-base font-bold text-white transition-all duration-300 hover:bg-white/10 hover:border-white/30 overflow-hidden"
+                  data-cursor="hover">
+                  <span className="relative z-10">{t("cta_secondary")}</span>
+                  <div className="absolute inset-0 bg-brand/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
                 </button>
               </MagneticButton>
             </motion.div>
@@ -270,7 +272,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: isSkipped ? 0.5 : 5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4">
         <span
           className="text-[10px] uppercase tracking-widest text-tertiary whitespace-nowrap mb-6"
           style={{

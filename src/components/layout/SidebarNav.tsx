@@ -93,11 +93,12 @@ export function SidebarNav() {
                 .getElementById(id)
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            className={`text-[10px] md:text-xs font-mono transition-all duration-300 flex items-center justify-center bg-dark/20 ${
+            className={`w-10 h-10 flex items-center justify-center text-[10px] md:text-xs font-mono transition-all duration-300 rounded-full ${
               activeSection === index
-                ? "text-brand scale-125 font-bold"
-                : "text-white/20 hover:text-white/80 hover:scale-105"
+                ? "text-brand scale-125 font-bold bg-brand/10"
+                : "text-white/20 hover:text-white/80 hover:scale-110 hover:bg-white/5"
             }`}
+            data-cursor="hover"
             aria-label={`Scroll to ${id}`}>
             {formatNumber(index + 1)}
           </button>

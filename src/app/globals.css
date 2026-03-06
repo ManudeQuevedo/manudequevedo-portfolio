@@ -64,8 +64,19 @@
   }
 }
 
-body, a, button, [role="button"], input, textarea, select, img { 
-  cursor: none !important; 
+body.has-custom-cursor,
+body.has-custom-cursor a,
+body.has-custom-cursor button,
+body.has-custom-cursor [role="button"],
+body.has-custom-cursor input,
+body.has-custom-cursor textarea,
+body.has-custom-cursor select,
+body.has-custom-cursor img {
+  cursor: none !important;
+}
+
+.interactive {
+  @apply transition-all duration-300 ease-in-out cursor-none;
 }
 
 ::-webkit-scrollbar { width: 4px; }
@@ -108,4 +119,12 @@ body, a, button, [role="button"], input, textarea, select, img {
 
 .layout-container {
   @apply w-full max-w-7xl mx-auto px-5 md:px-12 relative;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

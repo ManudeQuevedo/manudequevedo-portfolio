@@ -30,7 +30,7 @@ export function LocaleSwitcher() {
 
       // Restore scroll position after a short delay to ensure DOM has updated
       requestAnimationFrame(() => {
-        window.scrollTo({ top: scrollY, behavior: "instant" });
+        window.scrollTo({ top: scrollY, behavior: "auto" });
       });
     });
   };

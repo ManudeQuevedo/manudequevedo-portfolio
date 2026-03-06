@@ -21,8 +21,22 @@ export function CustomCursor() {
   const ringY = useSpring(useMotionValue(0), { damping: 30, stiffness: 300 });
 
   useEffect(() => {
-    setIsDesktop(window.innerWidth > 1024);
+    const media = window.matchMedia("(min-width: 1024px) and (pointer: fine)");
+    const updateDesktopState = () => {
+      const enabled = media.matches;
+      setIsDesktop(enabled);
+      document.body.classList.toggle("has-custom-cursor", enabled);
+    };
 
+    updateDesktopState();
+    media.addEventListener("change", updateDesktopState);
+    return () => {
+      media.removeEventListener("change", updateDesktopState);
+      document.body.classList.remove("has-custom-cursor");
+    };
+  }, []);
+
+  useEffect(() => {
     let size = 40;
     if (cursorState === "hover") size = 60;
     if (cursorState === "project") size = 80;
@@ -37,7 +51,9 @@ export function CustomCursor() {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
 
-      const emailEl = target.closest('a[href^="mailto"]');
+      const emailEl = target.closest(
+        'a[href^="mailto"], [data-cursor="email"]',
+      );
       if (emailEl) return setCursorState("email");
 
       const projectEl = target.closest(
@@ -45,11 +61,11 @@ export function CustomCursor() {
       );
       if (projectEl) return setCursorState("project");
 
-      const imgEl = target.closest('img, [role="img"]');
+      const imgEl = target.closest('img, [role="img"], [data-cursor="image"]');
       if (imgEl) return setCursorState("image");
 
       const hoverEl = target.closest(
-        'a, button, [role="button"], [data-cursor="hover"]',
+        'a, button, [role="button"], [data-cursor="hover"], .interactive',
       );
       if (hoverEl) return setCursorState("hover");
 

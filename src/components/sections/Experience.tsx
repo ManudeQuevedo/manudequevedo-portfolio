@@ -32,18 +32,18 @@ export function Experience() {
           aria-label={t("headline")}>
           <TextReveal text={t("headline")} delay={0.2} />
         </h2>
-        <p className="text-secondary text-base md:text-lg max-w-3xl mb-32 leading-relaxed">
+        <p className="text-secondary text-base md:text-lg max-w-3xl mb-16 md:mb-32 leading-relaxed">
           {t("intro")}
         </p>
 
         <div className="relative">
           {/* Timeline Path */}
-          <div className="absolute left-4 md:left-8 top-0 bottom-0 w-[1px] bg-white/5" />
+          <div className="absolute left-3 md:left-8 top-0 bottom-0 w-[1px] bg-white/5" />
 
           {/* Progress Fill */}
           <motion.div
             style={{ scaleY: progressHeight }}
-            className="absolute left-4 md:left-8 top-0 bottom-0 w-[2px] bg-brand origin-top"
+            className="absolute left-3 md:left-8 top-0 bottom-0 w-[2px] bg-brand origin-top"
           />
 
           <div className="space-y-20 md:space-y-32">
@@ -54,10 +54,10 @@ export function Experience() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative pl-12 md:pl-20">
+                className="relative pl-10 md:pl-20">
                 {/* Pulse Dot */}
                 <div
-                  className={`absolute ${item.isFounder ? "left-[-15px] md:left-[1px] top-2" : "left-[-11px] md:left-[5px] top-2"}`}>
+                  className={`absolute ${item.isFounder ? "left-[-5px] md:left-[1px] top-2" : "left-[-2px] md:left-[5px] top-2"}`}>
                   <div className="relative">
                     <motion.div
                       initial={{ scale: 0 }}
@@ -88,7 +88,7 @@ export function Experience() {
                     {item.role}
                   </p>
 
-                  <div className="flex items-center gap-6 text-tertiary text-xs md:text-sm my-2">
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-tertiary text-xs md:text-sm my-2">
                     <span className="flex items-center gap-2">
                       <svg
                         className="w-3 h-3"
