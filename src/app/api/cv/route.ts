@@ -1,7 +1,7 @@
 // src/app/api/cv/route.ts
 import { NextRequest } from "next/server";
 import { getMessages } from "next-intl/server";
-import { DATA as STATIC, SKILLS } from "@/data/resume";
+import { experience, projects, skills as SKILLS_NEW } from "@/lib/data";
 
 type AnyObj = Record<string, any>;
 const F = <T,>(v: T | undefined, fb: T) => v ?? fb;
@@ -15,99 +15,38 @@ export async function GET(_req: NextRequest) {
   const M = (messages?.resume ?? {}) as AnyObj;
 
   // Root (merge i18n + estático)
-  const name = F<string>(M.name, STATIC.name);
-  const description = F<string>(M.description, STATIC.description);
-  const summary = F<string>(M.summary, STATIC.summary);
-  const siteUrl = F<string>(STATIC.url, "");
+  const name = F<string>(M.name, "Manu de Quevedo");
+  const description = F<string>(M.description, "Frontend Engineer & UI Architect");
+  const summary = F<string>(M.summary, "Frontend Engineer specialized in high-performance digital experiences.");
+  const siteUrl = "https://manudequevedo.com";
 
   // Work (merge por company)
-  const workFromMsg: AnyObj = M.work ?? {};
-  const workList = Object.values(workFromMsg) as Array<{
-    company: string;
-    href?: string;
-    location?: string;
-    title?: string;
-    start?: string;
-    end?: string;
-    description?: string;
-  }>;
-  const workMerged = workList.map((w) => {
-    const st = (STATIC.work as unknown as AnyObj[]).find(
-      (x) => x.company === w.company
-    );
-    return {
-      company: w.company,
-      title: w.title ?? st?.title ?? "",
-      location: w.location ?? st?.location ?? "",
-      start: w.start ?? st?.start ?? "",
-      end: w.end ?? st?.end ?? "",
-      description: w.description ?? st?.description ?? "",
-    };
-  });
+  const workMerged = experience.map((w: any) => ({
+    company: w.company,
+    title: w.role,
+    location: w.location,
+    start: w.period.split(' — ')[0],
+    end: w.period.split(' — ')[1],
+    description: w.description,
+  }));
 
-  // Education (merge por school)
-  const eduFromMsg: AnyObj = M.education ?? {};
-  const eduList = Object.values(eduFromMsg) as Array<{
-    school: string;
-    degree?: string;
-    start?: string;
-    end?: string;
-  }>;
-  const educationMerged = eduList.map((e) => {
-    const st = Array.from(STATIC.education).find((x) => x.school === e.school);
-    return {
-      school: e.school,
-      degree: e.degree ?? st?.degree ?? "",
-      start: e.start ?? st?.start ?? "",
-      end: e.end ?? st?.end ?? "",
-    };
-  });
+  // Education (mock or empty for now as it's not in lib/data)
+  const educationMerged: any[] = [];
 
-  // Skills (mensajes -> fallback a SKILLS agrupados -> [], con dedupe y limpieza)
-  const skillsRawFromI18n = M.skills as string[] | undefined;
+  // Skills
+  const skills = Object.values(SKILLS_NEW).flat();
 
-  const skillsFromStatic =
-    Array.isArray(SKILLS)
-      ? SKILLS
-      : SKILLS?.groups
-      ? SKILLS.groups.flatMap((g: any) =>
-          (g.items ?? []).map((it: any) =>
-            typeof it === "string"
-              ? it
-              : (it?.label ?? it?.name ?? "").toString()
-          )
-        )
-      : [];
-
-  const skills = Array.from(
-    new Set(
-      (skillsRawFromI18n ?? skillsFromStatic ?? [])
-        .map((s) => (s ?? "").toString().trim())
-        .filter(Boolean)
-    )
-  );
-
-  // Projects (merge por título)
-  const projectsMsg: AnyObj = M.projects ?? {};
-  const projectsStatic: AnyObj[] = STATIC.projects as unknown as AnyObj[];
-  const projectsMerged = projectsStatic.map((p) => {
-    const byTitle =
-      Object.values(projectsMsg).find((m: any) => m?.title === p.title) ?? {};
-    return {
-      title: byTitle.title ?? p.title ?? "",
-      dates: byTitle.dates ?? p.dates ?? "",
-      description: byTitle.description ?? p.description ?? "",
-      tech:
-        (byTitle.technologies as string[] | undefined) ??
-        p.technologies ??
-        [],
-      links: p.links ?? [],
-    };
-  });
+  // Projects
+  const projectsMerged = projects.map((p: any) => ({
+    title: p.title,
+    dates: p.year,
+    description: p.description,
+    tech: p.tags,
+    links: [p.link].filter(Boolean),
+  }));
 
   // Contact
-  const email = STATIC.contact?.email ?? "contact@manudequevedo.com";
-  const tel = STATIC.contact?.tel ?? "";
+  const email = "contact@manudequevedo.com";
 
   // Texto plano del CV (siempre en inglés)
   const lines: string[] = [];
@@ -117,10 +56,9 @@ export async function GET(_req: NextRequest) {
   if (siteUrl) lines.push(siteUrl);
   lines.push("");
 
-  const summaryPlain = summary.replace(/<[^>]*>/g, "");
-  if (summaryPlain.trim()) {
+  if (summary.trim()) {
     lines.push("Summary");
-    lines.push(summaryPlain);
+    lines.push(summary);
     lines.push("");
   }
 
@@ -137,18 +75,7 @@ export async function GET(_req: NextRequest) {
       const right = [w.start, w.end].filter(Boolean).join(" — ");
       const loc = w.location ? ` (${w.location})` : "";
       if (right || loc) lines.push(`  ${right}${loc}`);
-      if (w.description)
-        lines.push(`  ${w.description.replace(/\s+/g, " ").trim()}`);
-      lines.push("");
-    });
-  }
-
-  if (educationMerged.length) {
-    lines.push("Education");
-    educationMerged.forEach((e) => {
-      lines.push(`- ${e.school}${e.degree ? ` — ${e.degree}` : ""}`);
-      const right = [e.start, e.end].filter(Boolean).join(" — ");
-      if (right) lines.push(`  ${right}`);
+      if (w.description) lines.push(`  ${w.description}`);
       lines.push("");
     });
   }
@@ -156,20 +83,15 @@ export async function GET(_req: NextRequest) {
   if (projectsMerged.length) {
     lines.push("Projects");
     projectsMerged.forEach((p) => {
-      lines.push(`- ${p.title}${p.dates ? ` — ${p.dates}` : ""}`);
-      if (p.description)
-        lines.push(`  ${p.description.replace(/\s+/g, " ").trim()}`);
+      lines.push(`- ${p.title} — ${p.dates}`);
+      if (p.description) lines.push(`  ${p.description}`);
       if (p.tech?.length) lines.push(`  Tech: ${p.tech.join(", ")}`);
       lines.push("");
     });
   }
 
-  if (email || tel) {
-    lines.push("Contact");
-    if (email) lines.push(`Email: ${email}`);
-    if (tel) lines.push(`Tel: ${tel}`);
-    lines.push("");
-  }
+  lines.push("Contact");
+  lines.push(`Email: ${email}`);
 
   const body = lines.join("\n").trim() + "\n";
   const filename = `${name.replace(/\s+/g, "-")}-CV-en.txt`;

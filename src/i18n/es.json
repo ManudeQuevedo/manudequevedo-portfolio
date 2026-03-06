@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "contact": "Contacto",
+    "resume": "CV"
+  },
+  "hero": {
+    "loading": "Cargando artefacto...",
+    "role": "> Frontend Engineer & UI Architect",
+    "headline": "Construyo experiencias digitales que se sienten como descubrimientos.",
+    "sub": "Frontend · UI/UX · Ciberseguridad · Cloud · IA",
+    "cta_primary": "Ver mi trabajo",
+    "cta_secondary": "Hablemos",
+    "scroll": "Scroll para explorar"
+  },
+  "about": {
+    "label": "Manifiesto",
+    "years": "7",
+    "years_label": "años de experiencia",
+    "projects": "20+",
+    "projects_label": "proyectos entregados",
+    "headline": "Me obsesiona ese último 10% que transforma una buena UI en una experiencia inolvidable.",
+    "body": "No construyo páginas web. Construyo territorios digitales donde el usuario se pierde de la mejor manera posible. Cada proyecto es un artefacto: tiene peso, textura, intención.",
+    "domains": ["Frontend", "UI/UX", "Cloud", "Cybersec", "AI"]
+  },
+  "experience": {
+    "label": "Trayectoria",
+    "headline": "El camino hasta aquí."
+  },
+  "projects": {
+    "label": "Artefactos",
+    "headline": "Trabajo que habla por sí solo.",
+    "live": "Ver sitio",
+    "github": "GitHub",
+    "wip": "En desarrollo"
+  },
+  "skills": {
+    "label": "Arsenal",
+    "headline": "Las herramientas que domino.",
+    "categories": {
+      "frontend": "Frontend",
+      "cloud": "Cloud & DevOps",
+      "security": "Ciberseguridad",
+      "ai": "IA & Automatización",
+      "tools": "Herramientas"
+    }
+  },
+  "contact": {
+    "label": "Contacto",
+    "headline": "Construyamos algo que valga la pena recordar.",
+    "email_label": "Email directo",
+    "location": "Querétaro, MX · Disponible remoto",
+    "cta": "Enviar mensaje",
+    "form": {
+      "name": "Tu nombre",
+      "email": "Tu email",
+      "message": "Cuéntame sobre tu proyecto...",
+      "send": "Enviar"
+    }
+  }
+}

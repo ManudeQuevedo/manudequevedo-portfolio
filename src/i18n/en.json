@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact",
+    "resume": "Resume"
+  },
+  "hero": {
+    "loading": "Loading artifact...",
+    "role": "> Frontend Engineer & UI Architect",
+    "headline": "I build digital experiences that feel like discoveries.",
+    "sub": "Frontend · UI/UX · Cybersecurity · Cloud · AI",
+    "cta_primary": "View my work",
+    "cta_secondary": "Let's talk",
+    "scroll": "Scroll to explore"
+  },
+  "about": {
+    "label": "Manifesto",
+    "years": "7",
+    "years_label": "years of experience",
+    "projects": "20+",
+    "projects_label": "projects delivered",
+    "headline": "I'm obsessed with that last 10% that transforms a good UI into an unforgettable experience.",
+    "body": "I don't build websites. I build digital territories where the user gets lost in the best possible way. Every project is an artifact: it has weight, texture, intention.",
+    "domains": ["Frontend", "UI/UX", "Cloud", "Cybersec", "AI"]
+  },
+  "experience": {
+    "label": "Trajectory",
+    "headline": "The journey so far."
+  },
+  "projects": {
+    "label": "Artifacts",
+    "headline": "Work that speaks for itself.",
+    "live": "Live site",
+    "github": "GitHub",
+    "wip": "WIP"
+  },
+  "skills": {
+    "label": "Arsenal",
+    "headline": "The tools I master.",
+    "categories": {
+      "frontend": "Frontend",
+      "cloud": "Cloud & DevOps",
+      "security": "Cybersecurity",
+      "ai": "AI & Automation",
+      "tools": "Tools"
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "headline": "Let's build something worth remembering.",
+    "email_label": "Direct email",
+    "location": "Querétaro, MX · Available remote",
+    "cta": "Send message",
+    "form": {
+      "name": "Your name",
+      "email": "Your email",
+      "message": "Tell me about your project...",
+      "send": "Send"
+    }
+  }
+}
