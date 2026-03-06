@@ -1,56 +1,67 @@
 "use client";
 
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import {
+  motion,
+  useSpring,
+  useMotionValue,
+  AnimatePresence,
+} from "framer-motion";
 import { useEffect, useState } from "react";
 import { useMousePosition } from "@/hooks/useMousePosition";
+
+type CursorState = "default" | "hover" | "project" | "image" | "email";
 
 export function CustomCursor() {
   const { x, y } = useMousePosition();
   const [isDesktop, setIsDesktop] = useState(false);
-  const [cursorState, setCursorState] = useState<
-    "default" | "hover" | "project"
-  >("default");
+  const [cursorState, setCursorState] = useState<CursorState>("default");
 
   // Smooth movement for the outer ring
-  const ringX = useSpring(useMotionValue(0), { damping: 20, stiffness: 250 });
-  const ringY = useSpring(useMotionValue(0), { damping: 20, stiffness: 250 });
+  const ringX = useSpring(useMotionValue(0), { damping: 30, stiffness: 300 });
+  const ringY = useSpring(useMotionValue(0), { damping: 30, stiffness: 300 });
 
   useEffect(() => {
     setIsDesktop(window.innerWidth > 1024);
 
-    ringX.set(x - 20); // half of 40px
-    ringY.set(y - 20);
+    let size = 40;
+    if (cursorState === "hover") size = 60;
+    if (cursorState === "project") size = 80;
+    if (cursorState === "image") size = 70;
+    if (cursorState === "email") size = 64;
 
-    const handleHoverStart = () => setCursorState("hover");
-    const handleHoverEnd = () => setCursorState("default");
-    const handleProjectStart = () => setCursorState("project");
+    ringX.set(x - size / 2);
+    ringY.set(y - size / 2);
+  }, [x, y, cursorState, ringX, ringY]);
 
-    const interactables = document.querySelectorAll(
-      'a, button, [data-cursor="hover"]',
-    );
-    const projects = document.querySelectorAll('[data-cursor="project"]');
+  useEffect(() => {
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
 
-    interactables.forEach((el) => {
-      el.addEventListener("mouseenter", handleHoverStart);
-      el.addEventListener("mouseleave", handleHoverEnd);
-    });
+      const emailEl = target.closest('a[href^="mailto"]');
+      if (emailEl) return setCursorState("email");
 
-    projects.forEach((el) => {
-      el.addEventListener("mouseenter", handleProjectStart);
-      el.addEventListener("mouseleave", handleHoverEnd);
-    });
+      const projectEl = target.closest(
+        '#projects .group, [data-cursor="project"]',
+      );
+      if (projectEl) return setCursorState("project");
+
+      const imgEl = target.closest('img, [role="img"]');
+      if (imgEl) return setCursorState("image");
+
+      const hoverEl = target.closest(
+        'a, button, [role="button"], [data-cursor="hover"]',
+      );
+      if (hoverEl) return setCursorState("hover");
+
+      setCursorState("default");
+    };
+
+    document.addEventListener("mouseover", handleMouseOver);
 
     return () => {
-      interactables.forEach((el) => {
-        el.removeEventListener("mouseenter", handleHoverStart);
-        el.removeEventListener("mouseleave", handleHoverEnd);
-      });
-      projects.forEach((el) => {
-        el.removeEventListener("mouseenter", handleProjectStart);
-        el.removeEventListener("mouseleave", handleHoverEnd);
-      });
+      document.removeEventListener("mouseover", handleMouseOver);
     };
-  }, [x, y, ringX, ringY]);
+  }, []);
 
   if (!isDesktop) return null;
 
@@ -63,6 +74,7 @@ export function CustomCursor() {
           x: x - 4,
           y: y - 4,
           scale: cursorState === "default" ? 1 : 0.5,
+          opacity: cursorState === "default" ? 1 : 0,
         }}
         transition={{ type: "tween", ease: "linear", duration: 0 }}
       />
@@ -73,34 +85,80 @@ export function CustomCursor() {
         style={{ x: ringX, y: ringY }}
         animate={{
           width:
-            cursorState === "project" ? 80 : cursorState === "hover" ? 60 : 40,
+            cursorState === "project"
+              ? 80
+              : cursorState === "image"
+                ? 70
+                : cursorState === "email"
+                  ? 64
+                  : cursorState === "hover"
+                    ? 60
+                    : 40,
           height:
-            cursorState === "project" ? 80 : cursorState === "hover" ? 60 : 40,
+            cursorState === "project"
+              ? 80
+              : cursorState === "image"
+                ? 70
+                : cursorState === "email"
+                  ? 64
+                  : cursorState === "hover"
+                    ? 60
+                    : 40,
           backgroundColor:
-            cursorState === "hover"
+            cursorState === "project"
               ? "rgba(255, 107, 0, 0.2)"
-              : "rgba(255, 255, 255, 0)",
+              : cursorState === "hover"
+                ? "rgba(255, 107, 0, 0.1)"
+                : "rgba(255, 255, 255, 0)",
           borderColor:
-            cursorState === "hover" || cursorState === "project"
-              ? "#FF6B00"
-              : "rgba(255, 255, 255, 0.2)",
+            cursorState !== "default" ? "#FF6B00" : "rgba(255, 255, 255, 0.2)",
         }}>
-        {cursorState === "project" && (
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-[10px] font-bold text-brand uppercase">
-            Open →
-          </motion.span>
-        )}
-        {cursorState === "hover" && (
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-[10px] font-bold text-brand uppercase">
-            View
-          </motion.span>
-        )}
+        <AnimatePresence mode="wait">
+          {cursorState === "hover" && (
+            <motion.span
+              key="hover"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              className="text-[8px] uppercase tracking-widest font-mono text-brand font-bold">
+              IR →
+            </motion.span>
+          )}
+          {cursorState === "project" && (
+            <motion.span
+              key="project"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              className="text-[10px] font-mono text-brand font-bold uppercase tracking-wider">
+              VER
+            </motion.span>
+          )}
+          {cursorState === "image" && (
+            <motion.span
+              key="image"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              className="text-base text-brand leading-none flex items-center justify-center mt-[-2px]">
+              ◎
+            </motion.span>
+          )}
+          {cursorState === "email" && (
+            <motion.span
+              key="email"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              className="text-[14px] text-brand uppercase font-mono mt-[-2px]">
+              ✉
+            </motion.span>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );

@@ -10,7 +10,8 @@
   "hero": {
     "loading": "Loading artifact...",
     "role": "> Frontend Engineer & UI Architect",
-    "headline": "I obsess over the interfaces nobody forgets.",
+    "ready": "> System ready.",
+    "headline": "I obsess over interfaces that are never forgotten.",
     "sub": "Frontend Engineer — UI/UX · Cloud · Security · AI",
     "cta_primary": "View my work",
     "cta_secondary": "Open to new opportunities →",

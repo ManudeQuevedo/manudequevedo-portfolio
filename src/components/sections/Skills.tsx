@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { TextReveal } from "@/components/ui/TextReveal";
@@ -107,109 +108,11 @@ const CategoryIcon = ({ name }: { name: string }) => {
   }
 };
 
-function SkillCategory({ category, items, icon, index }: SkillCategoryProps) {
-  const t = useTranslations("skills");
-
-  return (
-    <div className="flex flex-col gap-8 p-8 border-r border-white/5 last:border-r-0">
-      <div className="flex items-center gap-4">
-        <div className="text-brand">{icon}</div>
-        <div className="flex flex-col">
-          <span className="text-[10px] text-tertiary font-bold tracking-widest uppercase">
-            {items.length} Skills
-          </span>
-          <h4 className="font-display text-xs font-bold tracking-[0.2em] uppercase text-primary">
-            {t(`categories.${category}`)}
-          </h4>
-        </div>
-      </div>
-
-      <ul className="space-y-6">
-        {items
-          .filter((s) => s.level)
-          .map((skill, i) => (
-            <motion.li
-              key={skill.name}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 + i * 0.05 }}
-              className="group flex flex-col gap-1.5">
-              <div className="flex items-center justify-between w-full">
-                <span className="text-sm font-medium text-secondary group-hover:text-primary transition-colors flex items-center gap-0">
-                  <span className="w-0 overflow-hidden group-hover:w-3 text-brand transition-all duration-300">
-                    •
-                  </span>
-                  {skill.name}
-                </span>
-                <span
-                  className={`text-[10px] uppercase tracking-wider font-bold ${
-                    skill.level === "expert"
-                      ? "text-brand"
-                      : skill.level === "proficient"
-                        ? "text-brand/70"
-                        : "text-tertiary"
-                  }`}>
-                  {skill.level}
-                </span>
-              </div>
-
-              {skill.context && (
-                <span className="text-xs text-tertiary/80 leading-snug">
-                  {skill.context}
-                </span>
-              )}
-
-              {/* Subtle Progress Line */}
-              <div className="h-[1px] bg-white/5 w-full relative mt-1 overflow-hidden">
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.5 + i * 0.1 }}
-                  className={`absolute inset-0 origin-left ${
-                    skill.level === "expert"
-                      ? "bg-brand"
-                      : skill.level === "proficient"
-                        ? "bg-brand/50"
-                        : "bg-tertiary/30"
-                  }`}
-                  style={{
-                    width:
-                      skill.level === "expert"
-                        ? "100%"
-                        : skill.level === "proficient"
-                          ? "75%"
-                          : "40%",
-                  }}
-                />
-              </div>
-            </motion.li>
-          ))}
-      </ul>
-
-      {/* Secondary Skills Tags */}
-      {items.filter((s) => !s.level).length > 0 && (
-        <div className="mt-4 pt-6 border-t border-white/5">
-          <div className="flex flex-wrap gap-2">
-            {items
-              .filter((s) => !s.level)
-              .map((skill) => (
-                <span
-                  key={skill.name}
-                  className="text-[10px] text-tertiary px-2 py-1 bg-white/5 border border-white/5 rounded-sm hover:text-secondary hover:border-white/10 transition-colors cursor-default">
-                  {skill.name}
-                </span>
-              ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
 export function Skills() {
   const t = useTranslations("skills");
+  const [activeTab, setActiveTab] = useState("frontend");
+
+  const categories = Object.entries(skills);
 
   return (
     <section
@@ -217,20 +120,140 @@ export function Skills() {
       className="py-20 md:py-32 px-6 md:px-20 bg-dark-2 border-y border-white/5">
       <div className="max-w-7xl mx-auto">
         <SectionLabel label={t("label")} />
-        <h2 className="font-display text-4xl md:text-6xl font-bold mb-20 max-w-2xl">
+        <h2
+          className="font-display text-4xl md:text-6xl font-bold mb-12 md:mb-20 max-w-2xl"
+          aria-label={t("headline")}>
           <TextReveal text={t("headline")} delay={0.2} />
         </h2>
 
-        <div className="grid md:grid-cols-5 border border-white/5 bg-dark">
-          {Object.entries(skills).map(([category, items], i) => (
-            <SkillCategory
-              key={category}
-              category={category}
-              items={items}
-              icon={<CategoryIcon name={category} />}
-              index={i}
-            />
-          ))}
+        <div className="flex flex-col md:flex-row border border-white/5 bg-dark rounded-xl md:rounded-2xl overflow-hidden min-h-[500px]">
+          {/* Left Panel: Tabs */}
+          <div className="w-full md:w-[40%] flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible border-b md:border-b-0 md:border-r border-white/5 bg-dark-3/50 no-scrollbar">
+            {categories.map(([category, items]) => {
+              const isActive = activeTab === category;
+              return (
+                <button
+                  key={category}
+                  onClick={() => setActiveTab(category)}
+                  className={`flex items-center gap-4 px-6 md:px-8 py-5 transition-all duration-300 min-w-max md:min-w-0 text-left relative ${
+                    isActive
+                      ? "bg-dark-2 text-primary border-l-2 md:border-l-4 border-l-brand"
+                      : "text-tertiary hover:text-secondary border-l-2 md:border-l-4 border-transparent hover:bg-white/5"
+                  }`}>
+                  <div className={isActive ? "text-brand" : "text-tertiary"}>
+                    <CategoryIcon name={category} />
+                  </div>
+                  <div className="flex flex-col">
+                    <h4 className="font-display text-sm font-bold tracking-[0.15em] uppercase">
+                      {t(`categories.${category}`)}
+                    </h4>
+                    <span className="text-[10px] font-mono tracking-widest uppercase mt-0.5 opacity-60">
+                      {items.length} Skills
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right Panel: Tab Content */}
+          <div className="w-full md:w-[60%] p-6 md:p-12 relative overflow-hidden bg-dark">
+            <AnimatePresence mode="wait">
+              {categories.map(
+                ([category, items]) =>
+                  activeTab === category && (
+                    <motion.div
+                      key={category}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="h-full flex flex-col">
+                      <h3 className="font-display text-2xl md:text-3xl font-bold mb-8 text-primary uppercase tracking-wide">
+                        {t(`categories.${category}`)}
+                      </h3>
+
+                      <ul className="space-y-6 flex-1">
+                        {items
+                          .filter((s) => s.level)
+                          .map((skill, i) => (
+                            <li
+                              key={skill.name}
+                              className="flex flex-col gap-2">
+                              <div className="flex items-center justify-between w-full">
+                                <span className="text-sm md:text-base font-medium text-secondary">
+                                  {skill.name}
+                                </span>
+                                <span
+                                  className={`text-[10px] md:text-xs uppercase tracking-wider font-bold ${
+                                    skill.level === "expert"
+                                      ? "text-brand"
+                                      : skill.level === "proficient"
+                                        ? "text-brand/70"
+                                        : "text-tertiary"
+                                  }`}>
+                                  {skill.level}
+                                </span>
+                              </div>
+
+                              {skill.context && (
+                                <span className="text-xs text-tertiary/80 leading-snug">
+                                  {skill.context}
+                                </span>
+                              )}
+
+                              {/* Progress Bar Container */}
+                              <div className="h-[2px] bg-white/5 w-full mt-1 overflow-hidden relative rounded-full">
+                                {/* The animated fill */}
+                                <motion.div
+                                  initial={{ width: "0%" }}
+                                  animate={{
+                                    width:
+                                      skill.level === "expert"
+                                        ? "100%"
+                                        : skill.level === "proficient"
+                                          ? "70%"
+                                          : "40%",
+                                  }}
+                                  transition={{
+                                    duration: 0.6,
+                                    delay: i * 0.05,
+                                    ease: "easeOut",
+                                  }}
+                                  className={`absolute top-0 left-0 h-full origin-left rounded-full ${
+                                    skill.level === "expert"
+                                      ? "bg-brand"
+                                      : skill.level === "proficient"
+                                        ? "bg-brand/80"
+                                        : "bg-tertiary/50"
+                                  }`}
+                                />
+                              </div>
+                            </li>
+                          ))}
+                      </ul>
+
+                      {/* Secondary Skills Tags */}
+                      {items.filter((s) => !s.level).length > 0 && (
+                        <div className="mt-8 pt-6 border-t border-white/5">
+                          <div className="flex flex-wrap gap-2">
+                            {items
+                              .filter((s) => !s.level)
+                              .map((skill) => (
+                                <span
+                                  key={skill.name}
+                                  className="text-[10px] font-mono text-tertiary px-3 py-1.5 bg-white/5 border border-white/5 rounded-full cursor-default">
+                                  {skill.name}
+                                </span>
+                              ))}
+                          </div>
+                        </div>
+                      )}
+                    </motion.div>
+                  ),
+              )}
+            </AnimatePresence>
+          </div>
         </div>
 
         <motion.p

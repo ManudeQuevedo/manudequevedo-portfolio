@@ -1,15 +1,30 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { Mail } from "lucide-react";
 
 export function Contact() {
   const t = useTranslations("contact");
+  const locale = useLocale();
   const [copied, setCopied] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [hoveredLetter, setHoveredLetter] = useState<number | null>(null);
+
+  const words =
+    locale === "es"
+      ? ["recordar", "construir", "lanzar", "escalar"]
+      : ["remember", "build", "launch", "scale"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((current) => (current + 1) % words.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [words.length]);
 
   const email = "contact@manudequevedo.com";
 
@@ -32,14 +47,20 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="font-display text-4xl md:text-7xl font-bold leading-tight max-w-3xl">
-            {t("headline")
-              .split("recordar")
-              .map((part: string, i: number) => (
-                <span key={i}>
-                  {part}
-                  {i === 0 && <span className="text-brand">recordar</span>}
-                </span>
-              ))}
+            {t("headline").replace(/\.$/, "")}
+            <span className="text-brand whitespace-nowrap ml-2">
+              <AnimatePresence mode="popLayout">
+                <motion.span
+                  key={wordIndex}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="inline-block">
+                  .{words[wordIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
           </motion.h2>
 
           <div className="email-hero mt-8">
@@ -107,9 +128,44 @@ export function Contact() {
       </div>
 
       {/* Background Decorative Text */}
-      <h3 className="absolute bottom-[-100px] right-[-50px] font-display text-[300px] md:text-[500px] font-black text-white/[0.01] select-none pointer-events-none uppercase">
-        Manu
-      </h3>
+      <div className="absolute bottom-[-100px] right-[-50px] z-0">
+        <h3
+          className="relative font-display text-[300px] md:text-[500px] font-black uppercase flex select-none pointer-events-auto leading-none cursor-pointer"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onMouseLeave={() => setHoveredLetter(null)}>
+          <AnimatePresence>
+            {hoveredLetter !== null && (
+              <motion.div
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 5 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-[25%] right-[20%] font-mono text-xs text-tertiary whitespace-nowrap bg-dark/60 px-4 py-2 border border-white/5 rounded-full backdrop-blur-md pointer-events-none z-10">
+                ↑ volver al inicio
+              </motion.div>
+            )}
+          </AnimatePresence>
+          {"Manu".split("").map((letter, index) => {
+            const isActive = hoveredLetter === index;
+            const isAdjacent =
+              hoveredLetter !== null && Math.abs(hoveredLetter - index) === 1;
+
+            return (
+              <motion.span
+                key={index}
+                onMouseEnter={() => setHoveredLetter(index)}
+                animate={{
+                  color: isActive ? "#ff6b00" : "#ffffff",
+                  opacity: isActive ? 0.15 : isAdjacent ? 0.05 : 0.01,
+                }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="inline-block transition-colors">
+                {letter}
+              </motion.span>
+            );
+          })}
+        </h3>
+      </div>
     </section>
   );
 }

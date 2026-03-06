@@ -10,7 +10,8 @@
   "hero": {
     "loading": "Cargando artefacto...",
     "role": "> Frontend Engineer & UI Architect",
-    "headline": "Me obsesionan las interfaces que nadie olvida.",
+    "ready": "> Sistema listo.",
+    "headline": "Me obsesionan las interfaces que no se olvidan.",
     "sub": "Frontend Engineer — UI/UX · Cloud · Security · AI",
     "cta_primary": "Ver mi trabajo",
     "cta_secondary": "Abierto a nuevas oportunidades →",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const sections = [
   "hero",
@@ -11,10 +12,20 @@ const sections = [
   "contact",
 ];
 
+const sectionLabels = [
+  "Hero",
+  "Manifiesto",
+  "Trayectoria",
+  "Proyectos",
+  "Arsenal",
+  "Contacto",
+];
+
 const formatNumber = (num: number) => String(num).padStart(2, "0");
 
 export function SidebarNav() {
   const [activeSection, setActiveSection] = useState(0);
+  const [hoveredSection, setHoveredSection] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,21 +51,55 @@ export function SidebarNav() {
   }, []);
 
   return (
-    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 hidden xl:flex flex-col gap-6 mix-blend-difference pointer-events-auto">
+    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 hidden xl:flex flex-col gap-6 mix-blend-difference pointer-events-auto relative">
+      {/* Background Track */}
+      <div className="absolute top-3 bottom-3 left-1/2 -translate-x-1/2 w-[1px] bg-white/10 -z-10" />
+
+      {/* Animated Progress Line */}
+      <motion.div
+        className="absolute top-3 bottom-3 left-1/2 -translate-x-1/2 w-[1px] bg-brand -z-10 origin-top"
+        initial={{ scaleY: 0 }}
+        animate={{
+          scaleY:
+            sections.length > 1 ? activeSection / (sections.length - 1) : 0,
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      />
+
       {sections.map((id, index) => (
-        <button
+        <div
           key={id}
-          onClick={() => {
-            document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-          }}
-          className={`text-[10px] md:text-xs font-mono font-bold transition-all duration-300 flex items-center justify-end ${
-            activeSection === index
-              ? "text-brand scale-110"
-              : "text-white/20 hover:text-white/80 hover:scale-105"
-          }`}
-          aria-label={`Scroll to ${id}`}>
-          {formatNumber(index + 1)}
-        </button>
+          className="relative flex items-center justify-center group"
+          onMouseEnter={() => setHoveredSection(index)}
+          onMouseLeave={() => setHoveredSection(null)}>
+          <AnimatePresence>
+            {hoveredSection === index && (
+              <motion.div
+                initial={{ opacity: 0, x: 8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 8 }}
+                transition={{ duration: 0.15 }}
+                className="absolute right-full mr-4 bg-dark/90 backdrop-blur-sm text-xs font-mono px-2 py-1 rounded whitespace-nowrap pointer-events-none">
+                {sectionLabels[index]}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <button
+            onClick={() => {
+              document
+                .getElementById(id)
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className={`text-[10px] md:text-xs font-mono transition-all duration-300 flex items-center justify-center bg-dark/20 ${
+              activeSection === index
+                ? "text-brand scale-125 font-bold"
+                : "text-white/20 hover:text-white/80 hover:scale-105"
+            }`}
+            aria-label={`Scroll to ${id}`}>
+            {formatNumber(index + 1)}
+          </button>
+        </div>
       ))}
     </div>
   );

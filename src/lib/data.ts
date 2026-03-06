@@ -11,6 +11,7 @@ export interface Project {
   position: [number, number, number];
   challenge?: string;
   solution?: string;
+  image: string;
 }
 
 export const experience = [
@@ -80,7 +81,8 @@ export const projects: Project[] = [
     status: "live",
     year: "2025",
     category: "web",
-    position: [0, 0, 0]
+    position: [0, 0, 0],
+    image: "/bridgecapital.png"
   },
   {
     id: 2,
@@ -94,21 +96,23 @@ export const projects: Project[] = [
     status: "wip",
     year: "2025",
     category: "mobile",
-    position: [-5, -2, -10]
+    position: [-5, -2, -10],
+    image: "/woodax-design.png"
   },
   {
     id: 3,
-    title: "Dyma Group",
-    description: "Corporate website revamp focused on performance, accessibility, and multilingual content.",
-    challenge: "Modernize a legacy enterprise site while maintaining SEO rankings.",
-    solution: "Implemented strict semantic HTML and Server Components for fast time-to-first-byte.",
-    tags: ["Next.js", "TypeScript", "TailwindCSS", "UI/UX"],
-    link: null,
+    title: "Noctra Studio",
+    description: "Tech agency website building performant digital products for startups and businesses in LATAM.",
+    challenge: "Create a conversion-focused landing page that establishes trust.",
+    solution: "Designed a premium dark-mode interface with subtle micro-interactions.",
+    tags: ["Next.js", "TypeScript", "TailwindCSS", "Supabase"],
+    link: "https://noctra.studio",
     github: null,
-    status: "wip",
+    status: "live",
     year: "2025",
     category: "ai",
-    position: [2, -5, -15]
+    position: [2, -5, -15],
+    image: "/noctra.png"
   },
   {
     id: 4,
@@ -122,7 +126,8 @@ export const projects: Project[] = [
     status: "live",
     year: "2026",
     category: "web",
-    position: [5, 2, -5]
+    position: [5, 2, -5],
+    image: "/og-image.png"
   }
 ];
 

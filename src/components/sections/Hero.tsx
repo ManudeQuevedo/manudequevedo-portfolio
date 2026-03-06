@@ -22,29 +22,36 @@ export function Hero() {
   const gridY = useTransform(scrollY, [0, 500], [0, 50]);
   const photoScale = useTransform(scrollY, [0, 500], [1, 1.05]);
 
-  // Mouse tracking for reactive grid
+  // Mouse tracking for reactive grid and parallax
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
   useEffect(() => {
+    // Only enable parallax on non-touch devices (md breakpoint roughly > 768px)
+    if (window.innerWidth < 768) return;
+
     const handleMouse = (e: MouseEvent) => {
-      mouseX.set(e.clientX - window.innerWidth / 2);
-      mouseY.set(e.clientY - window.innerHeight / 2);
+      mouseX.set(e.clientX / window.innerWidth - 0.5);
+      mouseY.set(e.clientY / window.innerHeight - 0.5);
     };
+
     window.addEventListener("mousemove", handleMouse);
     return () => window.removeEventListener("mousemove", handleMouse);
   }, [mouseX, mouseY]);
 
-  const smoothX = useSpring(mouseX, { stiffness: 50, damping: 20 });
-  const smoothY = useSpring(mouseY, { stiffness: 50, damping: 20 });
-  const bgX = useTransform(smoothX, [-1000, 1000], [-20, 20]);
-  const bgY = useTransform(smoothY, [-1000, 1000], [-20, 20]);
+  const smoothX = useSpring(mouseX, { stiffness: 60, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 60, damping: 20 });
 
-  const terminalLines = [
-    t("loading"),
-    t("role"),
-    `> ${t("headline").substring(0, 20)}...`,
-  ];
+  // Grid Parallax mapping
+  const bgX = useTransform(smoothX, [-0.5, 0.5], [-20, 20]);
+  const bgY = useTransform(smoothY, [-0.5, 0.5], [-20, 20]);
+
+  // Photo Parallax mapping
+  const imgX = useTransform(smoothX, [-0.5, 0.5], [-8, 8]);
+  const imgY = useTransform(smoothY, [-0.5, 0.5], [-5, 5]);
+  const imgRotateY = useTransform(smoothX, [-0.5, 0.5], [-1.5, 1.5]);
+
+  const terminalLines = [t("loading"), t("role"), t("ready")];
 
   return (
     <section
@@ -65,21 +72,31 @@ export function Hero() {
 
       {/* Integrated Photo */}
       <motion.div
-        className="absolute right-0 bottom-0 h-[85vh] w-auto z-0 select-none pointer-events-none hidden md:block"
+        className="absolute right-0 bottom-0 h-[85vh] w-auto z-0 select-none hidden md:block"
         initial={{ filter: "grayscale(100%) brightness(0.7)", opacity: 0 }}
         animate={{ filter: "grayscale(20%) brightness(0.9)", opacity: 1 }}
         transition={{ duration: 1.5, delay: 2, ease: "easeOut" }}
-        style={{ scale: photoScale }}>
-        <div className="relative h-full w-full">
-          <Image
-            src="/me.jpg"
-            alt="Manu de Quevedo"
-            width={800}
-            height={1200}
-            className="h-full w-auto object-contain"
-            priority
-          />
-          {/* Gradients to blend */}
+        style={{ scale: photoScale, perspective: 1000 }}>
+        <div className="relative h-full w-full pointer-events-none">
+          {/* Photo Parallax Wrapper */}
+          <motion.div
+            className="h-full w-full"
+            style={{
+              x: imgX,
+              y: imgY,
+              rotateY: imgRotateY,
+              transformStyle: "preserve-3d",
+            }}>
+            <Image
+              src="/me-no-bg.png"
+              alt="Manu de Quevedo"
+              width={800}
+              height={1200}
+              className="h-full w-auto object-contain"
+              priority
+            />
+          </motion.div>
+          {/* Gradients to blend - Fixed */}
           <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-dark via-dark/50 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
         </div>
@@ -106,12 +123,15 @@ export function Hero() {
               },
             }}>
             {/* Headline */}
-            <h1 className="font-display text-4xl md:text-7xl font-bold leading-tight mb-6">
+            <h1
+              className="font-display text-4xl md:text-7xl font-bold leading-tight mb-6"
+              aria-label={t("headline")}>
               {t("headline")
                 .split(" ")
                 .map((word, i) => (
                   <motion.span
                     key={i}
+                    aria-hidden="true"
                     className="inline-block mr-[0.2em]"
                     variants={{
                       hidden: { y: 60, opacity: 0 },
@@ -130,6 +150,7 @@ export function Hero() {
                     ) : (
                       word
                     )}
+                    <span className="sr-only">&nbsp;</span>
                   </motion.span>
                 ))}
             </h1>

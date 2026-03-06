@@ -43,11 +43,11 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: auto; } /* Lenis handles scroll */
-body { 
+body, a, button, input, textarea, select, img { 
   background: #080808; 
   color: #FAFAFA; 
   overflow-x: hidden; 
-  cursor: none; 
+  cursor: none !important; 
   font-family: var(--font-body);
 }
 

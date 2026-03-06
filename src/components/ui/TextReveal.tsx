@@ -45,7 +45,8 @@ export function TextReveal({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className={`inline-flex flex-wrap ${className}`}>
+      className={`inline-flex flex-wrap ${className}`}
+      aria-hidden="true">
       {words.map((word, index) => (
         <span
           key={index}
@@ -53,6 +54,7 @@ export function TextReveal({
           <motion.span variants={child} className="inline-block">
             {word}
           </motion.span>
+          <span className="sr-only">&nbsp;</span>
         </span>
       ))}
     </motion.span>

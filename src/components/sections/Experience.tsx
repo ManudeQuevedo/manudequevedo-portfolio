@@ -28,7 +28,9 @@ export function Experience() {
       ref={containerRef}
       className="min-h-screen py-20 md:py-32 px-6 md:px-20 max-w-5xl mx-auto">
       <SectionLabel label={t("label")} />
-      <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">
+      <h2
+        className="font-display text-4xl md:text-6xl font-bold mb-6"
+        aria-label={t("headline")}>
         <TextReveal text={t("headline")} delay={0.2} />
       </h2>
       <p className="text-secondary text-base md:text-lg max-w-3xl mb-20 leading-relaxed">
