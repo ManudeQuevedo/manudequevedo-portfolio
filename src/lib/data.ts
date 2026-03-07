@@ -55,8 +55,23 @@ export interface Project {
   caseStudy: CaseStudy;
 }
 
+export interface ExperienceItem {
+  id: number;
+  company: string;
+  role: string;
+  employmentType?: string;
+  period: string;
+  location: string;
+  description: string;
+  highlight?: string;
+  details?: string[];
+  metricKey?: string;
+  tags: string[];
+  isFounder?: boolean;
+}
+
 // TODO: Validate and replace placeholder impact metrics with exact tracked values.
-export const experience = [
+export const experience: ExperienceItem[] = [
   {
     id: 0,
     company: "Noctra Studio",
@@ -73,45 +88,73 @@ export const experience = [
     id: 1,
     company: "Tata Consultancy Services",
     role: "UI Developer",
-    period: "Apr 2023 — Present",
-    location: "Remote",
-    description: "Building scalable UI systems for enterprise clients with React, TypeScript and accessibility standards.",
-    highlight: "Led the migration of 3 legacy interfaces to a design system serving 50k+ users.",
+    employmentType: "Full-time",
+    period: "Apr 2023 - Present · 3 yrs",
+    location: "Queretaro, Queretaro, Mexico · Remote",
+    description:
+      "While my role evolved to support the Publishing team during a large-scale AEM migration, I took ownership as the primary technical bridge between content and engineering.",
+    highlight:
+      "Designed and implemented a full onboarding and mentorship program from scratch, reducing ramp-up time and recurring errors for new team members.",
+    details: [
+      "Proactively investigated and pre-diagnosed performance issues and bugs in AEM React components, helping developers accelerate resolution cycles.",
+      "Created technical documentation and practical guides to standardize workflows across the team.",
+      "Conceptualized an internal knowledge base portal and designed its security architecture with SSO and role-based access control.",
+    ],
     metricKey: "tcs_ui_system",
-    tags: ["React", "TypeScript", "A11y", "Design Systems"],
+    tags: ["AEM", "React", "TypeScript", "Documentation", "SSO", "RBAC"],
   },
   {
     id: 2,
-    company: "Concentrix (ProKarma)",
-    role: "Software Engineer / ServiceNow Dev",
-    period: "Sep 2019 — Apr 2023",
-    location: "Remote",
-    description: "Full-stack development and ITSM platform customization.",
-    highlight: "Reduced ticket resolution time 40% by rebuilding the frontend workflow from scratch.",
+    company: "Concentrix Catalyst",
+    role: "Software Engineer / ServiceNow Developer",
+    employmentType: "Full-time",
+    period: "Sep 2019 - Apr 2023 · 3 yrs 8 mos",
+    location: "Mexico · Hybrid",
+    description:
+      "As a Software Engineer, I collaborated on migrating the T-Mobile web application from AngularJS to Angular 7, and later evolved into a ServiceNow Developer role focused on platform reliability.",
+    highlight:
+      "Led production incident response, driving root-cause analysis and coordination with engineering teams to sustain high system availability.",
+    details: [
+      "Refactored frontend components and wrote unit tests with Jest/Mocha inside a microservices architecture.",
+      "Customized Incident, CMDB, and Service Catalog modules using Business Rules and Script Includes.",
+      "Expanded into DevOps and monitoring workflows with Splunk and Grafana to improve operational visibility.",
+    ],
     metricKey: "concentrix_resolution",
-    tags: ["ServiceNow", "React", "JavaScript", "ITSM"],
+    tags: ["Angular 7", "ServiceNow", "Jest", "Mocha", "Splunk", "Grafana"],
   },
   {
     id: 3,
-    company: "Quiubas Mobile",
-    role: "Software Engineer",
-    period: "Apr 2019 — Aug 2019",
-    location: "Remote",
-    description: "Frontend development for SMS/messaging SaaS platform.",
-    highlight: "Part of the product team when Twilio acquired the company.",
+    company: "Quiubas Mobile (acquired by Twilio)",
+    role: "Software Engineer (Short-Term Project)",
+    employmentType: "Seasonal",
+    period: "Apr 2019 - Aug 2019 · 5 mos",
+    location: "Queretaro, Mexico · Remote",
+    description:
+      "Worked on the front-end team that rewrote the full client-side codebase from AngularJS to vanilla React.js.",
+    highlight: "Contributed during the stage prior to Quiubas Mobile's acquisition by Twilio.",
+    details: [
+      "Built functional components with Hooks API (useState/useEffect) to simplify state and side-effect handling.",
+      "Structured complex responsive layouts with CSS Grid without relying on third-party layout libraries.",
+      "Collaborated in an Agile workflow with daily stand-ups and two-week sprints for incremental releases.",
+    ],
     metricKey: "quiubas_acquisition",
-    tags: ["JavaScript", "Node.js", "APIs"],
+    tags: ["React", "Hooks API", "CSS Grid", "Agile", "JavaScript"],
   },
   {
     id: 4,
-    company: "Linio México",
-    role: "Software Engineer",
-    period: "Jan 2019 — Apr 2019",
-    location: "México",
-    description: "E-commerce frontend for one of Latin America's largest marketplaces.",
-    highlight: "First production React codebase. Shipped in a team of 12 engineers.",
-    metricKey: "linio_monthly_sessions",
-    tags: ["React", "E-commerce", "Performance"],
+    company: "Linio Group",
+    role: "Web Content Specialist",
+    period: "May 2017 - Mar 2019 · 1 yr 11 mos",
+    location: "Mexico City, Mexico · Hybrid",
+    description:
+      "This role is where I discovered my path into software engineering. I went beyond content operations and started building internal tooling and process improvements.",
+    highlight:
+      "Built an internal email-generation tool using Twig (PHP) while managing multi-regional website content.",
+    details: [
+      "Managed multi-regional web content using HTML, CSS, and JavaScript.",
+      "Gained first hands-on experience with AWS and web operations, which motivated my full transition into engineering.",
+    ],
+    tags: ["HTML", "CSS", "JavaScript", "Twig (PHP)", "AWS"],
   },
 ];
 

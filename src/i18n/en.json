@@ -67,12 +67,115 @@
     "label": "Trajectory",
     "headline": "The journey so far.",
     "intro": "From building e-commerce at scale to leading UI systems at a global firm — and eventually founding my own studio. Each role taught me something the previous one couldn't.",
+    "founder": "Founder",
+    "show_more": "Read more",
+    "show_less": "Show less",
     "metrics": {
       "noctra_clients_6m": "3 clients onboarded in first 6 months",
       "tcs_ui_system": "UI system used by 12+ engineers",
       "concentrix_resolution": "40% faster ticket resolution cycle",
       "quiubas_acquisition": "Shipped during acquisition — 0 regressions",
       "linio_monthly_sessions": "Frontend serving 2M+ monthly sessions"
+    },
+    "items": {
+      "0": {
+        "company": "Noctra Studio",
+        "role": "Founder & Lead Engineer",
+        "period": "2025 - Present",
+        "location": "Queretaro, MX",
+        "description": "Frontend agency building performant digital products for startups and businesses across LATAM.",
+        "highlight": "Built and shipped 4 client projects in the first 6 months.",
+        "tags": [
+          "Next.js",
+          "TypeScript",
+          "TailwindCSS",
+          "Supabase"
+        ]
+      },
+      "1": {
+        "company": "Tata Consultancy Services",
+        "role": "UI Developer",
+        "employmentType": "Full-time",
+        "period": "Apr 2023 - Present · 3 yrs",
+        "location": "Queretaro, Queretaro, Mexico · Remote",
+        "description": "While my role evolved to support the Publishing team during a large-scale AEM migration, I took the initiative to act as the primary technical bridge between content and development teams.",
+        "highlight": "Designed and implemented a comprehensive onboarding and mentorship program from scratch, creating technical documentation and guides that reduced ramp-up time and recurring errors.",
+        "details": [
+          "Proactively investigated and pre-diagnosed performance issues and bugs within AEM's React-based components, collaborating with developers to accelerate the resolution cycle.",
+          "Conceptualized an internal knowledge base portal to centralize documentation and streamline processes.",
+          "Designed the security architecture proposal for that portal, including SSO and role-based access control."
+        ],
+        "tags": [
+          "AEM",
+          "React",
+          "TypeScript",
+          "Documentation",
+          "SSO",
+          "RBAC"
+        ]
+      },
+      "2": {
+        "company": "Concentrix Catalyst",
+        "role": "Software Engineer / ServiceNow Developer",
+        "employmentType": "Full-time",
+        "period": "Sep 2019 - Apr 2023 · 3 yrs 8 mos",
+        "location": "Mexico · Hybrid",
+        "description": "As a Software Engineer, I collaborated on migrating the T-Mobile web application from AngularJS to Angular 7, then evolved into a ServiceNow Developer role expanding across DevOps and monitoring workflows.",
+        "highlight": "Led response for production incidents, running root-cause analysis and coordinating with development teams to maintain high system availability.",
+        "details": [
+          "Refactored components and wrote unit tests with Jest/Mocha within a microservices architecture.",
+          "Customized Incident, CMDB and Service Catalog modules using Business Rules and Script Includes.",
+          "Expanded technical scope into Splunk/Grafana workflows to strengthen observability and incident triage."
+        ],
+        "tags": [
+          "Angular 7",
+          "ServiceNow",
+          "Jest",
+          "Mocha",
+          "Splunk",
+          "Grafana"
+        ]
+      },
+      "3": {
+        "company": "Quiubas Mobile (acquired by Twilio)",
+        "role": "Software Engineer (Short-Term Project)",
+        "employmentType": "Seasonal",
+        "period": "Apr 2019 - Aug 2019 · 5 mos",
+        "location": "Queretaro, Mexico · Remote",
+        "description": "Worked at Quiubas Mobile before its acquisition by Twilio, contributing to the front-end team that rewrote the entire client-side codebase from AngularJS to vanilla React.js.",
+        "highlight": "Built functional components with the Hooks API and helped establish a cleaner, more testable front-end foundation.",
+        "details": [
+          "Implemented components with useState/useEffect to simplify side-effects and local state management.",
+          "Structured complex responsive layouts with CSS Grid without relying on third-party layout libraries.",
+          "Worked in an Agile cadence with daily stand-ups and two-week sprints to ship incremental improvements."
+        ],
+        "tags": [
+          "React",
+          "Hooks API",
+          "CSS Grid",
+          "Agile",
+          "JavaScript"
+        ]
+      },
+      "4": {
+        "company": "Linio Group",
+        "role": "Web Content Specialist",
+        "period": "May 2017 - Mar 2019 · 1 yr 11 mos",
+        "location": "Mexico City, Mexico · Hybrid",
+        "description": "This role is where I discovered my passion for software engineering. I moved beyond content management and contributed to internal tooling and process improvements.",
+        "highlight": "Built an internal email-generation tool using Twig (PHP) while managing multi-regional web content.",
+        "details": [
+          "Managed website content operations using HTML, CSS and JavaScript across multiple regions.",
+          "Gained first hands-on experience with AWS and web operations, reinforcing my transition into full-time engineering."
+        ],
+        "tags": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "Twig (PHP)",
+          "AWS"
+        ]
+      }
     }
   },
   "projects": {

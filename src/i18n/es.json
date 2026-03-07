@@ -67,12 +67,115 @@
     "label": "Trayectoria",
     "headline": "El camino hasta aquí.",
     "intro": "De construir e-commerce a escala a liderar sistemas UI en una firma global — y eventualmente fundar mi propio estudio. Cada rol me enseñó algo que el anterior no podía.",
+    "founder": "Fundador",
+    "show_more": "Ver más",
+    "show_less": "Ver menos",
     "metrics": {
       "noctra_clients_6m": "3 clientes incorporados en los primeros 6 meses",
       "tcs_ui_system": "Sistema UI usado por más de 12 ingenieros",
       "concentrix_resolution": "Ciclo de resolución de tickets 40% más rápido",
       "quiubas_acquisition": "Entregado durante adquisición — 0 regresiones",
       "linio_monthly_sessions": "Frontend sirviendo más de 2M sesiones mensuales"
+    },
+    "items": {
+      "0": {
+        "company": "Noctra Studio",
+        "role": "Fundador y Lead Engineer",
+        "period": "2025 - Presente",
+        "location": "Queretaro, MX",
+        "description": "Agencia frontend enfocada en construir productos digitales performantes para startups y negocios en LATAM.",
+        "highlight": "Construí y entregué 4 proyectos de clientes durante los primeros 6 meses.",
+        "tags": [
+          "Next.js",
+          "TypeScript",
+          "TailwindCSS",
+          "Supabase"
+        ]
+      },
+      "1": {
+        "company": "Tata Consultancy Services",
+        "role": "UI Developer",
+        "employmentType": "Full-time",
+        "period": "Abr 2023 - Presente · 3 años",
+        "location": "Queretaro, Queretaro, Mexico · Remote",
+        "description": "Mientras mi rol evolucionaba para apoyar al equipo de Publishing durante una migración de AEM a gran escala, tomé la iniciativa de actuar como puente técnico principal entre contenido y desarrollo.",
+        "highlight": "Diseñé e implementé desde cero un programa integral de onboarding y mentoría, creando documentación técnica y guías que redujeron el ramp-up y los errores recurrentes.",
+        "details": [
+          "Investigué y pre-diagnostiqué proactivamente issues de performance y bugs en componentes React de AEM, colaborando con developers para acelerar la resolución.",
+          "Conceptualicé un portal interno de knowledge base para centralizar documentación y optimizar procesos.",
+          "Definí la propuesta de arquitectura de seguridad para ese portal, incluyendo SSO y control de acceso basado en roles."
+        ],
+        "tags": [
+          "AEM",
+          "React",
+          "TypeScript",
+          "Documentation",
+          "SSO",
+          "RBAC"
+        ]
+      },
+      "2": {
+        "company": "Concentrix Catalyst",
+        "role": "Software Engineer / ServiceNow Developer",
+        "employmentType": "Full-time",
+        "period": "Sep 2019 - Abr 2023 · 3 años 8 meses",
+        "location": "Mexico · Hybrid",
+        "description": "Como Software Engineer, colaboré en la migración de la aplicación web de T-Mobile de AngularJS a Angular 7; después evolucioné hacia ServiceNow Developer ampliando mi alcance en DevOps y monitoreo.",
+        "highlight": "Lideré la respuesta de incidentes en producción, realizando análisis de causa raíz y coordinando con equipos de desarrollo para mantener alta disponibilidad.",
+        "details": [
+          "Refactoricé componentes y escribí pruebas unitarias con Jest/Mocha dentro de una arquitectura de microservicios.",
+          "Customicé módulos de Incident, CMDB y Service Catalog usando Business Rules y Script Includes.",
+          "Expandí el alcance técnico a flujos con Splunk/Grafana para fortalecer observabilidad y triage de incidentes."
+        ],
+        "tags": [
+          "Angular 7",
+          "ServiceNow",
+          "Jest",
+          "Mocha",
+          "Splunk",
+          "Grafana"
+        ]
+      },
+      "3": {
+        "company": "Quiubas Mobile (adquirida por Twilio)",
+        "role": "Software Engineer (Proyecto de corto plazo)",
+        "employmentType": "Seasonal",
+        "period": "Abr 2019 - Ago 2019 · 5 meses",
+        "location": "Queretaro, Mexico · Remote",
+        "description": "Trabajé en Quiubas Mobile antes de su adquisición por Twilio, contribuyendo al equipo frontend que reescribió todo el código cliente de AngularJS a React.js puro.",
+        "highlight": "Construí componentes funcionales con Hooks API y ayudé a dejar una base frontend más limpia y testeable.",
+        "details": [
+          "Implementé componentes con useState/useEffect para simplificar el manejo de estado local y side-effects.",
+          "Estructuré layouts responsive complejos con CSS Grid sin depender de librerías de terceros.",
+          "Colaboré en flujo Agile con daily stand-ups y sprints de dos semanas para entregar mejoras incrementales."
+        ],
+        "tags": [
+          "React",
+          "Hooks API",
+          "CSS Grid",
+          "Agile",
+          "JavaScript"
+        ]
+      },
+      "4": {
+        "company": "Linio Group",
+        "role": "Web Content Specialist",
+        "period": "May 2017 - Mar 2019 · 1 año 11 meses",
+        "location": "Mexico City, Mexico · Hybrid",
+        "description": "Este rol fue donde descubrí mi pasión por la ingeniería de software. Fui más allá del content management y empecé a contribuir en tooling interno y mejoras de proceso.",
+        "highlight": "Construí una herramienta interna de generación de emails con Twig (PHP) mientras gestionaba contenido web multirregional.",
+        "details": [
+          "Gestioné operaciones de contenido usando HTML, CSS y JavaScript para múltiples regiones.",
+          "Obtuve mi primera experiencia práctica con AWS y web operations, reforzando mi transición hacia ingeniería full-time."
+        ],
+        "tags": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "Twig (PHP)",
+          "AWS"
+        ]
+      }
     }
   },
   "projects": {
