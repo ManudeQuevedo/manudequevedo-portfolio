@@ -16,34 +16,45 @@ function AnimatedStatNumber({
 }) {
   const numberRef = useRef<HTMLHeadingElement>(null);
   const isInView = useInView(numberRef, { once: true, amount: 0.6 });
-  const hasAnimated = useRef(false);
   const numericValue = Number.parseInt(value.replace(/[^\d]/g, ""), 10);
   const prefix = value.match(/^[^\d]+/)?.[0] ?? "";
   const suffix = value.match(/[^\d]+$/)?.[0] ?? "";
-  const [displayValue, setDisplayValue] = useState(
-    Number.isFinite(numericValue) ? 0 : value,
-  );
+  const initialValue = Number.isFinite(numericValue)
+    ? `${prefix}0${suffix}`
+    : value;
+  const targetValue = Number.isFinite(numericValue)
+    ? `${prefix}${numericValue}${suffix}`
+    : value;
+  const [displayValue, setDisplayValue] = useState(initialValue);
 
   useEffect(() => {
-    if (!isInView || hasAnimated.current || !Number.isFinite(numericValue)) {
+    if (!Number.isFinite(numericValue)) {
+      setDisplayValue(value);
       return;
     }
 
-    hasAnimated.current = true;
+    if (!isInView) {
+      setDisplayValue(initialValue);
+      return;
+    }
+
     const controls = animate(0, numericValue, {
       duration: 1.2,
       ease: "easeOut",
       onUpdate: (latest) => {
         setDisplayValue(`${prefix}${Math.round(latest)}${suffix}`);
       },
+      onComplete: () => {
+        setDisplayValue(targetValue);
+      },
     });
 
     return () => controls.stop();
-  }, [isInView, numericValue, prefix, suffix]);
+  }, [initialValue, isInView, numericValue, prefix, suffix, targetValue, value]);
 
   return (
     <h4 ref={numberRef} className={className}>
-      {String(displayValue)}
+      {displayValue}
     </h4>
   );
 }
@@ -55,7 +66,7 @@ export function About() {
   const headline = t("headline");
   const highlightedText = t("headline_highlight");
   const hasHighlightedText = headline.includes(highlightedText);
-  const identityKeys = ["years", "projects", "domains", "agency"] as const;
+  const identityKeys = ["years", "projects", "lighthouse", "agency"] as const;
 
   return (
     <SectionContainer
@@ -76,6 +87,8 @@ export function About() {
               {identityKeys.map((key, i) => {
                 const item = t.raw(`identity.${key}`);
                 const dividerClasses = `${i % 2 === 1 ? "border-l border-white/10" : ""} ${i > 1 ? "border-t border-white/10" : ""}`;
+                const contextTone =
+                  key === "lighthouse" ? "text-brand/80" : "text-white/65";
                 return (
                   <motion.div
                     key={key}
@@ -96,7 +109,8 @@ export function About() {
                       <p className="font-body text-sm font-medium text-white">
                         {item.label}
                       </p>
-                      <p className="mt-1 font-body text-[11px] leading-snug text-white/65">
+                      <p
+                        className={`mt-1 font-body text-[11px] leading-snug ${contextTone}`}>
                         {item.context}
                       </p>
                     </div>
@@ -109,6 +123,10 @@ export function About() {
           <div className="mt-12 hidden md:grid md:grid-cols-2 gap-4">
             {identityKeys.map((key, i) => {
               const item = t.raw(`identity.${key}`);
+              const contextTone =
+                key === "lighthouse"
+                  ? "text-brand"
+                  : "text-brand/80 group-hover:text-brand";
               return (
                 <motion.div
                   key={key}
@@ -129,7 +147,8 @@ export function About() {
                     <p className="font-body text-[10px] md:text-[11px] uppercase tracking-wider text-[#555] mb-2 font-semibold">
                       {item.label}
                     </p>
-                    <p className="font-body text-xs md:text-sm text-brand/80 group-hover:text-brand transition-colors">
+                    <p
+                      className={`font-body text-xs md:text-sm transition-colors ${contextTone}`}>
                       {item.context}
                     </p>
                   </div>

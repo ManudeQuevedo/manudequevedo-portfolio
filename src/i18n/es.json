@@ -34,10 +34,10 @@
         "label": "Proyectos entregados",
         "context": "USAA, T-Mobile, Linio, Bridge Capital, y más"
       },
-      "domains": {
-        "number": "4",
-        "label": "Dominios dominados",
-        "context": "Frontend · Cloud · Security · AI"
+      "lighthouse": {
+        "number": "100",
+        "label": "Lighthouse score",
+        "context": "Rendimiento · Accesibilidad · SEO"
       },
       "agency": {
         "number": "1",

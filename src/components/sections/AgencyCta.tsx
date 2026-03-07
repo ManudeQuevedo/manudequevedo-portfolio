@@ -10,7 +10,7 @@ export function AgencyCta() {
   return (
     <section
       aria-label={t("label")}
-      className="bg-[var(--bg-2)] border-y border-[color:var(--border-muted)] py-14 md:py-20 overflow-x-clip md:overflow-visible">
+      className="bg-[var(--bg-2)] border-y border-[color:var(--border-muted)] py-10 md:py-14 overflow-x-clip md:overflow-visible">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}

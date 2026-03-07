@@ -399,10 +399,10 @@ export function Hero() {
                             .getElementById("contact")
                             ?.scrollIntoView({ behavior: "smooth" })
                         }
-                        className="group relative flex min-h-11 items-center gap-4 px-8 py-4 border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm text-sm md:text-base font-bold text-white transition-all duration-300 hover:bg-white/10 hover:border-white/30 overflow-hidden"
+                        className="group relative flex min-h-11 items-center gap-4 overflow-hidden rounded-sm border border-brand/80 bg-brand px-8 py-4 text-sm font-bold text-dark shadow-[0_16px_45px_rgba(255,107,0,0.28)] transition-all duration-300 hover:scale-[1.02] hover:brightness-105 hover:shadow-[0_22px_55px_rgba(255,107,0,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-base"
                         data-cursor="hover">
                         <span className="relative z-10">{t("cta_secondary")}</span>
-                        <div className="absolute inset-0 bg-brand/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/18 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       </button>
                     </MagneticButton>
                   </motion.div>

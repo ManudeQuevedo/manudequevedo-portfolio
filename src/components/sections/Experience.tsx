@@ -48,7 +48,9 @@ export function Experience() {
   });
 
   return (
-    <SectionContainer id="experience" className="min-h-screen py-20 md:py-32">
+    <SectionContainer
+      id="experience"
+      className="pt-16 pb-12 md:pt-24 md:pb-20">
       <div ref={containerRef}>
         <SectionLabel label={t("label")} />
         <h2
@@ -56,7 +58,7 @@ export function Experience() {
           aria-label={t("headline")}>
           <TextReveal text={t("headline")} delay={0.2} />
         </h2>
-        <p className="text-secondary text-base md:text-lg max-w-3xl mb-16 md:mb-32 leading-relaxed">
+        <p className="text-secondary text-base md:text-lg max-w-3xl mb-12 md:mb-20 leading-relaxed">
           {t("intro")}
         </p>
 

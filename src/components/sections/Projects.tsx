@@ -23,16 +23,16 @@ export function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <SectionContainer id="projects" className="py-20 md:py-32">
+    <SectionContainer id="projects" className="pt-14 pb-14 md:pt-20 md:pb-20">
       <div ref={containerRef}>
         <SectionLabel label={t("label")} />
         <h2
-          className="font-display text-[clamp(2rem,9vw,2.6rem)] md:text-6xl font-bold mb-16 md:mb-32 max-w-[90vw] md:max-w-none leading-tight"
+          className="font-display text-[clamp(2rem,9vw,2.6rem)] md:text-6xl font-bold mb-12 md:mb-20 max-w-[90vw] md:max-w-none leading-tight"
           aria-label={t("headline")}>
           <TextReveal text={t("headline")} delay={0.2} />
         </h2>
 
-        <div className="flex flex-col gap-20 md:gap-0">
+        <div className="flex flex-col gap-16 md:gap-0">
           {projects.map((project, i) => (
             <ProjectCard
               key={project.id}
@@ -80,7 +80,7 @@ function ProjectCard({
     <motion.div
       ref={cardRef}
       style={{ scale, opacity, zIndex: (index + 1) * 10 }}
-      className="group md:sticky md:top-[15vh] w-full min-h-[70vh] md:h-[80vh] bg-dark-2 rounded-t-2xl md:rounded-t-[32px] border-t border-white/5 overflow-hidden grid grid-cols-1 md:grid-cols-[55%_45%]">
+      className="group md:sticky md:top-[12vh] w-full min-h-[64vh] md:h-[74vh] bg-dark-2 rounded-t-2xl md:rounded-t-[32px] border-t border-white/5 overflow-hidden grid grid-cols-1 md:grid-cols-[55%_45%]">
       {/* Visual Mockup Side */}
       <motion.div
         whileHover="hover"
