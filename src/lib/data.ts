@@ -529,13 +529,12 @@ export const skills = {
   ],
   ai: [
     { name: "Prompt Engineering", level: "expert", context: "Advanced LLM steering" },
-    { name: "LLM API Integration", level: "expert", context: "OpenAI & Claude" },
+    { name: "GCP", level: "expert", context: "Cloud services and API integration" },
     { name: "AI Workflow Automation", level: "proficient", context: "Agentic flows" },
   ],
   tools: [
     { name: "Git", level: "expert", context: "Version control" },
     { name: "VS Code", level: "expert", context: "IDE of choice" },
-    { name: "Cursor", level: "expert", context: "AI pair programming" },
     { name: "Vercel", level: "proficient", context: "Deployment & CI/CD" },
     { name: "Supabase", level: "proficient", context: "Backend as a Service" },
     { name: "PostgreSQL", level: null, context: null },

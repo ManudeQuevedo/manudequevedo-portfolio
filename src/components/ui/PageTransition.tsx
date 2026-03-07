@@ -3,21 +3,12 @@
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { usePathname } from "@/i18n/routing";
 import { MQLogo } from "./MQLogo";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();
-  const [showIntro] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return !window.sessionStorage.getItem("page-transition-seen");
-  });
-
-  useEffect(() => {
-    if (showIntro) {
-      window.sessionStorage.setItem("page-transition-seen", "1");
-    }
-  }, [showIntro]);
+  const showIntro = useMemo(() => !shouldReduceMotion, [shouldReduceMotion]);
 
   return (
     <AnimatePresence mode="wait">

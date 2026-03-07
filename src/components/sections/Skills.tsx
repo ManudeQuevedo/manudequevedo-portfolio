@@ -44,20 +44,36 @@ const skillIconSlugs: Record<string, string> = {
   CSRF: "securityscorecard",
   "Penetration Testing Basics": "kalilinux",
   "Prompt Engineering": "openai",
-  "LLM API Integration": "openai",
+  GCP: "googlecloud",
   "AI Workflow Automation": "n8n",
   Git: "git",
   "VS Code": "visualstudiocode",
-  Cursor: "cursor",
   Vercel: "vercel",
   Supabase: "supabase",
   PostgreSQL: "postgresql",
   MongoDB: "mongodb",
 };
 
+const localSkillIcons: Record<string, string> = {
+  A11y: "/icons/skills/a11y.svg",
+  AWS: "/icons/skills/aws.svg",
+  "Serverless (Lambda)": "/icons/skills/aws-lambda.svg",
+  "CDN (CloudFront)": "/icons/skills/cloudfront.svg",
+  "Prompt Engineering": "/icons/skills/prompt-engineering.svg",
+  GCP: "/icons/skills/gcp.svg",
+  "VS Code": "/icons/skills/visual-studio-code.svg",
+  "Next.js": "/icons/skills/nextjs.svg",
+  "Cloudflare Workers": "/icons/skills/cloudflare.svg",
+  "OWASP Top 10": "/icons/skills/owasp.svg",
+};
+
 const skillCategories = Object.keys(skills) as SkillCategory[];
 
 function getSimpleIconUrl(skillName: string) {
+  const localIcon = localSkillIcons[skillName];
+  if (localIcon) {
+    return localIcon;
+  }
   const slug = skillIconSlugs[skillName] ?? "codefactor";
   return `https://cdn.simpleicons.org/${slug}/FAFAFA`;
 }

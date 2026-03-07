@@ -11,7 +11,7 @@
     "loading": "Cargando artefacto...",
     "role": "> Frontend Engineer & UI Architect",
     "ready": "> Sistema listo.",
-    "headline": "Construyo sistemas que eliminan la fricción",
+    "headline": "Construyo interfaces que funcionan — y que no se olvidan.",
     "sub": "Frontend Engineer — UI/UX · Cloud · Security · AI",
     "cta_primary": "Ver mi trabajo",
     "cta_secondary": "Abierto a nuevas oportunidades →",
@@ -20,19 +20,19 @@
   },
   "about": {
     "label": "Manifiesto",
-    "headline": "Me obsesiona ese último 10% que transforma una buena UI en una experiencia inolvidable.",
+    "headline": "Me obsesiona ese último 10% que convierte una UI funcional en una que se recuerda.",
     "headline_highlight": "último 10%",
-    "body": "No construyo páginas web. Construyo territorios digitales donde el usuario se pierde de la mejor manera posible. Cada proyecto es un artefacto: tiene peso, textura, intención. Paralelamente, fundé Noctra Studio — una agencia frontend que construye productos digitales para startups en Latinoamérica.",
+    "body": "No entrego páginas — entrego productos con peso, intención y cero fricción innecesaria. Cada proyecto es un artefacto: construido para durar, para convertir, para ser usado. A través de Noctra Studio, trabajo con startups, profesionales independientes (médicos, abogados, terapeutas), pequeñas empresas, escuelas y negocios inmobiliarios en LATAM que necesitan presencia digital seria sin pagar precios de agencia grande.",
     "identity": {
       "years": {
-        "number": "7+",
+        "number": "6",
         "label": "Años construyendo",
-        "context": "De bootcamp a enterprise"
+        "context": "De bootcamp a enterprise — desde 2019"
       },
       "projects": {
-        "number": "20+",
+        "number": "8",
         "label": "Proyectos entregados",
-        "context": "Startups, corps y ONGs"
+        "context": "USAA, T-Mobile, Linio, Bridge Capital, y más"
       },
       "domains": {
         "number": "4",
@@ -48,17 +48,17 @@
     "principles": [
       {
         "number": "01",
-        "title": "Los detalles son el producto",
+        "title": "Los detalles no son extra. Son el producto.",
         "body": "Ese último 10% es lo que separa a una buena UI de una que se recuerda. No me detengo en lo funcional, me detengo en lo correcto."
       },
       {
         "number": "02",
-        "title": "La seguridad no es secundaria",
-        "body": "Construyo con OWASP, RLS y rate-limiting por defecto. Una interfaz hermosa que expone datos es un riesgo."
+        "title": "Seguridad por defecto, no por checklist.",
+        "body": "Construyo con OWASP, RLS y rate-limiting desde el inicio. Una interfaz hermosa que expone datos no es un producto — es un riesgo."
       },
       {
         "number": "03",
-        "title": "Asumo el resultado",
+        "title": "Me dueño del problema, no de la tarea.",
         "body": "No delego tareas pasivamente. Tomo problemas, desaparezco un rato y regreso con algo mejor de lo que me pidieron."
       }
     ]
@@ -82,8 +82,8 @@
         "company": "Noctra Studio",
         "role": "Fundador y Lead Engineer",
         "period": "2025 - Presente",
-        "location": "Queretaro, MX",
-        "description": "Agencia frontend enfocada en construir productos digitales performantes para startups y negocios en LATAM.",
+        "location": "Querétaro, MX",
+        "description": "Agencia de desarrollo web construyendo productos digitales performantes para startups, profesionales y negocios en LATAM.",
         "highlight": "Construí y entregué 4 proyectos de clientes durante los primeros 6 meses.",
         "tags": [
           "Next.js",
@@ -97,9 +97,9 @@
         "role": "UI Developer",
         "employmentType": "Full-time",
         "period": "Abr 2023 - Presente · 3 años",
-        "location": "Queretaro, Queretaro, Mexico · Remote",
-        "description": "Mientras mi rol evolucionaba para apoyar al equipo de Publishing durante una migración de AEM a gran escala, tomé la iniciativa de actuar como puente técnico principal entre contenido y desarrollo.",
-        "highlight": "Diseñé e implementé desde cero un programa integral de onboarding y mentoría, creando documentación técnica y guías que redujeron el ramp-up y los errores recurrentes.",
+        "location": "Querétaro, Mexico · Remote",
+        "description": "Mientras mi rol evolucionaba para apoyar al equipo de Publishing en una migración de AEM a gran escala, actué como puente técnico principal entre contenido y desarrollo.",
+        "highlight": "Diseñé e implementé desde cero un programa de onboarding y mentoría — documentación técnica y guías que redujeron el ramp-up y los errores recurrentes.",
         "details": [
           "Investigué y pre-diagnostiqué proactivamente issues de performance y bugs en componentes React de AEM, colaborando con developers para acelerar la resolución.",
           "Conceptualicé un portal interno de knowledge base para centralizar documentación y optimizar procesos.",
@@ -120,8 +120,8 @@
         "employmentType": "Full-time",
         "period": "Sep 2019 - Abr 2023 · 3 años 8 meses",
         "location": "Mexico · Hybrid",
-        "description": "Como Software Engineer, colaboré en la migración de la aplicación web de T-Mobile de AngularJS a Angular 7; después evolucioné hacia ServiceNow Developer ampliando mi alcance en DevOps y monitoreo.",
-        "highlight": "Lideré la respuesta de incidentes en producción, realizando análisis de causa raíz y coordinando con equipos de desarrollo para mantener alta disponibilidad.",
+        "description": "Colaboré en la migración de la aplicación de T-Mobile de AngularJS a Angular 7, luego expandí mi rol hacia ServiceNow en flujos de DevOps y monitoreo.",
+        "highlight": "Lideré respuesta de incidentes en producción — análisis de causa raíz, coordinación cross-team y mantenimiento de alta disponibilidad.",
         "details": [
           "Refactoricé componentes y escribí pruebas unitarias con Jest/Mocha dentro de una arquitectura de microservicios.",
           "Customicé módulos de Incident, CMDB y Service Catalog usando Business Rules y Script Includes.",
@@ -141,9 +141,9 @@
         "role": "Software Engineer (Proyecto de corto plazo)",
         "employmentType": "Seasonal",
         "period": "Abr 2019 - Ago 2019 · 5 meses",
-        "location": "Queretaro, Mexico · Remote",
-        "description": "Trabajé en Quiubas Mobile antes de su adquisición por Twilio, contribuyendo al equipo frontend que reescribió todo el código cliente de AngularJS a React.js puro.",
-        "highlight": "Construí componentes funcionales con Hooks API y ayudé a dejar una base frontend más limpia y testeable.",
+        "location": "Querétaro, Mexico · Remote",
+        "description": "Me uní a Quiubas Mobile antes de su adquisición por Twilio. Contribuí al equipo frontend que reescribió todo el código cliente de AngularJS a React.js puro.",
+        "highlight": "Construí componentes funcionales con Hooks API y dejé una base frontend más limpia y testeable — entregado durante la adquisición, sin regresiones.",
         "details": [
           "Implementé componentes con useState/useEffect para simplificar el manejo de estado local y side-effects.",
           "Estructuré layouts responsive complejos con CSS Grid sin depender de librerías de terceros.",
@@ -162,7 +162,7 @@
         "role": "Web Content Specialist",
         "period": "May 2017 - Mar 2019 · 1 año 11 meses",
         "location": "Mexico City, Mexico · Hybrid",
-        "description": "Este rol fue donde descubrí mi pasión por la ingeniería de software. Fui más allá del content management y empecé a contribuir en tooling interno y mejoras de proceso.",
+        "description": "Donde descubrí la ingeniería de software. Fui más allá del content management hacia tooling interno y mejoras de proceso para una plataforma con millones de usuarios.",
         "highlight": "Construí una herramienta interna de generación de emails con Twig (PHP) mientras gestionaba contenido web multirregional.",
         "details": [
           "Gestioné operaciones de contenido usando HTML, CSS y JavaScript para múltiples regiones.",
@@ -193,10 +193,10 @@
     "wip": "En desarrollo",
     "agency": {
       "label": "Agencia",
-      "headline": "¿Necesitas un equipo completo?",
+      "headline": "¿Necesitas construir algo?",
       "primary_cta": "Noctra Studio →",
       "secondary_cta": "noctra.studio",
-      "description_line_1": "Construimos productos para startups y negocios en LATAM.",
+      "description_line_1": "Trabajamos con startups, despachos, consultorios, escuelas y negocios en LATAM.",
       "description_line_2": "Disponibles para nuevos proyectos."
     },
     "modal": {
@@ -380,7 +380,7 @@
         ]
       },
       "noctraStudio": {
-        "overview": "El sitio de Noctra Studio tenía que funcionar como activo de conversión, capa de confianza y demostración técnica para potenciales clientes startup.",
+        "overview": "El sitio de Noctra Studio tenía que funcionar como activo de conversión, capa de confianza y demostración técnica — para founders, profesionales y dueños de negocio por igual.",
         "role": "Founder, Lead Frontend Engineer",
         "duration": "5 semanas",
         "scope": [
@@ -561,7 +561,7 @@
   },
   "contact": {
     "label": "Contacto",
-    "headline": "Si estás construyendo algo ambicioso, quiero escucharlo.",
+    "headline": "Si estás construyendo algo — o simplemente sabes que necesitas algo mejor — escríbeme.",
     "subtext": "Actualmente abierto a roles full-time y colaboraciones selectivas. Basado en Querétaro, MX — trabajo remoto globalmente.",
     "availability": "Disponible para nuevas oportunidades",
     "email_cta": "Enviar un email",

@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  AnimatePresence,
   motion,
   useScroll,
   useTransform,
@@ -55,29 +56,24 @@ export function Hero() {
     () => [t("loading"), t("role"), t("ready")],
     [t],
   );
+  const headlineWords = useMemo(() => t("headline").split(" "), [t]);
+  const headlineDividerIndex = useMemo(
+    () => headlineWords.findIndex((word) => word === "—" || word === "-"),
+    [headlineWords],
+  );
 
   const [isSkipped, setIsSkipped] = useState(false);
-
-  useEffect(() => {
-    const hasSeenIntro = sessionStorage.getItem("hero_anim_complete");
-    if (hasSeenIntro) {
-      setIsSkipped(true);
-      setShowContent(true);
-    }
-  }, []);
 
   const handleTerminalComplete = useCallback(() => {
     // Pause dramatically after terminal completes
     setTimeout(() => {
       setShowContent(true);
-      sessionStorage.setItem("hero_anim_complete", "true");
     }, 600);
   }, []);
 
   const skipAnimation = () => {
     setIsSkipped(true);
     setShowContent(true);
-    sessionStorage.setItem("hero_anim_complete", "true");
   };
 
   return (
@@ -128,7 +124,7 @@ export function Hero() {
               alt="Manu de Quevedo"
               width={800}
               height={1200}
-              className="h-full w-full object-cover object-[65%_8%]"
+              className="h-full w-full object-cover object-[65%_8%] drop-shadow-[0_0_14px_rgba(8,8,8,0.9)]"
               priority
             />
           </motion.div>
@@ -145,6 +141,15 @@ export function Hero() {
           {/* Derecho — cierra el borde del lado derecho */}
           <div className="absolute inset-y-0 right-0 w-[8%] bg-gradient-to-l from-dark/35 to-transparent pointer-events-none z-10" />
 
+          {/* Edge matte — integra halos claros del PNG al fondo oscuro */}
+          <div
+            className="absolute inset-0 pointer-events-none z-[15]"
+            style={{
+              boxShadow:
+                "inset 0 0 36px rgba(8,8,8,0.85), inset 0 0 90px rgba(8,8,8,0.35)",
+            }}
+          />
+
           {/* Brand warmth — conecta la foto con #FF6B00 */}
           <div
             className="absolute inset-0 pointer-events-none z-20"
@@ -157,14 +162,24 @@ export function Hero() {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 layout-container">
-        <div className="mb-12 overflow-hidden">
+      <motion.div
+        layout
+        transition={{
+          layout: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+        }}
+        className="relative z-10 layout-container">
+        <motion.div
+          layout
+          transition={{
+            layout: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+          }}
+          className="mb-12 overflow-hidden">
           <TerminalText
             lines={terminalLines}
             onComplete={handleTerminalComplete}
             skip={isSkipped}
           />
-        </div>
+        </motion.div>
 
         {!showContent && (
           <motion.button
@@ -177,24 +192,29 @@ export function Hero() {
           </motion.button>
         )}
 
-        {showContent && (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: { staggerChildren: 0.12, delayChildren: 0.4 },
-              },
-            }}>
+        <AnimatePresence initial={false} mode="wait">
+          {showContent && (
+            <motion.div
+              layout
+              initial="hidden"
+              animate="visible"
+              exit={{ opacity: 0, y: 10 }}
+              transition={{
+                layout: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+              }}
+              variants={{
+                hidden: { opacity: 0, y: 18 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { staggerChildren: 0.12, delayChildren: 0.25 },
+                },
+              }}>
             {/* Headline */}
             <h1
               className="font-display text-4xl md:text-7xl font-bold leading-tight mb-12 max-w-4xl"
               aria-label={t("headline")}>
-              {t("headline")
-                .split(" ")
-                .map((word, i) => (
+              {headlineWords.map((word, i) => (
                   <motion.span
                     key={i}
                     aria-hidden="true"
@@ -211,8 +231,7 @@ export function Hero() {
                         },
                       },
                     }}>
-                    {word.toLowerCase().includes("friction") ||
-                    word.toLowerCase().includes("fricción") ? (
+                    {headlineDividerIndex !== -1 && i > headlineDividerIndex ? (
                       <span className="text-brand">{word}</span>
                     ) : (
                       word
@@ -270,9 +289,10 @@ export function Hero() {
                 </button>
               </MagneticButton>
             </motion.div>
-          </motion.div>
-        )}
-      </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
 
     </section>
   );
