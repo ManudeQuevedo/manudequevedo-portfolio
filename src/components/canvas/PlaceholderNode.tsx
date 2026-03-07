@@ -8,11 +8,16 @@ interface PlaceholderNodeProps {
   position: [number, number, number];
 }
 
+function getPositionSeed([x, y, z]: [number, number, number]) {
+  return Math.abs(x * 12.9898 + y * 78.233 + z * 37.719) % 100;
+}
+
+// PlaceholderNode fills depth in the legacy scene with lightweight animated geometry.
 export default function PlaceholderNode({ position }: PlaceholderNodeProps) {
   const mesh = useRef<THREE.Mesh>(null);
 
-  // Random offset for organic movement
-  const offset = useRef(Math.random() * 100);
+  // Use a deterministic seed so the motion stays stable across re-renders.
+  const offset = useRef(getPositionSeed(position));
 
   useFrame((state) => {
     if (!mesh.current) return;

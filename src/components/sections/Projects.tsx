@@ -9,7 +9,15 @@ import { projects, type Project } from "@/lib/data";
 import Image from "next/image";
 import { SectionContainer } from "@/components/layout/SectionContainer";
 import { useCaseStudyModal } from "@/components/providers/CaseStudyModalProvider";
+import { getBlurDataUrl } from "@/lib/image";
 
+const projectCardBlur = getBlurDataUrl({
+  background: "#080808",
+  highlight: "#f97316",
+});
+
+// Projects renders the sticky case-study stack that powers the portfolio's
+// storytelling section and hands details off to the modal provider.
 export function Projects() {
   const t = useTranslations("projects");
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,6 +47,8 @@ export function Projects() {
   );
 }
 
+// ProjectCard is the interactive unit for each case study, balancing heavy
+// imagery with stable layout and lazy-loaded details.
 function ProjectCard({
   project,
   index,
@@ -91,6 +101,10 @@ function ProjectCard({
           src={project.image}
           alt={project.title}
           fill
+          sizes="(min-width: 768px) 55vw, 100vw"
+          quality={72}
+          placeholder="blur"
+          blurDataURL={projectCardBlur}
           className="object-cover opacity-40 group-hover:scale-105 transition-all duration-700"
         />
 

@@ -13,6 +13,7 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// Navbar coordinates section tracking, mobile navigation, and CV download from the global page chrome.
 export function Navbar() {
   const t = useTranslations("nav");
   const locale = useLocale();

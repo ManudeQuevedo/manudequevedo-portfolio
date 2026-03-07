@@ -8,6 +8,7 @@ interface CameraRigProps {
   children: React.ReactNode;
 }
 
+// CameraRig adds mouse parallax or idle drift to the full 3D world group.
 export default function CameraRig({ children }: CameraRigProps) {
   const group = useRef<THREE.Group>(null);
   const { camera } = useThree();

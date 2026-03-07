@@ -13,7 +13,15 @@ import { useTranslations } from "next-intl";
 import { TerminalText } from "@/components/ui/TerminalText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import Image from "next/image";
+import { getBlurDataUrl } from "@/lib/image";
 
+const heroPortraitBlur = getBlurDataUrl({
+  background: "#050505",
+  highlight: "#ff6b00",
+});
+
+// BinaryRain paints the low-cost hero ambience on a canvas layer instead of
+// shipping a heavy animated asset.
 function BinaryRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -126,6 +134,8 @@ function BinaryRain() {
   );
 }
 
+// Hero owns the above-the-fold experience, including the terminal intro,
+// parallax portrait, and CTA that defines the visual tone of the page.
 export function Hero() {
   const t = useTranslations("hero");
   const [showContent, setShowContent] = useState(false);
@@ -214,9 +224,9 @@ export function Hero() {
       {/* Mobile subject behind content */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
+        animate={{ opacity: 0.4 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.25 }}
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[58vh] md:hidden">
+        className="pointer-events-none absolute inset-x-0 -bottom-[8vh] z-[2] h-[56vh] md:hidden">
         <div className="relative h-full w-full">
           <div
             className="absolute inset-0"
@@ -228,10 +238,15 @@ export function Hero() {
               src="/me-no-bg.png"
               alt="Manu de Quevedo"
               fill
+              sizes="100vw"
+              quality={85}
+              placeholder="blur"
+              blurDataURL={heroPortraitBlur}
               className="object-contain object-bottom [filter:brightness(0.84)_contrast(1.12)_saturate(0.95)]"
               priority
             />
           </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/70 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" />
         </div>
       </motion.div>
@@ -378,6 +393,10 @@ export function Hero() {
                   src="/me-no-bg.png"
                   alt="Manu de Quevedo"
                   fill
+                  sizes="(min-width: 768px) 560px, 100vw"
+                  quality={85}
+                  placeholder="blur"
+                  blurDataURL={heroPortraitBlur}
                   className="object-contain object-bottom [filter:brightness(0.89)_contrast(1.1)_saturate(0.96)]"
                   priority
                 />

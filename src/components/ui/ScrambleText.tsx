@@ -8,6 +8,7 @@ interface ScrambleTextProps {
   duration?: number;
 }
 
+// ScrambleText reveals copy through a short terminal-like scramble on hover.
 export function ScrambleText({
   text,
   className = "",

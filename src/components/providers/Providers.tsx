@@ -7,6 +7,7 @@ import { CaseStudyModalProvider } from "@/components/providers/CaseStudyModalPro
 import { useEffect } from "react";
 import { initConsoleEasterEgg } from "@/lib/console-easter-egg";
 
+// Providers is the client-side infrastructure stack for smooth scroll, page transitions, cursor, and modal state.
 export function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     initConsoleEasterEgg();

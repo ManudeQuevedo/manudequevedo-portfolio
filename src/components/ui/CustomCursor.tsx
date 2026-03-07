@@ -11,6 +11,7 @@ import { useMousePosition } from "@/hooks/useMousePosition";
 
 type CursorState = "default" | "hover" | "project" | "image" | "email";
 
+// CustomCursor swaps cursor states based on hovered UI affordances to reinforce the interactive tone.
 export function CustomCursor() {
   const { x, y } = useMousePosition();
   const [isDesktop, setIsDesktop] = useState(false);

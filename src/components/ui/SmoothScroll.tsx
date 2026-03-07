@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { setLenisInstance } from "@/lib/lenis";
 
+// SmoothScroll bootstraps Lenis and GSAP sync only on pointer-precise devices.
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const isTouchDevice =

@@ -5,6 +5,7 @@ import { usePathname } from "@/i18n/routing";
 import { MQLogo } from "./MQLogo";
 import { useMemo } from "react";
 
+// PageTransition wraps route content with the global entrance animation while respecting reduced motion.
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();

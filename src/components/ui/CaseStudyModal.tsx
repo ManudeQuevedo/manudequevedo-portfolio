@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useCaseStudyModal } from "@/components/providers/CaseStudyModalProvider";
 import type { CaseStudy, PainPoint } from "@/lib/data";
@@ -33,19 +33,15 @@ function getSeverityStyles(severity: PainPoint["severity"]) {
   };
 }
 
+// CaseStudyModal renders the accessible project overlay and locks page scroll while it is open.
 export function CaseStudyModal() {
   const { isOpen, project, closeModal, lastTriggerRef } = useCaseStudyModal();
   const projectsT = useTranslations("projects");
   const t = useTranslations("projects.modal");
 
-  const [mounted, setMounted] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const hadOpenedRef = useRef(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const caseStudy = useMemo(() => {
     if (!project) return null;
@@ -149,7 +145,7 @@ export function CaseStudyModal() {
     };
   }, [closeModal, isOpen]);
 
-  if (!mounted) return null;
+  if (typeof document === "undefined") return null;
 
   return createPortal(
     <AnimatePresence mode="wait">

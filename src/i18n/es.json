@@ -226,7 +226,7 @@
     },
     "caseStudies": {
       "bridgeCapital": {
-        "overview": "Bridge Capital necesitaba un portafolio de inversión bilingüe en menos de tres semanas, con credibilidad visual premium y performance mobile-first para visitantes de alto perfil.",
+        "overview": "Bridge Capital requería más que un sitio web — necesitaba un activo digital que transmitiera seguridad y confianza a su mercado meta. Antes de escribir una línea de código, realizamos una investigación a profundidad del cliente, su industria y los perfiles de sus usuarios potenciales. Con ese contexto, desarrollamos una experiencia visual y narrativa alineada con las expectativas de inversionistas de alto perfil: entregada en menos de tres semanas, bilingüe, mobile-first y con performance de primera.",
         "role": "Lead Frontend Engineer & UI/UX Designer",
         "duration": "3 semanas",
         "scope": [
@@ -237,10 +237,24 @@
         ],
         "painPoints": [
           {
+            "id": "no-market-research",
+            "title": "Sin investigación previa del mercado meta",
+            "severity": "critical",
+            "description": "El cliente llegó con identidad visual pero sin claridad sobre qué transmitir digitalmente a su audiencia — inversionistas de perfil alto con alta exigencia de credibilidad y confianza.",
+            "fix": "Realizamos una investigación de cliente y mercado meta antes de diseñar. Definimos los atributos de confianza, seguridad y solidez como ejes narrativos. Cada decisión visual y de copy fue validada contra ese perfil.",
+            "metric": {
+              "label": "Alineación estrategia → diseño",
+              "before": "Sin dirección definida",
+              "after": "3 ejes narrativos claros",
+              "delta": "Fundamento",
+              "positive": true
+            }
+          },
+          {
             "id": "no-design-system",
             "title": "Sin base reutilizable de componentes",
             "severity": "critical",
-            "description": "El handoff inicial en Figma tenía espaciados inconsistentes, variantes duplicadas de botones y sin escala tipográfica. Cada sección funcionaba como una pieza aislada.",
+            "description": "El handoff inicial en Figma tenía espaciados inconsistentes, variantes duplicadas y sin escala tipográfica. Sin una base sólida, cada sección habría funcionado como pieza aislada — incompatible con la imagen de solidez que el cliente necesitaba proyectar.",
             "fix": "Definí tokens y primitivas atómicas primero, y luego armé secciones completas con componentes reutilizables. Esto redujo fricción de implementación y ciclos de revisión.",
             "metric": {
               "label": "Velocidad de desarrollo",
@@ -254,7 +268,7 @@
             "id": "no-i18n-architecture",
             "title": "Sin arquitectura de internacionalización",
             "severity": "major",
-            "description": "El proyecto comenzó solo en español. A mitad de la entrega, el cliente pidió versión completa en inglés sin mover fecha de lanzamiento.",
+            "description": "El proyecto comenzó solo en español. A mitad de la entrega, el cliente solicitó versión completa en inglés para ampliar su alcance a inversionistas anglófonos — sin mover fecha de lanzamiento.",
             "fix": "Integré next-intl con routing por locale y diccionarios desde el inicio. Esto permitió escalar idiomas sin reescribir plantillas.",
             "metric": {
               "label": "Tiempo para agregar EN",

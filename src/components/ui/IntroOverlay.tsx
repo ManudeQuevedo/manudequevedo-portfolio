@@ -7,6 +7,7 @@ interface IntroOverlayProps {
   onComplete: () => void;
 }
 
+// IntroOverlay stages the cinematic greeting before the legacy 3D scene becomes interactive.
 export default function IntroOverlay({ onComplete }: IntroOverlayProps) {
   const [text, setText] = useState("");
   const fullText = "Hello Stranger";

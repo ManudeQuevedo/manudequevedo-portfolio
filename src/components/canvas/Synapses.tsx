@@ -5,6 +5,7 @@ import { Line } from "@react-three/drei";
 import * as THREE from "three";
 import { projects, Project } from "@/lib/data";
 
+// Synapses draws category-based connection lines between project nodes in the 3D scene.
 export default function Synapses() {
   const connections = useMemo(() => {
     const lines: { start: THREE.Vector3; end: THREE.Vector3; color: string }[] =

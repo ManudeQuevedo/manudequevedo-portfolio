@@ -20,6 +20,7 @@ interface ExperienceCopy {
   tags?: string[];
 }
 
+// Experience maps resume data into the scrollable timeline used by the portfolio narrative.
 export function Experience() {
   const t = useTranslations("experience");
   const containerRef = useRef<HTMLDivElement>(null);
@@ -215,7 +216,7 @@ export function Experience() {
                                 {highlight && (
                                   <div className="flex gap-3 items-start mt-4">
                                     <span className="text-brand font-display font-medium text-lg leading-none mt-0.5">
-                                      "
+                                      &ldquo;
                                     </span>
                                     <p className={`italic text-sm md:text-[15px] leading-relaxed max-w-2xl ${highlightTone}`}>
                                       {highlight}
@@ -243,7 +244,7 @@ export function Experience() {
                         highlight && (
                           <div className="flex gap-3 items-start mt-3">
                             <span className="text-brand font-display font-medium text-lg leading-none mt-0.5">
-                              "
+                              &ldquo;
                             </span>
                             <p className={`italic text-sm md:text-[15px] leading-relaxed max-w-2xl ${highlightTone}`}>
                               {highlight}

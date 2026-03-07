@@ -11,12 +11,17 @@ interface ProjectNodeProps {
   onSelect: (project: Project) => void;
 }
 
+function getProjectSeed(project: Project) {
+  return project.id * 17.173 + project.position[0] * 3.11 + project.position[2];
+}
+
+// ProjectNode is the interactive 3D representation for a project inside the experimental scene.
 export default function ProjectNode({ project, onSelect }: ProjectNodeProps) {
   const mesh = useRef<THREE.Mesh>(null);
   const [hovered, setHover] = useState(false);
 
-  // Random bobbing offset
-  const offset = useRef(Math.random() * 100);
+  // Seed the motion from project metadata so it remains deterministic.
+  const offset = useRef(getProjectSeed(project));
 
   useFrame((state) => {
     if (!mesh.current) return;

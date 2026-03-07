@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
+// AgencyCta bridges the personal portfolio with the Noctra Studio offer without breaking the scroll rhythm.
 export function AgencyCta() {
   const t = useTranslations("projects.agency");
 

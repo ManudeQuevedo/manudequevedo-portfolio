@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { skills } from "@/lib/data";
@@ -96,6 +97,8 @@ function formatFallbackLetters(name: string) {
   );
 }
 
+// SkillIcon keeps icon rendering resilient: local SVGs, remote Simple Icons,
+// and a text fallback all share the same fixed box to avoid layout shift.
 function SkillIcon({ name, src }: { name: string; src: string }) {
   const [failed, setFailed] = useState(false);
   const fallbackLetters = formatFallbackLetters(name);
@@ -103,10 +106,13 @@ function SkillIcon({ name, src }: { name: string; src: string }) {
   return (
     <div className="h-12 w-12 rounded-md border border-white/5 bg-dark/70 flex items-center justify-center overflow-hidden">
       {!failed ? (
-        <img
+        <Image
           src={src}
           alt={name}
-          loading="lazy"
+          width={28}
+          height={28}
+          sizes="28px"
+          unoptimized
           onError={() => setFailed(true)}
           className="h-7 w-7 object-contain transition-transform duration-200 ease-out group-hover:scale-[1.15] group-focus-visible:scale-[1.15]"
         />
@@ -129,6 +135,8 @@ function getLevelTone(level: LevelKey) {
   return { dot: "bg-tertiary", text: "text-secondary" };
 }
 
+// Skills exposes the capability matrix with filters so a new contributor can
+// see how portfolio messaging maps to the source-of-truth data model.
 export function Skills() {
   const t = useTranslations("skills");
   const [activeCategory, setActiveCategory] = useState<"all" | SkillCategory>(

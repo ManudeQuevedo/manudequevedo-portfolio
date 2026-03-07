@@ -1,6 +1,6 @@
 "use client";
 
-import { useFrame, useThree } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useScroll } from "@react-three/drei";
 import { useRef } from "react";
 import * as THREE from "three";
@@ -11,12 +11,12 @@ interface CameraControllerProps {
   active?: boolean;
 }
 
+// CameraController translates intro state and scroll progress into forward camera motion in the legacy 3D scene.
 export default function CameraController({
   startZ = 20,
   baseZ = 8,
   active = false,
 }: CameraControllerProps) {
-  const { camera } = useThree();
   const scroll = useScroll();
 
   // Ref to track if intro is done for smooth transition
@@ -56,7 +56,11 @@ export default function CameraController({
     }
 
     // Apply position
-    camera.position.z = THREE.MathUtils.lerp(camera.position.z, desiredZ, 0.1);
+    state.camera.position.z = THREE.MathUtils.lerp(
+      state.camera.position.z,
+      desiredZ,
+      0.1,
+    );
   });
 
   return null;

@@ -14,6 +14,16 @@ interface StarfieldLayerProps {
   radius: number;
 }
 
+function createSeededRandom(seed: number) {
+  let value = seed >>> 0;
+
+  return () => {
+    value = (value * 1664525 + 1013904223) >>> 0;
+    return value / 4294967296;
+  };
+}
+
+// StarfieldLayer draws one parallax layer of particles in the 3D scene shader stack.
 function StarfieldLayer({
   count,
   speedMultiplier,
@@ -27,23 +37,26 @@ function StarfieldLayer({
   const particles = useMemo(() => {
     const temp = new Float32Array(count * 3);
     const extra = new Float32Array(count * 3);
+    const random = createSeededRandom(
+      Math.round(count * 13 + speedMultiplier * 100 + radius * 10),
+    );
 
     for (let i = 0; i < count; i++) {
-      // Random positions inside a large cylinder/box volume along Z
-      const x = (Math.random() - 0.5) * radius;
-      const y = (Math.random() - 0.5) * radius;
-      const z = (Math.random() - 0.5) * radius;
+      // Spread particles through a deterministic pseudo-random volume.
+      const x = (random() - 0.5) * radius;
+      const y = (random() - 0.5) * radius;
+      const z = (random() - 0.5) * radius;
 
       temp[i * 3] = x;
       temp[i * 3 + 1] = y;
       temp[i * 3 + 2] = z;
 
-      extra[i * 3] = Math.random(); // size variation
-      extra[i * 3 + 1] = Math.random(); // speed variation
-      extra[i * 3 + 2] = Math.random(); // alpha variation
+      extra[i * 3] = random(); // size variation
+      extra[i * 3 + 1] = random(); // speed variation
+      extra[i * 3 + 2] = random(); // alpha variation
     }
     return { positions: temp, extra };
-  }, [count, radius]);
+  }, [count, radius, speedMultiplier]);
 
   const uniforms = useMemo(
     () => ({
@@ -148,6 +161,7 @@ function StarfieldLayer({
   );
 }
 
+// Starfield composes multiple particle layers to create depth during camera travel.
 export default function Starfield() {
   return (
     <group>

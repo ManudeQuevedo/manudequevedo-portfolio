@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     "Portfolio de Manu de Quevedo. Frontend Engineer especializado en experiencias digitales inmersivas.",
 };
 
+// RootLayout stays intentionally thin so locale-aware layouts can own the rendered document shell.
 export default function RootLayout({
   children,
 }: {

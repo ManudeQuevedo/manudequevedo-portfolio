@@ -53,6 +53,7 @@ function reducer(
   return { isOpen: false, project: null };
 }
 
+// CaseStudyModalProvider owns the modal state machine and focus return path for project deep-dives.
 export function CaseStudyModalProvider({
   children,
 }: {
@@ -97,6 +98,7 @@ export function CaseStudyModalProvider({
   );
 }
 
+// useCaseStudyModal exposes the modal controls to sections without prop drilling.
 export function useCaseStudyModal() {
   const context = useContext(CaseStudyModalContext);
 

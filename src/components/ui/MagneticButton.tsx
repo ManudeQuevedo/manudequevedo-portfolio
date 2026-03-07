@@ -10,6 +10,7 @@ interface MagneticButtonProps {
   distance?: number;
 }
 
+// MagneticButton adds subtle pointer-driven drift to highlighted calls to action.
 export function MagneticButton({
   children,
   className = "",

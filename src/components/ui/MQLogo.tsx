@@ -9,6 +9,7 @@ interface MQLogoProps {
   className?: string;
 }
 
+// MQLogo is the animated brand mark reused across navigation, transitions, and footer.
 export const MQLogo = memo(
   ({ variant = "color", size = 32, className = "" }: MQLogoProps) => {
     const isColor = variant === "color";

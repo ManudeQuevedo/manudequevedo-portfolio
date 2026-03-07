@@ -11,6 +11,7 @@ interface TerminalTextProps {
   skip?: boolean;
 }
 
+// TerminalText controls the staged typing effect used by the hero intro sequence.
 export function TerminalText({
   lines,
   onComplete,

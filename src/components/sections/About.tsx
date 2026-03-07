@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SectionContainer } from "@/components/layout/SectionContainer";
 
+// AnimatedStatNumber counts into view for the quick identity cards in the about section.
 function AnimatedStatNumber({
   value,
   className,
@@ -47,6 +48,7 @@ function AnimatedStatNumber({
   );
 }
 
+// About introduces Manu with proof points and narrative copy that anchor the rest of the portfolio.
 export function About() {
   const t = useTranslations("about");
   const revealViewport = { once: true, amount: 0.1 } as const;

@@ -15,6 +15,7 @@ interface SectionContainerProps {
   containerClassName?: string; // Additional classes for the inner container
 }
 
+// SectionContainer standardizes width, padding, and anchor offset for every top-level section.
 export function SectionContainer({
   children,
   id,

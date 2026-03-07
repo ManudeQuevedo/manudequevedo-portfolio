@@ -18,6 +18,7 @@ const itemVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
+// ProjectMockupBridge simulates the Bridge Capital interface when a static screenshot is not desirable.
 export function ProjectMockupBridge() {
   return (
     <motion.div
@@ -86,6 +87,7 @@ export function ProjectMockupBridge() {
   );
 }
 
+// ProjectMockupWoodax renders the lighter editorial mockup variant for Woodax.
 export function ProjectMockupWoodax() {
   return (
     <motion.div
@@ -141,6 +143,7 @@ export function ProjectMockupWoodax() {
   );
 }
 
+// ProjectMockupDyma provides the third reusable mockup variant for experimental project presentations.
 export function ProjectMockupDyma() {
   return (
     <motion.div

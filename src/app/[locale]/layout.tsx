@@ -7,6 +7,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SidebarNav } from "@/components/layout/SidebarNav";
 
+// LocaleLayout wires translations, shared providers, and chrome for every localized page.
 export default async function LocaleLayout({
   children,
   params,

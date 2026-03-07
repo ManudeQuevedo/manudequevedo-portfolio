@@ -8,6 +8,7 @@ interface TextRevealProps {
   delay?: number;
 }
 
+// TextReveal handles word-by-word entrance motion for large section headings.
 export function TextReveal({
   text,
   className = "",

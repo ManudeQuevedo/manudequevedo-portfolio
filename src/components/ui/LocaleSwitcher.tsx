@@ -10,6 +10,7 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// LocaleSwitcher swaps the active locale while preserving the current route context.
 export function LocaleSwitcher() {
   const router = useRouter();
   const pathname = usePathname();

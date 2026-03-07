@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { MQLogo } from "@/components/ui/MQLogo";
 
+// Footer centralizes the last-chance actions, locale-aware CV download, and brand sign-off.
 export function Footer() {
   const t = useTranslations("nav");
   const locale = useLocale();

@@ -8,6 +8,7 @@ interface GlitchTextProps {
   className?: string;
 }
 
+// GlitchText adds a controlled distortion pass used for branded emphasis moments.
 export function GlitchText({ text, className = "" }: GlitchTextProps) {
   return (
     <div

@@ -226,7 +226,7 @@
     },
     "caseStudies": {
       "bridgeCapital": {
-        "overview": "Bridge Capital needed a bilingual investment portfolio shipped in under three weeks, with premium visual credibility and mobile-first performance for high-net-worth visitors.",
+        "overview": "Bridge Capital needed more than a website — they needed a digital asset that would convey security and trust to their target market. Before writing a single line of code, we conducted in-depth research on the client, their industry, and their potential user profiles. With that context, we built a visual and narrative experience aligned with the expectations of high-net-worth investors: delivered in under three weeks, bilingual, mobile-first, and top-tier performance.",
         "role": "Lead Frontend Engineer & UI/UX Designer",
         "duration": "3 weeks",
         "scope": [
@@ -237,10 +237,24 @@
         ],
         "painPoints": [
           {
+            "id": "no-market-research",
+            "title": "No prior target market research",
+            "severity": "critical",
+            "description": "The client had a visual identity but no clarity on what to communicate digitally to their audience — high-profile investors with a high bar for credibility and trust.",
+            "fix": "We conducted client and market research before designing. We defined trust, security, and solidity as the core narrative pillars. Every visual and copy decision was validated against that profile.",
+            "metric": {
+              "label": "Strategy → design alignment",
+              "before": "No defined direction",
+              "after": "3 clear narrative pillars",
+              "delta": "Foundation",
+              "positive": true
+            }
+          },
+          {
             "id": "no-design-system",
             "title": "No reusable component foundation",
             "severity": "critical",
-            "description": "The initial Figma handoff had inconsistent spacing, duplicate button styles, and no typography scale. Every section behaved like a one-off implementation.",
+            "description": "The initial Figma handoff had inconsistent spacing, duplicate button variants, and no typography scale. Without a solid foundation, every section would have been a one-off — incompatible with the credibility and solidity the client needed to project.",
             "fix": "Established design tokens and atomic primitives first, then assembled page sections from reusable components. This reduced implementation friction and review cycles.",
             "metric": {
               "label": "Development speed",
@@ -254,7 +268,7 @@
             "id": "no-i18n-architecture",
             "title": "No internationalization architecture",
             "severity": "major",
-            "description": "The project started as Spanish-only. Midway through delivery, the client requested a full English version without delaying launch.",
+            "description": "The project started in Spanish only. Midway through delivery, the client requested a full English version to reach anglophone investors — without changing the launch date.",
             "fix": "Integrated next-intl with locale-aware routing and dictionary-based content. This allowed language expansion without template rewrites.",
             "metric": {
               "label": "Time to add EN version",

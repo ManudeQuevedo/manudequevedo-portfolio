@@ -14,6 +14,7 @@ interface SceneProps {
   introFinished: boolean;
 }
 
+// Scene assembles the legacy portfolio canvas experience and responds to the intro overlay lifecycle.
 export default function Scene({ introFinished }: SceneProps) {
   return (
     <Canvas className="w-full h-full block">

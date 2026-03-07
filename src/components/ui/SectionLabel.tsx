@@ -7,6 +7,7 @@ interface SectionLabelProps {
   className?: string;
 }
 
+// SectionLabel keeps section headers visually consistent across the entire landing page.
 export function SectionLabel({ label, className = "" }: SectionLabelProps) {
   return (
     <div className={`flex items-center gap-6 mb-12 ${className}`}>

@@ -8,6 +8,7 @@ import { ScrambleText } from "@/components/ui/ScrambleText";
 import { Mail } from "lucide-react";
 import { SectionContainer } from "@/components/layout/SectionContainer";
 
+// Contact closes the page with the primary conversion action and device-aware decorative interactions.
 export function Contact() {
   const t = useTranslations("contact");
   const locale = useLocale();

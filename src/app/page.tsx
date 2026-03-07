@@ -4,6 +4,7 @@ import { useState } from "react";
 import Scene from "@/components/canvas/Scene";
 import IntroOverlay from "@/components/ui/IntroOverlay";
 
+// Home preserves the original cinematic canvas experiment that predates the current localized landing page.
 export default function Home() {
   const [introFinished, setIntroFinished] = useState(false);
 

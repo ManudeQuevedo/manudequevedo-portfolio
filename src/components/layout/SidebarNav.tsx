@@ -23,6 +23,7 @@ const sectionLabels = [
 
 const formatNumber = (num: number) => String(num).padStart(2, "0");
 
+// SidebarNav mirrors scroll progress so desktop and mobile users always have orientation cues.
 export function SidebarNav() {
   const [activeSection, setActiveSection] = useState(0);
   const [hoveredSection, setHoveredSection] = useState<number | null>(null);

@@ -1,0 +1,654 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic:
+      - generic:
+        - img
+    - generic [ref=e3]:
+      - navigation [ref=e4]:
+        - generic [ref=e5]:
+          - link [ref=e6] [cursor=pointer]:
+            - /url: /es
+            - img [ref=e7]
+          - button "Open menu" [ref=e11]
+      - main [ref=e15]:
+        - generic [ref=e16]:
+          - generic:
+            - generic:
+              - generic:
+                - img "Manu de Quevedo"
+          - button "[ Saltar Intro ]" [ref=e24]
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - generic [ref=e30]: Manifiesto
+              - generic [ref=e32]:
+                - generic [ref=e33]:
+                  - heading "0" [level=4] [ref=e34]
+                  - generic [ref=e35]:
+                    - paragraph [ref=e36]: Años construyendo
+                    - paragraph [ref=e37]: De bootcamp a enterprise — desde 2019
+                - generic [ref=e38]:
+                  - heading "0" [level=4] [ref=e39]
+                  - generic [ref=e40]:
+                    - paragraph [ref=e41]: Proyectos entregados
+                    - paragraph [ref=e42]: USAA, T-Mobile, Linio, Bridge Capital, y más
+                - generic [ref=e43]:
+                  - heading "0" [level=4] [ref=e44]
+                  - generic [ref=e45]:
+                    - paragraph [ref=e46]: Dominios dominados
+                    - paragraph [ref=e47]: Frontend · Cloud · Security · AI
+                - generic [ref=e48]:
+                  - heading "0" [level=4] [ref=e49]
+                  - generic [ref=e50]:
+                    - paragraph [ref=e51]: Agencia fundada
+                    - paragraph [ref=e52]: Noctra Studio — LATAM
+            - generic [ref=e54]:
+              - heading "Me obsesiona ese último 10% que convierte una UI funcional en una que se recuerda." [level=3] [ref=e55]:
+                - generic [ref=e56]:
+                  - text: Me obsesiona ese
+                  - generic [ref=e57]: último 10%
+                - text: que convierte una UI funcional en una que se recuerda.
+              - paragraph [ref=e58]: "No entrego páginas — entrego productos con peso, intención y cero fricción innecesaria. Cada proyecto es un artefacto: construido para durar, para convertir, para ser usado. A través de Noctra Studio, trabajo con startups, profesionales independientes (médicos, abogados, terapeutas), pequeñas empresas, escuelas y negocios inmobiliarios en LATAM que necesitan presencia digital seria sin pagar precios de agencia grande."
+          - generic [ref=e59]:
+            - generic [ref=e60]:
+              - generic [ref=e61]: "01"
+              - heading "Los detalles no son extra. Son el producto." [level=5] [ref=e62]
+              - paragraph [ref=e63]: Ese último 10% es lo que separa a una buena UI de una que se recuerda. No me detengo en lo funcional, me detengo en lo correcto.
+            - generic [ref=e64]:
+              - generic [ref=e65]: "02"
+              - heading "Seguridad por defecto, no por checklist." [level=5] [ref=e66]
+              - paragraph [ref=e67]: Construyo con OWASP, RLS y rate-limiting desde el inicio. Una interfaz hermosa que expone datos no es un producto — es un riesgo.
+            - generic [ref=e68]:
+              - generic [ref=e69]: "03"
+              - heading "Me dueño del problema, no de la tarea." [level=5] [ref=e70]
+              - paragraph [ref=e71]: No delego tareas pasivamente. Tomo problemas, desaparezco un rato y regreso con algo mejor de lo que me pidieron.
+        - generic [ref=e74]:
+          - generic [ref=e76]: Trayectoria
+          - heading "El camino hasta aquí." [level=2] [ref=e77]:
+            - generic [ref=e78]:
+              - generic [ref=e80]: El
+              - generic [ref=e83]: camino
+              - generic [ref=e86]: hasta
+              - generic [ref=e89]: aquí.
+          - paragraph [ref=e91]: De construir e-commerce a escala a liderar sistemas UI en una firma global — y eventualmente fundar mi propio estudio. Cada rol me enseñó algo que el anterior no podía.
+          - generic [ref=e94]:
+            - generic [ref=e99]:
+              - generic [ref=e100]:
+                - heading "Noctra Studio" [level=3] [ref=e101]
+                - generic [ref=e102]: Fundador
+              - paragraph [ref=e103]: Fundador y Lead Engineer
+              - generic [ref=e104]:
+                - generic [ref=e105]:
+                  - img [ref=e106]
+                  - text: 2025 - Presente
+                - generic [ref=e108]:
+                  - img [ref=e109]
+                  - text: Querétaro, MX
+              - paragraph [ref=e112]: Agencia de desarrollo web construyendo productos digitales performantes para startups, profesionales y negocios en LATAM.
+              - button "Ver más +" [ref=e113]:
+                - generic [ref=e114]: Ver más
+                - generic [ref=e115]: +
+              - generic [ref=e116]:
+                - generic [ref=e117]: ↑
+                - generic [ref=e118]: 3 clientes incorporados en los primeros 6 meses
+              - generic [ref=e119]:
+                - generic [ref=e120]: Next.js
+                - generic [ref=e121]: TypeScript
+                - generic [ref=e122]: TailwindCSS
+                - generic [ref=e123]: Supabase
+            - generic [ref=e128]:
+              - heading "Tata Consultancy Services" [level=3] [ref=e130]
+              - paragraph [ref=e131]: UI Developer · Full-time
+              - generic [ref=e132]:
+                - generic [ref=e133]:
+                  - img [ref=e134]
+                  - text: Abr 2023 - Presente · 3 años
+                - generic [ref=e136]:
+                  - img [ref=e137]
+                  - text: Querétaro, Mexico · Remote
+              - paragraph [ref=e140]: Mientras mi rol evolucionaba para apoyar al equipo de Publishing en una migración de AEM a gran escala, actué como puente técnico principal entre contenido y desarrollo.
+              - button "Ver más +" [ref=e141]:
+                - generic [ref=e142]: Ver más
+                - generic [ref=e143]: +
+              - generic [ref=e144]:
+                - generic [ref=e145]: ↑
+                - generic [ref=e146]: Sistema UI usado por más de 12 ingenieros
+              - generic [ref=e147]:
+                - generic [ref=e148]: AEM
+                - generic [ref=e149]: React
+                - generic [ref=e150]: TypeScript
+                - generic [ref=e151]: Documentation
+                - generic [ref=e152]: SSO
+                - generic [ref=e153]: RBAC
+            - generic [ref=e158]:
+              - heading "Concentrix Catalyst" [level=3] [ref=e160]
+              - paragraph [ref=e161]: Software Engineer / ServiceNow Developer · Full-time
+              - generic [ref=e162]:
+                - generic [ref=e163]:
+                  - img [ref=e164]
+                  - text: Sep 2019 - Abr 2023 · 3 años 8 meses
+                - generic [ref=e166]:
+                  - img [ref=e167]
+                  - text: Mexico · Hybrid
+              - paragraph [ref=e170]: Colaboré en la migración de la aplicación de T-Mobile de AngularJS a Angular 7, luego expandí mi rol hacia ServiceNow en flujos de DevOps y monitoreo.
+              - button "Ver más +" [ref=e171]:
+                - generic [ref=e172]: Ver más
+                - generic [ref=e173]: +
+              - generic [ref=e174]:
+                - generic [ref=e175]: ↑
+                - generic [ref=e176]: Ciclo de resolución de tickets 40% más rápido
+              - generic [ref=e177]:
+                - generic [ref=e178]: Angular 7
+                - generic [ref=e179]: ServiceNow
+                - generic [ref=e180]: Jest
+                - generic [ref=e181]: Mocha
+                - generic [ref=e182]: Splunk
+                - generic [ref=e183]: Grafana
+            - generic [ref=e188]:
+              - heading "Quiubas Mobile (adquirida por Twilio)" [level=3] [ref=e190]
+              - paragraph [ref=e191]: Software Engineer (Proyecto de corto plazo) · Seasonal
+              - generic [ref=e192]:
+                - generic [ref=e193]:
+                  - img [ref=e194]
+                  - text: Abr 2019 - Ago 2019 · 5 meses
+                - generic [ref=e196]:
+                  - img [ref=e197]
+                  - text: Querétaro, Mexico · Remote
+              - paragraph [ref=e200]: Me uní a Quiubas Mobile antes de su adquisición por Twilio. Contribuí al equipo frontend que reescribió todo el código cliente de AngularJS a React.js puro.
+              - button "Ver más +" [ref=e201]:
+                - generic [ref=e202]: Ver más
+                - generic [ref=e203]: +
+              - generic [ref=e204]:
+                - generic [ref=e205]: ↑
+                - generic [ref=e206]: Entregado durante adquisición — 0 regresiones
+              - generic [ref=e207]:
+                - generic [ref=e208]: React
+                - generic [ref=e209]: Hooks API
+                - generic [ref=e210]: CSS Grid
+                - generic [ref=e211]: Agile
+                - generic [ref=e212]: JavaScript
+            - generic [ref=e217]:
+              - heading "Linio Group" [level=3] [ref=e219]
+              - paragraph [ref=e220]: Web Content Specialist
+              - generic [ref=e221]:
+                - generic [ref=e222]:
+                  - img [ref=e223]
+                  - text: May 2017 - Mar 2019 · 1 año 11 meses
+                - generic [ref=e225]:
+                  - img [ref=e226]
+                  - text: Mexico City, Mexico · Hybrid
+              - paragraph [ref=e229]: Donde descubrí la ingeniería de software. Fui más allá del content management hacia tooling interno y mejoras de proceso para una plataforma con millones de usuarios.
+              - button "Ver más +" [ref=e230]:
+                - generic [ref=e231]: Ver más
+                - generic [ref=e232]: +
+              - generic [ref=e233]:
+                - generic [ref=e234]: HTML
+                - generic [ref=e235]: CSS
+                - generic [ref=e236]: JavaScript
+                - generic [ref=e237]: Twig (PHP)
+                - generic [ref=e238]: AWS
+        - generic [ref=e241]:
+          - generic [ref=e243]: Artefactos
+          - heading "Trabajo que habla por sí solo." [level=2] [ref=e244]:
+            - generic [ref=e245]:
+              - generic [ref=e247]: Trabajo
+              - generic [ref=e250]: que
+              - generic [ref=e253]: habla
+              - generic [ref=e256]: por
+              - generic [ref=e259]: sí
+              - generic [ref=e262]: solo.
+          - generic [ref=e264]:
+            - generic [ref=e265]:
+              - button "Abrir case study de Bridge Capital" [ref=e266]:
+                - img "Bridge Capital" [ref=e267]
+                - generic:
+                  - generic:
+                    - generic: Next.js
+                    - generic: TypeScript
+                    - generic: TailwindCSS
+                    - generic: GSAP
+                  - paragraph: "\"Built atomic design system first, then composed pages in 2 days.\""
+                  - button "Abrir case study de Bridge Capital" [ref=e268] [cursor=pointer]: Ver estudio de caso →
+                - generic [ref=e271]: Ver sitio
+              - generic [ref=e273]:
+                - generic [ref=e274]: "2025"
+                - heading "Bridge Capital" [level=3] [ref=e275]
+                - paragraph [ref=e276]: Localized portfolio (ES/EN) with animated dock, projects grid, and A11y-friendly UI.
+                - generic [ref=e277]:
+                  - generic [ref=e278]:
+                    - generic [ref=e279]: Challenge
+                    - paragraph [ref=e280]: Client needed a bilingual portfolio deployable in 3 weeks.
+                  - generic [ref=e281]:
+                    - generic [ref=e282]: Solution
+                    - paragraph [ref=e283]: Built atomic design system first, then composed pages in 2 days.
+                - generic [ref=e284]:
+                  - generic [ref=e285]: Resultado
+                  - paragraph [ref=e286]: Portafolio bilingüe entregado en 3 semanas
+                - button "Abrir case study de Bridge Capital" [ref=e287] [cursor=pointer]:
+                  - generic [ref=e288]: Ver estudio de caso
+                  - generic [ref=e289]: →
+                - generic [ref=e290]:
+                  - generic [ref=e291]: Next.js
+                  - generic [ref=e292]: TypeScript
+                  - generic [ref=e293]: TailwindCSS
+                  - generic [ref=e294]: GSAP
+            - generic [ref=e295]:
+              - button "Abrir case study de Woodax Design" [ref=e296]:
+                - img "Woodax Design" [ref=e297]
+                - generic:
+                  - generic:
+                    - generic: Next.js
+                    - generic: TypeScript
+                    - generic: TailwindCSS
+                    - generic: next-intl
+                    - generic: UI/UX
+                  - paragraph: "\"Leveraged Next.js Image optimization and lightweight CSS animations.\""
+                  - button "Abrir case study de Woodax Design" [ref=e298] [cursor=pointer]: Ver estudio de caso →
+                - generic [ref=e301]: En desarrollo
+              - generic [ref=e303]:
+                - generic [ref=e304]: "2025"
+                - heading "Woodax Design" [level=3] [ref=e305]
+                - paragraph [ref=e306]: Brand site and product showcase with fast, minimal UI and CMS integration.
+                - generic [ref=e307]:
+                  - generic [ref=e308]:
+                    - generic [ref=e309]: Challenge
+                    - paragraph [ref=e310]: Deliver a premium visual experience without sacrificing load times.
+                  - generic [ref=e311]:
+                    - generic [ref=e312]: Solution
+                    - paragraph [ref=e313]: Leveraged Next.js Image optimization and lightweight CSS animations.
+                - generic [ref=e314]:
+                  - generic [ref=e315]: Resultado
+                  - paragraph [ref=e316]: "Puntaje de layout shift en cero (CLS: 0)"
+                - button "Abrir case study de Woodax Design" [ref=e317] [cursor=pointer]:
+                  - generic [ref=e318]: Ver estudio de caso
+                  - generic [ref=e319]: →
+                - generic [ref=e320]:
+                  - generic [ref=e321]: Next.js
+                  - generic [ref=e322]: TypeScript
+                  - generic [ref=e323]: TailwindCSS
+                  - generic [ref=e324]: next-intl
+                  - generic [ref=e325]: UI/UX
+            - generic [ref=e326]:
+              - button "Abrir case study de Noctra Studio" [ref=e327]:
+                - img "Noctra Studio" [ref=e328]
+                - generic:
+                  - generic:
+                    - generic: Next.js
+                    - generic: TypeScript
+                    - generic: TailwindCSS
+                    - generic: Supabase
+                  - paragraph: "\"Designed a premium dark-mode interface with subtle micro-interactions.\""
+                  - button "Abrir case study de Noctra Studio" [ref=e329] [cursor=pointer]: Ver estudio de caso →
+                - generic [ref=e332]: Ver sitio
+              - generic [ref=e333]:
+                - generic [ref=e334]:
+                  - generic [ref=e335]: "2025"
+                  - heading "Noctra Studio" [level=3] [ref=e336]
+                  - paragraph [ref=e337]: Tech agency website building performant digital products for startups and businesses in LATAM.
+                  - generic [ref=e338]:
+                    - generic [ref=e339]:
+                      - generic [ref=e340]: Challenge
+                      - paragraph [ref=e341]: Create a conversion-focused landing page that establishes trust.
+                    - generic [ref=e342]:
+                      - generic [ref=e343]: Solution
+                      - paragraph [ref=e344]: Designed a premium dark-mode interface with subtle micro-interactions.
+                  - generic [ref=e345]:
+                    - generic [ref=e346]: Resultado
+                    - paragraph [ref=e347]: LCP menor a 1s en mobile
+                  - button "Abrir case study de Noctra Studio" [ref=e348] [cursor=pointer]:
+                    - generic [ref=e349]: Ver estudio de caso
+                    - generic [ref=e350]: →
+                  - generic [ref=e351]:
+                    - generic [ref=e352]: Next.js
+                    - generic [ref=e353]: TypeScript
+                    - generic [ref=e354]: TailwindCSS
+                    - generic [ref=e355]: Supabase
+                - link "Ver sitio ↗" [ref=e357] [cursor=pointer]:
+                  - /url: https://noctra.studio
+                  - text: Ver sitio
+                  - generic [ref=e358]: ↗
+            - generic [ref=e359]:
+              - button "Abrir case study de This Portfolio" [ref=e360]:
+                - img "This Portfolio" [ref=e361]
+                - generic:
+                  - generic:
+                    - generic: Next.js
+                    - generic: TailwindCSS
+                    - generic: Framer Motion
+                    - generic: GSAP
+                    - generic: next-intl
+                  - paragraph: "\"Every interaction — cursor, scroll, terminal — is intentional craft.\""
+                  - button "Abrir case study de This Portfolio" [ref=e362] [cursor=pointer]: Ver estudio de caso →
+                - generic [ref=e365]: Ver sitio
+              - generic [ref=e366]:
+                - generic [ref=e367]:
+                  - generic [ref=e368]: "2026"
+                  - heading "This Portfolio" [level=3] [ref=e369]
+                  - paragraph [ref=e370]: You're looking at it. Built with Next.js 16, TailwindCSS v4, Framer Motion, and Lenis. Bilingual (ES/EN), custom cursor, terminal animation, and sticky scroll.
+                  - generic [ref=e371]:
+                    - generic [ref=e372]:
+                      - generic [ref=e373]: Challenge
+                      - paragraph [ref=e374]: The portfolio itself had to be the proof of concept.
+                    - generic [ref=e375]:
+                      - generic [ref=e376]: Solution
+                      - paragraph [ref=e377]: Every interaction — cursor, scroll, terminal — is intentional craft.
+                  - generic [ref=e378]:
+                    - generic [ref=e379]: Resultado
+                    - paragraph [ref=e380]: 100 de performance en Lighthouse
+                  - button "Abrir case study de This Portfolio" [ref=e381] [cursor=pointer]:
+                    - generic [ref=e382]: Ver estudio de caso
+                    - generic [ref=e383]: →
+                  - generic [ref=e384]:
+                    - generic [ref=e385]: Next.js
+                    - generic [ref=e386]: TailwindCSS
+                    - generic [ref=e387]: Framer Motion
+                    - generic [ref=e388]: GSAP
+                    - generic [ref=e389]: next-intl
+                - generic [ref=e390]:
+                  - link "Ver sitio ↗" [ref=e391] [cursor=pointer]:
+                    - /url: https://manudequevedo.com
+                    - text: Ver sitio
+                    - generic [ref=e392]: ↗
+                  - link "GitHub" [ref=e393] [cursor=pointer]:
+                    - /url: https://github.com/manudequevedo/manudequevedo-portfolio
+        - region "Agencia" [ref=e394]:
+          - generic [ref=e396]:
+            - generic [ref=e397]:
+              - paragraph [ref=e398]: — Agencia
+              - heading "¿Necesitas construir algo?" [level=3] [ref=e399]
+              - generic [ref=e400]:
+                - paragraph [ref=e401]: Trabajamos con startups, despachos, consultorios, escuelas y negocios en LATAM.
+                - paragraph [ref=e402]: Disponibles para nuevos proyectos.
+            - generic [ref=e403]:
+              - link "Noctra Studio →" [ref=e404] [cursor=pointer]:
+                - /url: https://noctra.studio
+              - link "noctra.studio" [ref=e405] [cursor=pointer]:
+                - /url: https://noctra.studio/#contact
+        - generic [ref=e407]:
+          - generic [ref=e409]: Arsenal
+          - heading "Las herramientas que domino." [level=2] [ref=e410]:
+            - generic [ref=e411]:
+              - generic [ref=e413]: Las
+              - generic [ref=e416]: herramientas
+              - generic [ref=e419]: que
+              - generic [ref=e422]: domino.
+          - generic [ref=e424]:
+            - button "Todo" [ref=e425]
+            - button "Frontend" [ref=e426]
+            - button "Cloud & DevOps" [ref=e427]
+            - button "Ciberseguridad" [ref=e428]
+            - button "IA & Automatización" [ref=e429]
+            - button "Herramientas" [ref=e430]
+          - generic [ref=e431]:
+            - button "React Experto 5+ years, production at scale React React" [ref=e432]:
+              - generic:
+                - generic: React
+                - generic:
+                  - generic: Experto
+                - paragraph: 5+ years, production at scale
+              - img "React" [ref=e434]
+              - generic [ref=e435]: React
+            - button "Next.js Experto App Router, RSC, i18n Next.js Next.js" [ref=e436]:
+              - generic:
+                - generic: Next.js
+                - generic:
+                  - generic: Experto
+                - paragraph: App Router, RSC, i18n
+              - img "Next.js" [ref=e438]
+              - generic [ref=e439]: Next.js
+            - button "TypeScript Experto Strict mode, full coverage TypeScript TypeScript" [ref=e440]:
+              - generic:
+                - generic: TypeScript
+                - generic:
+                  - generic: Experto
+                - paragraph: Strict mode, full coverage
+              - img "TypeScript" [ref=e442]
+              - generic [ref=e443]: TypeScript
+            - button "TailwindCSS Competente Custom design systems TailwindCSS TailwindCSS" [ref=e444]:
+              - generic:
+                - generic: TailwindCSS
+                - generic:
+                  - generic: Competente
+                - paragraph: Custom design systems
+              - img "TailwindCSS" [ref=e446]
+              - generic [ref=e447]: TailwindCSS
+            - button "Framer Motion Competente Complex micro-interactions Framer Motion Framer Motion" [ref=e448]:
+              - generic:
+                - generic: Framer Motion
+                - generic:
+                  - generic: Competente
+                - paragraph: Complex micro-interactions
+              - img "Framer Motion" [ref=e450]
+              - generic [ref=e451]: Framer Motion
+            - button "GSAP Familiar Conocimiento práctico general GSAP GSAP" [ref=e452]:
+              - generic:
+                - generic: GSAP
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "GSAP" [ref=e454]
+              - generic [ref=e455]: GSAP
+            - button "JavaScript ES6+ Familiar Conocimiento práctico general JavaScript ES6+ JavaScript ES6+" [ref=e456]:
+              - generic:
+                - generic: JavaScript ES6+
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "JavaScript ES6+" [ref=e458]
+              - generic [ref=e459]: JavaScript ES6+
+            - button "Figma Familiar Conocimiento práctico general Figma Figma" [ref=e460]:
+              - generic:
+                - generic: Figma
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "Figma" [ref=e462]
+              - generic [ref=e463]: Figma
+            - button "A11y Familiar Conocimiento práctico general A11y A11y" [ref=e464]:
+              - generic:
+                - generic: A11y
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "A11y" [ref=e466]
+              - generic [ref=e467]: A11y
+            - button "Performance Optimization Familiar Conocimiento práctico general Performance Optimization Performance Optimization" [ref=e468]:
+              - generic:
+                - generic: Performance Optimization
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "Performance Optimization" [ref=e470]
+              - generic [ref=e471]: Performance Optimization
+            - button "AWS Familiar Lambda, S3, CloudFront AWS AWS" [ref=e472]:
+              - generic:
+                - generic: AWS
+                - generic:
+                  - generic: Familiar
+                - paragraph: Lambda, S3, CloudFront
+              - img "AWS" [ref=e474]
+              - generic [ref=e475]: AWS
+            - button "Cloudflare Workers Familiar Edge computing Cloudflare Workers Cloudflare Workers" [ref=e476]:
+              - generic:
+                - generic: Cloudflare Workers
+                - generic:
+                  - generic: Familiar
+                - paragraph: Edge computing
+              - img "Cloudflare Workers" [ref=e478]
+              - generic [ref=e479]: Cloudflare Workers
+            - button "Docker Familiar Containerization basics Docker Docker" [ref=e480]:
+              - generic:
+                - generic: Docker
+                - generic:
+                  - generic: Familiar
+                - paragraph: Containerization basics
+              - img "Docker" [ref=e482]
+              - generic [ref=e483]: Docker
+            - button "Serverless (Lambda) Familiar Conocimiento práctico general Serverless (Lambda) Serverless (Lambda)" [ref=e484]:
+              - generic:
+                - generic: Serverless (Lambda)
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "Serverless (Lambda)" [ref=e486]
+              - generic [ref=e487]: Serverless (Lambda)
+            - button "Kubernetes (basic) Familiar Conocimiento práctico general Kubernetes (basic) Kubernetes (basic)" [ref=e488]:
+              - generic:
+                - generic: Kubernetes (basic)
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "Kubernetes (basic)" [ref=e490]
+              - generic [ref=e491]: Kubernetes (basic)
+            - button "CDN (CloudFront) Familiar Conocimiento práctico general CDN (CloudFront) CDN (CloudFront)" [ref=e492]:
+              - generic:
+                - generic: CDN (CloudFront)
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "CDN (CloudFront)" [ref=e494]
+              - generic [ref=e495]: CDN (CloudFront)
+            - button "OWASP Top 10 Competente Security by default OWASP Top 10 OWASP Top 10" [ref=e496]:
+              - generic:
+                - generic: OWASP Top 10
+                - generic:
+                  - generic: Competente
+                - paragraph: Security by default
+              - img "OWASP Top 10" [ref=e498]
+              - generic [ref=e499]: OWASP Top 10
+            - button "Content Security Policy Competente XSS prevention Content Security Policy Content Security Policy" [ref=e500]:
+              - generic:
+                - generic: Content Security Policy
+                - generic:
+                  - generic: Competente
+                - paragraph: XSS prevention
+              - img "Content Security Policy" [ref=e502]
+              - generic [ref=e503]: Content Security Policy
+            - button "XSS Competente Vulnerability mitigation XSS XSS" [ref=e504]:
+              - generic:
+                - generic: XSS
+                - generic:
+                  - generic: Competente
+                - paragraph: Vulnerability mitigation
+              - img "XSS" [ref=e506]
+              - generic [ref=e507]: XSS
+            - button "CSRF Familiar Conocimiento práctico general CSRF CSRF" [ref=e508]:
+              - generic:
+                - generic: CSRF
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "CSRF" [ref=e510]
+              - generic [ref=e511]: CSRF
+            - button "Penetration Testing Basics Familiar Conocimiento práctico general Penetration Testing Basics Penetration Testing Basics" [ref=e512]:
+              - generic:
+                - generic: Penetration Testing Basics
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "Penetration Testing Basics" [ref=e514]
+              - generic [ref=e515]: Penetration Testing Basics
+            - button "Prompt Engineering Experto Advanced LLM steering Prompt Engineering Prompt Engineering" [ref=e516]:
+              - generic:
+                - generic: Prompt Engineering
+                - generic:
+                  - generic: Experto
+                - paragraph: Advanced LLM steering
+              - img "Prompt Engineering" [ref=e518]
+              - generic [ref=e519]: Prompt Engineering
+            - button "GCP Experto Cloud services and API integration GCP GCP" [ref=e520]:
+              - generic:
+                - generic: GCP
+                - generic:
+                  - generic: Experto
+                - paragraph: Cloud services and API integration
+              - img "GCP" [ref=e522]
+              - generic [ref=e523]: GCP
+            - button "AI Workflow Automation Competente Agentic flows AI Workflow Automation AI Workflow Automation" [ref=e524]:
+              - generic:
+                - generic: AI Workflow Automation
+                - generic:
+                  - generic: Competente
+                - paragraph: Agentic flows
+              - img "AI Workflow Automation" [ref=e526]
+              - generic [ref=e527]: AI Workflow Automation
+            - button "Git Experto Version control Git Git" [ref=e528]:
+              - generic:
+                - generic: Git
+                - generic:
+                  - generic: Experto
+                - paragraph: Version control
+              - img "Git" [ref=e530]
+              - generic [ref=e531]: Git
+            - button "VS Code Experto IDE of choice VS Code VS Code" [ref=e532]:
+              - generic:
+                - generic: VS Code
+                - generic:
+                  - generic: Experto
+                - paragraph: IDE of choice
+              - img "VS Code" [ref=e534]
+              - generic [ref=e535]: VS Code
+            - button "Vercel Competente Deployment & CI/CD Vercel Vercel" [ref=e536]:
+              - generic:
+                - generic: Vercel
+                - generic:
+                  - generic: Competente
+                - paragraph: Deployment & CI/CD
+              - img "Vercel" [ref=e538]
+              - generic [ref=e539]: Vercel
+            - button "Supabase Competente Backend as a Service Supabase Supabase" [ref=e540]:
+              - generic:
+                - generic: Supabase
+                - generic:
+                  - generic: Competente
+                - paragraph: Backend as a Service
+              - img "Supabase" [ref=e542]
+              - generic [ref=e543]: Supabase
+            - button "PostgreSQL Familiar Conocimiento práctico general PostgreSQL PostgreSQL" [ref=e544]:
+              - generic:
+                - generic: PostgreSQL
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "PostgreSQL" [ref=e546]
+              - generic [ref=e547]: PostgreSQL
+            - button "MongoDB Familiar Conocimiento práctico general MongoDB MongoDB" [ref=e548]:
+              - generic:
+                - generic: MongoDB
+                - generic:
+                  - generic: Familiar
+                - paragraph: Conocimiento práctico general
+              - img "MongoDB" [ref=e550]
+              - generic [ref=e551]: MongoDB
+          - paragraph [ref=e552]: (Abierto a aprender nuevas tecnologías y adaptarme rápidamente al cambio.)
+        - generic [ref=e555]:
+          - generic [ref=e557]: Contacto
+          - generic:
+            - heading "Si estás construyendo algo — o simplemente sabes que necesitas algo mejor — escríbeme .recordar" [level=2] [ref=e558]:
+              - text: Si estás construyendo algo — o simplemente sabes que necesitas algo mejor — escríbeme
+              - generic [ref=e560]: .recordar
+            - button "contact@manudequevedo.com" [ref=e562] [cursor=pointer]:
+              - generic [ref=e563]: contact@manudequevedo.com
+            - generic [ref=e564]:
+              - generic [ref=e565]:
+                - paragraph [ref=e566]: Actualmente abierto a roles full-time y colaboraciones selectivas. Basado en Querétaro, MX — trabajo remoto globalmente.
+                - generic [ref=e569]: Disponible para nuevas oportunidades
+              - generic [ref=e570]:
+                - link "Enviar un email" [ref=e571] [cursor=pointer]:
+                  - /url: mailto:contact@manudequevedo.com
+                  - img [ref=e572]
+                  - text: Enviar un email
+                - link "LinkedIn →" [ref=e575] [cursor=pointer]:
+                  - /url: https://linkedin.com/in/manuelmatus
+      - contentinfo [ref=e576]:
+        - generic [ref=e577]:
+          - generic [ref=e578]:
+            - img [ref=e579]
+            - paragraph [ref=e583]: © 2026 Manu de Quevedo
+          - paragraph [ref=e584]: Designed & Built with obsession.
+          - button "CV" [ref=e585]
+          - button "↑ Back to top" [ref=e586]:
+            - generic [ref=e587]: ↑
+            - text: Back to top
+  - button "Open Next.js Dev Tools" [ref=e593] [cursor=pointer]:
+    - img [ref=e594]
