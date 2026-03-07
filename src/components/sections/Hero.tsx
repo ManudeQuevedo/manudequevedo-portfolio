@@ -139,6 +139,7 @@ function BinaryRain() {
 export function Hero() {
   const t = useTranslations("hero");
   const [showContent, setShowContent] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll();
@@ -186,6 +187,65 @@ export function Hero() {
 
   const [isSkipped, setIsSkipped] = useState(false);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(max-width: 767px), (pointer: coarse)",
+    );
+
+    const updateViewport = () => {
+      setIsMobileViewport(mediaQuery.matches);
+    };
+
+    updateViewport();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", updateViewport);
+      return () => mediaQuery.removeEventListener("change", updateViewport);
+    }
+
+    mediaQuery.addListener(updateViewport);
+    return () => mediaQuery.removeListener(updateViewport);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobileViewport) return;
+
+    setIsSkipped(true);
+    setShowContent(true);
+
+    const forceTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    const previousScrollRestoration =
+      "scrollRestoration" in window.history
+        ? window.history.scrollRestoration
+        : null;
+
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    forceTop();
+    const rafA = window.requestAnimationFrame(() => {
+      forceTop();
+    });
+    const rafB = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(forceTop);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(rafA);
+      window.cancelAnimationFrame(rafB);
+
+      if (previousScrollRestoration !== null) {
+        window.history.scrollRestoration = previousScrollRestoration;
+      }
+    };
+  }, [isMobileViewport]);
+
   const handleTerminalComplete = useCallback(() => {
     setTimeout(() => {
       setShowContent(true);
@@ -224,7 +284,7 @@ export function Hero() {
       <div className="layout-container relative z-10">
         <div className="grid min-h-[calc(100vh-4.75rem)] grid-cols-1 items-start gap-10 md:min-h-[calc(100vh-9rem)] md:grid-cols-[minmax(0,1fr)_minmax(420px,0.82fr)] md:items-end md:gap-12">
           <div className="relative z-20 max-w-[680px] pb-2 md:pb-8">
-            {!showContent && (
+            {!showContent && !isMobileViewport && (
               <div className="mb-8 overflow-hidden">
                 <TerminalText
                   lines={terminalLines}
@@ -234,7 +294,7 @@ export function Hero() {
               </div>
             )}
 
-            {!showContent && (
+            {!showContent && !isMobileViewport && (
               <motion.button
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
