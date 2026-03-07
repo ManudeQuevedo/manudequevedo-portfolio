@@ -64,6 +64,31 @@
   }
 }
 
+@media (max-width: 767px) {
+  main,
+  section {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  .layout-container {
+    max-width: 100vw;
+    overflow-x: clip;
+  }
+
+  button,
+  [role="button"],
+  a[href],
+  input,
+  select,
+  textarea,
+  summary {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+}
+
 body.has-custom-cursor,
 body.has-custom-cursor a,
 body.has-custom-cursor button,

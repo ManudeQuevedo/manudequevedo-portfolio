@@ -22,7 +22,9 @@ export function SectionContainer({
   containerClassName,
 }: SectionContainerProps) {
   return (
-    <section id={id} className={cn("py-20 md:py-32", className)}>
+    <section
+      id={id}
+      className={cn("py-20 md:py-32 overflow-x-clip md:overflow-visible", className)}>
       <div className={cn("layout-container", containerClassName)}>
         {children}
       </div>

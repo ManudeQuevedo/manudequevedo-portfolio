@@ -55,11 +55,11 @@ export function SidebarNav() {
       className="fixed right-4 md:right-6 xl:right-[calc((100vw-1280px)/4)] top-1/2 -translate-y-1/2 z-50 hidden xl:flex flex-col gap-6 mix-blend-difference pointer-events-auto"
       style={{ position: "fixed" }}>
       {/* Background Track */}
-      <div className="absolute top-3 bottom-3 left-1/2 -translate-x-1/2 w-[1px] bg-white/10 -z-10" />
+      <div className="absolute top-3 bottom-3 left-[calc(50%-14px)] w-[1px] bg-white/10 -z-10" />
 
       {/* Animated Progress Line */}
       <motion.div
-        className="absolute top-3 bottom-3 left-1/2 -translate-x-1/2 w-[1px] bg-brand -z-10 origin-top"
+        className="absolute top-3 bottom-3 left-[calc(50%-14px)] w-[1px] bg-brand -z-10 origin-top"
         initial={{ scaleY: 0 }}
         animate={{
           scaleY:

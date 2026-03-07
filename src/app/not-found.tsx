@@ -9,7 +9,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-md transition-colors">
+        className="inline-flex min-h-11 md:min-h-0 items-center justify-center px-4 py-2 bg-white/10 hover:bg-white/20 rounded-md transition-colors">
         Return to Galaxy
       </Link>
     </div>

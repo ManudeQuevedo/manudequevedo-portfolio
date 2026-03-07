@@ -8,7 +8,7 @@ import { Contact } from "@/components/sections/Contact";
 
 export default function HomePage() {
   return (
-    <main className="w-full relative">
+    <main className="w-full relative overflow-x-clip md:overflow-visible">
       <Hero />
       <About />
       <Experience />

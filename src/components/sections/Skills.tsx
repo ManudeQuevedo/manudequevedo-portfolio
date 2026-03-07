@@ -175,22 +175,40 @@ export function Skills() {
       ? skillItems
       : skillItems.filter((skill) => skill.categoryKey === activeCategory);
 
+  const gridVariants = {
+    hidden: { opacity: 0, y: 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.35,
+        ease: "easeOut",
+        staggerChildren: 0.02,
+      },
+    },
+  } as const;
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 12 },
+    visible: { opacity: 1, y: 0 },
+  } as const;
+
   return (
     <SectionContainer
       id="skills"
-      className="py-20 md:py-32 bg-dark-2 border-y border-white/5">
+      className="py-16 md:py-24 bg-dark-2 border-y border-white/5">
       <SectionLabel label={t("label")} />
       <h2
-        className="font-display text-4xl md:text-6xl font-bold mb-12 md:mb-20 max-w-2xl"
+        className="font-display text-[clamp(2rem,9vw,2.6rem)] md:text-6xl font-bold mb-10 md:mb-12 max-w-[90vw] md:max-w-2xl leading-tight"
         aria-label={t("headline")}>
-        <TextReveal text={t("headline")} delay={0.2} />
+        <TextReveal text={t("headline")} delay={0} />
       </h2>
 
-      <div className="mb-10 flex flex-wrap items-center gap-2 md:gap-3">
+      <div className="mb-8 md:mb-9 flex flex-wrap items-center gap-2 md:gap-3">
         <button
           type="button"
           onClick={() => setActiveCategory("all")}
-          className={`px-4 py-2 text-[11px] md:text-xs uppercase tracking-[0.16em] font-semibold rounded-full border transition-all duration-200 ${
+          className={`min-h-11 md:min-h-0 px-4 py-2.5 md:py-2 text-[11px] md:text-xs uppercase tracking-[0.16em] font-semibold rounded-full border transition-all duration-200 ${
             activeCategory === "all"
               ? "bg-brand text-dark border-brand"
               : "border-white/10 text-secondary bg-white/[0.02] hover:border-brand/40 hover:text-white"
@@ -202,7 +220,7 @@ export function Skills() {
             key={category}
             type="button"
             onClick={() => setActiveCategory(category)}
-            className={`px-4 py-2 text-[11px] md:text-xs uppercase tracking-[0.16em] font-semibold rounded-full border transition-all duration-200 ${
+            className={`min-h-11 md:min-h-0 px-4 py-2.5 md:py-2 text-[11px] md:text-xs uppercase tracking-[0.16em] font-semibold rounded-full border transition-all duration-200 ${
               activeCategory === category
                 ? "bg-brand text-dark border-brand"
                 : "border-white/10 text-secondary bg-white/[0.02] hover:border-brand/40 hover:text-white"
@@ -214,9 +232,13 @@ export function Skills() {
 
       <motion.div
         layout
+        variants={gridVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
         className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3 sm:gap-4">
         <AnimatePresence mode="popLayout">
-          {filteredSkills.map((skill, index) => {
+          {filteredSkills.map((skill) => {
             const levelTone = getLevelTone(skill.levelKey);
 
             return (
@@ -224,13 +246,10 @@ export function Skills() {
                 type="button"
                 layout
                 key={`${skill.categoryKey}-${skill.name}`}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+                variants={itemVariants}
                 exit={{ opacity: 0, y: 8, scale: 0.97 }}
                 transition={{
-                  duration: 0.4,
-                  delay: index * 0.03,
+                  duration: 0.3,
                   ease: "easeOut",
                 }}
                 className="group relative flex flex-col items-center justify-center min-h-[108px] px-2 py-4 rounded-lg border border-white/5 bg-dark/70 hover:border-brand/35 hover:bg-dark-3/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand/60 transition-colors duration-200">

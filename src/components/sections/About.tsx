@@ -53,6 +53,7 @@ export function About() {
   const headline = t("headline");
   const highlightedText = t("headline_highlight");
   const hasHighlightedText = headline.includes(highlightedText);
+  const identityKeys = ["years", "projects", "domains", "agency"] as const;
 
   return (
     <SectionContainer
@@ -68,8 +69,43 @@ export function About() {
           transition={{ duration: 0.7, ease: "easeOut" }}>
           <SectionLabel label={t("label")} />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12">
-            {["years", "projects", "domains", "agency"].map((key, i) => {
+          <div className="mt-12 md:hidden">
+            <div className="grid grid-cols-2 overflow-hidden rounded-sm border border-white/10 bg-[#0A0A0A]">
+              {identityKeys.map((key, i) => {
+                const item = t.raw(`identity.${key}`);
+                const dividerClasses = `${i % 2 === 1 ? "border-l border-white/10" : ""} ${i > 1 ? "border-t border-white/10" : ""}`;
+                return (
+                  <motion.div
+                    key={key}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={revealViewport}
+                    transition={{
+                      duration: 0.45,
+                      delay: i * 0.06,
+                      ease: "easeOut",
+                    }}
+                    className={`flex h-40 w-full flex-col justify-between px-4 py-4 ${dividerClasses}`}>
+                    <AnimatedStatNumber
+                      value={item.number}
+                      className="font-display text-4xl font-bold leading-none text-brand"
+                    />
+                    <div>
+                      <p className="font-body text-sm font-medium text-white">
+                        {item.label}
+                      </p>
+                      <p className="mt-1 font-body text-[11px] leading-snug text-white/65">
+                        {item.context}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="mt-12 hidden md:grid md:grid-cols-2 gap-4">
+            {identityKeys.map((key, i) => {
               const item = t.raw(`identity.${key}`);
               return (
                 <motion.div
@@ -107,9 +143,9 @@ export function About() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={revealViewport}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="flex flex-col justify-center lg:pl-12">
-          <div className="max-w-lg">
-            <h3 className="font-body text-2xl md:text-3xl font-medium leading-[1.6] mb-12 text-primary">
+          className="flex flex-col justify-center lg:justify-start lg:pl-12">
+          <div className="max-w-[90vw] md:max-w-lg">
+            <h3 className="font-body text-[clamp(1.5rem,6.8vw,2rem)] md:text-3xl font-medium leading-[1.55] md:leading-[1.6] mb-12 text-primary">
               {hasHighlightedText
                 ? headline.split(highlightedText).map((part, i) => (
                     <span key={i}>

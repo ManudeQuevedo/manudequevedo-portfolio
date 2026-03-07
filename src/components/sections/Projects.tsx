@@ -19,7 +19,7 @@ export function Projects() {
       <div ref={containerRef}>
         <SectionLabel label={t("label")} />
         <h2
-          className="font-display text-4xl md:text-6xl font-bold mb-16 md:mb-32"
+          className="font-display text-[clamp(2rem,9vw,2.6rem)] md:text-6xl font-bold mb-16 md:mb-32 max-w-[90vw] md:max-w-none leading-tight"
           aria-label={t("headline")}>
           <TextReveal text={t("headline")} delay={0.2} />
         </h2>
@@ -70,7 +70,7 @@ function ProjectCard({
     <motion.div
       ref={cardRef}
       style={{ scale, opacity, zIndex: (index + 1) * 10 }}
-      className="group md:sticky md:top-[15vh] w-full min-h-[70vh] md:h-[80vh] bg-dark-2 rounded-t-2xl md:rounded-t-[32px] border-t border-white/5 overflow-hidden grid md:grid-cols-[55%_45%]">
+      className="group md:sticky md:top-[15vh] w-full min-h-[70vh] md:h-[80vh] bg-dark-2 rounded-t-2xl md:rounded-t-[32px] border-t border-white/5 overflow-hidden grid grid-cols-1 md:grid-cols-[55%_45%]">
       {/* Visual Mockup Side */}
       <motion.div
         whileHover="hover"
@@ -223,7 +223,7 @@ function ProjectCard({
           <button
             type="button"
             onClick={(event) => openModal(project, event.currentTarget)}
-            className="group/btn inline-flex items-center gap-2 text-xs font-mono text-brand border border-brand/20 bg-brand/5 hover:bg-brand/10 hover:border-brand/40 rounded-full px-4 py-2 transition-all duration-200 cursor-pointer mb-8"
+            className="group/btn inline-flex min-h-11 md:min-h-0 w-full md:w-fit items-center justify-center md:justify-start gap-2 text-xs font-mono text-brand border border-brand/20 bg-brand/5 hover:bg-brand/10 hover:border-brand/40 rounded-full px-4 py-2 transition-all duration-200 cursor-pointer mb-8"
             data-cursor="hover"
             aria-label={modalT("open_case_study_aria", { project: project.title })}>
             <span>{modalT("view_case_study")}</span>
@@ -243,13 +243,13 @@ function ProjectCard({
           </div>
         </div>
 
-        <div className="flex items-center gap-8">
+        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-8">
           {liveLink && (
             <a
               href={liveLink}
               target="_blank"
               rel="noreferrer"
-              className="text-primary hover:text-brand text-sm font-medium flex items-center gap-2 group transition-colors"
+              className="inline-flex min-h-11 md:min-h-0 items-center gap-2 rounded-md px-3 md:px-0 text-primary hover:text-brand text-sm font-medium group transition-colors"
               data-cursor="hover">
               {t("live")}
               <span className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
@@ -262,7 +262,7 @@ function ProjectCard({
               href={project.github}
               target="_blank"
               rel="noreferrer"
-              className="text-secondary hover:text-primary text-sm font-medium transition-colors"
+              className="inline-flex min-h-11 md:min-h-0 items-center rounded-md px-3 md:px-0 text-secondary hover:text-primary text-sm font-medium transition-colors"
               data-cursor="hover">
               {t("github")}
             </a>

@@ -294,13 +294,36 @@ export function Hero() {
           />
         </motion.div>
 
+        {/* Mobile Portrait */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          className="relative md:hidden -mx-4 sm:-mx-6 mb-8 h-[42vh] max-h-[45vh] overflow-hidden">
+          <Image
+            src="/me-no-bg.png"
+            alt="Manu de Quevedo"
+            width={800}
+            height={1200}
+            className="h-full w-full object-cover object-top"
+            priority
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(8,8,8,0) 58%, rgba(8,8,8,0.62) 82%, rgba(8,8,8,1) 100%)",
+            }}
+          />
+        </motion.div>
+
         {!showContent && (
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={skipAnimation}
-            className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-4 md:right-10 z-[60] text-[9px] md:text-[10px] uppercase tracking-widest text-secondary hover:text-white transition-colors duration-300 font-mono">
+            className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-4 md:right-10 z-[60] inline-flex min-h-11 items-center justify-center px-3 text-[9px] md:text-[10px] uppercase tracking-widest text-secondary hover:text-white transition-colors duration-300 font-mono">
             {t("skip_intro")}
           </motion.button>
         )}
@@ -325,7 +348,7 @@ export function Hero() {
               }}>
             {/* Headline */}
             <h1
-              className="font-display text-4xl md:text-7xl font-bold leading-tight mb-12 max-w-4xl"
+              className="font-display text-[clamp(2rem,9.2vw,2.85rem)] md:text-7xl font-bold leading-[1.05] mb-12 max-w-[90vw] md:max-w-4xl"
               aria-label={t("headline")}>
               {headlineWords.map((word, i) => (
                   <motion.span
@@ -395,7 +418,7 @@ export function Hero() {
                       .getElementById("contact")
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="group relative flex items-center gap-4 px-8 py-4 border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm text-sm md:text-base font-bold text-white transition-all duration-300 hover:bg-white/10 hover:border-white/30 overflow-hidden"
+                  className="group relative flex min-h-11 items-center gap-4 px-8 py-4 border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm text-sm md:text-base font-bold text-white transition-all duration-300 hover:bg-white/10 hover:border-white/30 overflow-hidden"
                   data-cursor="hover">
                   <span className="relative z-10">{t("cta_secondary")}</span>
                   <div className="absolute inset-0 bg-brand/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />

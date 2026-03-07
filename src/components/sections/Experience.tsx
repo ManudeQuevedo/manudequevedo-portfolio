@@ -51,7 +51,7 @@ export function Experience() {
       <div ref={containerRef}>
         <SectionLabel label={t("label")} />
         <h2
-          className="font-display text-4xl md:text-6xl font-bold mb-12"
+          className="font-display text-[clamp(2rem,9vw,2.6rem)] md:text-6xl font-bold mb-12 max-w-[90vw] md:max-w-none leading-tight"
           aria-label={t("headline")}>
           <TextReveal text={t("headline")} delay={0.2} />
         </h2>
@@ -84,6 +84,22 @@ export function Experience() {
                 const tags = copy.tags || item.tags;
                 const hasExpandableContent = details.length > 0;
                 const isExpanded = Boolean(expandedItems[item.id]);
+                const isPastRole = !item.isFounder && item.id >= 2;
+                const companyTone = item.isFounder
+                  ? "text-brand"
+                  : isPastRole
+                    ? "text-white/70"
+                    : "text-primary";
+                const roleTone = isPastRole ? "text-brand/85" : "text-brand";
+                const metaTone = isPastRole ? "text-white/55" : "text-tertiary";
+                const descriptionTone = isPastRole
+                  ? "text-white/60"
+                  : "text-secondary";
+                const detailTone = isPastRole ? "text-white/60" : "text-secondary";
+                const highlightTone = isPastRole ? "text-white/58" : "text-[#888]";
+                const tagTone = isPastRole
+                  ? "text-white/58 border-white/12"
+                  : "text-tertiary border-white/5";
 
                 return (
                   <motion.div
@@ -113,7 +129,7 @@ export function Experience() {
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-3">
                         <h3
-                          className={`font-display text-xl md:text-2xl font-bold ${item.isFounder ? "text-brand" : "text-primary"}`}>
+                          className={`font-display text-xl md:text-2xl font-bold ${companyTone}`}>
                           {company}
                         </h3>
                         {item.isFounder && (
@@ -122,12 +138,12 @@ export function Experience() {
                           </span>
                         )}
                       </div>
-                      <p className="text-brand font-medium text-sm md:text-base">
+                      <p className={`font-medium text-sm md:text-base ${roleTone}`}>
                         {role}
                         {employmentType ? ` · ${employmentType}` : ""}
                       </p>
 
-                      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-tertiary text-xs md:text-sm my-2">
+                      <div className={`flex flex-wrap items-center gap-x-6 gap-y-2 text-xs md:text-sm my-2 ${metaTone}`}>
                         <span className="flex items-center gap-2">
                           <svg
                             className="w-3 h-3"
@@ -166,7 +182,7 @@ export function Experience() {
                         </span>
                       </div>
 
-                      <p className="text-secondary text-sm md:text-base leading-relaxed max-w-2xl mt-2">
+                      <p className={`text-sm md:text-base leading-relaxed max-w-2xl mt-2 ${descriptionTone}`}>
                         {description}
                       </p>
 
@@ -180,7 +196,7 @@ export function Experience() {
                                 [item.id]: !prev[item.id],
                               }))
                             }
-                            className="mt-3 inline-flex w-fit items-center gap-2 text-xs font-mono text-brand border border-brand/25 bg-brand/5 hover:bg-brand/10 rounded-full px-3 py-1.5 transition-colors"
+                            className="mt-3 inline-flex min-h-11 md:min-h-0 w-fit items-center gap-2 text-xs font-mono text-brand border border-brand/25 bg-brand/5 hover:bg-brand/10 rounded-full px-4 md:px-3 py-2 md:py-1.5 transition-colors"
                             aria-expanded={isExpanded}
                             aria-controls={`experience-details-${item.id}`}>
                             <span>{isExpanded ? t("show_less") : t("show_more")}</span>
@@ -201,7 +217,7 @@ export function Experience() {
                                     <span className="text-brand font-display font-medium text-lg leading-none mt-0.5">
                                       "
                                     </span>
-                                    <p className="text-[#888] italic text-sm md:text-[15px] leading-relaxed max-w-2xl">
+                                    <p className={`italic text-sm md:text-[15px] leading-relaxed max-w-2xl ${highlightTone}`}>
                                       {highlight}
                                     </p>
                                   </div>
@@ -211,7 +227,7 @@ export function Experience() {
                                   {details.map((detail) => (
                                     <li
                                       key={detail}
-                                      className="flex items-start gap-2.5 text-secondary text-sm md:text-[15px] leading-relaxed">
+                                      className={`flex items-start gap-2.5 text-sm md:text-[15px] leading-relaxed ${detailTone}`}>
                                       <span className="text-brand text-xs mt-[0.38rem]">
                                         ●
                                       </span>
@@ -229,7 +245,7 @@ export function Experience() {
                             <span className="text-brand font-display font-medium text-lg leading-none mt-0.5">
                               "
                             </span>
-                            <p className="text-[#888] italic text-sm md:text-[15px] leading-relaxed max-w-2xl">
+                            <p className={`italic text-sm md:text-[15px] leading-relaxed max-w-2xl ${highlightTone}`}>
                               {highlight}
                             </p>
                           </div>
@@ -247,7 +263,7 @@ export function Experience() {
                         {tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-3 py-1 bg-white/5 border border-white/5 rounded-sm text-[10px] md:text-xs text-tertiary hover:text-brand hover:border-brand/30 transition-all duration-300">
+                            className={`px-3 py-1 bg-white/5 border rounded-sm text-[10px] md:text-xs hover:text-brand hover:border-brand/30 transition-all duration-300 ${tagTone}`}>
                             {tag}
                           </span>
                         ))}

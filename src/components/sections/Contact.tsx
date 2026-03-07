@@ -81,7 +81,7 @@ export function Contact() {
   return (
     <SectionContainer
       id="contact"
-      className="min-h-[80vh] flex flex-col justify-center overflow-hidden">
+      className="min-h-[80vh] flex flex-col justify-center overflow-x-clip md:overflow-visible pb-[max(5rem,env(safe-area-inset-bottom))] md:pb-32">
       <div
         className="relative"
         onMouseMove={handleDecorativeMouseMove}
@@ -93,9 +93,9 @@ export function Contact() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-4xl md:text-7xl font-bold leading-tight max-w-3xl pointer-events-auto">
+            className="font-display text-[clamp(2rem,8.8vw,2.6rem)] md:text-7xl font-bold leading-tight max-w-[90vw] md:max-w-3xl pointer-events-auto">
             {t("headline").replace(/\.$/, "")}
-            <span className="text-brand whitespace-nowrap ml-2">
+            <span className="text-brand ml-0 mt-2 block whitespace-normal sm:ml-2 sm:mt-0 sm:inline sm:whitespace-nowrap">
               <AnimatePresence mode="popLayout">
                 <motion.span
                   key={wordIndex}
@@ -113,12 +113,12 @@ export function Contact() {
           <div className="email-hero mt-12 pointer-events-auto">
             <button
               onClick={handleCopy}
-              className="group relative cursor-pointer text-left"
+              className="group relative inline-flex min-h-11 items-center cursor-pointer text-left py-2"
               data-cursor="hover">
               <ScrambleText
                 text={email}
                 duration={300}
-                className="font-display text-2xl md:text-6xl font-bold text-tertiary group-hover:text-primary transition-colors"
+                className="font-display text-[clamp(1.35rem,6.2vw,1.9rem)] md:text-6xl font-bold text-tertiary group-hover:text-primary transition-colors max-w-[18ch] sm:max-w-none leading-[1.08]"
               />
               {copied && (
                 <motion.span
@@ -147,10 +147,10 @@ export function Contact() {
             </div>
 
             {/* Direct Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 mt-12 pointer-events-auto">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6 mt-12 pointer-events-auto">
               <a
                 href={`mailto:${email}`}
-                className="flex items-center justify-center sm:justify-start gap-4 px-10 py-5 bg-brand text-dark font-bold text-sm rounded-sm hover:bg-brand/90 transition-all duration-300"
+                className="flex w-full md:w-auto min-h-11 items-center justify-center md:justify-start gap-4 px-10 py-5 bg-brand text-dark font-bold text-sm rounded-sm hover:bg-brand/90 transition-all duration-300"
                 data-cursor="hover">
                 <Mail size={20} strokeWidth={2.5} />
                 {t("email_cta")}
@@ -160,7 +160,7 @@ export function Contact() {
                 href="https://linkedin.com/in/manuelmatus"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center sm:justify-start gap-4 px-10 py-5 border border-white/10 text-secondary text-sm font-medium rounded-sm hover:border-brand/40 hover:text-white hover:bg-brand/5 transition-all duration-300"
+                className="flex w-full md:w-auto min-h-11 items-center justify-center md:justify-start gap-4 px-10 py-5 border border-white/10 text-secondary text-sm font-medium rounded-sm hover:border-brand/40 hover:text-white hover:bg-brand/5 transition-all duration-300"
                 data-cursor="hover">
                 {t("linkedin_cta")}
               </a>

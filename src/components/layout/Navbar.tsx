@@ -129,15 +129,22 @@ export function Navbar() {
     if (!isMobileMenuOpen) return;
 
     const previousOverflow = document.body.style.overflow;
+    const previousPaddingRight = document.body.style.paddingRight;
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setIsMobileMenuOpen(false);
     };
 
     document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
       document.body.style.overflow = previousOverflow;
+      document.body.style.paddingRight = previousPaddingRight;
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isMobileMenuOpen]);
@@ -166,7 +173,10 @@ export function Navbar() {
       )}>
       <div className="layout-container flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="group" data-cursor="hover">
+        <Link
+          href="/"
+          className="group inline-flex min-h-11 min-w-11 md:min-h-0 md:min-w-0 items-center justify-center rounded-sm"
+          data-cursor="hover">
           <MQLogo
             variant="color"
             size={32}
@@ -229,24 +239,30 @@ export function Navbar() {
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-nav-menu"
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="md:hidden relative z-[120] ml-auto inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-md border border-white/30 bg-black/70 text-white backdrop-blur-sm transition-colors duration-200 hover:border-brand/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
+          style={{
+            marginRight: "max(env(safe-area-inset-right), 16px)",
+          }}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           data-cursor="hover">
           <motion.span
             animate={
               isMobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }
             }
-            className="w-6 h-0.5 bg-primary rounded-full origin-center"
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            className="h-0.5 w-6 rounded-full bg-white origin-center"
           />
           <motion.span
             animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="w-4 h-0.5 bg-primary rounded-full self-end"
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="h-0.5 w-4 rounded-full bg-white self-end"
           />
           <motion.span
             animate={
               isMobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }
             }
-            className="w-6 h-0.5 bg-primary rounded-full origin-center"
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            className="h-0.5 w-6 rounded-full bg-white origin-center"
           />
         </button>
       </div>
@@ -256,52 +272,104 @@ export function Navbar() {
         {isMobileMenuOpen && (
           <motion.div
             id="mobile-nav-menu"
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-dark z-[101] flex flex-col items-center justify-center gap-8 md:hidden pt-[max(env(safe-area-inset-top),1rem)] pb-[max(env(safe-area-inset-bottom),1rem)]">
-            {navLinks.map((link, i) => {
-              return (
-              <motion.div
-                key={link.href}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (pathname === "/") {
-                      scrollToSection(link.href);
-                    } else {
-                      window.location.href = `/${locale}${link.href}`;
-                    }
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="font-display text-4xl font-bold hover:text-brand transition-colors flex items-center gap-4 text-primary">
-                  <span className="text-white/10 text-xl font-mono">
-                    0{i + 1}
-                  </span>
-                  {link.name}
-                </button>
-              </motion.div>
-              );
-            })}
+            role="dialog"
+            aria-modal="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            className="fixed inset-0 z-[130] bg-dark/98 md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}>
             <motion.div
-              className="mt-12 flex items-center gap-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}>
-              <LocaleSwitcher />
+              initial={{ y: 24, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 24, opacity: 0 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+              className="relative flex h-full w-full flex-col items-center justify-center px-8 pt-[max(env(safe-area-inset-top),16px)] pb-[max(env(safe-area-inset-bottom),16px)]"
+              onClick={(event) => event.stopPropagation()}>
+              <button
+                type="button"
+                aria-label="Close menu"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="absolute inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/30 bg-black/70 text-white transition-colors duration-200 hover:border-brand/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
+                style={{
+                  right: "max(env(safe-area-inset-right), 16px)",
+                  top: "max(env(safe-area-inset-top), 16px)",
+                }}>
+                <span className="text-2xl leading-none">&times;</span>
+              </button>
+
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: { delayChildren: 0.05, staggerChildren: 0.05 },
+                  },
+                }}
+                className="flex flex-col items-center gap-5">
+                {navLinks.map((link, i) => {
+                  const sectionId = link.href.replace("#", "");
+                  const isActive = activeSection === sectionId;
+
+                  return (
+                    <motion.div
+                      key={link.href}
+                      variants={{
+                        hidden: { opacity: 0, y: 18 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: { duration: 0.28, ease: "easeOut" },
+                        },
+                      }}>
               <button
                 type="button"
                 onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  void handleCvDownload();
-                }}
-                className="bg-brand text-dark px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
-                {isDownloadingCv ? "Generating..." : t("resume")}
-              </button>
+                          setIsMobileMenuOpen(false);
+
+                          if (pathname === "/") {
+                            scrollToSection(link.href);
+                            return;
+                          }
+
+                          window.location.href = `/${locale}${link.href}`;
+                        }}
+                        className={cn(
+                          "font-display text-[2rem] leading-none font-bold transition-colors duration-200 py-3 px-3 flex min-h-11 items-center gap-4",
+                          isActive
+                            ? "text-brand"
+                            : "text-primary hover:text-brand",
+                        )}>
+                        <span className="text-white/25 text-xl font-mono">
+                          0{i + 1}
+                        </span>
+                        {link.name}
+                      </button>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+
+              <motion.div
+                className="mt-10 flex items-center gap-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.28, ease: "easeOut", delay: 0.22 }}>
+                <LocaleSwitcher />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    void handleCvDownload();
+                  }}
+                  className="inline-flex min-h-11 items-center justify-center bg-brand text-dark px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
+                  {isDownloadingCv ? "Generating..." : t("resume")}
+                </button>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}

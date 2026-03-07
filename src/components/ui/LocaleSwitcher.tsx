@@ -41,7 +41,7 @@ export function LocaleSwitcher() {
         onClick={() => switchLocale("es")}
         disabled={isPending}
         className={cn(
-          "hover:text-primary transition-colors duration-200 uppercase",
+          "inline-flex min-h-11 min-w-11 md:min-h-0 md:min-w-0 items-center justify-center px-2 md:px-0 hover:text-primary transition-colors duration-200 uppercase",
           currentLocale === "es" ? "text-brand" : "text-secondary",
         )}>
         ES
@@ -51,7 +51,7 @@ export function LocaleSwitcher() {
         onClick={() => switchLocale("en")}
         disabled={isPending}
         className={cn(
-          "hover:text-primary transition-colors duration-200 uppercase",
+          "inline-flex min-h-11 min-w-11 md:min-h-0 md:min-w-0 items-center justify-center px-2 md:px-0 hover:text-primary transition-colors duration-200 uppercase",
           currentLocale === "en" ? "text-brand" : "text-secondary",
         )}>
         EN

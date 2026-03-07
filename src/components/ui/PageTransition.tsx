@@ -21,22 +21,24 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
             animate={{
               y: ["100%", "0%", "-100%"],
               transition: {
-                duration: 1.3,
-                times: [0, 0.45, 1],
-                ease: [0.76, 0, 0.24, 1],
+                duration: 3,
+                times: [0, 0.54, 1],
+                ease: [0.22, 1, 0.36, 1],
               },
             }}>
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 0, scale: 0.92 }}
               animate={{
                 opacity: [0, 1, 0],
+                scale: [0.92, 1, 0.985],
                 transition: {
-                  duration: 1,
-                  times: [0, 0.5, 1],
-                  delay: 0.1,
+                  duration: 2.3,
+                  times: [0, 0.58, 1],
+                  delay: 0.25,
+                  ease: "easeInOut",
                 },
               }}>
-              <MQLogo variant="white" size={120} className="animate-pulse" />
+              <MQLogo variant="white" size={120} />
             </motion.div>
           </motion.div>
         )}
@@ -46,7 +48,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
           initial={{ opacity: 0 }}
           animate={{
             opacity: 1,
-            transition: { duration: 0.45, delay: showIntro ? 0.35 : 0 },
+            transition: { duration: 0.75, delay: showIntro ? 0.8 : 0 },
           }}>
           {children}
         </motion.div>

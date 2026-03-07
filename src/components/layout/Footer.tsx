@@ -42,7 +42,7 @@ export function Footer() {
   }, [isDownloadingCv, locale]);
 
   return (
-    <footer className="border-t border-white/5 py-20 md:py-32 bg-dark">
+    <footer className="border-t border-white/5 pt-20 md:pt-32 pb-[max(5rem,env(safe-area-inset-bottom))] md:pb-32 bg-dark overflow-x-clip md:overflow-visible">
       <div className="layout-container flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex items-center gap-4">
           <MQLogo variant="mono" size={20} className="opacity-20" />
@@ -59,7 +59,7 @@ export function Footer() {
           type="button"
           onClick={handleCvDownload}
           disabled={isDownloadingCv}
-          className="border border-brand/50 text-brand px-6 py-2 rounded-sm text-xs font-bold hover:bg-brand hover:text-dark transition-all duration-300 uppercase tracking-wider disabled:opacity-70 disabled:cursor-not-allowed"
+          className="inline-flex min-h-11 md:min-h-0 items-center justify-center border border-brand/50 text-brand px-6 py-2 rounded-sm text-xs font-bold hover:bg-brand hover:text-dark transition-all duration-300 uppercase tracking-wider disabled:opacity-70 disabled:cursor-not-allowed"
           data-cursor="hover">
           {isDownloadingCv ? "Generating..." : t("resume")}
         </button>
@@ -67,7 +67,7 @@ export function Footer() {
         <button
           type="button"
           onClick={scrollToTop}
-          className="text-[11px] text-tertiary hover:text-brand tracking-widest font-body uppercase flex items-center gap-2 transition-colors group"
+          className="inline-flex min-h-11 md:min-h-0 items-center text-[11px] text-tertiary hover:text-brand tracking-widest font-body uppercase gap-2 transition-colors group px-2"
           data-cursor="hover">
           <span className="group-hover:-translate-y-1 transition-transform duration-300">
             ↑

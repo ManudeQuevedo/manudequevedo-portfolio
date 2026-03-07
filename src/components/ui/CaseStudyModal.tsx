@@ -193,7 +193,7 @@ export function CaseStudyModal() {
                   <button
                     ref={closeButtonRef}
                     onClick={closeModal}
-                    className="absolute top-4 md:top-5 right-4 md:right-5 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-secondary hover:text-primary transition-all duration-150"
+                    className="absolute top-4 md:top-5 right-4 md:right-5 z-10 w-11 h-11 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-secondary hover:text-primary transition-all duration-150"
                     aria-label={t("close_case_study")}>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                       <path
@@ -239,7 +239,7 @@ export function CaseStudyModal() {
                             href={liveLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs font-mono text-primary hover:text-brand transition-colors"
+                            className="inline-flex min-h-11 md:min-h-0 items-center rounded-md px-3 md:px-0 text-xs font-mono text-primary hover:text-brand transition-colors"
                             data-cursor="hover">
                             {t("live_site")} ↗
                           </a>
@@ -385,7 +385,7 @@ export function CaseStudyModal() {
                 <footer className="bg-[var(--bg-3)] border-t border-[var(--border-muted)] px-5 sm:px-6 md:px-10 py-5 flex flex-wrap items-center justify-between gap-3">
                   <button
                     onClick={closeModal}
-                    className="text-[11px] md:text-xs font-mono text-secondary hover:text-primary transition-colors"
+                    className="inline-flex min-h-11 md:min-h-0 items-center rounded-md px-2 md:px-0 text-[11px] md:text-xs font-mono text-secondary hover:text-primary transition-colors"
                     data-cursor="hover">
                     ← {t("back")}
                   </button>
@@ -396,7 +396,7 @@ export function CaseStudyModal() {
                         href={liveLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[11px] md:text-xs font-mono text-primary hover:text-brand transition-colors"
+                        className="inline-flex min-h-11 md:min-h-0 items-center rounded-md px-2 md:px-0 text-[11px] md:text-xs font-mono text-primary hover:text-brand transition-colors"
                         data-cursor="hover">
                         {t("live_site")} ↗
                       </a>
@@ -406,7 +406,7 @@ export function CaseStudyModal() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[11px] md:text-xs font-mono text-secondary hover:text-primary transition-colors"
+                        className="inline-flex min-h-11 md:min-h-0 items-center rounded-md px-2 md:px-0 text-[11px] md:text-xs font-mono text-secondary hover:text-primary transition-colors"
                         data-cursor="hover">
                         {t("github")} →
                       </a>

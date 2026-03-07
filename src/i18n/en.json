@@ -84,7 +84,12 @@
         "period": "2025 - Present",
         "location": "Querétaro, MX",
         "description": "Web development agency building performant digital products for startups, professionals, and businesses across LATAM.",
-        "highlight": "Built and shipped 4 client projects in the first 6 months.",
+        "highlight": "I am currently working on 2 projects in the first 6 months. Simultaneously developing an in-house tooling ecosystem to eliminate friction between clients and the agency.",
+        "details": [
+          "Noctra Discovery — A dynamic discovery form platform clients can fill from any device. Replaces the broken download-edit-save-reattach workflow — reducing duplication, delays, and errors at the most critical stage of a project.",
+          "Noctra Ops — An internal system for dynamically generating proposals, contracts, and cancellation agreements (before and during development). Legally grounded, designed to give clients security and confidence from the first document.",
+          "Noctra Forge (Native AI CRM) — A CRM built from scratch using real pain points from HubSpot and Pipedrive as reference. AI is native to the workflow, not bolted on. Adaptable to each client type, minimal learning curve. Estimated release: Q1 2027."
+        ],
         "tags": [
           "Next.js",
           "TypeScript",
