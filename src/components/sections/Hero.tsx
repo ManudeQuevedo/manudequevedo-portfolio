@@ -212,38 +212,6 @@ export function Hero() {
 
     setIsSkipped(true);
     setShowContent(true);
-
-    const forceTop = () => {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    };
-
-    const previousScrollRestoration =
-      "scrollRestoration" in window.history
-        ? window.history.scrollRestoration
-        : null;
-
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-
-    forceTop();
-    const rafA = window.requestAnimationFrame(() => {
-      forceTop();
-    });
-    const rafB = window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(forceTop);
-    });
-
-    return () => {
-      window.cancelAnimationFrame(rafA);
-      window.cancelAnimationFrame(rafB);
-
-      if (previousScrollRestoration !== null) {
-        window.history.scrollRestoration = previousScrollRestoration;
-      }
-    };
   }, [isMobileViewport]);
 
   const handleTerminalComplete = useCallback(() => {
