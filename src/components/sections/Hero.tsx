@@ -99,9 +99,9 @@ export function Hero() {
       />
 
       <motion.div
-        className="absolute right-5 md:right-12 xl:right-[calc((100vw-1280px)/2+48px)] bottom-0 top-0 w-[45%] z-0 select-none hidden md:block"
-        initial={{ filter: "grayscale(100%) brightness(0.7)", opacity: 0 }}
-        animate={{ filter: "grayscale(20%) brightness(0.9)", opacity: 1 }}
+        className="absolute right-0 top-0 bottom-0 w-[42%] z-0 select-none hidden md:block"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{
           duration: 1.5,
           delay: isSkipped ? 0 : 2,
@@ -111,10 +111,7 @@ export function Hero() {
           scale: photoScale,
           perspective: 1000,
           mixBlendMode: "luminosity",
-          WebkitMaskImage:
-            "linear-gradient(to top, transparent 0%, black 25%, black 100%)",
-          maskImage:
-            "linear-gradient(to top, transparent 0%, black 25%, black 100%)",
+          filter: "grayscale(40%) contrast(1.05) brightness(0.85)",
         }}>
         <div className="relative h-full w-full pointer-events-none overflow-hidden">
           {/* Photo Parallax Wrapper */}
@@ -131,22 +128,31 @@ export function Hero() {
               alt="Manu de Quevedo"
               width={800}
               height={1200}
-              className="h-full w-full object-cover object-top"
+              className="h-full w-full object-cover object-[65%_8%]"
               priority
             />
           </motion.div>
 
-          {/* TOP gradient — was missing */}
-          <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-dark via-dark/60 to-transparent pointer-events-none z-10" />
+          {/* Izquierdo — más ancho para separar texto de foto */}
+          <div className="absolute inset-y-0 left-0 w-[52%] bg-gradient-to-r from-dark via-dark/70 to-transparent pointer-events-none z-10" />
 
-          {/* BOTTOM gradient */}
-          <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-dark via-dark/60 to-transparent pointer-events-none z-10" />
+          {/* Superior — el que faltaba, elimina el borde duro de la cabeza */}
+          <div className="absolute inset-x-0 top-0 h-[35%] bg-gradient-to-b from-dark via-dark/60 to-transparent pointer-events-none z-10" />
 
-          {/* LEFT gradient */}
-          <div className="absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-dark via-dark/50 to-transparent pointer-events-none z-10" />
+          {/* Inferior */}
+          <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-dark via-dark/60 to-transparent pointer-events-none z-10" />
 
-          {/* RIGHT gradient — was missing */}
-          <div className="absolute inset-y-0 right-0 w-[15%] bg-gradient-to-l from-dark/80 to-transparent pointer-events-none z-10" />
+          {/* Derecho — cierra el borde del lado derecho */}
+          <div className="absolute inset-y-0 right-0 w-[8%] bg-gradient-to-l from-dark/60 to-transparent pointer-events-none z-10" />
+
+          {/* Brand warmth — conecta la foto con #FF6B00 */}
+          <div
+            className="absolute inset-0 pointer-events-none z-20"
+            style={{
+              background:
+                "radial-gradient(ellipse at 70% 40%, rgba(255,107,0,0.07) 0%, transparent 65%)",
+            }}
+          />
         </div>
       </motion.div>
 
@@ -205,7 +211,8 @@ export function Hero() {
                         },
                       },
                     }}>
-                    {word.includes("descubrimientos") ? (
+                    {word.toLowerCase().includes("friction") ||
+                    word.toLowerCase().includes("fricción") ? (
                       <span className="text-brand">{word}</span>
                     ) : (
                       word
@@ -272,7 +279,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: isSkipped ? 0.5 : 5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4">
+        className="absolute bottom-8 left-20 flex flex-col items-center gap-3">
         <span
           className="text-[10px] uppercase tracking-widest text-tertiary whitespace-nowrap mb-6"
           style={{

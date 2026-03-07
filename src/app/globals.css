@@ -76,7 +76,11 @@ body.has-custom-cursor img {
 }
 
 .interactive {
-  @apply transition-all duration-300 ease-in-out cursor-none;
+  @apply transition-all duration-300 ease-in-out;
+}
+
+body.has-custom-cursor .interactive {
+  cursor: none !important;
 }
 
 ::-webkit-scrollbar { width: 4px; }

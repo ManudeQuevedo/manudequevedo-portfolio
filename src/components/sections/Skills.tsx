@@ -121,14 +121,14 @@ export function Skills() {
 
       <div className="flex flex-col md:flex-row border border-white/5 bg-dark rounded-xl md:rounded-2xl overflow-hidden min-h-[500px]">
         {/* Left Panel: Tabs */}
-        <div className="w-full md:w-[40%] flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible border-b md:border-b-0 md:border-r border-white/5 bg-dark-3/50 no-scrollbar">
+        <div className="w-full md:w-[40%] grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-col border-b md:border-b-0 md:border-r border-white/5 bg-dark-3/50">
           {categories.map(([category, items]) => {
             const isActive = activeTab === category;
             return (
               <button
                 key={category}
                 onClick={() => setActiveTab(category)}
-                className={`flex items-center gap-4 px-6 md:px-8 py-5 transition-all duration-300 min-w-max md:min-w-0 text-left relative ${
+                className={`flex items-center gap-4 px-5 sm:px-6 md:px-8 py-4 md:py-5 transition-all duration-300 text-left relative ${
                   isActive
                     ? "bg-dark-2 text-primary border-l-2 md:border-l-4 border-l-brand"
                     : "text-tertiary hover:text-secondary border-l-2 md:border-l-4 border-transparent hover:bg-white/5"
