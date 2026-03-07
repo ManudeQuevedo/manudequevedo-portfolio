@@ -66,7 +66,7 @@ export function About() {
   const headline = t("headline");
   const highlightedText = t("headline_highlight");
   const hasHighlightedText = headline.includes(highlightedText);
-  const identityKeys = ["years", "projects", "lighthouse", "agency"] as const;
+  const identityKeys = ["years", "projects", "industries", "agency"] as const;
 
   return (
     <SectionContainer
@@ -88,7 +88,7 @@ export function About() {
                 const item = t.raw(`identity.${key}`);
                 const dividerClasses = `${i % 2 === 1 ? "border-l border-white/10" : ""} ${i > 1 ? "border-t border-white/10" : ""}`;
                 const contextTone =
-                  key === "lighthouse" ? "text-brand/80" : "text-white/65";
+                  key === "industries" ? "text-brand/80" : "text-white/65";
                 return (
                   <motion.div
                     key={key}
@@ -124,7 +124,7 @@ export function About() {
             {identityKeys.map((key, i) => {
               const item = t.raw(`identity.${key}`);
               const contextTone =
-                key === "lighthouse"
+                key === "industries"
                   ? "text-brand"
                   : "text-brand/80 group-hover:text-brand";
               return (
