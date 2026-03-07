@@ -14,6 +14,118 @@ import { TerminalText } from "@/components/ui/TerminalText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import Image from "next/image";
 
+function BinaryRain() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const context = canvas.getContext("2d");
+    if (!context) return;
+
+    type Column = {
+      x: number;
+      y: number;
+      speed: number;
+      glyph: "0" | "1";
+      refreshBias: number;
+    };
+
+    const backgroundColor = "rgba(8, 8, 8, 0.24)";
+    const glyphColor = "rgba(249, 115, 22, 0.7)";
+    const fontSize = 13;
+    const columnWidth = 14;
+    let columns: Column[] = [];
+    let width = 0;
+    let height = 0;
+    let rafId = 0;
+    let lastTime = 0;
+
+    const resetColumns = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const parent = canvas.parentElement;
+      if (!parent) return;
+
+      width = parent.clientWidth;
+      height = parent.clientHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      context.font = `${fontSize}px "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace`;
+      context.textBaseline = "top";
+      context.clearRect(0, 0, width, height);
+
+      const columnCount = Math.ceil(width / columnWidth);
+      columns = Array.from({ length: columnCount }, (_, index) => ({
+        x: index * columnWidth,
+        y: Math.random() * height - height,
+        speed: 0.55 + Math.random() * 1.15,
+        glyph: Math.random() > 0.5 ? "1" : "0",
+        refreshBias: 0.015 + Math.random() * 0.045,
+      }));
+    };
+
+    const render = (time: number) => {
+      rafId = window.requestAnimationFrame(render);
+      if (!lastTime) {
+        lastTime = time;
+      }
+      const delta = Math.min((time - lastTime) / 16.67, 3);
+      lastTime = time;
+
+      context.fillStyle = backgroundColor;
+      context.fillRect(0, 0, width, height);
+
+      context.fillStyle = glyphColor;
+      columns.forEach((column) => {
+        column.y += column.speed * delta;
+        if (Math.random() < column.refreshBias) {
+          column.glyph = Math.random() > 0.5 ? "1" : "0";
+        }
+
+        if (column.y > height + fontSize) {
+          column.y = -fontSize - Math.random() * height * 0.35;
+          column.speed = 0.55 + Math.random() * 1.15;
+          column.refreshBias = 0.015 + Math.random() * 0.045;
+          column.glyph = Math.random() > 0.5 ? "1" : "0";
+        }
+
+        context.fillText(column.glyph, column.x, column.y);
+      });
+    };
+
+    resetColumns();
+    rafId = window.requestAnimationFrame(render);
+
+    const observer = new ResizeObserver(() => {
+      resetColumns();
+    });
+    if (canvas.parentElement) {
+      observer.observe(canvas.parentElement);
+    }
+
+    const onResize = () => resetColumns();
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      observer.disconnect();
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden="true"
+      className="absolute inset-0 z-0 h-full w-full pointer-events-none opacity-[0.16]"
+    />
+  );
+}
+
 export function Hero() {
   const t = useTranslations("hero");
   const [showContent, setShowContent] = useState(false);
@@ -81,6 +193,15 @@ export function Hero() {
       id="hero"
       ref={heroRef}
       className="relative min-h-screen w-full bg-dark overflow-hidden flex flex-col justify-end pb-20 md:pb-32 pt-20 md:pt-32">
+      <BinaryRain />
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(8,8,8,0) 60%, rgba(8,8,8,0.72) 84%, rgba(8,8,8,1) 100%)",
+        }}
+      />
+
       {/* Parallax Grid Background */}
       <motion.div
         style={{
@@ -118,6 +239,10 @@ export function Hero() {
               y: imgY,
               rotateY: imgRotateY,
               transformStyle: "preserve-3d",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, black 16%, black 100%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, black 16%, black 100%)",
             }}>
             <Image
               src="/me-no-bg.png"
@@ -129,9 +254,6 @@ export function Hero() {
             />
           </motion.div>
 
-          {/* Izquierdo — más ancho para separar texto de foto */}
-          <div className="absolute inset-y-0 left-0 w-[52%] bg-gradient-to-r from-dark/85 via-dark/45 to-transparent pointer-events-none z-10" />
-
           {/* Superior — el que faltaba, elimina el borde duro de la cabeza */}
           <div className="absolute inset-x-0 top-0 h-[35%] bg-gradient-to-b from-dark/70 via-dark/35 to-transparent pointer-events-none z-10" />
 
@@ -140,15 +262,6 @@ export function Hero() {
 
           {/* Derecho — cierra el borde del lado derecho */}
           <div className="absolute inset-y-0 right-0 w-[8%] bg-gradient-to-l from-dark/35 to-transparent pointer-events-none z-10" />
-
-          {/* Edge matte — integra halos claros del PNG al fondo oscuro */}
-          <div
-            className="absolute inset-0 pointer-events-none z-[15]"
-            style={{
-              boxShadow:
-                "inset 0 0 36px rgba(8,8,8,0.85), inset 0 0 90px rgba(8,8,8,0.35)",
-            }}
-          />
 
           {/* Brand warmth — conecta la foto con #FF6B00 */}
           <div
