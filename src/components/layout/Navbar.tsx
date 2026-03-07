@@ -14,6 +14,47 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+function MobileMenuIcon({ isOpen }: { isOpen: boolean }) {
+  const spring = {
+    type: "spring" as const,
+    stiffness: 430,
+    damping: 30,
+    mass: 0.7,
+  };
+
+  return (
+    <span className="relative block h-5 w-5" aria-hidden="true">
+      <motion.span
+        animate={
+          isOpen
+            ? { rotate: 45, y: 0, x: 0, width: 20 }
+            : { rotate: 0, y: -6, x: 0, width: 18 }
+        }
+        transition={spring}
+        className="absolute left-0 top-1/2 h-[2px] -translate-y-1/2 rounded-full bg-white origin-center"
+      />
+      <motion.span
+        animate={
+          isOpen
+            ? { opacity: 0, scaleX: 0.4, x: 8 }
+            : { opacity: 1, scaleX: 1, x: 4 }
+        }
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="absolute left-0 top-1/2 h-[2px] w-3 -translate-y-1/2 rounded-full bg-white origin-left"
+      />
+      <motion.span
+        animate={
+          isOpen
+            ? { rotate: -45, y: 0, x: 0, width: 20 }
+            : { rotate: 0, y: 6, x: 0, width: 14 }
+        }
+        transition={spring}
+        className="absolute left-0 top-1/2 h-[2px] -translate-y-1/2 rounded-full bg-white origin-center"
+      />
+    </span>
+  );
+}
+
 // Navbar coordinates section tracking, mobile navigation, and CV download from the global page chrome.
 export function Navbar() {
   const t = useTranslations("nav");
@@ -137,6 +178,7 @@ export function Navbar() {
 
     const previousOverflow = document.body.style.overflow;
     const previousPaddingRight = document.body.style.paddingRight;
+    const isDesktopViewport = window.innerWidth >= 768;
     const scrollbarWidth =
       window.innerWidth - document.documentElement.clientWidth;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -144,7 +186,7 @@ export function Navbar() {
     };
 
     document.body.style.overflow = "hidden";
-    if (scrollbarWidth > 0) {
+    if (isDesktopViewport && scrollbarWidth > 0) {
       document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
     window.addEventListener("keydown", onKeyDown);
@@ -240,169 +282,138 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          type="button"
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-nav-menu"
-          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-          className={cn(
-            "md:hidden relative z-[120] ml-auto inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-[14px] border bg-black/55 text-white backdrop-blur-md transition-all duration-250 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark",
-            isMobileMenuOpen
-              ? "border-brand/70 shadow-[0_0_24px_rgba(255,107,0,0.2),inset_0_0_0_1px_rgba(255,107,0,0.2)]"
-              : "border-white/22 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] hover:border-white/42",
-          )}
-          style={{
-            marginRight: "max(env(safe-area-inset-right), 16px)",
-          }}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          data-cursor="hover">
-          <span className="relative flex h-5 w-5 items-center justify-center">
-            <motion.span
-              animate={
-                isMobileMenuOpen ? { rotate: 45, y: 0, width: 20 } : { rotate: 0, y: -4, width: 20 }
-              }
-              transition={{ duration: 0.24, ease: "easeOut" }}
-              className="absolute left-0 h-[2px] rounded-full bg-white origin-center"
-            />
-            <motion.span
-              animate={
-                isMobileMenuOpen
-                  ? { rotate: -45, y: 0, x: 0, width: 20 }
-                  : { rotate: 0, y: 4, x: 4, width: 16 }
-              }
-              transition={{ duration: 0.24, ease: "easeOut" }}
-              className="absolute left-0 h-[2px] rounded-full bg-white origin-center"
-            />
-            <motion.span
-              animate={
-                isMobileMenuOpen
-                  ? { opacity: 0, scale: 0.5, x: 0, y: 0 }
-                  : { opacity: 1, scale: 1, x: -8, y: 4 }
-              }
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="absolute h-[5px] w-[5px] rounded-full bg-brand shadow-[0_0_10px_rgba(255,107,0,0.55)]"
-            />
-          </span>
-        </button>
+        {/* Mobile Toggle Placeholder (real toggle is fixed via portal to prevent viewport jumps) */}
+        <div className="md:hidden h-11 w-11" aria-hidden="true" />
       </div>
 
       {/* Mobile Menu Overlay */}
       {isClient
         ? createPortal(
-            <AnimatePresence>
-              {isMobileMenuOpen && (
-                <motion.div
-                  id="mobile-nav-menu"
-                  role="dialog"
-                  aria-modal="true"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.28, ease: "easeOut" }}
-                  className="fixed inset-0 z-[9999] isolate bg-black/98 md:hidden"
-                  onClick={() => setIsMobileMenuOpen(false)}>
+            <>
+              <button
+                type="button"
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-nav-menu"
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                className={cn(
+                  "md:hidden fixed inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-full bg-transparent text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark",
+                  isMobileMenuOpen ? "z-[10020]" : "z-[120]",
+                  isMobileMenuOpen ? "text-brand" : "text-white hover:text-brand",
+                )}
+                style={{
+                  right: "max(env(safe-area-inset-right), 24px)",
+                  top: "max(env(safe-area-inset-top), 10px)",
+                }}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                data-cursor="hover">
+                <MobileMenuIcon isOpen={isMobileMenuOpen} />
+              </button>
+
+              <AnimatePresence>
+                {isMobileMenuOpen && (
                   <motion.div
-                    initial={{ y: 24, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 24, opacity: 0 }}
+                    id="mobile-nav-menu"
+                    role="dialog"
+                    aria-modal="true"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.28, ease: "easeOut" }}
-                    className="relative flex h-full w-full flex-col items-center justify-center px-5 pt-[max(env(safe-area-inset-top),16px)] pb-[max(env(safe-area-inset-bottom),16px)]"
-                    onClick={(event) => event.stopPropagation()}>
-                    <button
-                      type="button"
-                      aria-label="Close menu"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="absolute inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/30 bg-black/70 text-white transition-colors duration-200 hover:border-brand/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
-                      style={{
-                        right: "max(env(safe-area-inset-right), 16px)",
-                        top: "max(env(safe-area-inset-top), 16px)",
-                      }}>
-                      <span className="text-2xl leading-none">&times;</span>
-                    </button>
-
+                    className="fixed inset-0 z-[9999] isolate bg-black/98 md:hidden"
+                    onClick={() => setIsMobileMenuOpen(false)}>
                     <motion.div
-                      initial="hidden"
-                      animate="visible"
-                      exit="hidden"
-                      variants={{
-                        hidden: {},
-                        visible: {
-                          transition: {
-                            delayChildren: 0.05,
-                            staggerChildren: 0.05,
+                      initial={{ y: 24, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: 24, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: "easeOut" }}
+                      className="relative flex h-full w-full flex-col items-center justify-center px-5 pt-[max(env(safe-area-inset-top),16px)] pb-[max(env(safe-area-inset-bottom),16px)]"
+                      onClick={(event) => event.stopPropagation()}>
+                      <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        variants={{
+                          hidden: {},
+                          visible: {
+                            transition: {
+                              delayChildren: 0.05,
+                              staggerChildren: 0.05,
+                            },
                           },
-                        },
-                      }}
-                      className="flex flex-col items-center gap-5">
-                      {navLinks.map((link, i) => {
-                        const sectionId = link.href.replace("#", "");
-                        const isActive = activeSection === sectionId;
-
-                        return (
-                          <motion.div
-                            key={link.href}
-                            variants={{
-                              hidden: { opacity: 0, y: 18 },
-                              visible: {
-                                opacity: 1,
-                                y: 0,
-                                transition: { duration: 0.28, ease: "easeOut" },
-                              },
-                            }}>
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setIsMobileMenuOpen(false);
-
-                                if (pathname === "/") {
-                                  scrollToSection(link.href);
-                                  return;
-                                }
-
-                                window.location.href = `/${locale}${link.href}`;
-                              }}
-                              className={cn(
-                                "flex min-h-11 items-center gap-4 px-3 py-3 font-display text-[2rem] leading-none font-bold transition-colors duration-200",
-                                isActive
-                                  ? "text-brand"
-                                  : "text-primary hover:text-brand",
-                              )}>
-                              <span className="text-white/25 text-xl font-mono">
-                                0{i + 1}
-                              </span>
-                              {link.name}
-                            </button>
-                          </motion.div>
-                        );
-                      })}
-                    </motion.div>
-
-                    <motion.div
-                      className="mt-10 flex items-center gap-8"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{
-                        duration: 0.28,
-                        ease: "easeOut",
-                        delay: 0.22,
-                      }}>
-                      <LocaleSwitcher />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setIsMobileMenuOpen(false);
-                          void handleCvDownload();
                         }}
-                        className="inline-flex min-h-11 items-center justify-center bg-brand text-dark px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
-                        {isDownloadingCv ? "Generating..." : t("resume")}
-                      </button>
+                        className="flex flex-col items-center gap-5">
+                        {navLinks.map((link, i) => {
+                          const sectionId = link.href.replace("#", "");
+                          const isActive = activeSection === sectionId;
+
+                          return (
+                            <motion.div
+                              key={link.href}
+                              variants={{
+                                hidden: { opacity: 0, y: 18 },
+                                visible: {
+                                  opacity: 1,
+                                  y: 0,
+                                  transition: {
+                                    duration: 0.28,
+                                    ease: "easeOut",
+                                  },
+                                },
+                              }}>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setIsMobileMenuOpen(false);
+
+                                  if (pathname === "/") {
+                                    scrollToSection(link.href);
+                                    return;
+                                  }
+
+                                  window.location.href = `/${locale}${link.href}`;
+                                }}
+                                className={cn(
+                                  "flex min-h-11 items-center gap-4 px-3 py-3 font-display text-[2rem] leading-none font-bold transition-colors duration-200",
+                                  isActive
+                                    ? "text-brand"
+                                    : "text-primary hover:text-brand",
+                                )}>
+                                <span className="text-white/25 text-xl font-mono">
+                                  0{i + 1}
+                                </span>
+                                {link.name}
+                              </button>
+                            </motion.div>
+                          );
+                        })}
+                      </motion.div>
+
+                      <motion.div
+                        className="mt-10 flex items-center gap-8"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{
+                          duration: 0.28,
+                          ease: "easeOut",
+                          delay: 0.22,
+                        }}>
+                        <LocaleSwitcher />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            void handleCvDownload();
+                          }}
+                          className="inline-flex min-h-11 items-center justify-center bg-brand text-dark px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
+                          {isDownloadingCv ? "Generating..." : t("resume")}
+                        </button>
+                      </motion.div>
                     </motion.div>
                   </motion.div>
-                </motion.div>
-              )}
-            </AnimatePresence>,
+                )}
+              </AnimatePresence>
+            </>,
             document.body,
           )
         : null}
