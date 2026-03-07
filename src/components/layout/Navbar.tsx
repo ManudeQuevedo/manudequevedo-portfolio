@@ -202,7 +202,7 @@ export function Navbar() {
                   window.location.href = `/${locale}${link.href}`;
                 }}
                 className={cn(
-                  "text-sm transition-all duration-300 ease-in-out relative py-2 px-4 hover:bg-white/5 rounded-sm",
+                  "group relative inline-flex min-h-11 items-center justify-center rounded-sm px-4 py-2 text-sm transition-all duration-300 ease-in-out hover:bg-white/5",
                   isActive
                     ? "text-brand font-medium"
                     : "text-secondary hover:text-primary",
@@ -227,7 +227,7 @@ export function Navbar() {
             type="button"
             onClick={handleCvDownload}
             disabled={isDownloadingCv}
-            className="border border-brand/50 text-brand px-6 py-2 rounded-sm text-xs font-bold hover:bg-brand hover:text-dark transition-all duration-300 uppercase tracking-wider"
+            className="inline-flex min-h-11 items-center justify-center border border-brand/50 text-brand px-6 py-2 rounded-sm text-xs font-bold hover:bg-brand hover:text-dark transition-all duration-300 uppercase tracking-wider"
             data-cursor="hover">
             {isDownloadingCv ? "Generating..." : t("resume")}
           </button>
@@ -240,9 +240,6 @@ export function Navbar() {
           aria-controls="mobile-nav-menu"
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           className="md:hidden relative z-[120] ml-auto inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-md border border-white/30 bg-black/70 text-white backdrop-blur-sm transition-colors duration-200 hover:border-brand/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
-          style={{
-            marginRight: "max(env(safe-area-inset-right), 16px)",
-          }}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           data-cursor="hover">
           <motion.span
@@ -285,7 +282,7 @@ export function Navbar() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 24, opacity: 0 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
-              className="relative flex h-full w-full flex-col items-center justify-center px-8 pt-[max(env(safe-area-inset-top),16px)] pb-[max(env(safe-area-inset-bottom),16px)]"
+              className="relative flex h-full w-full flex-col items-center justify-center px-5 pt-[max(env(safe-area-inset-top),16px)] pb-[max(env(safe-area-inset-bottom),16px)]"
               onClick={(event) => event.stopPropagation()}>
               <button
                 type="button"
@@ -325,9 +322,9 @@ export function Navbar() {
                           transition: { duration: 0.28, ease: "easeOut" },
                         },
                       }}>
-              <button
-                type="button"
-                onClick={() => {
+                      <button
+                        type="button"
+                        onClick={() => {
                           setIsMobileMenuOpen(false);
 
                           if (pathname === "/") {
@@ -338,7 +335,7 @@ export function Navbar() {
                           window.location.href = `/${locale}${link.href}`;
                         }}
                         className={cn(
-                          "font-display text-[2rem] leading-none font-bold transition-colors duration-200 py-3 px-3 flex min-h-11 items-center gap-4",
+                          "flex min-h-11 items-center gap-4 px-3 py-3 font-display text-[2rem] leading-none font-bold transition-colors duration-200",
                           isActive
                             ? "text-brand"
                             : "text-primary hover:text-brand",

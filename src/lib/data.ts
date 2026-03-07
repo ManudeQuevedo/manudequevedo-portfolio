@@ -344,7 +344,7 @@ export const projects: Project[] = [
     category: "ai",
     outcomeKey: "noctra_lcp",
     position: [2, -5, -15],
-    image: "/noctra.png",
+    image: "/noctra-studio.png",
     caseStudy: {
       overview:
         "Noctra Studio's own site had to function as a conversion asset, a trust layer, and a demonstration of technical depth for potential startup clients.",
@@ -432,7 +432,7 @@ export const projects: Project[] = [
     category: "web",
     outcomeKey: "portfolio_lighthouse",
     position: [5, 2, -5],
-    image: "/og-image.png",
+    image: "/manudequevedo.png",
     caseStudy: {
       overview:
         "This portfolio was designed as a proof-of-work system: every section demonstrates frontend craft, performance discipline, and product storytelling in a single experience.",
