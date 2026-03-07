@@ -5,9 +5,10 @@ import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { TextReveal } from "@/components/ui/TextReveal";
-import { projects } from "@/lib/data";
+import { projects, type Project } from "@/lib/data";
 import Image from "next/image";
 import { SectionContainer } from "@/components/layout/SectionContainer";
+import { useCaseStudyModal } from "@/components/providers/CaseStudyModalProvider";
 
 export function Projects() {
   const t = useTranslations("projects");
@@ -43,13 +44,18 @@ function ProjectCard({
   index,
   total,
 }: {
-  project: any;
+  project: Project;
   index: number;
   total: number;
 }) {
   const t = useTranslations("projects");
+  const modalT = useTranslations("projects.modal");
+  const { openModal } = useCaseStudyModal();
   const cardRef = useRef<HTMLDivElement>(null);
-  const hasLiveLink = Boolean(project.link && project.link !== "#");
+  const liveLink = project.link && project.link !== "#" ? project.link : null;
+  const outcomeText = project.outcomeKey
+    ? t(`outcomes.${project.outcomeKey}`)
+    : null;
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -69,6 +75,16 @@ function ProjectCard({
       <motion.div
         whileHover="hover"
         initial="rest"
+        onClick={(event) => openModal(project, event.currentTarget)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openModal(project, event.currentTarget);
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label={modalT("open_case_study_aria", { project: project.title })}
         className="relative h-[34vh] sm:h-[40vh] md:h-full bg-dark-3 overflow-hidden group border-b md:border-b-0 md:border-r border-white/5"
         data-cursor="project">
         <Image
@@ -127,9 +143,16 @@ function ProjectCard({
               hover: { opacity: 1, scale: 1 },
             }}
             transition={{ duration: 0.3, delay: 0.25, ease: "easeOut" }}>
-            <span className="bg-brand text-dark font-mono text-xs px-6 py-2 rounded-full font-bold uppercase tracking-wider shadow-lg">
-              VER PROYECTO →
-            </span>
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                openModal(project, event.currentTarget);
+              }}
+              className="bg-brand text-dark font-mono text-xs px-6 py-2 rounded-full font-bold uppercase tracking-wider shadow-lg pointer-events-auto cursor-pointer hover:bg-brand/90 active:scale-95 group-hover:shadow-[0_0_20px_var(--brand-glow)] transition-all duration-150"
+              aria-label={modalT("open_case_study_aria", { project: project.title })}>
+              {modalT("view_case_study")} →
+            </button>
           </motion.div>
         </div>
 
@@ -186,8 +209,31 @@ function ProjectCard({
             </div>
           )}
 
+          {outcomeText && (
+            <div className="flex flex-col gap-1.5 border-l-2 border-brand/50 pl-4 mb-8">
+              <span className="text-[10px] uppercase tracking-widest text-brand font-bold">
+                {t("outcome_label")}
+              </span>
+              <p className="text-sm text-primary leading-relaxed max-w-sm">
+                {outcomeText}
+              </p>
+            </div>
+          )}
+
+          <button
+            type="button"
+            onClick={(event) => openModal(project, event.currentTarget)}
+            className="group/btn inline-flex items-center gap-2 text-xs font-mono text-brand border border-brand/20 bg-brand/5 hover:bg-brand/10 hover:border-brand/40 rounded-full px-4 py-2 transition-all duration-200 cursor-pointer mb-8"
+            data-cursor="hover"
+            aria-label={modalT("open_case_study_aria", { project: project.title })}>
+            <span>{modalT("view_case_study")}</span>
+            <span className="group-hover/btn:translate-x-0.5 transition-transform duration-150">
+              →
+            </span>
+          </button>
+
           <div className="flex flex-wrap gap-2 mb-12">
-            {project.tags.map((tag: any) => (
+            {project.tags.map((tag) => (
               <span
                 key={tag}
                 className="px-3 py-1 bg-white/5 border border-white/5 rounded-sm text-[10px] text-tertiary">
@@ -198,9 +244,9 @@ function ProjectCard({
         </div>
 
         <div className="flex items-center gap-8">
-          {hasLiveLink && (
+          {liveLink && (
             <a
-              href={project.link}
+              href={liveLink}
               target="_blank"
               rel="noreferrer"
               className="text-primary hover:text-brand text-sm font-medium flex items-center gap-2 group transition-colors"

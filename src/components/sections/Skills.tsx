@@ -1,112 +1,163 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { skills } from "@/lib/data";
 import { SectionContainer } from "@/components/layout/SectionContainer";
 
-interface Skill {
+type SkillCategory = keyof typeof skills;
+type LevelKey = "expert" | "proficient" | "familiar";
+
+interface SkillItem {
   name: string;
-  level: string | null;
-  context: string | null;
+  icon: string;
+  level: "Expert" | "Proficient" | "Familiar";
+  description: string;
+  category: string;
+  categoryKey: SkillCategory;
+  levelKey: LevelKey;
 }
 
-const CategoryIcon = ({ name }: { name: string }) => {
-  switch (name) {
-    case "frontend":
-      return (
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-          />
-        </svg>
-      );
-    case "cloud":
-      return (
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
-          />
-        </svg>
-      );
-    case "security":
-      return (
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-          />
-        </svg>
-      );
-    case "ai":
-      return (
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M13 10V3L4 14h7v7l9-11h-7z"
-          />
-        </svg>
-      );
-    case "tools":
-      return (
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-          />
-        </svg>
-      );
-    default:
-      return null;
-  }
+const skillIconSlugs: Record<string, string> = {
+  React: "react",
+  "Next.js": "nextdotjs",
+  TypeScript: "typescript",
+  TailwindCSS: "tailwindcss",
+  "Framer Motion": "framer",
+  GSAP: "greensock",
+  "JavaScript ES6+": "javascript",
+  Figma: "figma",
+  A11y: "w3c",
+  "Performance Optimization": "lighthouse",
+  AWS: "amazonwebservices",
+  "Cloudflare Workers": "cloudflareworkers",
+  Docker: "docker",
+  "Serverless (Lambda)": "awslambda",
+  "Kubernetes (basic)": "kubernetes",
+  "CDN (CloudFront)": "amazoncloudfront",
+  "OWASP Top 10": "owasp",
+  "Content Security Policy": "letsencrypt",
+  XSS: "snyk",
+  CSRF: "securityscorecard",
+  "Penetration Testing Basics": "kalilinux",
+  "Prompt Engineering": "openai",
+  "LLM API Integration": "openai",
+  "AI Workflow Automation": "n8n",
+  Git: "git",
+  "VS Code": "visualstudiocode",
+  Cursor: "cursor",
+  Vercel: "vercel",
+  Supabase: "supabase",
+  PostgreSQL: "postgresql",
+  MongoDB: "mongodb",
 };
+
+const skillCategories = Object.keys(skills) as SkillCategory[];
+
+function getSimpleIconUrl(skillName: string) {
+  const slug = skillIconSlugs[skillName] ?? "codefactor";
+  return `https://cdn.simpleicons.org/${slug}/FAFAFA`;
+}
+
+function mapSkillLevel(level: string | null): LevelKey {
+  if (level === "expert") return "expert";
+  if (level === "proficient") return "proficient";
+  return "familiar";
+}
+
+function formatFallbackLetters(name: string) {
+  return (
+    name
+      .split(/[.\s/()+-]+/)
+      .filter(Boolean)
+      .map((chunk) => chunk[0])
+      .join("")
+      .slice(0, 3)
+      .toUpperCase() || "SK"
+  );
+}
+
+function SkillIcon({ name, src }: { name: string; src: string }) {
+  const [failed, setFailed] = useState(false);
+  const fallbackLetters = formatFallbackLetters(name);
+
+  return (
+    <div className="h-12 w-12 rounded-md border border-white/5 bg-dark/70 flex items-center justify-center overflow-hidden">
+      {!failed ? (
+        <img
+          src={src}
+          alt={name}
+          loading="lazy"
+          onError={() => setFailed(true)}
+          className="h-7 w-7 object-contain transition-transform duration-200 ease-out group-hover:scale-[1.15] group-focus-visible:scale-[1.15]"
+        />
+      ) : (
+        <span className="text-[11px] font-mono font-semibold tracking-wider text-secondary transition-transform duration-200 ease-out group-hover:scale-[1.15] group-focus-visible:scale-[1.15]">
+          {fallbackLetters}
+        </span>
+      )}
+    </div>
+  );
+}
+
+function getLevelTone(level: LevelKey) {
+  if (level === "expert") {
+    return { dot: "bg-brand", text: "text-brand" };
+  }
+  if (level === "proficient") {
+    return { dot: "bg-primary", text: "text-primary" };
+  }
+  return { dot: "bg-tertiary", text: "text-secondary" };
+}
 
 export function Skills() {
   const t = useTranslations("skills");
-  const [activeTab, setActiveTab] = useState("frontend");
+  const [activeCategory, setActiveCategory] = useState<"all" | SkillCategory>(
+    "all",
+  );
 
-  const categories = Object.entries(skills);
+  const levelLabels = useMemo(
+    () => ({
+      expert: t("levels.expert"),
+      proficient: t("levels.proficient"),
+      familiar: t("levels.familiar"),
+    }),
+    [t],
+  );
+
+  const skillItems = useMemo(() => {
+    const items: SkillItem[] = [];
+    skillCategories.forEach((categoryKey) => {
+      skills[categoryKey].forEach((skill) => {
+        const levelKey = mapSkillLevel(skill.level);
+        const level =
+          levelKey === "expert"
+            ? "Expert"
+            : levelKey === "proficient"
+              ? "Proficient"
+              : "Familiar";
+
+        items.push({
+          name: skill.name,
+          icon: getSimpleIconUrl(skill.name),
+          level,
+          description: skill.context ?? t("fallback_context"),
+          category: t(`categories.${categoryKey}`),
+          categoryKey,
+          levelKey,
+        });
+      });
+    });
+    return items;
+  }, [t]);
+
+  const filteredSkills =
+    activeCategory === "all"
+      ? skillItems
+      : skillItems.filter((skill) => skill.categoryKey === activeCategory);
 
   return (
     <SectionContainer
@@ -114,146 +165,92 @@ export function Skills() {
       className="py-20 md:py-32 bg-dark-2 border-y border-white/5">
       <SectionLabel label={t("label")} />
       <h2
-        className="font-display text-4xl md:text-6xl font-bold mb-12 md:mb-32 max-w-2xl"
+        className="font-display text-4xl md:text-6xl font-bold mb-12 md:mb-20 max-w-2xl"
         aria-label={t("headline")}>
         <TextReveal text={t("headline")} delay={0.2} />
       </h2>
 
-      <div className="flex flex-col md:flex-row border border-white/5 bg-dark rounded-xl md:rounded-2xl overflow-hidden min-h-[500px]">
-        {/* Left Panel: Tabs */}
-        <div className="w-full md:w-[40%] grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-col border-b md:border-b-0 md:border-r border-white/5 bg-dark-3/50">
-          {categories.map(([category, items]) => {
-            const isActive = activeTab === category;
+      <div className="mb-10 flex flex-wrap items-center gap-2 md:gap-3">
+        <button
+          type="button"
+          onClick={() => setActiveCategory("all")}
+          className={`px-4 py-2 text-[11px] md:text-xs uppercase tracking-[0.16em] font-semibold rounded-full border transition-all duration-200 ${
+            activeCategory === "all"
+              ? "bg-brand text-dark border-brand"
+              : "border-white/10 text-secondary bg-white/[0.02] hover:border-brand/40 hover:text-white"
+          }`}>
+          {t("all")}
+        </button>
+        {skillCategories.map((category) => (
+          <button
+            key={category}
+            type="button"
+            onClick={() => setActiveCategory(category)}
+            className={`px-4 py-2 text-[11px] md:text-xs uppercase tracking-[0.16em] font-semibold rounded-full border transition-all duration-200 ${
+              activeCategory === category
+                ? "bg-brand text-dark border-brand"
+                : "border-white/10 text-secondary bg-white/[0.02] hover:border-brand/40 hover:text-white"
+            }`}>
+            {t(`categories.${category}`)}
+          </button>
+        ))}
+      </div>
+
+      <motion.div
+        layout
+        className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3 sm:gap-4">
+        <AnimatePresence mode="popLayout">
+          {filteredSkills.map((skill, index) => {
+            const levelTone = getLevelTone(skill.levelKey);
+
             return (
-              <button
-                key={category}
-                onClick={() => setActiveTab(category)}
-                className={`flex items-center gap-4 px-5 sm:px-6 md:px-8 py-4 md:py-5 transition-all duration-300 text-left relative ${
-                  isActive
-                    ? "bg-dark-2 text-primary border-l-2 md:border-l-4 border-l-brand"
-                    : "text-tertiary hover:text-secondary border-l-2 md:border-l-4 border-transparent hover:bg-white/5"
-                }`}>
-                <div className={isActive ? "text-brand" : "text-tertiary"}>
-                  <CategoryIcon name={category} />
+              <motion.button
+                type="button"
+                layout
+                key={`${skill.categoryKey}-${skill.name}`}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.03,
+                  ease: "easeOut",
+                }}
+                className="group relative flex flex-col items-center justify-center min-h-[108px] px-2 py-4 rounded-lg border border-white/5 bg-dark/70 hover:border-brand/35 hover:bg-dark-3/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand/60 transition-colors duration-200">
+                <div className="pointer-events-none absolute left-1/2 top-0 z-20 w-52 -translate-x-1/2 -translate-y-[115%] rounded-md border border-[color:var(--border-muted)] bg-[var(--bg-3)] px-3 py-2.5 text-left shadow-[0_10px_30px_rgba(0,0,0,0.35)] opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0 transition-all duration-200">
+                  <div className="font-display text-sm font-semibold text-primary leading-tight">
+                    {skill.name}
+                  </div>
+                  <div className="mt-1.5 flex items-center gap-2">
+                    <span className={`h-2 w-2 rounded-full ${levelTone.dot}`} />
+                    <span
+                      className={`text-[10px] uppercase tracking-[0.14em] font-mono ${levelTone.text}`}>
+                      {levelLabels[skill.levelKey]}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-xs text-secondary leading-snug">
+                    {skill.description}
+                  </p>
                 </div>
-                <div className="flex flex-col">
-                  <h4 className="font-display text-sm font-bold tracking-[0.15em] uppercase">
-                    {t(`categories.${category}`)}
-                  </h4>
-                  <span className="text-[10px] font-mono tracking-widest uppercase mt-0.5 opacity-60">
-                    {items.length} Skills
-                  </span>
-                </div>
-              </button>
+
+                <SkillIcon name={skill.name} src={skill.icon} />
+                <span className="mt-2 text-[10px] md:text-[11px] text-secondary text-center leading-tight px-1">
+                  {skill.name}
+                </span>
+              </motion.button>
             );
           })}
-        </div>
-
-        {/* Right Panel: Tab Content */}
-        <div className="w-full md:w-[60%] p-6 md:p-12 relative overflow-hidden bg-dark">
-          <AnimatePresence mode="wait">
-            {categories.map(
-              ([category, items]) =>
-                activeTab === category && (
-                  <motion.div
-                    key={category}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="h-full flex flex-col">
-                    <h3 className="font-display text-2xl md:text-3xl font-bold mb-12 text-primary uppercase tracking-wide">
-                      {t(`categories.${category}`)}
-                    </h3>
-
-                    <ul className="space-y-6 flex-1">
-                      {items
-                        .filter((s) => (s as any).level)
-                        .map((skill, i) => (
-                          <li key={skill.name} className="flex flex-col gap-2">
-                            <div className="flex items-center justify-between w-full">
-                              <span className="text-sm md:text-base font-medium text-secondary">
-                                {skill.name}
-                              </span>
-                              <span
-                                className={`text-[10px] md:text-xs uppercase tracking-wider font-bold ${
-                                  skill.level === "expert"
-                                    ? "text-brand"
-                                    : skill.level === "proficient"
-                                      ? "text-brand/70"
-                                      : "text-tertiary"
-                                }`}>
-                                {skill.level}
-                              </span>
-                            </div>
-
-                            {skill.context && (
-                              <span className="text-xs text-tertiary/80 leading-snug">
-                                {skill.context}
-                              </span>
-                            )}
-
-                            {/* Progress Bar Container */}
-                            <div className="h-[2px] bg-white/5 w-full mt-1 overflow-hidden relative rounded-full">
-                              {/* The animated fill */}
-                              <motion.div
-                                initial={{ width: "0%" }}
-                                animate={{
-                                  width:
-                                    skill.level === "expert"
-                                      ? "100%"
-                                      : skill.level === "proficient"
-                                        ? "70%"
-                                        : "40%",
-                                }}
-                                transition={{
-                                  duration: 0.6,
-                                  delay: i * 0.05,
-                                  ease: "easeOut",
-                                }}
-                                className={`absolute top-0 left-0 h-full origin-left rounded-full ${
-                                  skill.level === "expert"
-                                    ? "bg-brand"
-                                    : skill.level === "proficient"
-                                      ? "bg-brand/80"
-                                      : "bg-tertiary/50"
-                                }`}
-                              />
-                            </div>
-                          </li>
-                        ))}
-                    </ul>
-
-                    {/* Secondary Skills Tags */}
-                    {items.filter((s) => !(s as any).level).length > 0 && (
-                      <div className="mt-8 pt-6 border-t border-white/5">
-                        <div className="flex flex-wrap gap-2">
-                          {items
-                            .filter((s) => !(s as any).level)
-                            .map((skill) => (
-                              <span
-                                key={skill.name}
-                                className="text-[10px] font-mono text-tertiary px-3 py-1.5 bg-white/5 border border-white/5 rounded-full cursor-default">
-                                {skill.name}
-                              </span>
-                            ))}
-                        </div>
-                      </div>
-                    )}
-                  </motion.div>
-                ),
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
+        </AnimatePresence>
+      </motion.div>
 
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        className="mt-24 text-center text-sm text-tertiary italic font-body">
-        {t("categories.tools") === "Tools"
-          ? "(Open to learning new technologies and adapting quickly to change.)"
-          : "(Abierto a aprender nuevas tecnologías y adaptarme rápidamente al cambio.)"}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="mt-20 text-center text-sm text-tertiary italic font-body">
+        {t("footnote")}
       </motion.p>
     </SectionContainer>
   );

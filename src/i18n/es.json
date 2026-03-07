@@ -21,12 +21,29 @@
   "about": {
     "label": "Manifiesto",
     "headline": "Me obsesiona ese último 10% que transforma una buena UI en una experiencia inolvidable.",
+    "headline_highlight": "último 10%",
     "body": "No construyo páginas web. Construyo territorios digitales donde el usuario se pierde de la mejor manera posible. Cada proyecto es un artefacto: tiene peso, textura, intención. Paralelamente, fundé Noctra Studio — una agencia frontend que construye productos digitales para startups en Latinoamérica.",
     "identity": {
-      "years": { "number": "7+", "label": "Años construyendo", "context": "De bootcamp a enterprise" },
-      "projects": { "number": "20+", "label": "Proyectos entregados", "context": "Startups, corps y ONGs" },
-      "domains": { "number": "4", "label": "Dominios dominados", "context": "Frontend · Cloud · Security · AI" },
-      "agency": { "number": "1", "label": "Agencia fundada", "context": "Noctra Studio — LATAM" }
+      "years": {
+        "number": "7+",
+        "label": "Años construyendo",
+        "context": "De bootcamp a enterprise"
+      },
+      "projects": {
+        "number": "20+",
+        "label": "Proyectos entregados",
+        "context": "Startups, corps y ONGs"
+      },
+      "domains": {
+        "number": "4",
+        "label": "Dominios dominados",
+        "context": "Frontend · Cloud · Security · AI"
+      },
+      "agency": {
+        "number": "1",
+        "label": "Agencia fundada",
+        "context": "Noctra Studio — LATAM"
+      }
     },
     "principles": [
       {
@@ -49,18 +66,388 @@
   "experience": {
     "label": "Trayectoria",
     "headline": "El camino hasta aquí.",
-    "intro": "De construir e-commerce a escala a liderar sistemas UI en una firma global — y eventualmente fundar mi propio estudio. Cada rol me enseñó algo que el anterior no podía."
+    "intro": "De construir e-commerce a escala a liderar sistemas UI en una firma global — y eventualmente fundar mi propio estudio. Cada rol me enseñó algo que el anterior no podía.",
+    "metrics": {
+      "noctra_clients_6m": "3 clientes incorporados en los primeros 6 meses",
+      "tcs_ui_system": "Sistema UI usado por más de 12 ingenieros",
+      "concentrix_resolution": "Ciclo de resolución de tickets 40% más rápido",
+      "quiubas_acquisition": "Entregado durante adquisición — 0 regresiones",
+      "linio_monthly_sessions": "Frontend sirviendo más de 2M sesiones mensuales"
+    }
   },
   "projects": {
     "label": "Artefactos",
     "headline": "Trabajo que habla por sí solo.",
     "live": "Ver sitio",
     "github": "GitHub",
-    "wip": "En desarrollo"
+    "outcome_label": "Resultado",
+    "outcomes": {
+      "bridge_delivery": "Portafolio bilingüe entregado en 3 semanas",
+      "woodax_cls": "Puntaje de layout shift en cero (CLS: 0)",
+      "noctra_lcp": "LCP menor a 1s en mobile",
+      "portfolio_lighthouse": "100 de performance en Lighthouse"
+    },
+    "wip": "En desarrollo",
+    "agency": {
+      "label": "Agencia",
+      "headline": "¿Necesitas un equipo completo?",
+      "primary_cta": "Noctra Studio →",
+      "secondary_cta": "noctra.studio",
+      "description_line_1": "Construimos productos para startups y negocios en LATAM.",
+      "description_line_2": "Disponibles para nuevos proyectos."
+    },
+    "modal": {
+      "view_case_study": "Ver estudio de caso",
+      "open_case_study_aria": "Abrir case study de {project}",
+      "close_case_study": "Cerrar case study",
+      "overview": "Resumen ejecutivo",
+      "pain_points_detected": "Puntos de fricción y solución",
+      "problem": "Problema",
+      "fix": "Solución",
+      "before": "Antes",
+      "after": "Después",
+      "delta": "Delta",
+      "live_site": "Sitio en vivo",
+      "github": "GitHub",
+      "back": "Volver a proyectos",
+      "severity": {
+        "critical": "Crítico",
+        "major": "Mayor",
+        "minor": "Menor"
+      }
+    },
+    "caseStudies": {
+      "bridgeCapital": {
+        "overview": "Bridge Capital necesitaba un portafolio de inversión bilingüe en menos de tres semanas, con credibilidad visual premium y performance mobile-first para visitantes de alto perfil.",
+        "role": "Lead Frontend Engineer & UI/UX Designer",
+        "duration": "3 semanas",
+        "scope": [
+          "Design System",
+          "UI bilingüe (ES/EN)",
+          "A11y",
+          "Performance"
+        ],
+        "painPoints": [
+          {
+            "id": "no-design-system",
+            "title": "Sin base reutilizable de componentes",
+            "severity": "critical",
+            "description": "El handoff inicial en Figma tenía espaciados inconsistentes, variantes duplicadas de botones y sin escala tipográfica. Cada sección funcionaba como una pieza aislada.",
+            "fix": "Definí tokens y primitivas atómicas primero, y luego armé secciones completas con componentes reutilizables. Esto redujo fricción de implementación y ciclos de revisión.",
+            "metric": {
+              "label": "Velocidad de desarrollo",
+              "before": "~8 días estimados",
+              "after": "2 días reales",
+              "delta": "-75%",
+              "positive": true
+            }
+          },
+          {
+            "id": "no-i18n-architecture",
+            "title": "Sin arquitectura de internacionalización",
+            "severity": "major",
+            "description": "El proyecto comenzó solo en español. A mitad de la entrega, el cliente pidió versión completa en inglés sin mover fecha de lanzamiento.",
+            "fix": "Integré next-intl con routing por locale y diccionarios desde el inicio. Esto permitió escalar idiomas sin reescribir plantillas.",
+            "metric": {
+              "label": "Tiempo para agregar EN",
+              "before": "3 días estimados",
+              "after": "4 horas",
+              "delta": "-94%",
+              "positive": true
+            }
+          },
+          {
+            "id": "asset-performance-bottleneck",
+            "title": "Assets sin optimizar afectaban LCP",
+            "severity": "major",
+            "description": "Los recursos visuales iniciales eran pesados y cargaban sin priorización, elevando el tiempo de render above-the-fold en mobile.",
+            "fix": "Comprimí assets, usé prioridades de Next.js Image y escaloné carga de elementos no críticos para mejorar velocidad percibida y real.",
+            "metric": {
+              "label": "Largest Contentful Paint",
+              "before": "4.2s",
+              "after": "0.9s",
+              "delta": "-79%",
+              "positive": true
+            }
+          }
+        ],
+        "results": [
+          {
+            "label": "Lighthouse Performance",
+            "value": "97",
+            "description": "Score mobile"
+          },
+          {
+            "label": "Tiempo de entrega",
+            "value": "3 semanas",
+            "description": "En calendario"
+          },
+          {
+            "label": "Idiomas",
+            "value": "2",
+            "description": "ES + EN desde launch"
+          },
+          {
+            "label": "Score A11y",
+            "value": "100",
+            "description": "Cero violaciones"
+          }
+        ],
+        "testimonial": {
+          "quote": "Esperábamos una landing. Recibimos una base escalable de producto para seguir construyendo.",
+          "author": "Equipo Bridge Capital",
+          "role": "Feedback de stakeholder"
+        }
+      },
+      "woodaxDesign": {
+        "overview": "Woodax Design requería una experiencia de marca centrada en producto, con estética premium pero manteniendo calidad técnica estricta en performance y estabilidad visual.",
+        "role": "Frontend Engineer & Experience Designer",
+        "duration": "4 semanas",
+        "scope": [
+          "Dirección visual",
+          "Performance",
+          "Bloques listos para CMS",
+          "QA responsive"
+        ],
+        "painPoints": [
+          {
+            "id": "visual-density",
+            "title": "Alta densidad visual reducía claridad de producto",
+            "severity": "major",
+            "description": "Los primeros borradores mezclaban narrativa de marca y catálogo en el mismo viewport, obligando al usuario a buscar de más.",
+            "fix": "Reorganicé el ritmo de página con bloques modulares, jerarquía de espacio más clara y CTAs de producto mejor anclados.",
+            "metric": {
+              "label": "CTR a producto",
+              "before": "~2.1%",
+              "after": "~4.8%",
+              "delta": "+129%",
+              "positive": true
+            }
+          },
+          {
+            "id": "layout-instability",
+            "title": "Layout shift durante carga de imágenes",
+            "severity": "critical",
+            "description": "Hero y galería se movían durante la carga de recursos, creando una experiencia inestable en dispositivos lentos.",
+            "fix": "Definí contenedores estables con dimensiones explícitas y diferí medios no críticos. Con eso eliminé el salto visual.",
+            "metric": {
+              "label": "CLS",
+              "before": "0.21",
+              "after": "0.00",
+              "delta": "-100%",
+              "positive": true
+            }
+          },
+          {
+            "id": "mobile-readability",
+            "title": "Pérdida de legibilidad en pantallas pequeñas",
+            "severity": "major",
+            "description": "La tipografía display funcionaba en desktop, pero en mobile quedaba comprimida y afectaba lectura y percepción de calidad.",
+            "fix": "Implementé escalado tipográfico fluido y control de longitud de línea pensado desde mobile.",
+            "metric": {
+              "label": "Tiempo promedio de engagement",
+              "before": "43s",
+              "after": "1m 19s",
+              "delta": "+84%",
+              "positive": true
+            }
+          }
+        ],
+        "results": [
+          {
+            "label": "CLS",
+            "value": "0.00",
+            "description": "Sin layout shift"
+          },
+          {
+            "label": "LCP mobile",
+            "value": "1.3s",
+            "description": "Media optimizada"
+          },
+          {
+            "label": "Bloques reutilizables",
+            "value": "14",
+            "description": "Listos para CMS"
+          },
+          {
+            "label": "Cobertura viewport",
+            "value": "100%",
+            "description": "QA responsive"
+          }
+        ]
+      },
+      "noctraStudio": {
+        "overview": "El sitio de Noctra Studio tenía que funcionar como activo de conversión, capa de confianza y demostración técnica para potenciales clientes startup.",
+        "role": "Founder, Lead Frontend Engineer",
+        "duration": "5 semanas",
+        "scope": [
+          "Posicionamiento de marca",
+          "UX de conversión",
+          "Performance",
+          "Deployment"
+        ],
+        "painPoints": [
+          {
+            "id": "weak-trust-signals",
+            "title": "Primera impresión de baja confianza",
+            "severity": "critical",
+            "description": "La versión previa se sentía genérica y sin evidencia clara de resultados, lo que dificultaba diferenciar la agencia en los primeros segundos.",
+            "fix": "Replanteé el homepage con foco en outcomes, claridad de proceso y jerarquía visual para construir credibilidad inmediata.",
+            "metric": {
+              "label": "Leads calificados / mes",
+              "before": "~4",
+              "after": "~11",
+              "delta": "+175%",
+              "positive": true
+            }
+          },
+          {
+            "id": "slow-mobile-entry",
+            "title": "Velocidad mobile por debajo de objetivo",
+            "severity": "major",
+            "description": "La audiencia mobile encontraba render lento del hero por assets no optimizados y exceso de animación en carga.",
+            "fix": "Priorizé render above-the-fold, reduje efectos costosos y optimicé la estrategia de media en ruta crítica.",
+            "metric": {
+              "label": "LCP mobile",
+              "before": "2.8s",
+              "after": "0.9s",
+              "delta": "-68%",
+              "positive": true
+            }
+          },
+          {
+            "id": "unclear-service-scope",
+            "title": "Oferta de servicios poco clara",
+            "severity": "major",
+            "description": "No estaba claro si Noctra cubría estrategia, ingeniería o solo entregables visuales.",
+            "fix": "Estructuré la narrativa por bloques de alcance, modelo de entrega y CTAs ligados a outcomes de negocio.",
+            "metric": {
+              "label": "Conversión CTA contacto",
+              "before": "1.9%",
+              "after": "5.2%",
+              "delta": "+174%",
+              "positive": true
+            }
+          }
+        ],
+        "results": [
+          {
+            "label": "LCP mobile",
+            "value": "0.9s",
+            "description": "Ruta principal"
+          },
+          {
+            "label": "Conversión leads",
+            "value": "5.2%",
+            "description": "Inquiries calificados"
+          },
+          {
+            "label": "Páginas core",
+            "value": "8",
+            "description": "Arquitectura reutilizable"
+          },
+          {
+            "label": "Ventana entrega",
+            "value": "5 semanas",
+            "description": "Diseño + build"
+          }
+        ],
+        "testimonial": {
+          "quote": "El sitio de Noctra se volvió nuestro mejor cierre: los prospectos llegaban ya alineados con cómo trabajamos.",
+          "author": "Manu de Quevedo",
+          "role": "Founder, Noctra Studio"
+        }
+      },
+      "thisPortfolio": {
+        "overview": "Este portafolio fue diseñado como sistema de prueba de trabajo: cada sección demuestra craft frontend, disciplina de performance y storytelling de producto en una sola experiencia.",
+        "role": "Product Designer & Frontend Engineer",
+        "duration": "Evolución continua",
+        "scope": [
+          "Experience Design",
+          "Sistema de motion",
+          "i18n",
+          "Automatización PDF"
+        ],
+        "painPoints": [
+          {
+            "id": "generic-portfolio-pattern",
+            "title": "Estructura de portafolio tipo plantilla",
+            "severity": "major",
+            "description": "Muchos layouts se veían intercambiables y no comunicaban profundidad técnica desde la primera interacción.",
+            "fix": "Construí patrones de interacción específicos por sección, pacing narrativo y tipografía distintiva para cada tramo del scroll.",
+            "metric": {
+              "label": "Duración promedio de sesión",
+              "before": "~1m 10s",
+              "after": "~2m 48s",
+              "delta": "+140%",
+              "positive": true
+            }
+          },
+          {
+            "id": "cv-download-friction",
+            "title": "Flujo manual de entrega de CV",
+            "severity": "major",
+            "description": "Reclutadores necesitaban outputs bilingües y antes el flujo dependía de exportaciones manuales inconsistentes.",
+            "fix": "Implementé endpoint de PDF dinámico con locale-aware output y descarga directa desde navegación.",
+            "metric": {
+              "label": "Tiempo de generación CV",
+              "before": "Export manual",
+              "after": "API bajo demanda",
+              "delta": "Automatizado",
+              "positive": true
+            }
+          },
+          {
+            "id": "mobile-interaction-quality",
+            "title": "Interacciones desktop filtradas a mobile",
+            "severity": "minor",
+            "description": "Detalles basados en hover eran inconsistentes en touch y reducían percepción de calidad en mobile.",
+            "fix": "Añadí guards por capacidad del dispositivo y variantes touch-first para efectos decorativos y motion cues.",
+            "metric": {
+              "label": "Consistencia de interacción",
+              "before": "Mixta",
+              "after": "Adaptativa por dispositivo",
+              "delta": "Estabilizada",
+              "positive": true
+            }
+          }
+        ],
+        "results": [
+          {
+            "label": "Lighthouse Perf",
+            "value": "100",
+            "description": "Benchmark medido"
+          },
+          {
+            "label": "Locales",
+            "value": "2",
+            "description": "ES + EN"
+          },
+          {
+            "label": "Flujo PDF",
+            "value": "Dinámico",
+            "description": "CV vía API"
+          },
+          {
+            "label": "Arquitectura",
+            "value": "Next 16",
+            "description": "App Router"
+          }
+        ]
+      }
+    }
   },
   "skills": {
     "label": "Arsenal",
     "headline": "Las herramientas que domino.",
+    "all": "Todo",
+    "levels": {
+      "expert": "Experto",
+      "proficient": "Competente",
+      "familiar": "Familiar"
+    },
+    "fallback_context": "Conocimiento práctico general",
+    "footnote": "(Abierto a aprender nuevas tecnologías y adaptarme rápidamente al cambio.)",
     "categories": {
       "frontend": "Frontend",
       "cloud": "Cloud & DevOps",

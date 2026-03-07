@@ -110,8 +110,8 @@ export function Hero() {
         style={{
           scale: photoScale,
           perspective: 1000,
-          mixBlendMode: "luminosity",
-          filter: "grayscale(40%) contrast(1.05) brightness(0.85)",
+          mixBlendMode: "normal",
+          filter: "grayscale(20%) contrast(1.04) brightness(1)",
         }}>
         <div className="relative h-full w-full pointer-events-none overflow-hidden">
           {/* Photo Parallax Wrapper */}
@@ -134,16 +134,16 @@ export function Hero() {
           </motion.div>
 
           {/* Izquierdo — más ancho para separar texto de foto */}
-          <div className="absolute inset-y-0 left-0 w-[52%] bg-gradient-to-r from-dark via-dark/70 to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-y-0 left-0 w-[52%] bg-gradient-to-r from-dark/85 via-dark/45 to-transparent pointer-events-none z-10" />
 
           {/* Superior — el que faltaba, elimina el borde duro de la cabeza */}
-          <div className="absolute inset-x-0 top-0 h-[35%] bg-gradient-to-b from-dark via-dark/60 to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-x-0 top-0 h-[35%] bg-gradient-to-b from-dark/70 via-dark/35 to-transparent pointer-events-none z-10" />
 
           {/* Inferior */}
-          <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-dark via-dark/60 to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-dark/70 via-dark/35 to-transparent pointer-events-none z-10" />
 
           {/* Derecho — cierra el borde del lado derecho */}
-          <div className="absolute inset-y-0 right-0 w-[8%] bg-gradient-to-l from-dark/60 to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-y-0 right-0 w-[8%] bg-gradient-to-l from-dark/35 to-transparent pointer-events-none z-10" />
 
           {/* Brand warmth — conecta la foto con #FF6B00 */}
           <div
@@ -274,27 +274,6 @@ export function Hero() {
         )}
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: isSkipped ? 0.5 : 5, duration: 1 }}
-        className="absolute bottom-8 left-20 flex flex-col items-center gap-3">
-        <span
-          className="text-[10px] uppercase tracking-widest text-tertiary whitespace-nowrap mb-6"
-          style={{
-            writingMode: "vertical-rl",
-            textOrientation: "mixed",
-            transform: "rotate(180deg)",
-          }}>
-          {t("scroll")}
-        </span>
-        <motion.div
-          animate={{ y: [0, 20, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="w-[1px] h-10 bg-gradient-to-b from-brand to-transparent"
-        />
-      </motion.div>
     </section>
   );
 }

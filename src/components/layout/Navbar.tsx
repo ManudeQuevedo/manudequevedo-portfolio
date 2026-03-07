@@ -159,9 +159,9 @@ export function Navbar() {
       animate={{ y: isVisible || isMobileMenuOpen ? 0 : -100 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={cn(
-        "fixed top-0 left-0 w-full z-[100] transition-colors duration-300 h-16 flex items-center",
+        "fixed top-0 left-0 w-full z-[100] transition-[background-color,backdrop-filter] duration-300 h-16 flex items-center",
         isScrolled
-          ? "bg-dark/80 backdrop-blur-xl border-b border-white/5"
+          ? "bg-dark/80 backdrop-blur-xl shadow-[0_1px_0_0_rgba(255,255,255,0.05)]"
           : "bg-transparent",
       )}>
       <div className="layout-container flex justify-between items-center">

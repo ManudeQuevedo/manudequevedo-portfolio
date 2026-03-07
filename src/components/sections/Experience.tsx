@@ -142,6 +142,13 @@ export function Experience() {
                     </div>
                   )}
 
+                  {item.metricKey && (
+                    <span className="inline-flex items-center gap-1.5 text-xs font-mono text-brand border border-brand/20 bg-brand/5 rounded-full px-3 py-1 mt-2">
+                      <span>↑</span>
+                      <span>{t(`metrics.${item.metricKey}`)}</span>
+                    </span>
+                  )}
+
                   <div className="flex flex-wrap gap-2 mt-6">
                     {item.tags.map((tag) => (
                       <span

@@ -1,32 +1,71 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { animate, motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SectionContainer } from "@/components/layout/SectionContainer";
 
+function AnimatedStatNumber({
+  value,
+  className,
+}: {
+  value: string;
+  className: string;
+}) {
+  const numberRef = useRef<HTMLHeadingElement>(null);
+  const isInView = useInView(numberRef, { once: true, amount: 0.6 });
+  const hasAnimated = useRef(false);
+  const numericValue = Number.parseInt(value.replace(/[^\d]/g, ""), 10);
+  const prefix = value.match(/^[^\d]+/)?.[0] ?? "";
+  const suffix = value.match(/[^\d]+$/)?.[0] ?? "";
+  const [displayValue, setDisplayValue] = useState(
+    Number.isFinite(numericValue) ? 0 : value,
+  );
+
+  useEffect(() => {
+    if (!isInView || hasAnimated.current || !Number.isFinite(numericValue)) {
+      return;
+    }
+
+    hasAnimated.current = true;
+    const controls = animate(0, numericValue, {
+      duration: 1.2,
+      ease: "easeOut",
+      onUpdate: (latest) => {
+        setDisplayValue(`${prefix}${Math.round(latest)}${suffix}`);
+      },
+    });
+
+    return () => controls.stop();
+  }, [isInView, numericValue, prefix, suffix]);
+
+  return (
+    <h4 ref={numberRef} className={className}>
+      {String(displayValue)}
+    </h4>
+  );
+}
+
 export function About() {
   const t = useTranslations("about");
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+  const revealViewport = { once: true, amount: 0.1 } as const;
   const headline = t("headline");
-  const highlightedText = headline.includes("último 10%")
-    ? "último 10%"
-    : "last 10%";
+  const highlightedText = t("headline_highlight");
+  const hasHighlightedText = headline.includes(highlightedText);
 
   return (
     <SectionContainer
       id="about"
+      className="border-t border-[color:var(--border-muted)] bg-[var(--bg-2)]"
       containerClassName="flex flex-col gap-20 md:gap-32">
-      <div
-        ref={containerRef}
-        className="grid md:grid-cols-[40%_60%] gap-12 md:gap-24">
+      <div className="grid md:grid-cols-[40%_60%] gap-12 md:gap-24">
         {/* Left Column - Identity Cards */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}>
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={revealViewport}
+          transition={{ duration: 0.7, ease: "easeOut" }}>
           <SectionLabel label={t("label")} />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12">
@@ -36,12 +75,18 @@ export function About() {
                 <motion.div
                   key={key}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.2 + i * 0.1 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={revealViewport}
+                  transition={{
+                    duration: 0.7,
+                    delay: 0.15 + i * 0.08,
+                    ease: "easeOut",
+                  }}
                   className="bg-[#0A0A0A] border border-[#111] rounded-sm p-5 md:p-6 hover:border-brand/20 transition-all duration-300 group flex flex-col justify-between min-h-[180px]">
-                  <h4 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
-                    {item.number}
-                  </h4>
+                  <AnimatedStatNumber
+                    value={item.number}
+                    className="font-display text-4xl md:text-5xl font-bold text-white mb-4"
+                  />
                   <div>
                     <p className="font-body text-[10px] md:text-[11px] uppercase tracking-wider text-[#555] mb-2 font-semibold">
                       {item.label}
@@ -59,31 +104,37 @@ export function About() {
         {/* Right Column - Philosophy */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={revealViewport}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           className="flex flex-col justify-center lg:pl-12">
           <div className="max-w-lg">
             <h3 className="font-body text-2xl md:text-3xl font-medium leading-[1.6] mb-12 text-primary">
-              {headline
-                .split(highlightedText)
-                .map((part, i) => (
-                  <span key={i}>
-                    {part}
-                    {i === 0 && (
-                      <span className="relative inline-block text-brand">
-                        {highlightedText}
-                        <motion.span
-                          initial={{ scaleX: 0 }}
-                          whileInView={{ scaleX: 1 }}
-                          transition={{ duration: 1, delay: 1 }}
-                          className="absolute bottom-1 left-0 w-full h-[2px] bg-brand origin-left"
-                        />
-                      </span>
-                    )}
-                  </span>
-                ))}
+              {hasHighlightedText
+                ? headline.split(highlightedText).map((part, i) => (
+                    <span key={i}>
+                      {part}
+                      {i === 0 && (
+                        <span className="relative inline-block text-brand">
+                          {highlightedText}
+                          <motion.span
+                            initial={{ scaleX: 0 }}
+                            whileInView={{ scaleX: 1 }}
+                            viewport={revealViewport}
+                            transition={{
+                              duration: 0.7,
+                              delay: 0.35,
+                              ease: "easeOut",
+                            }}
+                            className="absolute bottom-1 left-0 w-full h-[2px] bg-brand origin-left"
+                          />
+                        </span>
+                      )}
+                    </span>
+                  ))
+                : headline}
             </h3>
-            <p className="text-secondary text-base md:text-lg leading-relaxed">
+            <p className="text-[rgba(255,255,255,0.82)] text-base md:text-lg leading-relaxed">
               {t("body")}
             </p>
           </div>
@@ -93,8 +144,9 @@ export function About() {
       {/* Principles - Full Width */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={revealViewport}
+        transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
         className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-0 mt-12 md:mt-24">
         {(t.raw("principles") as any[]).map((principle, index) => (
           <div
@@ -106,7 +158,7 @@ export function About() {
             <h5 className="font-display text-lg md:text-xl text-white font-medium mb-4">
               {principle.title}
             </h5>
-            <p className="font-body text-sm md:text-base text-[#666] leading-relaxed max-w-[280px]">
+            <p className="font-body text-sm md:text-base text-[rgba(255,255,255,0.75)] leading-relaxed max-w-[280px]">
               {principle.body}
             </p>
           </div>
