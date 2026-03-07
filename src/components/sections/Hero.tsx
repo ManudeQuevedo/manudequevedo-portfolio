@@ -201,7 +201,7 @@ export function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative min-h-screen w-full bg-black overflow-hidden pt-20 md:pt-28 pb-16 md:pb-24">
+      className="relative min-h-screen w-full bg-black overflow-hidden pt-[max(4.25rem,env(safe-area-inset-top))] md:pt-28 pb-16 md:pb-24">
       <BinaryRain />
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
@@ -221,46 +221,18 @@ export function Hero() {
         className="absolute inset-0 z-[1] pointer-events-none opacity-[0.03]"
       />
 
-      {/* Mobile subject behind content */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.25 }}
-        className="pointer-events-none absolute inset-x-0 -bottom-[8vh] z-[2] h-[56vh] md:hidden">
-        <div className="relative h-full w-full">
-          <div
-            className="absolute inset-0"
-            style={{
-              WebkitMaskImage: "linear-gradient(to top, transparent 0%, black 40%)",
-              maskImage: "linear-gradient(to top, transparent 0%, black 40%)",
-            }}>
-            <Image
-              src="/me-no-bg.png"
-              alt="Manu de Quevedo"
-              fill
-              sizes="100vw"
-              quality={85}
-              placeholder="blur"
-              blurDataURL={heroPortraitBlur}
-              className="object-contain object-bottom [filter:brightness(0.84)_contrast(1.12)_saturate(0.95)]"
-              priority
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/70 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" />
-        </div>
-      </motion.div>
-
       <div className="layout-container relative z-10">
-        <div className="grid min-h-[calc(100vh-7.5rem)] grid-cols-1 items-end gap-10 md:min-h-[calc(100vh-9rem)] md:grid-cols-[minmax(0,1fr)_minmax(420px,0.82fr)] md:gap-12">
-          <div className="relative z-20 max-w-[680px] pb-4 md:pb-8">
-            <div className="mb-10 overflow-hidden">
-              <TerminalText
-                lines={terminalLines}
-                onComplete={handleTerminalComplete}
-                skip={isSkipped}
-              />
-            </div>
+        <div className="grid min-h-[calc(100vh-4.75rem)] grid-cols-1 items-start gap-10 md:min-h-[calc(100vh-9rem)] md:grid-cols-[minmax(0,1fr)_minmax(420px,0.82fr)] md:items-end md:gap-12">
+          <div className="relative z-20 max-w-[680px] pb-2 md:pb-8">
+            {!showContent && (
+              <div className="mb-8 overflow-hidden">
+                <TerminalText
+                  lines={terminalLines}
+                  onComplete={handleTerminalComplete}
+                  skip={isSkipped}
+                />
+              </div>
+            )}
 
             {!showContent && (
               <motion.button
@@ -288,6 +260,48 @@ export function Hero() {
                       transition: { staggerChildren: 0.12, delayChildren: 0.12 },
                     },
                   }}>
+                  <motion.div
+                    variants={{
+                      hidden: { opacity: 0, y: 24 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.75, ease: "easeOut" },
+                      },
+                    }}
+                    className="relative mb-6 md:hidden">
+                    <div className="relative mx-auto h-[31vh] min-h-[220px] w-full max-w-[340px]">
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          WebkitMaskImage:
+                            "linear-gradient(to bottom, black 10%, black 72%, transparent 100%)",
+                          maskImage:
+                            "linear-gradient(to bottom, black 10%, black 72%, transparent 100%)",
+                        }}>
+                        <Image
+                          src="/me-no-bg.png"
+                          alt="Manu de Quevedo"
+                          fill
+                          sizes="(max-width: 767px) 92vw, 100vw"
+                          quality={90}
+                          placeholder="blur"
+                          blurDataURL={heroPortraitBlur}
+                          className="object-contain object-top [filter:brightness(0.98)_contrast(1.08)_saturate(1)]"
+                          priority
+                        />
+                      </div>
+                      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent" />
+                      <div
+                        className="absolute inset-0 opacity-70"
+                        style={{
+                          background:
+                            "radial-gradient(ellipse at 50% 32%, rgba(255,107,0,0.15) 0%, transparent 66%)",
+                        }}
+                      />
+                    </div>
+                  </motion.div>
+
                   <h1
                     className="font-display text-[clamp(2rem,9.2vw,2.85rem)] md:text-[clamp(3rem,6.6vw,5.8rem)] font-bold leading-[1.04] mb-10 md:mb-12 max-w-[16ch]"
                     aria-label={t("headline")}>
