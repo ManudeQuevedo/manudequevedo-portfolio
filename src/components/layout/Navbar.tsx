@@ -163,11 +163,11 @@ export function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: isVisible || isMobileMenuOpen ? 0 : -100 }}
+      initial={{ top: -100 }}
+      animate={{ top: isVisible || isMobileMenuOpen ? 0 : -100 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={cn(
-        "fixed top-0 left-0 w-full z-[100] transition-[background-color,backdrop-filter] duration-300 h-16 flex items-center",
+        "fixed left-0 w-full z-[100] transition-[background-color,backdrop-filter] duration-300 h-16 flex items-center",
         isScrolled
           ? "bg-dark/80 backdrop-blur-xl shadow-[0_1px_0_0_rgba(255,255,255,0.05)]"
           : "bg-transparent",
@@ -240,28 +240,33 @@ export function Navbar() {
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-nav-menu"
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-          className="md:hidden relative z-[120] ml-auto inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-md border border-white/30 bg-black/70 text-white backdrop-blur-sm transition-colors duration-200 hover:border-brand/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
+          className="md:hidden relative z-[120] ml-auto inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-md border border-white/30 bg-black/70 text-white backdrop-blur-sm transition-colors duration-200 hover:border-brand/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
+          style={{
+            marginRight: "max(env(safe-area-inset-right), 16px)",
+          }}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           data-cursor="hover">
-          <motion.span
-            animate={
-              isMobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }
-            }
-            transition={{ duration: 0.28, ease: "easeOut" }}
-            className="h-0.5 w-6 rounded-full bg-white origin-center"
-          />
-          <motion.span
-            animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="h-0.5 w-4 rounded-full bg-white self-end"
-          />
-          <motion.span
-            animate={
-              isMobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }
-            }
-            transition={{ duration: 0.28, ease: "easeOut" }}
-            className="h-0.5 w-6 rounded-full bg-white origin-center"
-          />
+          <span className="relative flex h-5 w-5 items-center justify-center">
+            <motion.span
+              animate={
+                isMobileMenuOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -6 }
+              }
+              transition={{ duration: 0.24, ease: "easeOut" }}
+              className="absolute h-0.5 w-5 rounded-full bg-white origin-center"
+            />
+            <motion.span
+              animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              className="absolute h-0.5 w-5 rounded-full bg-white"
+            />
+            <motion.span
+              animate={
+                isMobileMenuOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 6 }
+              }
+              transition={{ duration: 0.24, ease: "easeOut" }}
+              className="absolute h-0.5 w-5 rounded-full bg-white origin-center"
+            />
+          </span>
         </button>
       </div>
 
