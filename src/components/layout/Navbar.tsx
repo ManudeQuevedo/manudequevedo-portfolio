@@ -8,6 +8,7 @@ import { MQLogo } from "@/components/ui/MQLogo";
 import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { createPortal } from "react-dom";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -23,6 +24,7 @@ export function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [activeSection, setActiveSection] = useState("hero");
   const [isDownloadingCv, setIsDownloadingCv] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const lastScrollY = useRef(0);
 
   const navLinks = useMemo(
@@ -71,6 +73,10 @@ export function Navbar() {
       setIsDownloadingCv(false);
     }
   }, [isDownloadingCv, locale]);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     let ticking = false;
@@ -168,7 +174,7 @@ export function Navbar() {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={cn(
         "fixed left-0 w-full z-[100] transition-[background-color,backdrop-filter] duration-300 h-16 flex items-center",
-        isScrolled
+        isScrolled || isMobileMenuOpen
           ? "bg-dark/80 backdrop-blur-xl shadow-[0_1px_0_0_rgba(255,255,255,0.05)]"
           : "bg-transparent",
       )}>
@@ -271,112 +277,124 @@ export function Navbar() {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            id="mobile-nav-menu"
-            role="dialog"
-            aria-modal="true"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.28, ease: "easeOut" }}
-            className="fixed inset-0 z-[130] bg-dark/98 md:hidden"
-            onClick={() => setIsMobileMenuOpen(false)}>
-            <motion.div
-              initial={{ y: 24, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 24, opacity: 0 }}
-              transition={{ duration: 0.28, ease: "easeOut" }}
-              className="relative flex h-full w-full flex-col items-center justify-center px-5 pt-[max(env(safe-area-inset-top),16px)] pb-[max(env(safe-area-inset-bottom),16px)]"
-              onClick={(event) => event.stopPropagation()}>
-              <button
-                type="button"
-                aria-label="Close menu"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="absolute inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/30 bg-black/70 text-white transition-colors duration-200 hover:border-brand/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
-                style={{
-                  right: "max(env(safe-area-inset-right), 16px)",
-                  top: "max(env(safe-area-inset-top), 16px)",
-                }}>
-                <span className="text-2xl leading-none">&times;</span>
-              </button>
-
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                variants={{
-                  hidden: {},
-                  visible: {
-                    transition: { delayChildren: 0.05, staggerChildren: 0.05 },
-                  },
-                }}
-                className="flex flex-col items-center gap-5">
-                {navLinks.map((link, i) => {
-                  const sectionId = link.href.replace("#", "");
-                  const isActive = activeSection === sectionId;
-
-                  return (
-                    <motion.div
-                      key={link.href}
-                      variants={{
-                        hidden: { opacity: 0, y: 18 },
-                        visible: {
-                          opacity: 1,
-                          y: 0,
-                          transition: { duration: 0.28, ease: "easeOut" },
-                        },
+      {isClient
+        ? createPortal(
+            <AnimatePresence>
+              {isMobileMenuOpen && (
+                <motion.div
+                  id="mobile-nav-menu"
+                  role="dialog"
+                  aria-modal="true"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.28, ease: "easeOut" }}
+                  className="fixed inset-0 z-[9999] isolate bg-black/98 md:hidden"
+                  onClick={() => setIsMobileMenuOpen(false)}>
+                  <motion.div
+                    initial={{ y: 24, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 24, opacity: 0 }}
+                    transition={{ duration: 0.28, ease: "easeOut" }}
+                    className="relative flex h-full w-full flex-col items-center justify-center px-5 pt-[max(env(safe-area-inset-top),16px)] pb-[max(env(safe-area-inset-bottom),16px)]"
+                    onClick={(event) => event.stopPropagation()}>
+                    <button
+                      type="button"
+                      aria-label="Close menu"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="absolute inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/30 bg-black/70 text-white transition-colors duration-200 hover:border-brand/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
+                      style={{
+                        right: "max(env(safe-area-inset-right), 16px)",
+                        top: "max(env(safe-area-inset-top), 16px)",
                       }}>
+                      <span className="text-2xl leading-none">&times;</span>
+                    </button>
+
+                    <motion.div
+                      initial="hidden"
+                      animate="visible"
+                      exit="hidden"
+                      variants={{
+                        hidden: {},
+                        visible: {
+                          transition: {
+                            delayChildren: 0.05,
+                            staggerChildren: 0.05,
+                          },
+                        },
+                      }}
+                      className="flex flex-col items-center gap-5">
+                      {navLinks.map((link, i) => {
+                        const sectionId = link.href.replace("#", "");
+                        const isActive = activeSection === sectionId;
+
+                        return (
+                          <motion.div
+                            key={link.href}
+                            variants={{
+                              hidden: { opacity: 0, y: 18 },
+                              visible: {
+                                opacity: 1,
+                                y: 0,
+                                transition: { duration: 0.28, ease: "easeOut" },
+                              },
+                            }}>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+
+                                if (pathname === "/") {
+                                  scrollToSection(link.href);
+                                  return;
+                                }
+
+                                window.location.href = `/${locale}${link.href}`;
+                              }}
+                              className={cn(
+                                "flex min-h-11 items-center gap-4 px-3 py-3 font-display text-[2rem] leading-none font-bold transition-colors duration-200",
+                                isActive
+                                  ? "text-brand"
+                                  : "text-primary hover:text-brand",
+                              )}>
+                              <span className="text-white/25 text-xl font-mono">
+                                0{i + 1}
+                              </span>
+                              {link.name}
+                            </button>
+                          </motion.div>
+                        );
+                      })}
+                    </motion.div>
+
+                    <motion.div
+                      className="mt-10 flex items-center gap-8"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        duration: 0.28,
+                        ease: "easeOut",
+                        delay: 0.22,
+                      }}>
+                      <LocaleSwitcher />
                       <button
                         type="button"
                         onClick={() => {
                           setIsMobileMenuOpen(false);
-
-                          if (pathname === "/") {
-                            scrollToSection(link.href);
-                            return;
-                          }
-
-                          window.location.href = `/${locale}${link.href}`;
+                          void handleCvDownload();
                         }}
-                        className={cn(
-                          "flex min-h-11 items-center gap-4 px-3 py-3 font-display text-[2rem] leading-none font-bold transition-colors duration-200",
-                          isActive
-                            ? "text-brand"
-                            : "text-primary hover:text-brand",
-                        )}>
-                        <span className="text-white/25 text-xl font-mono">
-                          0{i + 1}
-                        </span>
-                        {link.name}
+                        className="inline-flex min-h-11 items-center justify-center bg-brand text-dark px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
+                        {isDownloadingCv ? "Generating..." : t("resume")}
                       </button>
                     </motion.div>
-                  );
-                })}
-              </motion.div>
-
-              <motion.div
-                className="mt-10 flex items-center gap-8"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.28, ease: "easeOut", delay: 0.22 }}>
-                <LocaleSwitcher />
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    void handleCvDownload();
-                  }}
-                  className="inline-flex min-h-11 items-center justify-center bg-brand text-dark px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
-                  {isDownloadingCv ? "Generating..." : t("resume")}
-                </button>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>,
+            document.body,
+          )
+        : null}
     </motion.nav>
   );
 }
