@@ -246,7 +246,12 @@ export function Navbar() {
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-nav-menu"
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-          className="md:hidden relative z-[120] ml-auto inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-md border border-white/30 bg-black/70 text-white backdrop-blur-sm transition-colors duration-200 hover:border-brand/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
+          className={cn(
+            "md:hidden relative z-[120] ml-auto inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-[14px] border bg-black/55 text-white backdrop-blur-md transition-all duration-250 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-dark",
+            isMobileMenuOpen
+              ? "border-brand/70 shadow-[0_0_24px_rgba(255,107,0,0.2),inset_0_0_0_1px_rgba(255,107,0,0.2)]"
+              : "border-white/22 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] hover:border-white/42",
+          )}
           style={{
             marginRight: "max(env(safe-area-inset-right), 16px)",
           }}
@@ -255,22 +260,28 @@ export function Navbar() {
           <span className="relative flex h-5 w-5 items-center justify-center">
             <motion.span
               animate={
-                isMobileMenuOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -6 }
+                isMobileMenuOpen ? { rotate: 45, y: 0, width: 20 } : { rotate: 0, y: -4, width: 20 }
               }
               transition={{ duration: 0.24, ease: "easeOut" }}
-              className="absolute h-0.5 w-5 rounded-full bg-white origin-center"
-            />
-            <motion.span
-              animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
-              className="absolute h-0.5 w-5 rounded-full bg-white"
+              className="absolute left-0 h-[2px] rounded-full bg-white origin-center"
             />
             <motion.span
               animate={
-                isMobileMenuOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 6 }
+                isMobileMenuOpen
+                  ? { rotate: -45, y: 0, x: 0, width: 20 }
+                  : { rotate: 0, y: 4, x: 4, width: 16 }
               }
               transition={{ duration: 0.24, ease: "easeOut" }}
-              className="absolute h-0.5 w-5 rounded-full bg-white origin-center"
+              className="absolute left-0 h-[2px] rounded-full bg-white origin-center"
+            />
+            <motion.span
+              animate={
+                isMobileMenuOpen
+                  ? { opacity: 0, scale: 0.5, x: 0, y: 0 }
+                  : { opacity: 1, scale: 1, x: -8, y: 4 }
+              }
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="absolute h-[5px] w-[5px] rounded-full bg-brand shadow-[0_0_10px_rgba(255,107,0,0.55)]"
             />
           </span>
         </button>
