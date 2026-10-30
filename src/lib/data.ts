@@ -68,6 +68,7 @@ export interface ExperienceItem {
   metricKey?: string;
   tags: string[];
   isFounder?: boolean;
+  logo?: string;
 }
 
 // TODO: Validate and replace placeholder impact metrics with exact tracked values.
@@ -86,10 +87,31 @@ export const experience: ExperienceItem[] = [
   },
   {
     id: 1,
+    company: "Goldman Sachs",
+    role: "Software Engineer · AppBank (GSAM)",
+    employmentType: "Full-time",
+    period: "Apr 2026 - Present",
+    location: "Queretaro, Mexico · Remote",
+    logo: "/Goldman_Sachs.svg",
+    description:
+      "Software Engineer on the AppBank division of Goldman Sachs Asset Management (GSAM), keeping the firm's internal applications reliable, secure and fast to ship.",
+    highlight:
+      "Turning repetitive operational work into AI-agent automations, so the team spends its time on engineering instead of toil.",
+    details: [
+      "Validated errors and debugged application code and SQL databases, tracing issues down to root cause.",
+      "Monitored and troubleshot workloads on AWS (CloudWatch, EC2, S3), using Splunk and Grafana for observability.",
+      "Automated repetitive tasks with AI agents, cutting manual effort on recurring operational work.",
+      "Worked on application security and GitLab workflows, and contributed to the UI/UX of the Advisor website.",
+    ],
+    metricKey: "gs_automation",
+    tags: ["AWS", "CloudWatch", "EC2", "S3", "SQL", "GitLab", "Splunk", "Grafana", "AI Agents", "Security"],
+  },
+  {
+    id: 2,
     company: "Tata Consultancy Services",
     role: "UI Developer",
     employmentType: "Full-time",
-    period: "Apr 2023 - Present · 3 yrs",
+    period: "Apr 2023 - Apr 2026 · 3 yrs",
     location: "Queretaro, Queretaro, Mexico · Remote",
     description:
       "While my role evolved to support the Publishing team during a large-scale AEM migration, I took ownership as the primary technical bridge between content and engineering.",
@@ -104,7 +126,7 @@ export const experience: ExperienceItem[] = [
     tags: ["AEM", "React", "TypeScript", "Documentation", "SSO", "RBAC"],
   },
   {
-    id: 2,
+    id: 3,
     company: "Concentrix Catalyst",
     role: "Software Engineer / ServiceNow Developer",
     employmentType: "Full-time",
@@ -123,7 +145,7 @@ export const experience: ExperienceItem[] = [
     tags: ["Angular 7", "ServiceNow", "Jest", "Mocha", "Splunk", "Grafana"],
   },
   {
-    id: 3,
+    id: 4,
     company: "Quiubas Mobile (acquired by Twilio)",
     role: "Software Engineer (Short-Term Project)",
     employmentType: "Seasonal",
@@ -141,7 +163,7 @@ export const experience: ExperienceItem[] = [
     tags: ["React", "Hooks API", "CSS Grid", "Agile", "JavaScript"],
   },
   {
-    id: 4,
+    id: 5,
     company: "Linio Group",
     role: "Web Content Specialist",
     period: "May 2017 - Mar 2019 · 1 yr 11 mos",

@@ -44,7 +44,6 @@ const RESUME: Record<Locale, ResumeContent> = {
     contact: [
       "Queretaro, Mexico",
       "[+52] 55 5500 0228",
-      "manuel.matusdequevedo@tcs.com",
       "linkedin.com/in/manuelmatus",
     ],
     summary:
@@ -87,14 +86,29 @@ const RESUME: Record<Locale, ResumeContent> = {
           "Agile/Scrum",
           "AEM",
           "ServiceNow (CSA)",
+          "AWS (CloudWatch, EC2, S3)",
+          "GitLab",
+          "SQL",
         ],
       },
     ],
     experience: [
       {
+        company: "Goldman Sachs (GSAM)",
+        role: "Software Engineer (AppBank)",
+        period: "Apr 2026 - Present",
+        location: "Queretaro, Mexico / Remote",
+        bullets: [
+          "Validate errors and debug application code and SQL databases across the AppBank division of Goldman Sachs Asset Management.",
+          "Monitor and troubleshoot AWS workloads (CloudWatch, EC2, S3) and use Splunk and Grafana for observability and incident triage.",
+          "Automate repetitive operational tasks with AI agents, reducing manual effort for the team.",
+          "Contribute to application security, GitLab workflows and the UI/UX of the Advisor website.",
+        ],
+      },
+      {
         company: "Tata Consultancy Services (TCS)",
         role: "Senior Frontend Developer (AEM Specialist)",
-        period: "Oct 2021 - Present",
+        period: "Oct 2021 - Apr 2026",
         location: "Mexico / Remote",
         bullets: [
           "Spearheaded migration of critical UI components from legacy systems to Adobe Experience Manager (AEM), preserving brand consistency across global markets.",
@@ -162,7 +176,6 @@ const RESUME: Record<Locale, ResumeContent> = {
     contact: [
       "Queretaro, Mexico",
       "[+52] 55 5500 0228",
-      "manuel.matusdequevedo@tcs.com",
       "linkedin.com/in/manuelmatus",
     ],
     summary:
@@ -205,14 +218,29 @@ const RESUME: Record<Locale, ResumeContent> = {
           "Agile/Scrum",
           "AEM",
           "ServiceNow (CSA)",
+          "AWS (CloudWatch, EC2, S3)",
+          "GitLab",
+          "SQL",
         ],
       },
     ],
     experience: [
       {
+        company: "Goldman Sachs (GSAM)",
+        role: "Software Engineer (AppBank)",
+        period: "Abr 2026 - Actualidad",
+        location: "Queretaro, Mexico / Remoto",
+        bullets: [
+          "Valido errores y hago debug de codigo de aplicaciones y bases de datos SQL en la division AppBank de Goldman Sachs Asset Management.",
+          "Monitoreo y resuelvo incidencias en AWS (CloudWatch, EC2, S3) y uso Splunk y Grafana para observabilidad y triage de incidentes.",
+          "Automatizo tareas operativas repetitivas con agentes de IA, reduciendo el esfuerzo manual del equipo.",
+          "Contribuyo en seguridad de aplicaciones, flujos con GitLab y el UI/UX del sitio web de Advisor.",
+        ],
+      },
+      {
         company: "Tata Consultancy Services (TCS)",
         role: "Senior Frontend Developer (AEM Specialist)",
-        period: "Oct 2021 - Actualidad",
+        period: "Oct 2021 - Abr 2026",
         location: "Mexico / Remoto",
         bullets: [
           "Lidere la migracion de componentes criticos de UI desde sistemas legacy a Adobe Experience Manager (AEM), preservando consistencia de marca en mercados globales.",
