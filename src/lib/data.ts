@@ -80,10 +80,10 @@ export const experience: ExperienceItem[] = [
     period: "2025 - Present",
     location: "Querétaro, MX",
     logo: "/noctra-logo.png",
-    description: "Web development agency building sites that pay for themselves, for startups, independent professionals, and businesses across LATAM. 4-week delivery with a satisfaction guarantee.",
+    description: "Digital studio with an engineering mindset, based in Querétaro. Branding, websites, SEO, GEO (visibility in AI answers like ChatGPT) and automation, plus in-house software like Radar and Social, for businesses across LATAM that want to grow with structure.",
     highlight: "One project delivered (Woodax Design) and three more in progress.",
     metricKey: "noctra_projects",
-    tags: ["Next.js", "TypeScript", "TailwindCSS", "Supabase"],
+    tags: ["Next.js", "TypeScript", "TailwindCSS", "Supabase", "SEO", "GEO"],
     isFounder: true,
   },
   {
