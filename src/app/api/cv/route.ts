@@ -44,6 +44,7 @@ const RESUME: Record<Locale, ResumeContent> = {
     contact: [
       "Queretaro, Mexico",
       "[+52] 55 5500 0228",
+      "manu@noctra.studio",
       "linkedin.com/in/manuelmatus",
     ],
     summary:
@@ -176,6 +177,7 @@ const RESUME: Record<Locale, ResumeContent> = {
     contact: [
       "Queretaro, Mexico",
       "[+52] 55 5500 0228",
+      "manu@noctra.studio",
       "linkedin.com/in/manuelmatus",
     ],
     summary:

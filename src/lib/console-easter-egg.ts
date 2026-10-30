@@ -18,8 +18,8 @@ export function initConsoleEasterEgg() {
   const ctaStyle = "color: #ffffff; font-family: sans-serif; font-size: 14px; font-weight: bold; background: #ff6b00; padding: 4px 8px; border-radius: 4px;";
 
   console.log("%c" + asciiArt, brandStyle);
-  console.log("%cHey dev 👋 — encontraste el layer que importa.", whiteStyle);
+  console.log("%cHey dev 👋, encontraste el layer que importa.", whiteStyle);
   console.log("%cBuilt with: Next.js 15 · TypeScript · TailwindCSS v4 · Framer Motion · GSAP · Lenis", grayStyle);
   console.log("%c¿Puedes encontrar la función que genera el efecto de terminal en el hero? Pista: busca initTerminalEffect() en el source.", highlightStyle);
-  console.log("%cSi llegaste hasta aquí, probablemente encajes bien. → contact@manudequevedo.com", ctaStyle);
+  console.log("%cSi llegaste hasta aquí, probablemente encajes bien. → manu@noctra.studio", ctaStyle);
 }

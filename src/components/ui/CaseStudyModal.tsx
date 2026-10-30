@@ -372,7 +372,7 @@ export function CaseStudyModal() {
                         &quot;{caseStudy.testimonial.quote}&quot;
                       </p>
                       <p className="font-mono text-xs text-secondary mt-4">
-                        — {caseStudy.testimonial.author}, {caseStudy.testimonial.role}
+                        {caseStudy.testimonial.author}, {caseStudy.testimonial.role}
                       </p>
                     </div>
                   </section>
