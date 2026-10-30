@@ -88,11 +88,7 @@ export function Experience() {
                 const hasExpandableContent = details.length > 0;
                 const isExpanded = Boolean(expandedItems[item.id]);
                 const isPastRole = !item.isFounder && item.id >= 2;
-                const companyTone = item.isFounder
-                  ? "text-brand"
-                  : isPastRole
-                    ? "text-white/70"
-                    : "text-primary";
+                const companyTone = "text-brand";
                 const roleTone = isPastRole ? "text-brand/85" : "text-brand";
                 const metaTone = isPastRole ? "text-white/55" : "text-tertiary";
                 const descriptionTone = isPastRole
