@@ -71,7 +71,7 @@
     "show_more": "Read more",
     "show_less": "Show less",
     "metrics": {
-      "noctra_clients_6m": "3 clients onboarded in first 6 months",
+      "noctra_projects": "1 project delivered, 3 in progress",
       "tcs_ui_system": "UI system used by 12+ engineers",
       "concentrix_resolution": "40% faster ticket resolution cycle",
       "quiubas_acquisition": "Shipped during acquisition, 0 regressions",
@@ -84,11 +84,11 @@
         "role": "Founder & Lead Engineer",
         "period": "2025 - Present",
         "location": "Querétaro, MX",
-        "description": "Web development agency building performant digital products for startups, professionals, and businesses across LATAM.",
-        "highlight": "I am currently working on 2 projects in the first 6 months. Simultaneously developing an in-house tooling ecosystem to eliminate friction between clients and the agency.",
+        "description": "Web development agency building sites that pay for themselves, for startups, independent professionals, and businesses across LATAM. 4-week delivery with a satisfaction guarantee.",
+        "highlight": "One project delivered (Woodax Design) and three more in progress. Alongside client work, I'm building an in-house tooling ecosystem that removes friction between the agency and its clients.",
         "details": [
           "Noctra Discovery: A dynamic discovery form platform clients can fill from any device. Replaces the broken download-edit-save-reattach workflow, reducing duplication, delays, and errors at the most critical stage of a project.",
-          "Noctra Ops: An internal system for dynamically generating proposals, contracts, and cancellation agreements (before and during development). Legally grounded, designed to give clients security and confidence from the first document.",
+          "Noctra Ops: An internal system for dynamically generating proposals, contracts, and cancellation agreements (before and during development). Legally grounded, designed to give clients security and confidence from the first document. Estimated release: Q2 2027.",
           "Noctra Forge (Native AI CRM): A CRM built from scratch using real pain points from HubSpot and Pipedrive as reference. AI is native to the workflow, not bolted on. Adaptable to each client type, minimal learning curve. Estimated release: Q1 2027."
         ],
         "tags": [

@@ -71,7 +71,7 @@
     "show_more": "Ver más",
     "show_less": "Ver menos",
     "metrics": {
-      "noctra_clients_6m": "3 clientes incorporados en los primeros 6 meses",
+      "noctra_projects": "1 proyecto entregado, 3 en progreso",
       "tcs_ui_system": "Sistema UI usado por más de 12 ingenieros",
       "concentrix_resolution": "Ciclo de resolución de tickets 40% más rápido",
       "quiubas_acquisition": "Entregado durante adquisición, 0 regresiones",
@@ -84,11 +84,11 @@
         "role": "Fundador y Lead Engineer",
         "period": "2025 - Presente",
         "location": "Querétaro, MX",
-        "description": "Agencia de desarrollo web construyendo productos digitales performantes para startups, profesionales y negocios en LATAM.",
-        "highlight": "Me encuentro trabajando en 2 proyectos en los primeros 6 meses. Paralelamente, desarrollo in-house un ecosistema de herramientas que eliminan la fricción entre cliente y agencia.",
+        "description": "Agencia de desarrollo web que construye sitios que se pagan solos para startups, profesionales independientes y negocios en LATAM. Entrega en 4 semanas con garantía de satisfacción.",
+        "highlight": "Un proyecto entregado (Woodax Design) y tres más en progreso. En paralelo a los proyectos de clientes, desarrollo in-house un ecosistema de herramientas que elimina la fricción entre la agencia y sus clientes.",
         "details": [
           "Noctra Discovery: Plataforma dinámica de formularios de discovery que los clientes pueden llenar desde cualquier dispositivo. Elimina el flujo roto de descargar, editar en Word, guardar y reenviar, reduciendo duplicidad, demoras y errores en la etapa más crítica del proyecto.",
-          "Noctra Ops: Sistema interno para la generación dinámica de propuestas, contratos y actas de cancelación (antes y durante el desarrollo). Todo apegado a marco legal, diseñado para brindar seguridad y confianza al cliente desde el primer documento.",
+          "Noctra Ops: Sistema interno para la generación dinámica de propuestas, contratos y actas de cancelación (antes y durante el desarrollo). Todo apegado a marco legal, diseñado para brindar seguridad y confianza al cliente desde el primer documento. Release estimado: Q2 2027.",
           "Noctra Forge (CRM con IA Nativa): CRM construido desde cero tomando los pain points reales de HubSpot y Pipedrive. La IA no es un add-on: está integrada en el flujo de trabajo. Adaptable a cada tipo de cliente, con curva de aprendizaje mínima. Release estimado: Q1 2027."
         ],
         "tags": [
