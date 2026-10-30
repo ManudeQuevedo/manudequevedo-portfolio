@@ -79,6 +79,7 @@ export const experience: ExperienceItem[] = [
     role: "Founder & Lead Engineer",
     period: "2025 - Present",
     location: "Querétaro, MX",
+    logo: "/noctra-logo.png",
     description: "Frontend agency building performant digital products for startups and businesses in LATAM.",
     highlight: "Built and shipped 4 client projects in the first 6 months.",
     metricKey: "noctra_clients_6m",
@@ -113,6 +114,7 @@ export const experience: ExperienceItem[] = [
     employmentType: "Full-time",
     period: "Apr 2023 - Apr 2026 · 3 yrs",
     location: "Queretaro, Queretaro, Mexico · Remote",
+    logo: "/tcs.png",
     description:
       "While my role evolved to support the Publishing team during a large-scale AEM migration, I took ownership as the primary technical bridge between content and engineering.",
     highlight:
@@ -132,6 +134,7 @@ export const experience: ExperienceItem[] = [
     employmentType: "Full-time",
     period: "Sep 2019 - Apr 2023 · 3 yrs 8 mos",
     location: "Mexico · Hybrid",
+    logo: "/concentrix.png",
     description:
       "As a Software Engineer, I collaborated on migrating the T-Mobile web application from AngularJS to Angular 7, and later evolved into a ServiceNow Developer role focused on platform reliability.",
     highlight:
@@ -151,6 +154,7 @@ export const experience: ExperienceItem[] = [
     employmentType: "Seasonal",
     period: "Apr 2019 - Aug 2019 · 5 mos",
     location: "Queretaro, Mexico · Remote",
+    logo: "/quiubas.png",
     description:
       "Worked on the front-end team that rewrote the full client-side codebase from AngularJS to vanilla React.js.",
     highlight: "Contributed during the stage prior to Quiubas Mobile's acquisition by Twilio.",
@@ -168,6 +172,7 @@ export const experience: ExperienceItem[] = [
     role: "Web Content Specialist",
     period: "May 2017 - Mar 2019 · 1 yr 11 mos",
     location: "Mexico City, Mexico · Hybrid",
+    logo: "/linio.png",
     description:
       "This role is where I discovered my path into software engineering. I went beyond content operations and started building internal tooling and process improvements.",
     highlight:
