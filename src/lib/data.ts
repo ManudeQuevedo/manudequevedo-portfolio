@@ -91,7 +91,7 @@ export const experience: ExperienceItem[] = [
     role: "Software Engineer · AppBank (GSAM)",
     employmentType: "Full-time",
     period: "Apr 2026 - Present",
-    location: "Mexico",
+    location: "Queretaro, Mexico · Remote",
     logo: "/Goldman_Sachs.svg",
     description:
       "Software Engineer on the AppBank division of Goldman Sachs Asset Management (GSAM), keeping the firm's internal applications reliable, secure and fast to ship.",
