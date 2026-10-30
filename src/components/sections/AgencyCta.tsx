@@ -20,7 +20,7 @@ export function AgencyCta() {
         <div className="grid gap-10 md:grid-cols-[1.35fr_auto] md:items-center">
           <div className="space-y-5">
             <p className="font-mono text-[11px] tracking-[0.24em] uppercase text-tertiary">
-              — {t("label")}
+              {t("label")}
             </p>
             <h3 className="font-display text-[clamp(1.85rem,8vw,2.35rem)] md:text-5xl font-bold text-primary leading-tight max-w-[90vw] md:max-w-none">
               {t("headline")}

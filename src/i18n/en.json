@@ -11,8 +11,8 @@
     "loading": "Loading artifact...",
     "role": "> Frontend Engineer & UI Architect",
     "ready": "> System ready.",
-    "headline": "I build interfaces that work — and that stick.",
-    "sub": "Frontend Engineer — UI/UX · Cloud · Security · AI",
+    "headline": "I build interfaces that work. And that stick.",
+    "sub": "Frontend Engineer · UI/UX · Cloud · Security · AI",
     "cta_primary": "View my work",
     "cta_secondary": "Open to new opportunities →",
     "scroll": "Scroll to explore",
@@ -22,12 +22,12 @@
     "label": "Manifesto",
     "headline": "I'm obsessed with that last 10% that turns a functional UI into one people remember.",
     "headline_highlight": "that last 10%",
-    "body": "I don't deliver pages — I deliver products with weight, intention, and zero unnecessary friction. Every project is an artifact: built to last, built to convert, built to be used. Through Noctra Studio, I work with startups, independent professionals (doctors, lawyers, therapists), small businesses, schools, and real estate companies across LATAM that need serious digital presence without enterprise pricing.",
+    "body": "I don't deliver pages. I deliver products with weight, intention, and zero unnecessary friction. Every project is an artifact: built to last, built to convert, built to be used. Through Noctra Studio, I work with startups, independent professionals (doctors, lawyers, therapists), small businesses, schools, and real estate companies across LATAM that need serious digital presence without enterprise pricing.",
     "identity": {
       "years": {
         "number": "6",
         "label": "Years building",
-        "context": "From bootcamp to enterprise — since 2019"
+        "context": "From bootcamp to enterprise, since 2019"
       },
       "projects": {
         "number": "8",
@@ -42,14 +42,14 @@
       "agency": {
         "number": "1",
         "label": "Agency founded",
-        "context": "Noctra Studio — LATAM"
+        "context": "Noctra Studio · LATAM"
       }
     },
     "principles": [
       {
         "number": "01",
         "title": "Details aren't extra. They're the product.",
-        "body": "The last 10% is what separates a good UI from one that gets remembered. I don't stop at functional — I stop at right."
+        "body": "The last 10% is what separates a good UI from one that gets remembered. I don't stop at functional. I stop at right."
       },
       {
         "number": "02",
@@ -66,7 +66,7 @@
   "experience": {
     "label": "Trajectory",
     "headline": "The journey so far.",
-    "intro": "From building e-commerce at scale to leading UI systems at a global firm — and eventually founding my own studio. Each role taught me something the previous one couldn't.",
+    "intro": "From building e-commerce at scale to leading UI systems at a global firm, and eventually founding my own studio. Each role taught me something the previous one couldn't.",
     "founder": "Founder",
     "show_more": "Read more",
     "show_less": "Show less",
@@ -74,7 +74,7 @@
       "noctra_clients_6m": "3 clients onboarded in first 6 months",
       "tcs_ui_system": "UI system used by 12+ engineers",
       "concentrix_resolution": "40% faster ticket resolution cycle",
-      "quiubas_acquisition": "Shipped during acquisition — 0 regressions",
+      "quiubas_acquisition": "Shipped during acquisition, 0 regressions",
       "linio_monthly_sessions": "Frontend serving 2M+ monthly sessions",
       "gs_automation": "AI-agent automations replacing repetitive operational tasks"
     },
@@ -87,9 +87,9 @@
         "description": "Web development agency building performant digital products for startups, professionals, and businesses across LATAM.",
         "highlight": "I am currently working on 2 projects in the first 6 months. Simultaneously developing an in-house tooling ecosystem to eliminate friction between clients and the agency.",
         "details": [
-          "Noctra Discovery — A dynamic discovery form platform clients can fill from any device. Replaces the broken download-edit-save-reattach workflow — reducing duplication, delays, and errors at the most critical stage of a project.",
-          "Noctra Ops — An internal system for dynamically generating proposals, contracts, and cancellation agreements (before and during development). Legally grounded, designed to give clients security and confidence from the first document.",
-          "Noctra Forge (Native AI CRM) — A CRM built from scratch using real pain points from HubSpot and Pipedrive as reference. AI is native to the workflow, not bolted on. Adaptable to each client type, minimal learning curve. Estimated release: Q1 2027."
+          "Noctra Discovery: A dynamic discovery form platform clients can fill from any device. Replaces the broken download-edit-save-reattach workflow, reducing duplication, delays, and errors at the most critical stage of a project.",
+          "Noctra Ops: An internal system for dynamically generating proposals, contracts, and cancellation agreements (before and during development). Legally grounded, designed to give clients security and confidence from the first document.",
+          "Noctra Forge (Native AI CRM): A CRM built from scratch using real pain points from HubSpot and Pipedrive as reference. AI is native to the workflow, not bolted on. Adaptable to each client type, minimal learning curve. Estimated release: Q1 2027."
         ],
         "tags": [
           "Next.js",
@@ -104,7 +104,7 @@
         "employmentType": "Full-time",
         "period": "Apr 2026 - Present",
         "location": "Querétaro, Mexico · Remote",
-        "description": "Software Engineer on the AppBank division of Goldman Sachs Asset Management (GSAM), keeping the firm's internal applications reliable, secure and fast to ship — from debugging production issues to automating the work nobody should do twice.",
+        "description": "Software Engineer on the AppBank division of Goldman Sachs Asset Management (GSAM), keeping the firm's internal applications reliable, secure and fast to ship, from debugging production issues to automating the work nobody should do twice.",
         "highlight": "Turning repetitive operational work into AI-agent automations, so the team spends its time on engineering instead of toil.",
         "details": [
           "Validated errors and debugged application code and SQL databases, tracing issues across the stack down to root cause.",
@@ -132,7 +132,7 @@
         "period": "Apr 2023 - Apr 2026 · 3 yrs",
         "location": "Querétaro, Mexico · Remote",
         "description": "While my role evolved to support the Publishing team during a large-scale AEM migration, I took the initiative to act as the primary technical bridge between content and development teams.",
-        "highlight": "Designed and implemented a comprehensive onboarding and mentorship program from scratch — technical documentation and guides that reduced ramp-up time and recurring errors.",
+        "highlight": "Designed and implemented a comprehensive onboarding and mentorship program from scratch: technical documentation and guides that reduced ramp-up time and recurring errors.",
         "details": [
           "Proactively investigated and pre-diagnosed performance issues and bugs within AEM's React-based components, collaborating with developers to accelerate the resolution cycle.",
           "Conceptualized an internal knowledge base portal to centralize documentation and streamline processes.",
@@ -154,7 +154,7 @@
         "period": "Sep 2019 - Apr 2023 · 3 yrs 8 mos",
         "location": "Mexico · Hybrid",
         "description": "Collaborated on migrating the T-Mobile web application from AngularJS to Angular 7, then expanded into ServiceNow development across DevOps and monitoring workflows.",
-        "highlight": "Led production incident response — root-cause analysis, cross-team coordination, and high availability maintenance.",
+        "highlight": "Led production incident response: root-cause analysis, cross-team coordination, and high availability maintenance.",
         "details": [
           "Refactored components and wrote unit tests with Jest/Mocha within a microservices architecture.",
           "Customized Incident, CMDB and Service Catalog modules using Business Rules and Script Includes.",
@@ -176,7 +176,7 @@
         "period": "Apr 2019 - Aug 2019 · 5 mos",
         "location": "Querétaro, Mexico · Remote",
         "description": "Joined Quiubas Mobile before its Twilio acquisition. Contributed to the front-end team rewriting the entire client-side codebase from AngularJS to vanilla React.js.",
-        "highlight": "Built functional components with the Hooks API and helped establish a cleaner, more testable frontend foundation — shipped with zero regressions during acquisition.",
+        "highlight": "Built functional components with the Hooks API and helped establish a cleaner, more testable frontend foundation, shipped with zero regressions during acquisition.",
         "details": [
           "Implemented components with useState/useEffect to simplify side-effects and local state management.",
           "Structured complex responsive layouts with CSS Grid without relying on third-party layout libraries.",
@@ -254,7 +254,7 @@
     },
     "caseStudies": {
       "bridgeCapital": {
-        "overview": "Bridge Capital needed more than a website — they needed a digital asset that would convey security and trust to their target market. Before writing a single line of code, we conducted in-depth research on the client, their industry, and their potential user profiles. With that context, we built a visual and narrative experience aligned with the expectations of high-net-worth investors: delivered in under three weeks, bilingual, mobile-first, and top-tier performance.",
+        "overview": "Bridge Capital needed more than a website. They needed a digital asset that would convey security and trust to their target market. Before writing a single line of code, we conducted in-depth research on the client, their industry, and their potential user profiles. With that context, we built a visual and narrative experience aligned with the expectations of high-net-worth investors: delivered in under three weeks, bilingual, mobile-first, and top-tier performance.",
         "role": "Lead Frontend Engineer & UI/UX Designer",
         "duration": "3 weeks",
         "scope": [
@@ -268,7 +268,7 @@
             "id": "no-market-research",
             "title": "No prior target market research",
             "severity": "critical",
-            "description": "The client had a visual identity but no clarity on what to communicate digitally to their audience — high-profile investors with a high bar for credibility and trust.",
+            "description": "The client had a visual identity but no clarity on what to communicate digitally to their audience: high-profile investors with a high bar for credibility and trust.",
             "fix": "We conducted client and market research before designing. We defined trust, security, and solidity as the core narrative pillars. Every visual and copy decision was validated against that profile.",
             "metric": {
               "label": "Strategy → design alignment",
@@ -282,7 +282,7 @@
             "id": "no-design-system",
             "title": "No reusable component foundation",
             "severity": "critical",
-            "description": "The initial Figma handoff had inconsistent spacing, duplicate button variants, and no typography scale. Without a solid foundation, every section would have been a one-off — incompatible with the credibility and solidity the client needed to project.",
+            "description": "The initial Figma handoff had inconsistent spacing, duplicate button variants, and no typography scale. Without a solid foundation, every section would have been a one-off, incompatible with the credibility and solidity the client needed to project.",
             "fix": "Established design tokens and atomic primitives first, then assembled page sections from reusable components. This reduced implementation friction and review cycles.",
             "metric": {
               "label": "Development speed",
@@ -296,7 +296,7 @@
             "id": "no-i18n-architecture",
             "title": "No internationalization architecture",
             "severity": "major",
-            "description": "The project started in Spanish only. Midway through delivery, the client requested a full English version to reach anglophone investors — without changing the launch date.",
+            "description": "The project started in Spanish only. Midway through delivery, the client requested a full English version to reach anglophone investors, without changing the launch date.",
             "fix": "Integrated next-intl with locale-aware routing and dictionary-based content. This allowed language expansion without template rewrites.",
             "metric": {
               "label": "Time to add EN version",
@@ -427,7 +427,7 @@
         ]
       },
       "noctraStudio": {
-        "overview": "Noctra Studio's own site had to function as a conversion asset, a trust layer, and a demonstration of technical depth — for startup founders, professionals, and business owners alike.",
+        "overview": "Noctra Studio's own site had to function as a conversion asset, a trust layer, and a demonstration of technical depth, for startup founders, professionals, and business owners alike.",
         "role": "Founder, Lead Frontend Engineer",
         "duration": "5 weeks",
         "scope": [
@@ -608,8 +608,8 @@
   },
   "contact": {
     "label": "Contact",
-    "headline": "If you're building something — or just know you need something better — I want to hear about it.",
-    "subtext": "Currently open to full-time roles and selective collaborations. Based in Querétaro, MX — working remotely worldwide.",
+    "headline": "If you're building something, or just know you need something better, I want to hear about it.",
+    "subtext": "Currently open to full-time roles and selective collaborations. Based in Querétaro, MX. Working remotely worldwide.",
     "availability": "Available for new opportunities",
     "email_cta": "Send an email",
     "linkedin_cta": "LinkedIn →",

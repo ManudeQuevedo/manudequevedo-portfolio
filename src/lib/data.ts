@@ -77,7 +77,7 @@ export const experience: ExperienceItem[] = [
     id: 0,
     company: "Noctra Studio",
     role: "Founder & Lead Engineer",
-    period: "2025 — Present",
+    period: "2025 - Present",
     location: "Querétaro, MX",
     description: "Frontend agency building performant digital products for startups and businesses in LATAM.",
     highlight: "Built and shipped 4 client projects in the first 6 months.",
@@ -445,7 +445,7 @@ export const projects: Project[] = [
     description:
       "You're looking at it. Built with Next.js 16, TailwindCSS v4, Framer Motion, and Lenis. Bilingual (ES/EN), custom cursor, terminal animation, and sticky scroll.",
     challenge: "The portfolio itself had to be the proof of concept.",
-    solution: "Every interaction — cursor, scroll, terminal — is intentional craft.",
+    solution: "Every interaction (cursor, scroll, terminal) is intentional craft.",
     tags: ["Next.js", "TailwindCSS", "Framer Motion", "GSAP", "next-intl"],
     link: "https://manudequevedo.com",
     github: "https://github.com/manudequevedo/manudequevedo-portfolio",

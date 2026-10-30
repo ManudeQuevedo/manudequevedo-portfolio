@@ -44,7 +44,7 @@ export function Contact() {
     return () => media.removeEventListener("change", update);
   }, []);
 
-  const email = "contact@manudequevedo.com";
+  const email = "manu@noctra.studio";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);

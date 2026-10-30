@@ -181,7 +181,10 @@ export function Hero() {
   );
   const headlineWords = useMemo(() => t("headline").split(" "), [t]);
   const headlineDividerIndex = useMemo(
-    () => headlineWords.findIndex((word) => word === "—" || word === "-"),
+    () =>
+      headlineWords.findIndex(
+        (word, i) => i < headlineWords.length - 1 && /[.,]$/.test(word),
+      ),
     [headlineWords],
   );
 
