@@ -131,6 +131,18 @@ export function Experience() {
 
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-3">
+                        {item.logo && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={item.logo}
+                            alt=""
+                            aria-hidden="true"
+                            className="h-7 w-7 md:h-8 md:w-8 shrink-0 rounded-sm object-contain"
+                            onError={(e) => {
+                              e.currentTarget.style.display = "none";
+                            }}
+                          />
+                        )}
                         <h3
                           className={`font-display text-xl md:text-2xl font-bold ${companyTone}`}>
                           {company}

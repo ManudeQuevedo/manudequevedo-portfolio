@@ -75,7 +75,8 @@
       "tcs_ui_system": "UI system used by 12+ engineers",
       "concentrix_resolution": "40% faster ticket resolution cycle",
       "quiubas_acquisition": "Shipped during acquisition — 0 regressions",
-      "linio_monthly_sessions": "Frontend serving 2M+ monthly sessions"
+      "linio_monthly_sessions": "Frontend serving 2M+ monthly sessions",
+      "gs_automation": "AI-agent automations replacing repetitive operational tasks"
     },
     "items": {
       "0": {
@@ -98,10 +99,37 @@
         ]
       },
       "1": {
+        "company": "Goldman Sachs",
+        "role": "Software Engineer · AppBank (GSAM)",
+        "employmentType": "Full-time",
+        "period": "Apr 2026 - Present",
+        "location": "Mexico",
+        "description": "Software Engineer on the AppBank division of Goldman Sachs Asset Management (GSAM), keeping the firm's internal applications reliable, secure and fast to ship — from debugging production issues to automating the work nobody should do twice.",
+        "highlight": "Turning repetitive operational work into AI-agent automations, so the team spends its time on engineering instead of toil.",
+        "details": [
+          "Validated errors and debugged application code and SQL databases, tracing issues across the stack down to root cause.",
+          "Monitored and troubleshot workloads on AWS (CloudWatch, EC2, S3), using Splunk and Grafana for observability and incident triage.",
+          "Automated repetitive tasks with AI agents, cutting manual effort on recurring operational work.",
+          "Worked on application security and GitLab-based workflows, and contributed to the UI/UX of the Advisor website."
+        ],
+        "tags": [
+          "AWS",
+          "CloudWatch",
+          "EC2",
+          "S3",
+          "SQL",
+          "GitLab",
+          "Splunk",
+          "Grafana",
+          "AI Agents",
+          "Security"
+        ]
+      },
+      "2": {
         "company": "Tata Consultancy Services",
         "role": "UI Developer",
         "employmentType": "Full-time",
-        "period": "Apr 2023 - Present · 3 yrs",
+        "period": "Apr 2023 - Apr 2026 · 3 yrs",
         "location": "Querétaro, Mexico · Remote",
         "description": "While my role evolved to support the Publishing team during a large-scale AEM migration, I took the initiative to act as the primary technical bridge between content and development teams.",
         "highlight": "Designed and implemented a comprehensive onboarding and mentorship program from scratch — technical documentation and guides that reduced ramp-up time and recurring errors.",
@@ -119,7 +147,7 @@
           "RBAC"
         ]
       },
-      "2": {
+      "3": {
         "company": "Concentrix Catalyst",
         "role": "Software Engineer / ServiceNow Developer",
         "employmentType": "Full-time",
@@ -141,7 +169,7 @@
           "Grafana"
         ]
       },
-      "3": {
+      "4": {
         "company": "Quiubas Mobile (acquired by Twilio)",
         "role": "Software Engineer (Short-Term Project)",
         "employmentType": "Seasonal",
@@ -162,7 +190,7 @@
           "JavaScript"
         ]
       },
-      "4": {
+      "5": {
         "company": "Linio Group",
         "role": "Web Content Specialist",
         "period": "May 2017 - Mar 2019 · 1 yr 11 mos",
