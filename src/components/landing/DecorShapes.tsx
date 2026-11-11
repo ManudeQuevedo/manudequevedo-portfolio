@@ -3,29 +3,29 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
-// Gradient defs shared by the shapes; palette matches the ContactButton gradient.
+// Gradient defs shared by the shapes; pure white-to-black gradients (no color).
 function Defs() {
   return (
     <defs>
       <linearGradient id="d-purple" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#D58BFF" />
-        <stop offset="55%" stopColor="#7621B0" />
-        <stop offset="100%" stopColor="#18011F" />
+        <stop offset="0%" stopColor="#FFFFFF" />
+        <stop offset="55%" stopColor="#8A9099" />
+        <stop offset="100%" stopColor="#050505" />
       </linearGradient>
       <linearGradient id="d-magenta" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#FF7BF0" />
-        <stop offset="50%" stopColor="#B600A8" />
-        <stop offset="100%" stopColor="#2A0230" />
+        <stop offset="0%" stopColor="#E6EBEF" />
+        <stop offset="55%" stopColor="#4A4E55" />
+        <stop offset="100%" stopColor="#030303" />
       </linearGradient>
       <linearGradient id="d-orange" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#FFB070" />
-        <stop offset="55%" stopColor="#BE4C00" />
-        <stop offset="100%" stopColor="#3A1500" />
+        <stop offset="0%" stopColor="#FFFFFF" />
+        <stop offset="55%" stopColor="#A9B0B8" />
+        <stop offset="100%" stopColor="#0A0A0A" />
       </linearGradient>
       <linearGradient id="d-steel" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#E8F0F5" />
-        <stop offset="55%" stopColor="#646973" />
-        <stop offset="100%" stopColor="#15171B" />
+        <stop offset="0%" stopColor="#FFFFFF" />
+        <stop offset="55%" stopColor="#C4CBD2" />
+        <stop offset="100%" stopColor="#2A2D32" />
       </linearGradient>
       <radialGradient id="d-gloss" cx="0.3" cy="0.25" r="0.5">
         <stop offset="0%" stopColor="#fff" stopOpacity="0.7" />

@@ -3,13 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { MARQUEE_IMAGES } from "@/lib/landing";
 
-const ROW_ONE = MARQUEE_IMAGES.slice(0, 11);
-const ROW_TWO = MARQUEE_IMAGES.slice(11);
+// Only a few screenshots exist, so each row repeats them to stay full-width while sliding.
+const REPEATS = 6;
+const ROW_ONE = MARQUEE_IMAGES;
+const ROW_TWO = [...MARQUEE_IMAGES].reverse();
 
 function Row({ images, offset }: { images: string[]; offset: number }) {
   return (
-    <div className="flex gap-3" style={{ transform: `translateX(${offset}px)`, willChange: "transform" }}>
-      {[...images, ...images, ...images].map((src, index) => (
+    <div className="flex gap-3" style={{ transform: `translateX(${offset}px)`, willChange: "transform", marginLeft: "-3000px" }}>
+      {Array.from({ length: REPEATS }, () => images).flat().map((src, index) => (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           key={`${src}-${index}`}
@@ -17,7 +19,7 @@ function Row({ images, offset }: { images: string[]; offset: number }) {
           alt=""
           loading="lazy"
           draggable={false}
-          className="h-[270px] w-[420px] max-w-none shrink-0 rounded-2xl object-cover"
+          className="h-[270px] w-[420px] max-w-none shrink-0 rounded-2xl object-cover object-top"
         />
       ))}
     </div>
