@@ -10,6 +10,7 @@ export function HeroSection() {
   const t = useTranslations("landing");
   const links = [
     { label: t("nav.about"), href: "#about" },
+    { label: t("nav.experience"), href: "#experience" },
     { label: t("nav.services"), href: "#services" },
     { label: t("nav.projects"), href: "#projects" },
     { label: t("nav.contact"), href: "#contact" },
@@ -27,7 +28,7 @@ export function HeroSection() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium uppercase tracking-wider text-[#D7E2EA] transition-opacity duration-200 hover:opacity-70 md:text-lg lg:text-[1.4rem]">
+              className="text-[11px] font-medium uppercase tracking-wide text-[#D7E2EA] transition-opacity sm:text-sm sm:tracking-wider duration-200 hover:opacity-70 md:text-lg lg:text-[1.4rem]">
               {link.label}
             </a>
           ))}

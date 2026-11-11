@@ -629,6 +629,7 @@
   "landing": {
     "nav": {
       "about": "Sobre mí",
+      "experience": "Experiencia",
       "services": "Servicios",
       "projects": "Proyectos",
       "contact": "Contacto"
@@ -681,6 +682,9 @@
       "text": "Si estás construyendo algo, o sabes que necesitas algo mejor, escríbeme. Querétaro, MX · Trabajo remoto globalmente.",
       "linkedin": "LinkedIn",
       "cv": "Descargar CV"
+    },
+    "experience": {
+      "title": "Experiencia"
     }
   }
 }
