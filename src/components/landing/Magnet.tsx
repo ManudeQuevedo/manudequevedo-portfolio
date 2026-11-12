@@ -1,5 +1,6 @@
 "use client";
 
+import { useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 interface MagnetProps {
@@ -23,8 +24,10 @@ export function Magnet({
   const [isActive, setIsActive] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reduceMotion) return;
     const onMove = (event: MouseEvent) => {
       const node = ref.current;
       if (!node) return;
@@ -49,7 +52,7 @@ export function Magnet({
 
     window.addEventListener("mousemove", onMove);
     return () => window.removeEventListener("mousemove", onMove);
-  }, [padding, strength]);
+  }, [padding, strength, reduceMotion]);
 
   return (
     <div ref={ref} className={className} style={{ position: "relative", display: "block" }}>

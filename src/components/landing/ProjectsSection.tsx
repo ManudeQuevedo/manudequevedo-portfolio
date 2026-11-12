@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { FadeIn } from "./FadeIn";
@@ -22,7 +22,8 @@ function ProjectCard({
 }) {
   const t = useTranslations("landing");
   const targetScale = 1 - (total - 1 - index) * 0.03;
-  const scale = useTransform(progress, [index / total, 1], [1, targetScale]);
+  const reduceMotion = useReducedMotion();
+  const scale = useTransform(progress, [index / total, 1], [1, reduceMotion ? 1 : targetScale]);
   const number = String(index + 1).padStart(2, "0");
 
   return (

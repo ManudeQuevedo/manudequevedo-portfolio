@@ -28,7 +28,7 @@ export function HeroSection() {
       style={{ overflowX: "clip" }}>
       <FadeIn delay={0} y={-20}>
         <nav
-          aria-label="Principal"
+          aria-label={t("a11y.mainNav")}
           className="flex justify-between px-6 pt-6 md:px-10 md:pt-8">
           {links.map((link) => (
             <a

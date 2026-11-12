@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 // Gradient defs shared by the shapes; pure white-to-black gradients (no color).
@@ -93,6 +93,9 @@ export function Float({
   duration?: number;
   rotate?: number;
 }) {
+  const reduceMotion = useReducedMotion();
+  if (reduceMotion) return <div>{children}</div>;
+
   return (
     <motion.div
       animate={{ y: [0, -14, 0], rotate: [-rotate, rotate, -rotate] }}

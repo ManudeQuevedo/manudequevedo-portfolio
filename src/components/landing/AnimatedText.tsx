@@ -2,6 +2,7 @@
 
 import {
   motion,
+  useReducedMotion,
   useScroll,
   useTransform,
   type MotionValue,
@@ -44,6 +45,7 @@ export function AnimatedText({
   style?: React.CSSProperties;
 }) {
   const ref = useRef<HTMLParagraphElement>(null);
+  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 0.8", "end 0.2"],
@@ -57,8 +59,19 @@ export function AnimatedText({
     return acc;
   }, []);
 
+  // With reduced motion the text is shown fully, with no scroll-linked reveal.
+  if (reduceMotion) {
+    return (
+      <p ref={ref} className={className} style={style}>
+        {text}
+      </p>
+    );
+  }
+
   return (
-    <p ref={ref} className={className} style={style} aria-label={text}>
+    <p ref={ref} className={className} style={style}>
+      {/* Screen readers get the plain text; the animated characters below are decorative. */}
+      <span className="sr-only">{text}</span>
       {words.map((word, wordIndex) => {
         const wordStart = starts[wordIndex];
         return (

@@ -82,7 +82,7 @@
       "0": {
         "company": "Noctra Studio",
         "role": "Founder & Lead Engineer",
-        "period": "2025 - Present",
+        "period": "Oct 2026 - Present",
         "location": "Querétaro, MX",
         "description": "Digital studio with an engineering mindset, based in Querétaro. Branding, websites, SEO, GEO (visibility in AI answers like ChatGPT) and automation, plus in-house software, for businesses across LATAM that want to grow with structure.",
         "highlight": "One project delivered (Woodax Design) and three more in progress. Alongside client work, I'm building an in-house tooling ecosystem that removes friction between the agency and its clients.",
@@ -686,6 +686,15 @@
     },
     "experience": {
       "title": "Experience"
+    },
+    "meta": {
+      "title": "Manu de Quevedo | Frontend Engineer & UI Architect",
+      "description": "Frontend engineer crafting fast, secure and unforgettable interfaces. Founder of Noctra Studio, based in Querétaro, working with businesses across LATAM.",
+      "ogAlt": "Manu de Quevedo, Frontend Engineer"
+    },
+    "a11y": {
+      "mainNav": "Main navigation",
+      "language": "Language"
     }
   }
 }
