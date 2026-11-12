@@ -52,7 +52,7 @@ export function Magnet({
   }, [padding, strength]);
 
   return (
-    <div ref={ref} className={className} style={{ position: "relative", display: "inline-block" }}>
+    <div ref={ref} className={className} style={{ position: "relative", display: "block" }}>
       <div
         style={{
           transform: `translate3d(${position.x}px, ${position.y}px, 0)`,

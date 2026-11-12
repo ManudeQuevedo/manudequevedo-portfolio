@@ -43,10 +43,10 @@ export function HeroSection() {
         </FadeIn>
       </div>
 
-      <div className="mt-auto flex items-end justify-between px-6 pb-7 sm:pb-8 md:px-10 md:pb-10">
+      <div className="relative z-20 mt-auto flex items-end justify-between px-6 pb-7 sm:pb-8 md:px-10 md:pb-10">
         <FadeIn delay={0.35} y={20}>
           <p
-            className="max-w-[160px] font-light uppercase leading-snug tracking-wide text-[#D7E2EA] sm:max-w-[220px] md:max-w-[260px]"
+            className="max-w-[160px] font-light uppercase [text-shadow:0_1px_10px_rgba(0,0,0,0.9)] leading-snug tracking-wide text-[#D7E2EA] sm:max-w-[220px] md:max-w-[260px]"
             style={{ fontSize: "clamp(0.75rem, 1.4vw, 1.5rem)" }}>
             {t("hero.tagline")}
           </p>
@@ -56,12 +56,12 @@ export function HeroSection() {
         </FadeIn>
       </div>
 
-      <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 w-[280px] -translate-x-1/2 -translate-y-1/2 sm:bottom-0 sm:top-auto sm:w-[360px] sm:translate-y-0 md:w-[440px] lg:w-[520px]">
+      <div className="pointer-events-none absolute bottom-[112px] left-1/2 z-10 w-[100vw] max-w-[440px] -translate-x-1/2 [mask-image:linear-gradient(to_bottom,black_82%,transparent)] sm:bottom-0 sm:[mask-image:none] sm:w-[calc(66vh*0.866)] sm:max-w-none md:w-[calc(76vh*0.866)]">
         <FadeIn delay={0.6} y={30}>
           <Magnet padding={150} strength={3} activeTransition="transform 0.3s ease-out" inactiveTransition="transform 0.6s ease-in-out">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/me-no-bg.png"
+              src="/me-cartoon.png"
               alt="Manu de Quevedo"
               className="block h-auto w-full select-none"
               draggable={false}
