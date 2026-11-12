@@ -28,9 +28,9 @@ export const LANDING_PROJECTS: LandingProject[] = [
     name: "Bridge Capital",
     category: "client",
     images: [
-      { src: "/bridgecapital.png", position: "top" },
-      { src: "/bridgecapital.png", position: "bottom" },
-      { src: "/bridgecapital.png", position: "center" },
+      { src: "/projects/bridge-calculator.webp", position: "center" },
+      { src: "/projects/bridge-footer.webp", position: "center" },
+      { src: "/projects/bridge-hero.webp", position: "center" },
     ],
     link: null,
   },
