@@ -625,5 +625,67 @@
       "message": "Cuéntame sobre tu proyecto...",
       "send": "Enviar"
     }
+  },
+  "landing": {
+    "nav": {
+      "about": "Sobre mí",
+      "experience": "Experiencia",
+      "services": "Servicios",
+      "projects": "Proyectos",
+      "contact": "Contacto"
+    },
+    "contactButton": "Contáctame",
+    "hero": {
+      "heading": "Soy manu",
+      "tagline": "frontend engineer que construye interfaces rápidas, seguras y que no se olvidan"
+    },
+    "about": {
+      "title": "Sobre mí",
+      "text": "Con más de seis años de experiencia, desde e-commerce a escala hasta sistemas de UI en una firma global, me obsesiona ese último 10% que convierte una interfaz funcional en una que se recuerda. A través de Noctra Studio trabajo con negocios en LATAM que quieren destacar con estructura. ¡Construyamos algo increíble juntos!"
+    },
+    "services": {
+      "title": "Servicios",
+      "items": [
+        {
+          "name": "Diseño y desarrollo web",
+          "description": "Sitios y plataformas rápidas, accesibles y bilingües con Next.js, TypeScript y Tailwind, pensadas para convertir visitas en clientes."
+        },
+        {
+          "name": "Branding",
+          "description": "Identidades visuales coherentes, desde el logo hasta un sistema de marca completo, que comunican una presencia clara y memorable."
+        },
+        {
+          "name": "SEO",
+          "description": "Arquitectura técnica, performance y contenido optimizado para que tu negocio aparezca donde tus clientes buscan."
+        },
+        {
+          "name": "GEO",
+          "description": "Visibilidad en respuestas de IA como ChatGPT: estructura y contenido preparados para que los modelos te citen y recomienden."
+        },
+        {
+          "name": "Automatización y software",
+          "description": "Flujos con agentes de IA y software a la medida que eliminan trabajo repetitivo para que tu equipo se enfoque en crecer."
+        }
+      ]
+    },
+    "projects": {
+      "title": "Proyectos",
+      "live": "Ver sitio",
+      "soon": "Próximamente",
+      "categories": {
+        "client": "Cliente",
+        "own": "Estudio propio",
+        "product": "Producto"
+      }
+    },
+    "contact": {
+      "title": "Contacto",
+      "text": "Si estás construyendo algo, o sabes que necesitas algo mejor, escríbeme. Querétaro, MX · Trabajo remoto globalmente.",
+      "linkedin": "LinkedIn",
+      "cv": "Descargar CV"
+    },
+    "experience": {
+      "title": "Experiencia"
+    }
   }
 }

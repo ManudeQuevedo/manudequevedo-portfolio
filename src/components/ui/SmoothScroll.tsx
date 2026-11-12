@@ -23,6 +23,8 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const lenis = new Lenis({
       lerp: 0.08,
       smoothWheel: true,
+      // Smoothly scroll to in-page anchors (#about, #projects...) too.
+      anchors: true,
       // @ts-ignore
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

@@ -2,12 +2,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Providers } from "@/components/providers/Providers";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { SidebarNav } from "@/components/layout/SidebarNav";
 
-// LocaleLayout wires translations, shared providers, and chrome for every localized page.
+// LocaleLayout wires translations for every localized page; page chrome lives in each route.
 export default async function LocaleLayout({
   children,
   params,
@@ -28,15 +24,9 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className="antialiased font-body bg-dark text-primary">
+      <body className="antialiased font-body bg-dark text-primary" style={{ backgroundColor: "#0C0C0C" }}>
         <NextIntlClientProvider messages={messages}>
-          <Providers>
-            <div className="noise-overlay" />
-            <Navbar />
-            <SidebarNav />
-            {children}
-            <Footer />
-          </Providers>
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>
