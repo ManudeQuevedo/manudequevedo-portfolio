@@ -48,7 +48,7 @@ export const LANDING_PROJECTS: LandingProject[] = [
       { src: "/projects/bridge-services.webp", position: "center" },
       { src: "/projects/bridge-hero.webp", position: "center" },
     ],
-    link: null,
+    link: "https://bridgecapital.mx",
   },
   {
     slug: "woodax-design",
