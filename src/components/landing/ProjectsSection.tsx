@@ -61,29 +61,29 @@ function ProjectCard({
           <div className="flex w-[40%] flex-col gap-3 sm:gap-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={project.image}
+              src={project.images[0].src}
               alt=""
               loading="lazy"
-              className={`w-full object-cover object-top ${RADIUS}`}
-              style={{ height: "clamp(130px, 16vw, 230px)" }}
+              className={`w-full object-cover ${RADIUS}`}
+              style={{ height: "clamp(130px, 16vw, 230px)", objectPosition: project.images[0].position }}
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={project.image}
+              src={project.images[1].src}
               alt=""
               loading="lazy"
-              className={`w-full object-cover object-bottom ${RADIUS}`}
-              style={{ height: "clamp(160px, 22vw, 340px)" }}
+              className={`w-full object-cover ${RADIUS}`}
+              style={{ height: "clamp(160px, 22vw, 340px)", objectPosition: project.images[1].position }}
             />
           </div>
           <div className="w-[60%]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={project.image}
+              src={project.images[2].src}
               alt={project.name}
               loading="lazy"
-              className={`h-full w-full object-cover object-center ${RADIUS}`}
-              style={{ minHeight: "clamp(300px, 40vw, 590px)" }}
+              className={`h-full w-full object-cover ${RADIUS}`}
+              style={{ minHeight: "clamp(300px, 40vw, 590px)", objectPosition: project.images[2].position }}
             />
           </div>
         </div>
