@@ -4,22 +4,40 @@ import { motion, useMotionValue, useReducedMotion } from "framer-motion";
 import { memo, useEffect, useRef } from "react";
 import { MARQUEE_ROW_ONE, MARQUEE_ROW_TWO } from "@/lib/landing";
 
-// Each row repeats its own set so it stays full-width while sliding.
-const REPEATS = 4;
+const TILE_W = 420;
+const TILE_H = 270;
+const GAP = 12;
+// Tiles per row. Kept small on purpose: 10 tiles = ~4,300 CSS px, which stays under the 16,384 px
+// texture limit of mobile GPUs even at 3x pixel density (the old 24-tile rows were ~10,000 px).
+const TILES_PER_ROW = 10;
+// One tile sits off-screen to the left so the row never shows a gap while it slides right.
+const ROW_LEFT_OFFSET = -(TILE_W + GAP);
+
+// buildRow repeats the row's images until it has TILES_PER_ROW tiles.
+function buildRow(images: string[]) {
+  return Array.from({ length: TILES_PER_ROW }, (_, i) => images[i % images.length]);
+}
+
+const ROW_ONE = buildRow(MARQUEE_ROW_ONE);
+const ROW_TWO = buildRow(MARQUEE_ROW_TWO);
 
 // RowImages is memoized so scrolling only changes the parent transform, never the image list.
 const RowImages = memo(function RowImages({ images }: { images: string[] }) {
   return (
     <>
-      {Array.from({ length: REPEATS }, () => images).flat().map((src, index) => (
+      {images.map((src, index) => (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           key={`${src}-${index}`}
           src={src}
           alt=""
+          width={TILE_W}
+          height={TILE_H}
           loading="lazy"
+          decoding="async"
           draggable={false}
-          className="h-[270px] w-[420px] max-w-none shrink-0 rounded-2xl object-cover object-top"
+          className="max-w-none shrink-0 rounded-2xl object-cover object-top"
+          style={{ width: TILE_W, height: TILE_H }}
         />
       ))}
     </>
@@ -27,7 +45,8 @@ const RowImages = memo(function RowImages({ images }: { images: string[] }) {
 });
 
 // MarqueeSection renders two rows of previews that slide in opposite directions as the page scrolls.
-// Motion values update the transforms directly, so scrolling never re-renders React.
+// Motion values update the transforms directly, so scrolling never re-renders React, and the
+// section's page position is cached so the scroll handler does no layout reads.
 export function MarqueeSection() {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
@@ -37,21 +56,44 @@ export function MarqueeSection() {
   useEffect(() => {
     if (reduceMotion) return;
 
-    const update = () => {
+    let top = 0;
+    let frame = 0;
+
+    const measure = () => {
       const node = ref.current;
       if (!node) return;
-      const top = node.getBoundingClientRect().top + window.scrollY;
+      top = node.getBoundingClientRect().top + window.scrollY;
+    };
+
+    const update = () => {
+      frame = 0;
       const offset = (window.scrollY - top + window.innerHeight) * 0.3;
       xOne.set(offset - 200);
       xTwo.set(-(offset - 200));
     };
 
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    const onResize = () => {
+      measure();
+      onScroll();
+    };
+
+    measure();
     update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+    // Content above the marquee can change height (fonts, images), so re-measure when the page does.
+    const observer = new ResizeObserver(onResize);
+    observer.observe(document.body);
+
     return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+      observer.disconnect();
+      if (frame) cancelAnimationFrame(frame);
     };
   }, [reduceMotion, xOne, xTwo]);
 
@@ -59,12 +101,17 @@ export function MarqueeSection() {
     <section
       ref={ref}
       aria-hidden="true"
-      className="flex flex-col gap-3 overflow-hidden bg-[#0C0C0C] pb-10 pt-24 sm:pt-32 md:pt-40">
-      <motion.div className="flex gap-3" style={{ x: xOne, willChange: "transform", marginLeft: "-3000px" }}>
-        <RowImages images={MARQUEE_ROW_ONE} />
+      className="flex flex-col overflow-hidden bg-[#0C0C0C] pb-10 pt-24 sm:pt-32 md:pt-40"
+      style={{ gap: GAP }}>
+      <motion.div
+        className="flex"
+        style={{ x: xOne, gap: GAP, marginLeft: ROW_LEFT_OFFSET, willChange: "transform" }}>
+        <RowImages images={ROW_ONE} />
       </motion.div>
-      <motion.div className="flex gap-3" style={{ x: xTwo, willChange: "transform", marginLeft: "-3000px" }}>
-        <RowImages images={MARQUEE_ROW_TWO} />
+      <motion.div
+        className="flex"
+        style={{ x: xTwo, gap: GAP, marginLeft: ROW_LEFT_OFFSET, willChange: "transform" }}>
+        <RowImages images={ROW_TWO} />
       </motion.div>
     </section>
   );

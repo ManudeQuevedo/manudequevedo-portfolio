@@ -1,28 +1,23 @@
 // Static assets and project metadata for the landing page redesign.
 
-// Marquee rows: curated project screenshots, mixed across projects so neighbours differ.
+// Marquee rows: small 840px thumbnails of the project screenshots (tiles render at 420px), mixed across projects.
 export const MARQUEE_ROW_ONE = [
-  "/projects/bridge-hero.webp",
-  "/projects/woodax-hero.webp",
-  "/projects/cnc-hero.webp",
-  "/projects/noctra-hero.webp",
-  "/projects/woodax-recent.webp",
-  "/projects/cnc-machine.webp",
+  "/projects/marquee/bridge-hero.webp",
+  "/projects/marquee/woodax-hero.webp",
+  "/projects/marquee/cnc-hero.webp",
+  "/projects/marquee/noctra-hero.webp",
+  "/projects/marquee/woodax-recent.webp",
+  "/projects/marquee/cnc-machine.webp",
 ];
 
 export const MARQUEE_ROW_TWO = [
-  "/projects/bridge-services.webp",
-  "/projects/noctra-ops.webp",
-  "/projects/woodax-gallery.webp",
-  "/projects/cnc-materials.webp",
-  "/projects/bridge-calculator.webp",
-  "/projects/noctra-thesis.webp",
+  "/projects/marquee/bridge-services.webp",
+  "/projects/marquee/noctra-ops.webp",
+  "/projects/marquee/woodax-gallery.webp",
+  "/projects/marquee/cnc-materials.webp",
+  "/projects/marquee/bridge-calculator.webp",
+  "/projects/marquee/noctra-thesis.webp",
 ];
-
-export interface LandingImage {
-  src: string;
-  position?: string;
-}
 
 export interface LandingImage {
   src: string;
@@ -44,9 +39,9 @@ export const LANDING_PROJECTS: LandingProject[] = [
     name: "Bridge Capital",
     category: "client",
     images: [
-      { src: "/projects/bridge-calculator.webp", position: "center" },
-      { src: "/projects/bridge-services.webp", position: "center" },
-      { src: "/projects/bridge-hero.webp", position: "center" },
+      { src: "/projects/marquee/bridge-calculator.webp", position: "center" },
+      { src: "/projects/marquee/bridge-services.webp", position: "center" },
+      { src: "/projects/marquee/bridge-hero.webp", position: "center" },
     ],
     link: "https://bridgecapital.mx",
   },
@@ -55,9 +50,9 @@ export const LANDING_PROJECTS: LandingProject[] = [
     name: "Woodax Design",
     category: "client",
     images: [
-      { src: "/projects/woodax-recent.webp", position: "center" },
-      { src: "/projects/woodax-gallery.webp", position: "center" },
-      { src: "/projects/woodax-hero.webp", position: "center" },
+      { src: "/projects/marquee/woodax-recent.webp", position: "center" },
+      { src: "/projects/marquee/woodax-gallery.webp", position: "center" },
+      { src: "/projects/marquee/woodax-hero.webp", position: "center" },
     ],
     link: "https://woodax.design",
   },
@@ -66,9 +61,9 @@ export const LANDING_PROJECTS: LandingProject[] = [
     name: "CNC by Woodax Design",
     category: "product",
     images: [
-      { src: "/projects/cnc-machine.webp", position: "center" },
-      { src: "/projects/cnc-materials.webp", position: "center" },
-      { src: "/projects/cnc-hero.webp", position: "center" },
+      { src: "/projects/marquee/cnc-machine.webp", position: "center" },
+      { src: "/projects/marquee/cnc-materials.webp", position: "center" },
+      { src: "/projects/marquee/cnc-hero.webp", position: "center" },
     ],
     link: "https://cnc.woodax.design",
   },
@@ -77,9 +72,9 @@ export const LANDING_PROJECTS: LandingProject[] = [
     name: "Noctra Studio",
     category: "own",
     images: [
-      { src: "/projects/noctra-ops.webp", position: "center" },
-      { src: "/projects/noctra-thesis.webp", position: "center" },
-      { src: "/projects/noctra-hero.webp", position: "center" },
+      { src: "/projects/marquee/noctra-ops.webp", position: "center" },
+      { src: "/projects/marquee/noctra-thesis.webp", position: "center" },
+      { src: "/projects/marquee/noctra-hero.webp", position: "center" },
     ],
     link: "https://noctra.studio",
   },
