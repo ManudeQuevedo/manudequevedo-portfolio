@@ -77,7 +77,7 @@ export const experience: ExperienceItem[] = [
     id: 0,
     company: "Noctra Studio",
     role: "Founder & Lead Engineer",
-    period: "2025 - Present",
+    period: "Oct 2026 - Present",
     location: "Querétaro, MX",
     logo: "/noctra-logo.png",
     description: "Digital studio with an engineering mindset, based in Querétaro. Branding, websites, SEO, GEO (visibility in AI answers like ChatGPT) and automation, plus in-house software, for businesses across LATAM that want to grow with structure.",

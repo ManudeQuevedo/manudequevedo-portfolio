@@ -13,14 +13,33 @@ interface ExperienceItem {
   tags: string[];
 }
 
-// ExperienceSection lists every job in reverse-chronological order using the shared experience translations.
+// Month abbreviations in both locales, used to read the start date out of the "period" text.
+const MONTHS: Record<string, number> = {
+  ene: 1, jan: 1, feb: 2, mar: 3, abr: 4, apr: 4, may: 5, jun: 6,
+  jul: 7, ago: 8, aug: 8, sep: 9, oct: 10, nov: 11, dic: 12, dec: 12,
+};
+
+// startValue turns the first "Mon YYYY" (or "YYYY") in a period into a sortable number.
+function startValue(period: string) {
+  const match = period.match(/(?:([A-Za-zñ]{3})[a-z]*\.?\s+)?(\d{4})/);
+  if (!match) return 0;
+  const month = match[1] ? (MONTHS[match[1].toLowerCase()] ?? 1) : 1;
+  return Number(match[2]) * 12 + month;
+}
+
+// ExperienceSection lists every job newest first, ordered by each role's start date.
 export function ExperienceSection() {
   const t = useTranslations("landing");
   const te = useTranslations("experience");
-  // next-intl stores the list as an object keyed "0".."5"; sort numerically to keep the original order.
+  // next-intl stores the list as an object keyed "0".."5"; sort by start date, newest first.
+  // The key order breaks ties so equal dates keep the original sequence.
   const raw = te.raw("items") as Record<string, ExperienceItem>;
   const items = Object.keys(raw)
-    .sort((a, b) => Number(a) - Number(b))
+    .sort(
+      (a, b) =>
+        startValue(raw[b].period) - startValue(raw[a].period) ||
+        Number(a) - Number(b),
+    )
     .map((key) => raw[key]);
 
   return (

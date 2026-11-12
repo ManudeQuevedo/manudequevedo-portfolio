@@ -6,14 +6,18 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { setLenisInstance } from "@/lib/lenis";
 
-// SmoothScroll bootstraps Lenis and GSAP sync only on pointer-precise devices.
+// SmoothScroll bootstraps Lenis and GSAP sync only on pointer-precise devices that allow motion.
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const isTouchDevice =
       window.matchMedia("(pointer: coarse)").matches ||
       window.matchMedia("(hover: none)").matches;
 
-    if (isTouchDevice) {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (isTouchDevice || prefersReducedMotion) {
       setLenisInstance(null);
       return;
     }
