@@ -686,6 +686,11 @@
     },
     "experience": {
       "title": "Experience"
+    },
+    "meta": {
+      "title": "Manu de Quevedo | Frontend Engineer & UI Architect",
+      "description": "Frontend engineer crafting fast, secure and unforgettable interfaces. Founder of Noctra Studio, based in Querétaro, working with businesses across LATAM.",
+      "ogAlt": "Manu de Quevedo, Frontend Engineer"
     }
   }
 }
