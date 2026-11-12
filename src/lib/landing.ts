@@ -1,11 +1,22 @@
 // Static assets and project metadata for the landing page redesign.
 
-// Own screenshots shown in the scrolling marquee (Bridge Capital, Woodax, Noctra Studio, this portfolio).
-export const MARQUEE_IMAGES = [
-  "/bridgecapital.png",
-  "/woodax-design.png",
-  "/noctra-studio.png",
-  "/manudequevedo.png",
+// Marquee rows: curated project screenshots, mixed across projects so neighbours differ.
+export const MARQUEE_ROW_ONE = [
+  "/projects/bridge-hero.webp",
+  "/projects/woodax-hero.webp",
+  "/projects/cnc-hero.webp",
+  "/projects/noctra-hero.webp",
+  "/projects/woodax-recent.webp",
+  "/projects/cnc-machine.webp",
+];
+
+export const MARQUEE_ROW_TWO = [
+  "/projects/bridge-services.webp",
+  "/projects/noctra-ops.webp",
+  "/projects/woodax-gallery.webp",
+  "/projects/cnc-materials.webp",
+  "/projects/bridge-calculator.webp",
+  "/projects/noctra-thesis.webp",
 ];
 
 export interface LandingImage {
@@ -44,11 +55,11 @@ export const LANDING_PROJECTS: LandingProject[] = [
     name: "Woodax Design",
     category: "client",
     images: [
-      { src: "/projects/woodax-gallery.webp", position: "center" },
-      { src: "/projects/woodax-services.webp", position: "center" },
       { src: "/projects/woodax-recent.webp", position: "center" },
+      { src: "/projects/woodax-gallery.webp", position: "center" },
+      { src: "/projects/woodax-hero.webp", position: "center" },
     ],
-    link: null,
+    link: "https://woodax.design",
   },
   {
     slug: "cnc-woodax",

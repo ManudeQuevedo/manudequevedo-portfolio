@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MARQUEE_IMAGES } from "@/lib/landing";
+import { MARQUEE_ROW_ONE, MARQUEE_ROW_TWO } from "@/lib/landing";
 
-// Only a few screenshots exist, so each row repeats them to stay full-width while sliding.
-const REPEATS = 6;
-const ROW_ONE = MARQUEE_IMAGES;
-const ROW_TWO = [...MARQUEE_IMAGES].reverse();
+// Each row repeats its own set so it stays full-width while sliding.
+const REPEATS = 4;
+const ROW_ONE = MARQUEE_ROW_ONE;
+const ROW_TWO = MARQUEE_ROW_TWO;
 
 function Row({ images, offset }: { images: string[]; offset: number }) {
   return (
