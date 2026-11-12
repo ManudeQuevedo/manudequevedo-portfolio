@@ -45,8 +45,11 @@ const RowImages = memo(function RowImages({ images }: { images: string[] }) {
 });
 
 // MarqueeSection renders two rows of previews that slide in opposite directions as the page scrolls.
-// Motion values update the transforms directly, so scrolling never re-renders React, and the
-// section's page position is cached so the scroll handler does no layout reads.
+//
+// Where the browser supports CSS scroll-driven animations (see globals.css), the sliding runs on the
+// compositor and this component does no scroll work at all. Otherwise:
+//  - pointer devices fall back to a JS scroll handler (cheap, and in sync on desktop);
+//  - touch devices get static rows, because JS scroll handlers lag behind native scrolling on iOS.
 export function MarqueeSection() {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
@@ -55,6 +58,16 @@ export function MarqueeSection() {
 
   useEffect(() => {
     if (reduceMotion) return;
+
+    // CSS drives the animation; nothing to do in JS.
+    if (typeof CSS !== "undefined" && CSS.supports("animation-timeline", "view()")) return;
+
+    // No scroll-driven animations on a touch device: keep the rows still instead of lagging.
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      xOne.set(-100);
+      xTwo.set(100);
+      return;
+    }
 
     let top = 0;
     let frame = 0;
@@ -101,15 +114,15 @@ export function MarqueeSection() {
     <section
       ref={ref}
       aria-hidden="true"
-      className="flex flex-col overflow-hidden bg-[#0C0C0C] pb-10 pt-24 sm:pt-32 md:pt-40"
+      className="marquee-section flex flex-col overflow-hidden bg-[#0C0C0C] pb-10 pt-24 sm:pt-32 md:pt-40"
       style={{ gap: GAP }}>
       <motion.div
-        className="flex"
+        className="marquee-row-a flex"
         style={{ x: xOne, gap: GAP, marginLeft: ROW_LEFT_OFFSET, willChange: "transform" }}>
         <RowImages images={ROW_ONE} />
       </motion.div>
       <motion.div
-        className="flex"
+        className="marquee-row-b flex"
         style={{ x: xTwo, gap: GAP, marginLeft: ROW_LEFT_OFFSET, willChange: "transform" }}>
         <RowImages images={ROW_TWO} />
       </motion.div>

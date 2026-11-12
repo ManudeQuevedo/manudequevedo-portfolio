@@ -205,3 +205,47 @@ html.lenis body {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
+
+/*
+ * Marquee: rows slide as the page scrolls. Where supported, CSS scroll-driven animations run on the
+ * compositor, in sync with scrolling. A JS scroll listener lags a frame behind on iOS Safari, which
+ * reads as stutter; see MarqueeSection for the fallback when this is not supported.
+ */
+.marquee-section {
+  --marquee-travel: min(calc(0.3 * (100lvh + 700px)), 560px);
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .marquee-section {
+      view-timeline: --marquee block;
+    }
+
+    .marquee-row-a,
+    .marquee-row-b {
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --marquee;
+      animation-range: cover;
+    }
+
+    .marquee-row-a {
+      animation-name: marquee-right;
+    }
+
+    .marquee-row-b {
+      animation-name: marquee-left;
+    }
+  }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-200px); }
+  to { transform: translateX(calc(-200px + var(--marquee-travel))); }
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(200px); }
+  to { transform: translateX(calc(200px - var(--marquee-travel))); }
+}
