@@ -70,11 +70,13 @@ function ProjectCard({
   return (
     <div className="project-card-wrap sticky top-24 min-h-[85vh] md:top-32">
       <motion.article
-        // --stack-from / --stack-target feed the CSS scroll-driven animation (see globals.css).
+        // The --stack-* variables feed the CSS stack animations (see globals.css).
         style={
           {
-            top: `${index * 28}px`,
             background: "#0C0C0C",
+            "--stack-top": `${index * 28}px`,
+            "--stack-i": index,
+            "--stack-n": total,
             "--stack-from": `${from * 100}%`,
             "--stack-target": targetScale,
             ...(mode === "js" ? { scale } : null),

@@ -251,12 +251,34 @@ html.lenis body {
 }
 
 /*
- * Project cards: each card shrinks slightly as the next one stacks over it. Where supported, CSS
- * scroll-driven animations run this on the compositor, in sync with scrolling; a JS-driven scale
- * trails native scrolling on iOS and makes the cards appear to shake.
- * Progress is the container's own scroll progress (from its start at the viewport start to its end
- * at the viewport end), and card i starts at i / total of it: same mapping the JS version used.
+ * Project cards: a stack where each card pins near the top while the next one slides over it,
+ * and shrinks slightly as it gets covered.
+ *
+ * Desktop (mouse): position: sticky, plus a CSS scroll-driven shrink where supported.
+ *
+ * Touch devices: position: sticky jitters on iOS Safari (on a recording, the pinned edge oscillated
+ * ~3 px and reversed direction on 48% of the frames, so the cards shook). There the pin is a
+ * scroll-driven animation instead, like the marquee: the card is translated by exactly as much as the
+ * page scrolls (1:1), so it appears fixed, and the compositor does it in sync with scrolling.
+ * Without scroll-driven animation support (or with reduced motion), touch devices get a plain list.
  */
+.project-card {
+  top: var(--stack-top);
+  /* How far a card has to be carried to stay pinned: one slot (85vh) per card that comes after it. */
+  --pin: calc((var(--stack-n) - 1 - var(--stack-i)) * 85vh);
+}
+
+.project-card-wrap {
+  --stick: 6rem; /* same as top-24 */
+}
+
+@media (min-width: 768px) {
+  .project-card-wrap {
+    --stick: 8rem; /* same as md:top-32 */
+  }
+}
+
+/* Shrink, driven by the container's scroll progress (card i starts at i / total of it). */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .project-stack {
@@ -280,12 +302,7 @@ html.lenis body {
   to { transform: scale(var(--stack-target)); }
 }
 
-/*
- * Touch devices: no sticky stack, the cards simply flow one after another.
- * On an iPhone recording, the pinned (position: sticky) edge of the stack oscillated ~3 px and
- * reversed direction on 48% of frames, i.e. the cards visibly shook while scrolling. Moving the shrink
- * to the compositor did not change that, so the stick itself is dropped there. Desktop is unchanged.
- */
+/* Touch fallback (no scroll-driven animation support, or reduced motion): a plain list of cards. */
 @media (hover: none) and (pointer: coarse) {
   .project-card-wrap {
     position: static;
@@ -294,8 +311,39 @@ html.lenis body {
   }
 
   .project-card {
-    top: 0 !important;
-    transform: none !important;
-    animation: none !important;
+    top: 0;
   }
+}
+
+/*
+ * Touch with scroll-driven animations: the slot (wrapper) stays in normal flow and is the timeline
+ * subject. Its view timeline treats the top edge of the scrollport as `--stick` px lower, which is
+ * where the sticky card used to pin. From the moment the slot reaches that line, the card is carried
+ * down by the same distance it is scrolled, for `--pin` px (until the last card has arrived).
+ */
+@supports (animation-timeline: view()) {
+  @media (hover: none) and (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+    .project-card-wrap {
+      height: 85vh;
+      margin-bottom: 0;
+      view-timeline: --slot block;
+      view-timeline-inset: var(--stick) 0px;
+    }
+
+    .project-card {
+      top: var(--stack-top);
+      animation-name: stack-pin, stack-shrink;
+      animation-duration: auto, auto;
+      animation-timing-function: linear, linear;
+      animation-fill-mode: both, both;
+      animation-timeline: --slot, --stack;
+      animation-range-start: exit 0%, contain var(--stack-from);
+      animation-range-end: exit var(--pin), contain 100%;
+    }
+  }
+}
+
+@keyframes stack-pin {
+  from { translate: 0 0; }
+  to { translate: 0 var(--pin); }
 }
