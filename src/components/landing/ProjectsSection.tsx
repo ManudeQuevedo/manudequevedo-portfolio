@@ -18,7 +18,7 @@ import { LANDING_PROJECTS, type LandingProject } from "@/lib/landing";
 const CARD_RADIUS = "rounded-[28px] sm:rounded-[50px] md:rounded-[60px]";
 const IMG_RADIUS = "rounded-2xl sm:rounded-[32px] md:rounded-[40px] lg:rounded-[60px]";
 
-// How the stacking "shrink" is driven:
+// How the stacking "shrink" is driven (desktop / pointer devices only; touch devices get a plain list):
 //  - "css": CSS scroll-driven animations (compositor, in sync with scrolling). No JS scroll work.
 //  - "js":  Framer Motion, only for pointer devices without CSS support (desktop scroll is in sync).
 //  - "off": no shrink (touch devices without CSS support, or reduced motion).
@@ -26,6 +26,8 @@ type ScaleMode = "css" | "js" | "off";
 
 function getScaleMode(): ScaleMode {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return "off";
+  // Touch devices get a plain list of cards (see globals.css), so there is nothing to scale.
+  if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) return "off";
   if (CSS.supports("animation-timeline", "view()")) return "css";
   return window.matchMedia("(pointer: coarse)").matches ? "off" : "js";
 }
@@ -66,7 +68,7 @@ function ProjectCard({
   const [small, smallBottom, main] = project.images;
 
   return (
-    <div className="sticky top-24 min-h-[85vh] md:top-32">
+    <div className="project-card-wrap sticky top-24 min-h-[85vh] md:top-32">
       <motion.article
         // --stack-from / --stack-target feed the CSS scroll-driven animation (see globals.css).
         style={

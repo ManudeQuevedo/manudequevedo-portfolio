@@ -279,3 +279,23 @@ html.lenis body {
   from { transform: scale(1); }
   to { transform: scale(var(--stack-target)); }
 }
+
+/*
+ * Touch devices: no sticky stack, the cards simply flow one after another.
+ * On an iPhone recording, the pinned (position: sticky) edge of the stack oscillated ~3 px and
+ * reversed direction on 48% of frames, i.e. the cards visibly shook while scrolling. Moving the shrink
+ * to the compositor did not change that, so the stick itself is dropped there. Desktop is unchanged.
+ */
+@media (hover: none) and (pointer: coarse) {
+  .project-card-wrap {
+    position: static;
+    min-height: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-card {
+    top: 0 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
