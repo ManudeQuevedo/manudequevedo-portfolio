@@ -249,3 +249,33 @@ html.lenis body {
   from { transform: translateX(200px); }
   to { transform: translateX(calc(200px - var(--marquee-travel))); }
 }
+
+/*
+ * Project cards: each card shrinks slightly as the next one stacks over it. Where supported, CSS
+ * scroll-driven animations run this on the compositor, in sync with scrolling; a JS-driven scale
+ * trails native scrolling on iOS and makes the cards appear to shake.
+ * Progress is the container's own scroll progress (from its start at the viewport start to its end
+ * at the viewport end), and card i starts at i / total of it: same mapping the JS version used.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .project-stack {
+      view-timeline: --stack block;
+    }
+
+    .project-card {
+      animation-name: stack-shrink;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --stack;
+      animation-range-start: contain var(--stack-from);
+      animation-range-end: contain 100%;
+    }
+  }
+}
+
+@keyframes stack-shrink {
+  from { transform: scale(1); }
+  to { transform: scale(var(--stack-target)); }
+}

@@ -28,7 +28,7 @@ export interface LandingProject {
   slug: string;
   name: string;
   category: "client" | "own" | "product";
-  // [left top, left bottom, right tall]
+  // [small top, small bottom, main]. The small ones are 840px thumbnails, the main one is 1280px.
   images: [LandingImage, LandingImage, LandingImage];
   link: string | null;
 }
@@ -41,7 +41,7 @@ export const LANDING_PROJECTS: LandingProject[] = [
     images: [
       { src: "/projects/marquee/bridge-calculator.webp", position: "center" },
       { src: "/projects/marquee/bridge-services.webp", position: "center" },
-      { src: "/projects/marquee/bridge-hero.webp", position: "center" },
+      { src: "/projects/card/bridge-hero.webp", position: "center" },
     ],
     link: "https://bridgecapital.mx",
   },
@@ -52,7 +52,7 @@ export const LANDING_PROJECTS: LandingProject[] = [
     images: [
       { src: "/projects/marquee/woodax-recent.webp", position: "center" },
       { src: "/projects/marquee/woodax-gallery.webp", position: "center" },
-      { src: "/projects/marquee/woodax-hero.webp", position: "center" },
+      { src: "/projects/card/woodax-hero.webp", position: "center" },
     ],
     link: "https://woodax.design",
   },
@@ -63,7 +63,7 @@ export const LANDING_PROJECTS: LandingProject[] = [
     images: [
       { src: "/projects/marquee/cnc-machine.webp", position: "center" },
       { src: "/projects/marquee/cnc-materials.webp", position: "center" },
-      { src: "/projects/marquee/cnc-hero.webp", position: "center" },
+      { src: "/projects/card/cnc-hero.webp", position: "center" },
     ],
     link: "https://cnc.woodax.design",
   },
@@ -74,7 +74,7 @@ export const LANDING_PROJECTS: LandingProject[] = [
     images: [
       { src: "/projects/marquee/noctra-ops.webp", position: "center" },
       { src: "/projects/marquee/noctra-thesis.webp", position: "center" },
-      { src: "/projects/marquee/noctra-hero.webp", position: "center" },
+      { src: "/projects/card/noctra-hero.webp", position: "center" },
     ],
     link: "https://noctra.studio",
   },
