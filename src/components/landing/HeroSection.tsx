@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { FadeIn } from "./FadeIn";
 import { Magnet } from "./Magnet";
 import { ContactButton } from "./ContactButton";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 
 // HeroSection is the full-viewport opener: nav, oversized gradient heading, tagline and magnetic portrait.
 export function HeroSection() {
@@ -24,7 +23,7 @@ export function HeroSection() {
       <FadeIn delay={0} y={-20}>
         <nav
           aria-label="Principal"
-          className="flex flex-wrap items-center justify-between gap-y-3 px-6 pt-6 md:px-10 md:pt-8">
+          className="flex justify-between px-6 pt-6 md:px-10 md:pt-8">
           {links.map((link) => (
             <a
               key={link.href}
@@ -33,7 +32,6 @@ export function HeroSection() {
               {link.label}
             </a>
           ))}
-          <LanguageSwitcher className="order-first w-full justify-end sm:order-none sm:w-auto" />
         </nav>
       </FadeIn>
 

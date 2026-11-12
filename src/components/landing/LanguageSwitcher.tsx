@@ -6,7 +6,7 @@ import { useRouter, usePathname } from "@/i18n/routing";
 
 const LOCALES = ["es", "en"] as const;
 
-// LanguageSwitcher swaps the active locale in place, keeping the route and the scroll position.
+// LanguageSwitcher is a floating pill that swaps the active locale in place, keeping the route and the scroll position.
 export function LanguageSwitcher({ className }: { className?: string }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -27,7 +27,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
     <div
       role="group"
       aria-label="Language"
-      className={`flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-[#D7E2EA] md:text-lg lg:text-[1.4rem] ${className ?? ""}`}>
+      className={`flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-[#D7E2EA] fixed bottom-5 left-1/2 z-50 -translate-x-1/2 rounded-full border border-[#D7E2EA]/30 bg-[#0C0C0C]/95 px-3 py-0 shadow-[0_4px_20px_rgba(0,0,0,0.45)] backdrop-blur-md md:px-5 md:py-2 ${className ?? ""}`}>
       {LOCALES.map((locale, index) => (
         <span key={locale} className="flex items-center gap-2">
           {index > 0 ? <span className="opacity-30">/</span> : null}
@@ -37,7 +37,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
             disabled={isPending}
             aria-current={currentLocale === locale ? "true" : undefined}
             className={`uppercase transition-opacity duration-200 hover:opacity-70 ${
-              currentLocale === locale ? "opacity-100 underline underline-offset-4" : "opacity-50"
+              currentLocale === locale ? "opacity-100 underline underline-offset-4" : "opacity-60"
             }`}>
             {locale}
           </button>
