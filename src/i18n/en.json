@@ -674,7 +674,8 @@
       "soon": "Coming soon",
       "categories": {
         "client": "Client",
-        "own": "Own studio"
+        "own": "Own studio",
+        "product": "Product"
       }
     },
     "contact": {

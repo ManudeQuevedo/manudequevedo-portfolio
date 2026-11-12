@@ -674,7 +674,8 @@
       "soon": "Próximamente",
       "categories": {
         "client": "Cliente",
-        "own": "Estudio propio"
+        "own": "Estudio propio",
+        "product": "Producto"
       }
     },
     "contact": {
