@@ -28,7 +28,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
     <div
       role="group"
       aria-label={t("language")}
-      className={`flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-[#D7E2EA] fixed bottom-5 left-1/2 z-50 -translate-x-1/2 rounded-full border border-[#D7E2EA]/30 bg-[#0C0C0C]/95 px-3 py-0 shadow-[0_4px_20px_rgba(0,0,0,0.45)] backdrop-blur-md md:px-5 md:py-2 ${className ?? ""}`}>
+      className={`flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-[#D7E2EA] fixed bottom-5 left-1/2 z-50 -translate-x-1/2 rounded-full border border-[#D7E2EA]/30 bg-[#0C0C0C]/95 px-3 py-0 shadow-[0_4px_20px_rgba(0,0,0,0.45)] md:px-5 md:py-2 ${className ?? ""}`}>
       {LOCALES.map((locale, index) => (
         <span key={locale} className="flex items-center gap-2">
           {index > 0 ? <span className="opacity-30">/</span> : null}
